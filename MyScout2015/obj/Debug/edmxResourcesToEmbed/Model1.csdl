@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyScout2015DBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="MyScout2015DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EventsTables" EntityType="MyScout2015DBModel.EventsTable" />
+    <EntitySet Name="MatchTables" EntityType="MyScout2015DBModel.MatchTable" />
+    <EntitySet Name="ScoresTables" EntityType="MyScout2015DBModel.ScoresTable" />
+    <EntitySet Name="TeamTotalsTables" EntityType="MyScout2015DBModel.TeamTotalsTable" />
+    <AssociationSet Name="FK_EventsTableMatchTable" Association="MyScout2015DBModel.FK_EventsTableMatchTable">
+      <End Role="EventsTable" EntitySet="EventsTables" />
+      <End Role="MatchTable" EntitySet="MatchTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventsTableScoresTable" Association="MyScout2015DBModel.FK_EventsTableScoresTable">
+      <End Role="EventsTable" EntitySet="EventsTables" />
+      <End Role="ScoresTable" EntitySet="ScoresTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventsTableTeamTotalsTable" Association="MyScout2015DBModel.FK_EventsTableTeamTotalsTable">
+      <End Role="EventsTable" EntitySet="EventsTables" />
+      <End Role="TeamTotalsTable" EntitySet="TeamTotalsTables" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="EventsTable">
+    <Key>
+      <PropertyRef Name="Event" />
+    </Key>
+    <Property Type="String" Name="Event" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="AccessDate" Precision="3" />
+    <Property Type="Int16" Name="TeamCount" Nullable="false" />
+    <Property Type="Int16" Name="MatchCount" Nullable="false" />
+    <Property Type="Int16" Name="MatchesComplete" Nullable="false" />
+    <Property Type="Boolean" Name="isFavorite" Nullable="false" />
+    <NavigationProperty Name="MatchTables" Relationship="MyScout2015DBModel.FK_EventsTableMatchTable" FromRole="EventsTable" ToRole="MatchTable" />
+    <NavigationProperty Name="ScoresTables" Relationship="MyScout2015DBModel.FK_EventsTableScoresTable" FromRole="EventsTable" ToRole="ScoresTable" />
+    <NavigationProperty Name="TeamTotalsTables" Relationship="MyScout2015DBModel.FK_EventsTableTeamTotalsTable" FromRole="EventsTable" ToRole="TeamTotalsTable" />
+  </EntityType>
+  <EntityType Name="MatchTable">
+    <Key>
+      <PropertyRef Name="Event" />
+      <PropertyRef Name="Match" />
+    </Key>
+    <Property Type="String" Name="Event" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="Match" Nullable="false" />
+    <Property Type="Int16" Name="Red1" Nullable="false" />
+    <Property Type="Int16" Name="Red2" Nullable="false" />
+    <Property Type="Int16" Name="Red3" Nullable="false" />
+    <Property Type="Int16" Name="Blue1" Nullable="false" />
+    <Property Type="Int16" Name="Blue2" Nullable="false" />
+    <Property Type="Int16" Name="Blue3" Nullable="false" />
+    <NavigationProperty Name="EventsTable" Relationship="MyScout2015DBModel.FK_EventsTableMatchTable" FromRole="MatchTable" ToRole="EventsTable" />
+  </EntityType>
+  <EntityType Name="ScoresTable">
+    <Key>
+      <PropertyRef Name="Event" />
+      <PropertyRef Name="Match" />
+      <PropertyRef Name="Team" />
+    </Key>
+    <Property Type="String" Name="Event" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="Match" Nullable="false" />
+    <Property Type="Int16" Name="Team" Nullable="false" />
+    <Property Type="String" Name="AutoTotes" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="AutoContainersMoved" Nullable="false" />
+    <Property Type="Int16" Name="ToteScoreCount" Nullable="false" />
+    <Property Type="String" Name="BinsStacked" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="AutoMobility" Nullable="false" />
+    <Property Type="Boolean" Name="DidFail" Nullable="false" />
+    <Property Type="Int16" Name="KnockdownCount" Nullable="false" />
+    <Property Type="Int16" Name="LandfillLitterCount" Nullable="false" />
+    <Property Type="Int16" Name="RecycledLitterCount" Nullable="false" />
+    <NavigationProperty Name="EventsTable" Relationship="MyScout2015DBModel.FK_EventsTableScoresTable" FromRole="ScoresTable" ToRole="EventsTable" />
+  </EntityType>
+  <EntityType Name="TeamTotalsTable">
+    <Key>
+      <PropertyRef Name="Event" />
+      <PropertyRef Name="Team" />
+    </Key>
+    <Property Type="String" Name="Event" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="Team" Nullable="false" />
+    <Property Type="Int16" Name="AutoToteTotal" Nullable="false" />
+    <Property Type="Int16" Name="AutoTotalContainers" Nullable="false" />
+    <Property Type="Int16" Name="AutoMobilityTotal" Nullable="false" />
+    <Property Type="Int16" Name="ToteScoreCountTotal" Nullable="false" />
+    <Property Type="Int16" Name="BinsStackedTotal" Nullable="false" />
+    <Property Type="Int16" Name="FailTotal" Nullable="false" />
+    <Property Type="String" Name="KnockdownTotal" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="AutoComments" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="OtherComments" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="ToteReachHeight" Nullable="false" />
+    <Property Type="Int16" Name="BinReachHeight" Nullable="false" />
+    <Property Type="String" Name="TeamName" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="Runs" Nullable="false" />
+    <Property Type="String" Name="LandfillLitterTotal" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="RecycledLitterTotal" Nullable="false" />
+    <NavigationProperty Name="EventsTable" Relationship="MyScout2015DBModel.FK_EventsTableTeamTotalsTable" FromRole="TeamTotalsTable" ToRole="EventsTable" />
+  </EntityType>
+  <Association Name="FK_EventsTableMatchTable">
+    <End Type="MyScout2015DBModel.EventsTable" Role="EventsTable" Multiplicity="1" />
+    <End Type="MyScout2015DBModel.MatchTable" Role="MatchTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventsTable">
+        <PropertyRef Name="Event" />
+      </Principal>
+      <Dependent Role="MatchTable">
+        <PropertyRef Name="Event" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventsTableScoresTable">
+    <End Type="MyScout2015DBModel.EventsTable" Role="EventsTable" Multiplicity="1" />
+    <End Type="MyScout2015DBModel.ScoresTable" Role="ScoresTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventsTable">
+        <PropertyRef Name="Event" />
+      </Principal>
+      <Dependent Role="ScoresTable">
+        <PropertyRef Name="Event" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventsTableTeamTotalsTable">
+    <End Type="MyScout2015DBModel.EventsTable" Role="EventsTable" Multiplicity="1" />
+    <End Type="MyScout2015DBModel.TeamTotalsTable" Role="TeamTotalsTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventsTable">
+        <PropertyRef Name="Event" />
+      </Principal>
+      <Dependent Role="TeamTotalsTable">
+        <PropertyRef Name="Event" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

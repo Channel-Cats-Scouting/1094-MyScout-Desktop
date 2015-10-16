@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="68bc2c964f624e37b1e30a04090285fc" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="MyScout2015DBModel.EventsTable" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MyScout2015DBModel.MatchTable" Width="1.5" PointX="3.5" PointY="0.75" />
+        <EntityTypeShape EntityType="MyScout2015DBModel.ScoresTable" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MyScout2015DBModel.TeamTotalsTable" Width="1.5" PointX="7.875" PointY="0.75" />
+        <AssociationConnector Association="MyScout2015DBModel.FK_EventsTableMatchTable" />
+        <AssociationConnector Association="MyScout2015DBModel.FK_EventsTableScoresTable" />
+        <AssociationConnector Association="MyScout2015DBModel.FK_EventsTableTeamTotalsTable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

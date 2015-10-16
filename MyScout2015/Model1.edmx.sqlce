@@ -1,0 +1,166 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server Compact Edition
+-- --------------------------------------------------
+-- Date Created: 03/15/2015 16:45:30
+-- Generated from EDMX file: C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\Model1.edmx
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- NOTE: if the constraint does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    ALTER TABLE [MatchTables] DROP CONSTRAINT [FK_EventsTableMatchTable];
+GO
+    ALTER TABLE [ScoresTables] DROP CONSTRAINT [FK_EventsTableScoresTable];
+GO
+    ALTER TABLE [TeamTotalsTables] DROP CONSTRAINT [FK_EventsTableTeamTotalsTable];
+GO
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- NOTE: if the table does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    DROP TABLE [EventsTables];
+GO
+    DROP TABLE [MatchTables];
+GO
+    DROP TABLE [ScoresTables];
+GO
+    DROP TABLE [TeamTotalsTables];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'EventsTables'
+CREATE TABLE [EventsTables] (
+    [Event] nvarchar(4000)  NOT NULL,
+    [AccessDate] datetime  NULL,
+    [TeamCount] smallint  NOT NULL,
+    [MatchCount] smallint  NOT NULL,
+    [MatchesComplete] smallint  NOT NULL,
+    [isFavorite] bit  NOT NULL
+);
+GO
+
+-- Creating table 'MatchTables'
+CREATE TABLE [MatchTables] (
+    [Event] nvarchar(4000)  NOT NULL,
+    [Match] smallint  NOT NULL,
+    [Red1] smallint  NOT NULL,
+    [Red2] smallint  NOT NULL,
+    [Red3] smallint  NOT NULL,
+    [Blue1] smallint  NOT NULL,
+    [Blue2] smallint  NOT NULL,
+    [Blue3] smallint  NOT NULL
+);
+GO
+
+-- Creating table 'ScoresTables'
+CREATE TABLE [ScoresTables] (
+    [Event] nvarchar(4000)  NOT NULL,
+    [Match] smallint  NOT NULL,
+    [Team] smallint  NOT NULL,
+    [AutoTotes] nvarchar(4000)  NOT NULL,
+    [AutoContainersMoved] smallint  NOT NULL,
+    [ToteScoreCount] smallint  NOT NULL,
+    [BinsStacked] smallint  NOT NULL,
+    [TotesStacked] smallint  NOT NULL,
+    [AutoMobility] smallint  NOT NULL,
+    [DidFail] bit  NOT NULL,
+    [KnockdownCount] smallint  NOT NULL,
+    [LandfillLitterCount] smallint  NOT NULL,
+    [RecycledLitterCount] smallint  NOT NULL
+);
+GO
+
+-- Creating table 'TeamTotalsTables'
+CREATE TABLE [TeamTotalsTables] (
+    [Event] nvarchar(4000)  NOT NULL,
+    [Team] smallint  NOT NULL,
+    [AutoToteTotal] smallint  NOT NULL,
+    [AutoTotalContainers] smallint  NOT NULL,
+    [AutoMobilityTotal] smallint  NOT NULL,
+    [ToteScoreCountTotal] smallint  NOT NULL,
+    [BinsStackedTotal] smallint  NOT NULL,
+    [TotesStackedTotal] smallint  NOT NULL,
+    [FailTotal] smallint  NOT NULL,
+    [KnockdownTotal] nvarchar(4000)  NOT NULL,
+    [AutoComments] nvarchar(4000)  NOT NULL,
+    [OtherComments] nvarchar(4000)  NOT NULL,
+    [ToteReachHeight] smallint  NOT NULL,
+    [BinReachHeight] smallint  NOT NULL,
+    [TeamName] nvarchar(4000)  NOT NULL,
+    [Runs] smallint  NOT NULL,
+    [LandfillLitterTotal] nvarchar(4000)  NOT NULL,
+    [RecycledLitterTotal] smallint  NOT NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Event] in table 'EventsTables'
+ALTER TABLE [EventsTables]
+ADD CONSTRAINT [PK_EventsTables]
+    PRIMARY KEY ([Event] );
+GO
+
+-- Creating primary key on [Event], [Match] in table 'MatchTables'
+ALTER TABLE [MatchTables]
+ADD CONSTRAINT [PK_MatchTables]
+    PRIMARY KEY ([Event], [Match] );
+GO
+
+-- Creating primary key on [Event], [Match], [Team] in table 'ScoresTables'
+ALTER TABLE [ScoresTables]
+ADD CONSTRAINT [PK_ScoresTables]
+    PRIMARY KEY ([Event], [Match], [Team] );
+GO
+
+-- Creating primary key on [Event], [Team] in table 'TeamTotalsTables'
+ALTER TABLE [TeamTotalsTables]
+ADD CONSTRAINT [PK_TeamTotalsTables]
+    PRIMARY KEY ([Event], [Team] );
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [Event] in table 'MatchTables'
+ALTER TABLE [MatchTables]
+ADD CONSTRAINT [FK_EventsTableMatchTable]
+    FOREIGN KEY ([Event])
+    REFERENCES [EventsTables]
+        ([Event])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Event] in table 'ScoresTables'
+ALTER TABLE [ScoresTables]
+ADD CONSTRAINT [FK_EventsTableScoresTable]
+    FOREIGN KEY ([Event])
+    REFERENCES [EventsTables]
+        ([Event])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Event] in table 'TeamTotalsTables'
+ALTER TABLE [TeamTotalsTables]
+ADD CONSTRAINT [FK_EventsTableTeamTotalsTable]
+    FOREIGN KEY ([Event])
+    REFERENCES [EventsTables]
+        ([Event])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

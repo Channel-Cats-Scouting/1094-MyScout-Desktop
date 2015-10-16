@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyScout2015DBModelStoreContainer" CdmEntityContainer="MyScout2015DBEntities">
+    <EntitySetMapping Name="EventsTables">
+      <EntityTypeMapping TypeName="MyScout2015DBModel.EventsTable">
+        <MappingFragment StoreEntitySet="EventsTables">
+          <ScalarProperty Name="isFavorite" ColumnName="isFavorite" />
+          <ScalarProperty Name="MatchesComplete" ColumnName="MatchesComplete" />
+          <ScalarProperty Name="MatchCount" ColumnName="MatchCount" />
+          <ScalarProperty Name="TeamCount" ColumnName="TeamCount" />
+          <ScalarProperty Name="AccessDate" ColumnName="AccessDate" />
+          <ScalarProperty Name="Event" ColumnName="Event" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MatchTables">
+      <EntityTypeMapping TypeName="MyScout2015DBModel.MatchTable">
+        <MappingFragment StoreEntitySet="MatchTables">
+          <ScalarProperty Name="Blue3" ColumnName="Blue3" />
+          <ScalarProperty Name="Blue2" ColumnName="Blue2" />
+          <ScalarProperty Name="Blue1" ColumnName="Blue1" />
+          <ScalarProperty Name="Red3" ColumnName="Red3" />
+          <ScalarProperty Name="Red2" ColumnName="Red2" />
+          <ScalarProperty Name="Red1" ColumnName="Red1" />
+          <ScalarProperty Name="Match" ColumnName="Match" />
+          <ScalarProperty Name="Event" ColumnName="Event" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScoresTables">
+      <EntityTypeMapping TypeName="MyScout2015DBModel.ScoresTable">
+        <MappingFragment StoreEntitySet="ScoresTables">
+          <ScalarProperty Name="RecycledLitterCount" ColumnName="RecycledLitterCount" />
+          <ScalarProperty Name="LandfillLitterCount" ColumnName="LandfillLitterCount" />
+          <ScalarProperty Name="KnockdownCount" ColumnName="KnockdownCount" />
+          <ScalarProperty Name="DidFail" ColumnName="DidFail" />
+          <ScalarProperty Name="AutoMobility" ColumnName="AutoMobility" />
+          <ScalarProperty Name="BinsStacked" ColumnName="BinsStacked" />
+          <ScalarProperty Name="ToteScoreCount" ColumnName="ToteScoreCount" />
+          <ScalarProperty Name="AutoContainersMoved" ColumnName="AutoContainersMoved" />
+          <ScalarProperty Name="AutoTotes" ColumnName="AutoTotes" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+          <ScalarProperty Name="Match" ColumnName="Match" />
+          <ScalarProperty Name="Event" ColumnName="Event" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamTotalsTables">
+      <EntityTypeMapping TypeName="MyScout2015DBModel.TeamTotalsTable">
+        <MappingFragment StoreEntitySet="TeamTotalsTables">
+          <ScalarProperty Name="RecycledLitterTotal" ColumnName="RecycledLitterTotal" />
+          <ScalarProperty Name="LandfillLitterTotal" ColumnName="LandfillLitterTotal" />
+          <ScalarProperty Name="Runs" ColumnName="Runs" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="BinReachHeight" ColumnName="BinReachHeight" />
+          <ScalarProperty Name="ToteReachHeight" ColumnName="ToteReachHeight" />
+          <ScalarProperty Name="OtherComments" ColumnName="OtherComments" />
+          <ScalarProperty Name="AutoComments" ColumnName="AutoComments" />
+          <ScalarProperty Name="KnockdownTotal" ColumnName="KnockdownTotal" />
+          <ScalarProperty Name="FailTotal" ColumnName="FailTotal" />
+          <ScalarProperty Name="BinsStackedTotal" ColumnName="BinsStackedTotal" />
+          <ScalarProperty Name="ToteScoreCountTotal" ColumnName="ToteScoreCountTotal" />
+          <ScalarProperty Name="AutoMobilityTotal" ColumnName="AutoMobilityTotal" />
+          <ScalarProperty Name="AutoTotalContainers" ColumnName="AutoTotalContainers" />
+          <ScalarProperty Name="AutoToteTotal" ColumnName="AutoToteTotal" />
+          <ScalarProperty Name="Team" ColumnName="Team" />
+          <ScalarProperty Name="Event" ColumnName="Event" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

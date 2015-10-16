@@ -1,0 +1,153 @@
+c:\users\m4500\documents\visual studio 2012\Projects\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.config
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.ChooseEvent.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.MatchEditor.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.Resources.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.Schedule.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.ScoreEntryForm.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.ScoreOverview.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.Settings.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.SubscoresView.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.vbproj.GenerateResource.Cache
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.config
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\bin\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\bin\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\bin\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\bin\Debug\EntityFramework.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\bin\Debug\EntityFramework.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-15_TEMPLATE\MyScout\MyScout2015\obj\Debug\MyScout2015.vbprojResolveAssemblyReference.cache
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-16\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.config
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-16\MyScout\MyScout2015\obj\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-16\MyScout\MyScout2015\obj\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2014-01-16\MyScout\MyScout2015\obj\Debug\MyScout2015.pdb
+C:\Users\M4500\Google Drive\MyScout Project Files\2015-01-20\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.config
+C:\Users\M4500\Google Drive\MyScout Project Files\2015-01-20\MyScout\MyScout2015\obj\Debug\MyScout2015.xml
+C:\Users\M4500\Google Drive\MyScout Project Files\2015-01-20\MyScout\MyScout2015\obj\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.config
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\EntityFramework.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\EntityFramework.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.vbprojResolveAssemblyReference.cache
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.ChooseEvent.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.MatchEditor.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.Resources.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.Schedule.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.ScoreEntryForm.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.ScoreOverview.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.Settings.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.SubscoresView.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.vbproj.GenerateResource.Cache
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.manifest
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\MyScout2015.application
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.exe.manifest
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\obj\Debug\MyScout2015.application
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\sqlceca40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\sqlcecompact40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\sqlceer40EN.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\sqlceme40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\sqlceoledb40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\sqlceqp40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\sqlcese40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\System.Data.SqlServerCe.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\MyScout2015DB.sdf
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-7\MyScout\MyScout2015\bin\Debug\App.config
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.config
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceca40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlcecompact40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceer40EN.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceme40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceoledb40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceqp40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlcese40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015DB.sdf
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.manifest
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.application
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\EntityFramework.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\bin\Debug\EntityFramework.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.vbprojResolveAssemblyReference.cache
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.ChooseEvent.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.MatchEditor.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.Resources.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.Schedule.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.ScoreEntryForm.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.ScoreOverview.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.Settings.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.SubscoresView.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.vbproj.GenerateResource.Cache
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.exe.manifest
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-03-18 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.application
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.config
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015DB.sdf
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceca40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlcecompact40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceer40EN.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceme40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceoledb40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceqp40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlcese40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.manifest
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.application
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\EntityFramework.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\bin\Debug\EntityFramework.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.vbprojResolveAssemblyReference.cache
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.ChooseEvent.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.MatchEditor.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.Resources.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.Schedule.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.ScoreEntryForm.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.ScoreOverview.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.Settings.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.SubscoresView.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.vbproj.GenerateResource.Cache
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.exe.manifest
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-09 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.application
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.config
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015DB.sdf
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceca40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlcecompact40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceer40EN.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceme40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceoledb40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlceqp40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\sqlcese40.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.exe.manifest
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.application
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.exe
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.pdb
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\MyScout2015.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\EntityFramework.dll
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\bin\Debug\EntityFramework.xml
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.vbprojResolveAssemblyReference.cache
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.ChooseEvent.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.MatchEditor.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.Resources.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.Schedule.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.ScoreEntryForm.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.ScoreOverview.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.Settings.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.SubscoresView.resources
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.vbproj.GenerateResource.Cache
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.exe.manifest
+C:\Users\M4500\Documents\Visual Studio 2012\Projects\MyScout2015\2015-04-21 PUBLISH\MyScout\MyScout2015\obj\Debug\MyScout2015.application
