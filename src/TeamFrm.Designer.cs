@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.NumberTBx = new System.Windows.Forms.TextBox();
+            this.errorLbl = new System.Windows.Forms.Label();
             this.BtnPnl.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,6 +111,18 @@
             this.NumberTBx.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NumberBx_KeyDown);
             this.NumberTBx.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberTBx_KeyPress);
             // 
+            // errorLbl
+            // 
+            this.errorLbl.AutoSize = true;
+            this.errorLbl.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.errorLbl.ForeColor = System.Drawing.Color.Red;
+            this.errorLbl.Location = new System.Drawing.Point(12, 117);
+            this.errorLbl.Name = "errorLbl";
+            this.errorLbl.Size = new System.Drawing.Size(235, 13);
+            this.errorLbl.TabIndex = 5;
+            this.errorLbl.Text = "Please enter a valid team number (E.G. 1094).";
+            this.errorLbl.Visible = false;
+            // 
             // TeamFrm
             // 
             this.AcceptButton = this.OkBtn;
@@ -118,6 +131,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.CancelBtn;
             this.ClientSize = new System.Drawing.Size(284, 172);
+            this.Controls.Add(this.errorLbl);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.NumberTBx);
             this.Controls.Add(this.label1);
@@ -146,5 +160,6 @@
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox NameTbx;
         public System.Windows.Forms.TextBox NumberTBx;
+        private System.Windows.Forms.Label errorLbl;
     }
 }

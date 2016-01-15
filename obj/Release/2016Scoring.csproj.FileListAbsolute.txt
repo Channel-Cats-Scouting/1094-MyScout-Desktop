@@ -1,0 +1,9 @@
+C:\Users\Graham\Documents\Visual Studio 2015\Projects\2016Scoring\bin\Release\My Scout 2016 - First Stronghold.exe.config
+C:\Users\Graham\Documents\Visual Studio 2015\Projects\2016Scoring\bin\Release\My Scout 2016 - First Stronghold.exe
+C:\Users\Graham\Documents\Visual Studio 2015\Projects\2016Scoring\bin\Release\My Scout 2016 - First Stronghold.pdb
+C:\Users\Graham\Documents\Visual Studio 2015\Projects\2016Scoring\obj\Release\_2016Scoring.MainFrm.resources
+C:\Users\Graham\Documents\Visual Studio 2015\Projects\2016Scoring\obj\Release\_2016Scoring.Properties.Resources.resources
+C:\Users\Graham\Documents\Visual Studio 2015\Projects\2016Scoring\obj\Release\_2016Scoring.TeamFrm.resources
+C:\Users\Graham\Documents\Visual Studio 2015\Projects\2016Scoring\obj\Release\2016Scoring.csproj.GenerateResource.Cache
+C:\Users\Graham\Documents\Visual Studio 2015\Projects\2016Scoring\obj\Release\My Scout 2016 - First Stronghold.exe
+C:\Users\Graham\Documents\Visual Studio 2015\Projects\2016Scoring\obj\Release\My Scout 2016 - First Stronghold.pdb

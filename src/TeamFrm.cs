@@ -52,8 +52,9 @@ namespace _2016Scoring
         {
             if (!(NumberTBx.Text.Length < 4 && char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
             {
-                e.Handled = true;
+                e.Handled = errorLbl.Visible = true;
             }
+            else { errorLbl.Visible = false; }
         }
     }
 }

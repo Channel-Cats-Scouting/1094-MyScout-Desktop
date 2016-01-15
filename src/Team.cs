@@ -12,5 +12,7 @@ namespace _2016Scoring
         public int number = 0, score = 0;
 
         public List<string> strengths = new List<string>(), weaknesses = new List<string>();
+
+        public Team (string name, int number) { this.name = name; this.number = number; }
     }
 }

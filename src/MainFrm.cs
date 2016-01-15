@@ -30,9 +30,14 @@ namespace _2016Scoring
 
             if (tf.DialogResult == DialogResult.OK)
             {
-                ListViewItem team = new ListViewItem(new string[] { tf.NameTbx.Text, tf.NumberTBx.Text.ToString() });
-                TeamList.Items.Add(team);
-                TeamList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                Team team = new Team(tf.NameTbx.Text, Convert.ToInt32(tf.NumberTBx.Text));
+                Teams.Add(team);
+
+                ListViewItem item = new ListViewItem(new string[] { team.name, team.number.ToString() }) { Tag = Teams.Count-1 };
+                TeamList.Items.Add(item);
+                TeamList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
+                TeamList.Items[TeamList.Items.Count - 1].Selected = true;
             }
             UpdateText();
         }
@@ -54,13 +59,18 @@ namespace _2016Scoring
 
             if (RmTeamBtn.Enabled)
             {
-                //TeamnmLbl.Text = TeamList.SelectedItems[0]
+                TeamnmLbl.Text = $"{Teams[(int)TeamList.SelectedItems[0].Tag].name} ({Teams[(int)TeamList.SelectedItems[0].Tag].number.ToString()})";
             }
         }
 
         private void UpdateText()
         {
             AddaTeamLbl.Text = (TeamList.Items.Count <= 0) ? "Add a Team to Begin" : "Select a Team to Begin";
+        }
+
+        private void TeamnmLbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new TeamFrm().ShowDialog();
         }
     }
 }
