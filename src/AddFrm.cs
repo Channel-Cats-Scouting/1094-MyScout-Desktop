@@ -10,9 +10,16 @@ using System.Windows.Forms;
 
 namespace _2016Scoring
 {
-    public partial class TeamFrm : Form
+    public partial class AddFrm : Form
     {
-        public TeamFrm()
+        public Type thingtoadd;
+
+        public enum Type
+        {
+            Team,Event
+        }
+
+        public AddFrm()
         {
             InitializeComponent();
         }
@@ -30,7 +37,7 @@ namespace _2016Scoring
 
         private void Control_TextChanged(object sender, EventArgs e)
         {
-            OkBtn.Enabled = (!string.IsNullOrEmpty(NumberTBx.Text) && Convert.ToInt32(NumberTBx.Text) <= 9999 && Convert.ToInt32(NumberTBx.Text) >= 0 && !string.IsNullOrEmpty(NameTbx.Text));
+            OkBtn.Enabled = (!string.IsNullOrEmpty(NumberTBx.Text) && ((thingtoadd == Type.Event) || (Convert.ToInt32(NumberTBx.Text) <= 9999 && Convert.ToInt32(NumberTBx.Text) >= 0 && !string.IsNullOrEmpty(NameTbx.Text))));
         }
 
         private void NumberBx_KeyDown(object sender, KeyEventArgs e)
@@ -50,7 +57,7 @@ namespace _2016Scoring
 
         private void NumberTBx_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(NumberTBx.Text.Length < 4 && char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
+            if (thingtoadd == Type.Team && !(NumberTBx.Text.Length < 4 && char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back)))
             {
                 e.Handled = errorLbl.Visible = true;
             }

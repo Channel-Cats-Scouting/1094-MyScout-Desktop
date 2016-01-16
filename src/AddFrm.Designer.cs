@@ -1,6 +1,6 @@
 ﻿namespace _2016Scoring
 {
-    partial class TeamFrm
+    partial class AddFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -156,10 +156,10 @@
         private System.Windows.Forms.Panel BtnPnl;
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Button OkBtn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox NameTbx;
         public System.Windows.Forms.TextBox NumberTBx;
         private System.Windows.Forms.Label errorLbl;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
     }
 }
