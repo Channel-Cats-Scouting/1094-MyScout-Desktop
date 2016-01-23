@@ -19,6 +19,10 @@ namespace MyScout
         /// The id of the team (E.G. "1094").
         /// </summary>
         public int id = 1094;
+        /// <summary>
+        /// The team's current score.
+        /// </summary>
+        public int score = 0;
 
         /// <summary>
         /// How well the team does with crossing each defense.

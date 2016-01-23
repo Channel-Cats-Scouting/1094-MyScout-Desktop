@@ -40,12 +40,33 @@ namespace MyScout
 
         #region GUI Events
         /// <summary>
+        /// Occurs when the "Back" button is "clicked."
+        /// </summary>
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            TeamPnl.Visible = false;
+            RefreshControls();
+        }
+
+        /// <summary>
         /// Occurs when the "Add Event" button is "clicked."
         /// </summary>
         private void AddEventBtn_Click(object sender, EventArgs e)
         {
             Program.events.Add(new Event("Chaifetz Arena", $"{DateTime.Now.Month.ToString()}/{DateTime.Now.Day.ToString()}/{DateTime.Now.Year.ToString()}", $"{DateTime.Now.Month.ToString()}/{DateTime.Now.Day.ToString()}/{DateTime.Now.Year.ToString()}"));
             RefreshEventList();
+        }
+
+        /// <summary>
+        /// Occurs when the "Remove Event" button is "clicked."
+        /// </summary>
+        private void RemoveEventBtn_Click(object sender, EventArgs e)
+        {
+            if (EventList.SelectedItems.Count > 0 && MessageBox.Show("Are you SURE you want to remove the selected event?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                Program.events.RemoveAt(EventList.SelectedIndices[0]);
+                RefreshEventList();
+            }
         }
 
         /// <summary>
@@ -56,18 +77,13 @@ namespace MyScout
             TeamPnl.Visible = true;
             RefreshControls();
         }
-
-        private void RemoveEventBtn_Click(object sender, EventArgs e)
-        {
-            if (EventList.SelectedItems.Count > 0 && MessageBox.Show("Are you SURE you want to remove the selected event?","MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-            {
-                Program.events.RemoveAt(EventList.SelectedIndices[0]);
-                RefreshEventList();
-            }
-        }
-
+        
+        /// <summary>
+        /// Occurs when a key is pressed anywhere within the form.
+        /// </summary>
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            //If the program is currently on the event list...
             if (!TeamPnl.Visible)
             {
                 if (keyData == Keys.Delete)
@@ -80,11 +96,5 @@ namespace MyScout
             return base.ProcessCmdKey(ref msg, keyData);
         }
         #endregion
-
-        private void BackBtn_Click(object sender, EventArgs e)
-        {
-            TeamPnl.Visible = false;
-            RefreshControls();
-        }
     }
 }
