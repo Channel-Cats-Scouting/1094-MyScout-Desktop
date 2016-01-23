@@ -60,6 +60,12 @@
     <Compile Include="src\Classes\Alliance.cs" />
     <Compile Include="src\Classes\Event.cs" />
     <Compile Include="src\Classes\Team.cs" />
+    <Compile Include="src\Forms\AddDataFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Forms\AddDataFrm.Designer.cs">
+      <DependentUpon>AddDataFrm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -73,6 +79,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="src\Forms\AddDataFrm.resx">
+      <DependentUpon>AddDataFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -86,9 +95,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="icon.ico" />
     <None Include="Resources\backbtn.png" />
