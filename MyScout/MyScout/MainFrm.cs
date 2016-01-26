@@ -45,6 +45,7 @@ namespace MyScout
         private void BackBtn_Click(object sender, EventArgs e)
         {
             TeamPnl.Visible = false;
+            Text = "MyScout 2016";
             RefreshControls();
         }
 
@@ -103,6 +104,7 @@ namespace MyScout
         private void EventList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             TeamPnl.Visible = true;
+            Text = Program.events[EventList.SelectedIndices[0]].name + " - MyScout 2016";
             RefreshControls();
         }
         
