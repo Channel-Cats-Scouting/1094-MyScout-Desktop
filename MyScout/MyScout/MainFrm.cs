@@ -85,6 +85,7 @@ namespace MyScout
                 adddataFrm.textBox1.Text = Program.events[EventList.SelectedIndices[0]].name;
                 adddataFrm.textBox2.Text = Program.events[EventList.SelectedIndices[0]].begindate;
                 adddataFrm.textBox3.Text = Program.events[EventList.SelectedIndices[0]].enddate;
+                adddataFrm.Text = "Edit Event";
 
                 if (adddataFrm.ShowDialog() == DialogResult.OK)
                 {
