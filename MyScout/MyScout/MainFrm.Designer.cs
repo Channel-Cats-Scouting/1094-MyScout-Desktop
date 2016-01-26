@@ -196,14 +196,10 @@
             // 
             // TeamPnl
             // 
-<<<<<<< HEAD
             this.TeamPnl.Controls.Add(this.TeamNamePnl);
-=======
             this.TeamPnl.Controls.Add(this.groupBox3);
             this.TeamPnl.Controls.Add(this.groupBox2);
             this.TeamPnl.Controls.Add(this.groupBox1);
-            this.TeamPnl.Controls.Add(this.panel1);
->>>>>>> a291f8abfb568e050e50ba4ad338f6339b44d15f
             this.TeamPnl.Controls.Add(this.AllianceBtnPnl);
             this.TeamPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TeamPnl.Location = new System.Drawing.Point(0, 0);
@@ -568,12 +564,8 @@
         private System.Windows.Forms.Button BlueAllianceBtn1;
         private System.Windows.Forms.Button BlueAllianceBtn2;
         private System.Windows.Forms.Button BlueAllianceBtn3;
-<<<<<<< HEAD
         private System.Windows.Forms.Panel TeamNamePnl;
         private System.Windows.Forms.Label TeamNameLbl;
-=======
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -591,7 +583,6 @@
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.CheckBox checkBox6;
         private System.Windows.Forms.CheckBox checkBox3;
->>>>>>> a291f8abfb568e050e50ba4ad338f6339b44d15f
     }
 }
 
