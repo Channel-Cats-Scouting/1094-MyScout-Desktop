@@ -53,8 +53,13 @@ namespace MyScout
         /// </summary>
         private void AddEventBtn_Click(object sender, EventArgs e)
         {
-            Program.events.Add(new Event("Chaifetz Arena", $"{DateTime.Now.Month.ToString()}/{DateTime.Now.Day.ToString()}/{DateTime.Now.Year.ToString()}", $"{DateTime.Now.Month.ToString()}/{DateTime.Now.Day.ToString()}/{DateTime.Now.Year.ToString()}"));
-            RefreshEventList();
+            AddDataFrm adddataFrm = new AddDataFrm(AddDataFrm.Data.Event);
+
+            if (adddataFrm.ShowDialog() == DialogResult.OK)
+            {
+                Program.events.Add(new Event(adddataFrm.textBox1.Text,adddataFrm.textBox2.Text,adddataFrm.textBox3.Text));
+                RefreshEventList();
+            }
         }
 
         /// <summary>
@@ -66,6 +71,28 @@ namespace MyScout
             {
                 Program.events.RemoveAt(EventList.SelectedIndices[0]);
                 RefreshEventList();
+            }
+        }
+
+        /// <summary>
+        /// Occurs when the "Edit Event" button is "clicked."
+        /// </summary>
+        private void EditEventBtn_Click(object sender, EventArgs e)
+        {
+            if (EventList.SelectedItems.Count > 0)
+            {
+                AddDataFrm adddataFrm = new AddDataFrm(AddDataFrm.Data.Event);
+                adddataFrm.textBox1.Text = Program.events[EventList.SelectedIndices[0]].name;
+                adddataFrm.textBox2.Text = Program.events[EventList.SelectedIndices[0]].begindate;
+                adddataFrm.textBox3.Text = Program.events[EventList.SelectedIndices[0]].enddate;
+
+                if (adddataFrm.ShowDialog() == DialogResult.OK)
+                {
+                    Program.events[EventList.SelectedIndices[0]].name = adddataFrm.textBox1.Text;
+                    Program.events[EventList.SelectedIndices[0]].begindate = adddataFrm.textBox2.Text;
+                    Program.events[EventList.SelectedIndices[0]].enddate = adddataFrm.textBox3.Text;
+                    RefreshEventList();
+                }
             }
         }
 

@@ -41,22 +41,22 @@
             this.EditEventBtn = new System.Windows.Forms.Button();
             this.AddEventBtn = new System.Windows.Forms.Button();
             this.TeamPnl = new System.Windows.Forms.Panel();
-            this.BackBtn = new System.Windows.Forms.Button();
-            this.RedAllianceBtn1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.AllianceBtnPnl = new System.Windows.Forms.Panel();
-            this.RedAllianceBtn2 = new System.Windows.Forms.Button();
-            this.RedAllianceBtn3 = new System.Windows.Forms.Button();
+            this.BackBtn = new System.Windows.Forms.Button();
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn2 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn3 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.RedAllianceBtn1 = new System.Windows.Forms.Button();
+            this.RedAllianceBtn2 = new System.Windows.Forms.Button();
+            this.RedAllianceBtn3 = new System.Windows.Forms.Button();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
             this.TeamPnl.SuspendLayout();
-            this.AllianceBtnPnl.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.AllianceBtnPnl.SuspendLayout();
             this.SuspendLayout();
             // 
             // ChooseAnEventLbl
@@ -159,6 +159,7 @@
             this.EditEventBtn.TabIndex = 1;
             this.EditEventBtn.Text = "&Edit Event";
             this.EditEventBtn.UseVisualStyleBackColor = true;
+            this.EditEventBtn.Click += new System.EventHandler(this.EditEventBtn_Click);
             // 
             // AddEventBtn
             // 
@@ -184,31 +185,28 @@
             this.TeamPnl.TabIndex = 4;
             this.TeamPnl.Visible = false;
             // 
-            // BackBtn
+            // panel1
             // 
-            this.BackBtn.FlatAppearance.BorderSize = 0;
-            this.BackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BackBtn.Image = ((System.Drawing.Image)(resources.GetObject("BackBtn.Image")));
-            this.BackBtn.Location = new System.Drawing.Point(7, 3);
-            this.BackBtn.Name = "BackBtn";
-            this.BackBtn.Size = new System.Drawing.Size(40, 40);
-            this.BackBtn.TabIndex = 0;
-            this.BackBtn.UseVisualStyleBackColor = true;
-            this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(155, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(629, 90);
+            this.panel1.TabIndex = 3;
             // 
-            // RedAllianceBtn1
+            // label1
             // 
-            this.RedAllianceBtn1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RedAllianceBtn1.BackColor = System.Drawing.Color.Red;
-            this.RedAllianceBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RedAllianceBtn1.Font = new System.Drawing.Font("Segoe UI", 20F);
-            this.RedAllianceBtn1.ForeColor = System.Drawing.Color.White;
-            this.RedAllianceBtn1.Location = new System.Drawing.Point(12, 53);
-            this.RedAllianceBtn1.Name = "RedAllianceBtn1";
-            this.RedAllianceBtn1.Size = new System.Drawing.Size(128, 55);
-            this.RedAllianceBtn1.TabIndex = 1;
-            this.RedAllianceBtn1.Text = "----";
-            this.RedAllianceBtn1.UseVisualStyleBackColor = false;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 22F);
+            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(627, 88);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Team Name";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AllianceBtnPnl
             // 
@@ -225,33 +223,17 @@
             this.AllianceBtnPnl.Size = new System.Drawing.Size(155, 461);
             this.AllianceBtnPnl.TabIndex = 2;
             // 
-            // RedAllianceBtn2
+            // BackBtn
             // 
-            this.RedAllianceBtn2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RedAllianceBtn2.BackColor = System.Drawing.Color.Red;
-            this.RedAllianceBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RedAllianceBtn2.Font = new System.Drawing.Font("Segoe UI", 20F);
-            this.RedAllianceBtn2.ForeColor = System.Drawing.Color.White;
-            this.RedAllianceBtn2.Location = new System.Drawing.Point(12, 121);
-            this.RedAllianceBtn2.Name = "RedAllianceBtn2";
-            this.RedAllianceBtn2.Size = new System.Drawing.Size(128, 55);
-            this.RedAllianceBtn2.TabIndex = 2;
-            this.RedAllianceBtn2.Text = "----";
-            this.RedAllianceBtn2.UseVisualStyleBackColor = false;
-            // 
-            // RedAllianceBtn3
-            // 
-            this.RedAllianceBtn3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RedAllianceBtn3.BackColor = System.Drawing.Color.Red;
-            this.RedAllianceBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RedAllianceBtn3.Font = new System.Drawing.Font("Segoe UI", 20F);
-            this.RedAllianceBtn3.ForeColor = System.Drawing.Color.White;
-            this.RedAllianceBtn3.Location = new System.Drawing.Point(12, 189);
-            this.RedAllianceBtn3.Name = "RedAllianceBtn3";
-            this.RedAllianceBtn3.Size = new System.Drawing.Size(128, 55);
-            this.RedAllianceBtn3.TabIndex = 3;
-            this.RedAllianceBtn3.Text = "----";
-            this.RedAllianceBtn3.UseVisualStyleBackColor = false;
+            this.BackBtn.FlatAppearance.BorderSize = 0;
+            this.BackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackBtn.Image = ((System.Drawing.Image)(resources.GetObject("BackBtn.Image")));
+            this.BackBtn.Location = new System.Drawing.Point(7, 3);
+            this.BackBtn.Name = "BackBtn";
+            this.BackBtn.Size = new System.Drawing.Size(40, 40);
+            this.BackBtn.TabIndex = 0;
+            this.BackBtn.UseVisualStyleBackColor = true;
+            this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
             // 
             // BlueAllianceBtn1
             // 
@@ -295,28 +277,47 @@
             this.BlueAllianceBtn3.Text = "----";
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
             // 
-            // panel1
+            // RedAllianceBtn1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(155, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(629, 90);
-            this.panel1.TabIndex = 3;
+            this.RedAllianceBtn1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RedAllianceBtn1.BackColor = System.Drawing.Color.Red;
+            this.RedAllianceBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RedAllianceBtn1.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.RedAllianceBtn1.ForeColor = System.Drawing.Color.White;
+            this.RedAllianceBtn1.Location = new System.Drawing.Point(12, 53);
+            this.RedAllianceBtn1.Name = "RedAllianceBtn1";
+            this.RedAllianceBtn1.Size = new System.Drawing.Size(128, 55);
+            this.RedAllianceBtn1.TabIndex = 1;
+            this.RedAllianceBtn1.Text = "----";
+            this.RedAllianceBtn1.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // RedAllianceBtn2
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 22F);
-            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(627, 88);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Team Name";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.RedAllianceBtn2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RedAllianceBtn2.BackColor = System.Drawing.Color.Red;
+            this.RedAllianceBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RedAllianceBtn2.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.RedAllianceBtn2.ForeColor = System.Drawing.Color.White;
+            this.RedAllianceBtn2.Location = new System.Drawing.Point(12, 121);
+            this.RedAllianceBtn2.Name = "RedAllianceBtn2";
+            this.RedAllianceBtn2.Size = new System.Drawing.Size(128, 55);
+            this.RedAllianceBtn2.TabIndex = 2;
+            this.RedAllianceBtn2.Text = "----";
+            this.RedAllianceBtn2.UseVisualStyleBackColor = false;
+            // 
+            // RedAllianceBtn3
+            // 
+            this.RedAllianceBtn3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RedAllianceBtn3.BackColor = System.Drawing.Color.Red;
+            this.RedAllianceBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RedAllianceBtn3.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.RedAllianceBtn3.ForeColor = System.Drawing.Color.White;
+            this.RedAllianceBtn3.Location = new System.Drawing.Point(12, 189);
+            this.RedAllianceBtn3.Name = "RedAllianceBtn3";
+            this.RedAllianceBtn3.Size = new System.Drawing.Size(128, 55);
+            this.RedAllianceBtn3.TabIndex = 3;
+            this.RedAllianceBtn3.Text = "----";
+            this.RedAllianceBtn3.UseVisualStyleBackColor = false;
             // 
             // MainFrm
             // 
@@ -335,8 +336,8 @@
             this.HeaderPnl.ResumeLayout(false);
             this.EventBtnPnl.ResumeLayout(false);
             this.TeamPnl.ResumeLayout(false);
-            this.AllianceBtnPnl.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.AllianceBtnPnl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
