@@ -23,7 +23,7 @@ namespace MyScout
             InitializeComponent();
             if (Datatoadd == Data.Event)
             {
-                textBox2.Text = textBox3.Text = $"{DateTime.Now.Month.ToString()}/{DateTime.Now.Date.ToString()}/{DateTime.Now.Year.ToString()}";
+                textBox2.Text = textBox3.Text = $"{DateTime.Now.Month.ToString()}/{DateTime.Now.Day.ToString()}/{DateTime.Now.Year.ToString()}";
             }
         }
 
