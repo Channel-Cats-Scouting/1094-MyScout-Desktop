@@ -135,5 +135,20 @@ namespace MyScout
             return base.ProcessCmdKey(ref msg, keyData);
         }
         #endregion
+
+        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
