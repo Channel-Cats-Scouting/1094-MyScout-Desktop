@@ -91,6 +91,7 @@
             this.AddTeamBtn.TabIndex = 0;
             this.AddTeamBtn.Text = "&Add Team";
             this.AddTeamBtn.UseVisualStyleBackColor = true;
+            this.AddTeamBtn.Click += new System.EventHandler(this.AddTeamBtn_Click);
             // 
             // RemoveTeamBtn
             // 
@@ -109,6 +110,7 @@
             this.NameHeader});
             this.TeamList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TeamList.Location = new System.Drawing.Point(0, 0);
+            this.TeamList.MultiSelect = false;
             this.TeamList.Name = "TeamList";
             this.TeamList.Size = new System.Drawing.Size(484, 148);
             this.TeamList.TabIndex = 1;
