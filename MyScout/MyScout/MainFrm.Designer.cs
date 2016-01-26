@@ -41,8 +41,8 @@
             this.EditEventBtn = new System.Windows.Forms.Button();
             this.AddEventBtn = new System.Windows.Forms.Button();
             this.TeamPnl = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.TeamNamePnl = new System.Windows.Forms.Panel();
+            this.TeamNameLbl = new System.Windows.Forms.Label();
             this.AllianceBtnPnl = new System.Windows.Forms.Panel();
             this.BackBtn = new System.Windows.Forms.Button();
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
@@ -115,7 +115,7 @@
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
             this.TeamPnl.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.TeamNamePnl.SuspendLayout();
             this.AllianceBtnPnl.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -253,11 +253,14 @@
             // 
             // TeamPnl
             // 
+<<<<<<< HEAD
             this.TeamPnl.Controls.Add(this.groupBox4);
+=======
+            this.TeamPnl.Controls.Add(this.TeamNamePnl);
+>>>>>>> origin/2016
             this.TeamPnl.Controls.Add(this.groupBox3);
             this.TeamPnl.Controls.Add(this.groupBox2);
             this.TeamPnl.Controls.Add(this.groupBox1);
-            this.TeamPnl.Controls.Add(this.panel1);
             this.TeamPnl.Controls.Add(this.AllianceBtnPnl);
             this.TeamPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TeamPnl.Location = new System.Drawing.Point(0, 0);
@@ -266,28 +269,28 @@
             this.TeamPnl.TabIndex = 4;
             this.TeamPnl.Visible = false;
             // 
-            // panel1
+            // TeamNamePnl
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(155, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(629, 90);
-            this.panel1.TabIndex = 3;
+            this.TeamNamePnl.BackColor = System.Drawing.Color.White;
+            this.TeamNamePnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TeamNamePnl.Controls.Add(this.TeamNameLbl);
+            this.TeamNamePnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TeamNamePnl.Location = new System.Drawing.Point(155, 0);
+            this.TeamNamePnl.Name = "TeamNamePnl";
+            this.TeamNamePnl.Size = new System.Drawing.Size(629, 90);
+            this.TeamNamePnl.TabIndex = 3;
             // 
-            // label1
+            // TeamNameLbl
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 22F);
-            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(627, 88);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Team Name";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TeamNameLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TeamNameLbl.Font = new System.Drawing.Font("Segoe UI", 22F);
+            this.TeamNameLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.TeamNameLbl.Location = new System.Drawing.Point(0, 0);
+            this.TeamNameLbl.Name = "TeamNameLbl";
+            this.TeamNameLbl.Size = new System.Drawing.Size(627, 88);
+            this.TeamNameLbl.TabIndex = 0;
+            this.TeamNameLbl.Text = "No Team Selected";
+            this.TeamNameLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AllianceBtnPnl
             // 
@@ -1024,7 +1027,7 @@
             this.HeaderPnl.ResumeLayout(false);
             this.EventBtnPnl.ResumeLayout(false);
             this.TeamPnl.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.TeamNamePnl.ResumeLayout(false);
             this.AllianceBtnPnl.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1073,8 +1076,8 @@
         private System.Windows.Forms.Button BlueAllianceBtn1;
         private System.Windows.Forms.Button BlueAllianceBtn2;
         private System.Windows.Forms.Button BlueAllianceBtn3;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel TeamNamePnl;
+        private System.Windows.Forms.Label TeamNameLbl;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
