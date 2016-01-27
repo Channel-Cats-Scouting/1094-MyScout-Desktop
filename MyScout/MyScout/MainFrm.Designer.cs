@@ -49,8 +49,8 @@
             this.TeamNameLbl = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.checkBox19 = new System.Windows.Forms.CheckBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.DiedChkbx = new System.Windows.Forms.CheckBox();
+            this.RDComments = new System.Windows.Forms.TextBox();
             this.RDLowBar = new System.Windows.Forms.CheckBox();
             this.RDRoughTerrain = new System.Windows.Forms.CheckBox();
             this.RDSallyPort = new System.Windows.Forms.CheckBox();
@@ -332,8 +332,8 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.checkBox19);
-            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.DiedChkbx);
+            this.groupBox3.Controls.Add(this.RDComments);
             this.groupBox3.Controls.Add(this.RDLowBar);
             this.groupBox3.Controls.Add(this.RDRoughTerrain);
             this.groupBox3.Controls.Add(this.RDSallyPort);
@@ -363,25 +363,25 @@
             this.label18.Text = "Death\r\nComments\r\nvvvvvvvv";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // checkBox19
+            // DiedChkbx
             // 
-            this.checkBox19.AutoSize = true;
-            this.checkBox19.Location = new System.Drawing.Point(9, 0);
-            this.checkBox19.Name = "checkBox19";
-            this.checkBox19.Size = new System.Drawing.Size(52, 17);
-            this.checkBox19.TabIndex = 3;
-            this.checkBox19.Text = "Died";
-            this.checkBox19.UseVisualStyleBackColor = true;
-            this.checkBox19.CheckedChanged += new System.EventHandler(this.checkBox19_CheckedChanged);
+            this.DiedChkbx.AutoSize = true;
+            this.DiedChkbx.Location = new System.Drawing.Point(9, 0);
+            this.DiedChkbx.Name = "DiedChkbx";
+            this.DiedChkbx.Size = new System.Drawing.Size(52, 17);
+            this.DiedChkbx.TabIndex = 3;
+            this.DiedChkbx.Text = "Died";
+            this.DiedChkbx.UseVisualStyleBackColor = true;
+            this.DiedChkbx.CheckedChanged += new System.EventHandler(this.DiedChkbx_CheckedChanged);
             // 
-            // textBox4
+            // RDComments
             // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(95, 85);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(140, 64);
-            this.textBox4.TabIndex = 23;
+            this.RDComments.Enabled = false;
+            this.RDComments.Location = new System.Drawing.Point(95, 85);
+            this.RDComments.Multiline = true;
+            this.RDComments.Name = "RDComments";
+            this.RDComments.Size = new System.Drawing.Size(140, 64);
+            this.RDComments.TabIndex = 23;
             // 
             // RDLowBar
             // 
@@ -430,7 +430,6 @@
             this.RDPortcullis.TabIndex = 14;
             this.RDPortcullis.Text = "Portcullis";
             this.RDPortcullis.UseVisualStyleBackColor = true;
-            this.RDPortcullis.CheckedChanged += new System.EventHandler(this.RDPortcullis_CheckedChanged);
             // 
             // RDTippyRamp
             // 
@@ -1141,8 +1140,8 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.NumericUpDown numericUpDown13;
-        private System.Windows.Forms.CheckBox checkBox19;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.CheckBox DiedChkbx;
+        private System.Windows.Forms.TextBox RDComments;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox checkBox21;
         private System.Windows.Forms.CheckBox checkBox20;
