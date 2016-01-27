@@ -12,6 +12,8 @@ namespace MyScout
 {
     public partial class AddDataFrm : Form
     {
+        private Data Datatoadd;
+
         public enum Data
         {
             Event,
@@ -21,6 +23,8 @@ namespace MyScout
         public AddDataFrm(Data Datatoadd)
         {
             InitializeComponent();
+            this.Datatoadd = Datatoadd;
+
             if (Datatoadd == Data.Event)
             {
                 textBox2.Text = textBox3.Text = $"{DateTime.Now.Month.ToString()}/{DateTime.Now.Day.ToString()}/{DateTime.Now.Year.ToString()}";
@@ -48,26 +52,26 @@ namespace MyScout
             Close();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void textBox_TextChanged(object sender, EventArgs e)
         {
-            OkBtn.Enabled = !string.IsNullOrEmpty(textBox1.Text);
+            OkBtn.Enabled = !string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && (Datatoadd == Data.Team || !string.IsNullOrEmpty(textBox3.Text));
         }
 
-        private void textBox2_KeyPressed(object sender, KeyPressEventArgs e)
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //VAR = textnew
-            string TextAddition = textBox2.Text;
+            //Get the textBox that called the event
             TextBox DB = (TextBox)sender;
-            char back = (char)Keys.Back;
-            string[] DBA = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "/", "\\", "-", back.ToString(), "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+            //The list of characters that can be typed into the given textBox.
+            char[] DBA = new char[] { };
 
-            if (!DBA.Contains<string>(e.KeyChar.ToString()))
+            if (Datatoadd == Data.Event && sender != textBox1) { DBA = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', (char)Keys.Back, ' ', '/', '\\', '-' }; }
+            else { DBA = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', (char)Keys.Back }; }
+
+            if (((Datatoadd == Data.Event && sender != textBox1) || (Datatoadd == Data.Team && sender == textBox1)) && (!DBA.Contains(e.KeyChar) || (Datatoadd == Data.Team && sender == textBox1 && textBox1.Text.Length > 3 && e.KeyChar != (char)Keys.Back)))
             {
-                // die useless chars
-                //DB.Text = DB.Text.Remove(DB.Text.IndexOf(DB.Text[DB.Text.Length-1].ToString(),1));
+                //DIE useless chars!!!
                 e.Handled = true;
             }
-            
         }
     }
 }

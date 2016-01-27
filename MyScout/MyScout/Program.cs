@@ -16,6 +16,10 @@ namespace MyScout
         /// The current event that's been selected from the list.
         /// </summary>
         public static int currentevent = 0;
+        /// <summary>
+        /// The current team that's been selected.
+        /// </summary>
+        public static int selectedteam = -1;
 
         /// <summary>
         /// The main entry point for the application.

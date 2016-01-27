@@ -314,6 +314,7 @@
             // 
             // AGroupBx
             // 
+            this.AGroupBx.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.AGroupBx.Controls.Add(this.APortcullis);
             this.AGroupBx.Controls.Add(this.AChevalDeFrise);
             this.AGroupBx.Controls.Add(this.AMoat);
@@ -497,6 +498,8 @@
             // 
             // TGroupBx
             // 
+            this.TGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.TGroupBx.Controls.Add(this.TPortcullisLbl);
             this.TGroupBx.Controls.Add(this.TPortcullisNUD);
             this.TGroupBx.Controls.Add(this.TChevalDeFriseLbl);
@@ -774,6 +777,8 @@
             // 
             // RDGroupBx
             // 
+            this.RDGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RDGroupBx.Controls.Add(this.DiedChkbx);
             this.RDGroupBx.Controls.Add(this.RDPortcullis);
             this.RDGroupBx.Controls.Add(this.RDChevalDeFrise);
@@ -949,6 +954,7 @@
             // 
             // HPGroupBx
             // 
+            this.HPGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.HPGroupBx.Controls.Add(this.HPDiedChkbx);
             this.HPGroupBx.Controls.Add(this.HPCommentsLbl);
             this.HPGroupBx.Controls.Add(this.HPCommentsTxtbx);
@@ -1128,6 +1134,7 @@
             this.Controls.Add(this.EventPnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimumSize = new System.Drawing.Size(1198, 765);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyScout 2016";

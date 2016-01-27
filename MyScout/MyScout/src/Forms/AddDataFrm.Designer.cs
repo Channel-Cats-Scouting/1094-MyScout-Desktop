@@ -42,61 +42,72 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 30);
+            this.textBox1.Location = new System.Drawing.Point(18, 46);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(260, 20);
+            this.textBox1.Size = new System.Drawing.Size(388, 26);
             this.textBox1.TabIndex = 0;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // Lbl1
             // 
             this.Lbl1.AutoSize = true;
-            this.Lbl1.Location = new System.Drawing.Point(12, 9);
+            this.Lbl1.Location = new System.Drawing.Point(18, 14);
+            this.Lbl1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl1.Name = "Lbl1";
-            this.Lbl1.Size = new System.Drawing.Size(38, 13);
+            this.Lbl1.Size = new System.Drawing.Size(55, 20);
             this.Lbl1.TabIndex = 5;
             this.Lbl1.Text = "&Name:";
             // 
             // Lbl2
             // 
             this.Lbl2.AutoSize = true;
-            this.Lbl2.Location = new System.Drawing.Point(12, 58);
+            this.Lbl2.Location = new System.Drawing.Point(18, 89);
+            this.Lbl2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl2.Name = "Lbl2";
-            this.Lbl2.Size = new System.Drawing.Size(63, 13);
+            this.Lbl2.Size = new System.Drawing.Size(93, 20);
             this.Lbl2.TabIndex = 6;
             this.Lbl2.Text = "&Begin Date:";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 79);
+            this.textBox2.Location = new System.Drawing.Point(18, 122);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(260, 20);
+            this.textBox2.Size = new System.Drawing.Size(388, 26);
             this.textBox2.TabIndex = 1;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPressed);
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // Lbl3
             // 
             this.Lbl3.AutoSize = true;
-            this.Lbl3.Location = new System.Drawing.Point(12, 107);
+            this.Lbl3.Location = new System.Drawing.Point(18, 165);
+            this.Lbl3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl3.Name = "Lbl3";
-            this.Lbl3.Size = new System.Drawing.Size(55, 13);
+            this.Lbl3.Size = new System.Drawing.Size(81, 20);
             this.Lbl3.TabIndex = 7;
             this.Lbl3.Text = "&End Date:";
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 128);
+            this.textBox3.Location = new System.Drawing.Point(18, 197);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(260, 20);
+            this.textBox3.Size = new System.Drawing.Size(388, 26);
             this.textBox3.TabIndex = 2;
-            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPressed);
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+            this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
             // OkBtn
             // 
             this.OkBtn.Enabled = false;
-            this.OkBtn.Location = new System.Drawing.Point(206, 5);
+            this.OkBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.OkBtn.Location = new System.Drawing.Point(309, 8);
+            this.OkBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OkBtn.Name = "OkBtn";
-            this.OkBtn.Size = new System.Drawing.Size(75, 23);
+            this.OkBtn.Size = new System.Drawing.Size(112, 35);
             this.OkBtn.TabIndex = 3;
             this.OkBtn.Text = "&OK";
             this.OkBtn.UseVisualStyleBackColor = true;
@@ -105,9 +116,11 @@
             // CancelBtn
             // 
             this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelBtn.Location = new System.Drawing.Point(125, 5);
+            this.CancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.CancelBtn.Location = new System.Drawing.Point(188, 8);
+            this.CancelBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CancelBtn.Name = "CancelBtn";
-            this.CancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.CancelBtn.Size = new System.Drawing.Size(112, 35);
             this.CancelBtn.TabIndex = 4;
             this.CancelBtn.Text = "&Cancel";
             this.CancelBtn.UseVisualStyleBackColor = true;
@@ -118,19 +131,20 @@
             this.panel1.Controls.Add(this.CancelBtn);
             this.panel1.Controls.Add(this.OkBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 154);
+            this.panel1.Location = new System.Drawing.Point(0, 237);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(284, 31);
+            this.panel1.Size = new System.Drawing.Size(426, 48);
             this.panel1.TabIndex = 8;
             // 
             // AddDataFrm
             // 
             this.AcceptButton = this.OkBtn;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.CancelBtn;
-            this.ClientSize = new System.Drawing.Size(284, 185);
+            this.ClientSize = new System.Drawing.Size(426, 285);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Lbl3);
             this.Controls.Add(this.textBox3);
@@ -139,6 +153,7 @@
             this.Controls.Add(this.Lbl1);
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddDataFrm";
