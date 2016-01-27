@@ -154,7 +154,7 @@ namespace MyScout
         {
             //Enable/disable every control inside the "Died" groupbox
             RDPortcullis.Enabled = RDRamparts.Enabled = RDDrawbridge.Enabled = RDLowBar.Enabled =
-            RDTippyRamp.Enabled = RDSallyPort.Enabled = RDRoughTerrain.Enabled = RDRockWall.Enabled =
+            RDChevalDeFrise.Enabled = RDSallyPort.Enabled = RDRoughTerrain.Enabled = RDRockWall.Enabled =
             RDMoat.Enabled = RDComments.Enabled = DiedChkbx.Checked;
         }
         #endregion
