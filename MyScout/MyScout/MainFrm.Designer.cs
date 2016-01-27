@@ -945,7 +945,7 @@
             this.BlueAllianceBtn1.TabIndex = 4;
             this.BlueAllianceBtn1.Text = "----";
             this.BlueAllianceBtn1.UseVisualStyleBackColor = false;
-            this.BlueAllianceBtn1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
+            this.BlueAllianceBtn1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
             // BlueAllianceBtn2
             // 
@@ -960,7 +960,7 @@
             this.BlueAllianceBtn2.TabIndex = 5;
             this.BlueAllianceBtn2.Text = "----";
             this.BlueAllianceBtn2.UseVisualStyleBackColor = false;
-            this.BlueAllianceBtn2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
+            this.BlueAllianceBtn2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
             // BlueAllianceBtn3
             // 
@@ -975,7 +975,7 @@
             this.BlueAllianceBtn3.TabIndex = 6;
             this.BlueAllianceBtn3.Text = "----";
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
-            this.BlueAllianceBtn3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
+            this.BlueAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
             // RedAllianceBtn1
             // 
@@ -990,7 +990,7 @@
             this.RedAllianceBtn1.TabIndex = 1;
             this.RedAllianceBtn1.Text = "----";
             this.RedAllianceBtn1.UseVisualStyleBackColor = false;
-            this.RedAllianceBtn1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
+            this.RedAllianceBtn1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
             // RedAllianceBtn2
             // 
@@ -1005,7 +1005,7 @@
             this.RedAllianceBtn2.TabIndex = 2;
             this.RedAllianceBtn2.Text = "----";
             this.RedAllianceBtn2.UseVisualStyleBackColor = false;
-            this.RedAllianceBtn2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
+            this.RedAllianceBtn2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
             // RedAllianceBtn3
             // 
@@ -1020,7 +1020,7 @@
             this.RedAllianceBtn3.TabIndex = 3;
             this.RedAllianceBtn3.Text = "----";
             this.RedAllianceBtn3.UseVisualStyleBackColor = false;
-            this.RedAllianceBtn3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
+            this.RedAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
             // MainFrm
             // 
