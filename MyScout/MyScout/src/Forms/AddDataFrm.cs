@@ -52,5 +52,22 @@ namespace MyScout
         {
             OkBtn.Enabled = !string.IsNullOrEmpty(textBox1.Text);
         }
+
+        private void textBox2_KeyPressed(object sender, KeyPressEventArgs e)
+        {
+            //VAR = textnew
+            string TextAddition = textBox2.Text;
+            TextBox DB = (TextBox)sender;
+            char back = (char)Keys.Back;
+            string[] DBA = new string[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "/", "\\", "-", back.ToString(), "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+            if (!DBA.Contains<string>(e.KeyChar.ToString()))
+            {
+                // die useless chars
+                //DB.Text = DB.Text.Remove(DB.Text.IndexOf(DB.Text[DB.Text.Length-1].ToString(),1));
+                e.Handled = true;
+            }
+            
+        }
     }
 }
