@@ -44,6 +44,8 @@ namespace MyScout
         /// equal "Rating.Poor."
         /// </summary>
         public Rating[] skillwithdefenses = new Rating[9];
+
+        public Team(int id, string name) { this.id = id; this.name = name; }
     }
 
     /// <summary>

@@ -25,6 +25,16 @@ namespace MyScout
             {
                 textBox2.Text = textBox3.Text = $"{DateTime.Now.Month.ToString()}/{DateTime.Now.Day.ToString()}/{DateTime.Now.Year.ToString()}";
             }
+            else
+            {
+                Lbl1.Text = "&ID";
+                Lbl2.Text = "&Name";
+                Lbl3.Dispose();
+                textBox3.Dispose();
+
+                Height = 177;
+                Text = "Add Team";
+            }
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
