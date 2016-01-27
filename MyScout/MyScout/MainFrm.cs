@@ -99,15 +99,6 @@ namespace MyScout
         }
 
         /// <summary>
-        /// Occurs when one of the team buttons is "clicked."
-        /// </summary>
-        private void AllianceBtn_Click(object sender, EventArgs e)
-        {
-            TeamFrm tf = new TeamFrm();
-            tf.ShowDialog();
-        }
-
-        /// <summary>
         /// Occurs when an item on the event list is double-clicked.
         /// </summary>
         private void EventList_MouseDoubleClick(object sender, MouseEventArgs e)
