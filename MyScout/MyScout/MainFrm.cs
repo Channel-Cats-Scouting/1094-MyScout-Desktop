@@ -141,5 +141,37 @@ namespace MyScout
         {
 
         }
+
+        private void checkBox19_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox19.Enabled == true)
+            {
+                RDPortcullis.Enabled = true;
+                RDRamparts.Enabled = true;
+                RDDrawbridge.Enabled = true;
+                RDLowBar.Enabled = true;
+                RDTippyRamp.Enabled = true;
+                RDSallyPort.Enabled = true;
+                RDRoughTerrain.Enabled = true;
+                RDMoat.Enabled = true;
+                RDRockWall.Enabled = true;
+            }
+            else if (checkBox19.Enabled == false)
+            {
+                RDPortcullis.Enabled = false;
+                RDRamparts.Enabled = false;
+                RDDrawbridge.Enabled = false;
+                RDLowBar.Enabled = false;
+                RDTippyRamp.Enabled = false;
+                RDSallyPort.Enabled = false;
+                RDRoughTerrain.Enabled = false;
+                RDMoat.Enabled = false;
+                RDRockWall.Enabled = false;
+            }
+        }
+        private void RDPortcullis_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
