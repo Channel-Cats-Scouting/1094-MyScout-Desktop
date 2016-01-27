@@ -31,12 +31,12 @@
             this.MainLbl = new System.Windows.Forms.Label();
             this.LblPnl = new System.Windows.Forms.Panel();
             this.MainPnl = new System.Windows.Forms.Panel();
-            this.BtnPnl = new System.Windows.Forms.Panel();
-            this.AddTeamBtn = new System.Windows.Forms.Button();
-            this.RemoveTeamBtn = new System.Windows.Forms.Button();
             this.TeamList = new System.Windows.Forms.ListView();
             this.IDHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BtnPnl = new System.Windows.Forms.Panel();
+            this.RemoveTeamBtn = new System.Windows.Forms.Button();
+            this.AddTeamBtn = new System.Windows.Forms.Button();
             this.LblPnl.SuspendLayout();
             this.MainPnl.SuspendLayout();
             this.BtnPnl.SuspendLayout();
@@ -73,6 +73,31 @@
             this.MainPnl.Size = new System.Drawing.Size(484, 200);
             this.MainPnl.TabIndex = 2;
             // 
+            // TeamList
+            // 
+            this.TeamList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.IDHeader,
+            this.NameHeader});
+            this.TeamList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TeamList.FullRowSelect = true;
+            this.TeamList.Location = new System.Drawing.Point(0, 0);
+            this.TeamList.MultiSelect = false;
+            this.TeamList.Name = "TeamList";
+            this.TeamList.Size = new System.Drawing.Size(484, 148);
+            this.TeamList.TabIndex = 1;
+            this.TeamList.UseCompatibleStateImageBehavior = false;
+            this.TeamList.View = System.Windows.Forms.View.Details;
+            this.TeamList.DoubleClick += new System.EventHandler(this.TeamList_DoubleClick);
+            // 
+            // IDHeader
+            // 
+            this.IDHeader.Text = "ID";
+            // 
+            // NameHeader
+            // 
+            this.NameHeader.Text = "Name";
+            this.NameHeader.Width = 420;
+            // 
             // BtnPnl
             // 
             this.BtnPnl.Controls.Add(this.RemoveTeamBtn);
@@ -82,16 +107,6 @@
             this.BtnPnl.Name = "BtnPnl";
             this.BtnPnl.Size = new System.Drawing.Size(484, 52);
             this.BtnPnl.TabIndex = 0;
-            // 
-            // AddTeamBtn
-            // 
-            this.AddTeamBtn.Location = new System.Drawing.Point(248, 3);
-            this.AddTeamBtn.Name = "AddTeamBtn";
-            this.AddTeamBtn.Size = new System.Drawing.Size(233, 46);
-            this.AddTeamBtn.TabIndex = 0;
-            this.AddTeamBtn.Text = "&Add Team";
-            this.AddTeamBtn.UseVisualStyleBackColor = true;
-            this.AddTeamBtn.Click += new System.EventHandler(this.AddTeamBtn_Click);
             // 
             // RemoveTeamBtn
             // 
@@ -103,28 +118,15 @@
             this.RemoveTeamBtn.UseVisualStyleBackColor = true;
             this.RemoveTeamBtn.Click += new System.EventHandler(this.RemoveTeamBtn_Click);
             // 
-            // TeamList
+            // AddTeamBtn
             // 
-            this.TeamList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.IDHeader,
-            this.NameHeader});
-            this.TeamList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TeamList.Location = new System.Drawing.Point(0, 0);
-            this.TeamList.MultiSelect = false;
-            this.TeamList.Name = "TeamList";
-            this.TeamList.Size = new System.Drawing.Size(484, 148);
-            this.TeamList.TabIndex = 1;
-            this.TeamList.UseCompatibleStateImageBehavior = false;
-            this.TeamList.View = System.Windows.Forms.View.Details;
-            // 
-            // IDHeader
-            // 
-            this.IDHeader.Text = "ID";
-            // 
-            // NameHeader
-            // 
-            this.NameHeader.Text = "Name";
-            this.NameHeader.Width = 420;
+            this.AddTeamBtn.Location = new System.Drawing.Point(248, 3);
+            this.AddTeamBtn.Name = "AddTeamBtn";
+            this.AddTeamBtn.Size = new System.Drawing.Size(233, 46);
+            this.AddTeamBtn.TabIndex = 0;
+            this.AddTeamBtn.Text = "&Add Team";
+            this.AddTeamBtn.UseVisualStyleBackColor = true;
+            this.AddTeamBtn.Click += new System.EventHandler(this.AddTeamBtn_Click);
             // 
             // TeamFrm
             // 

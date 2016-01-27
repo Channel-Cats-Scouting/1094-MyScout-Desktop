@@ -12,6 +12,8 @@ namespace MyScout
 {
     public partial class TeamFrm : Form
     {
+        public int selectedteam;
+
         public TeamFrm()
         {
             InitializeComponent();
@@ -24,7 +26,7 @@ namespace MyScout
         /// </summary>
         private void RefreshTeamList()
         {
-            TeamList.Clear();
+            TeamList.Items.Clear();
             foreach (Team t in Program.events[Program.currentevent].teams)
             {
                 TeamList.Items.Add(new ListViewItem(new string[] { t.id.ToString(), t.name }));
@@ -40,7 +42,8 @@ namespace MyScout
             AddDataFrm adddata = new AddDataFrm(AddDataFrm.Data.Team);
             if (adddata.ShowDialog() == DialogResult.OK)
             {
-                //Program.events[Program.currentevent].teams.Add(new Team(adddata.textBox1.Text));
+                Program.events[Program.currentevent].teams.Add(new Team(Convert.ToInt32(adddata.textBox1.Text),adddata.textBox2.Text));
+                RefreshTeamList();
             }
         }
 
@@ -54,6 +57,16 @@ namespace MyScout
                 Program.events[Program.currentevent].teams.RemoveAt(TeamList.SelectedIndices[0]);
                 RefreshTeamList();
             }
+        }
+
+        /// <summary>
+        /// Occurs when a value on the teamlist is double-clicked.
+        /// </summary>
+        private void TeamList_DoubleClick(object sender, EventArgs e)
+        {
+            selectedteam = TeamList.SelectedIndices[0];
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         /// <summary>

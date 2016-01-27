@@ -40,6 +40,30 @@ namespace MyScout
 
         #region GUI Events
         /// <summary>
+        /// Occurs when one of the team buttons is "clicked."
+        /// </summary>
+        private void TeamBtn_MouseClick(object sender, MouseEventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn.Tag == null || e.Button == MouseButtons.Right)
+            {
+                TeamFrm tf = new TeamFrm();
+                if (tf.ShowDialog() == DialogResult.OK)
+                {
+                    Team selectedteam = Program.events[Program.currentevent].teams[tf.selectedteam];
+
+                    TeamNameLbl.Text = $"{selectedteam.name} - {selectedteam.id.ToString()}";
+                    btn.Text = selectedteam.id.ToString();
+                    btn.Tag = tf.selectedteam;
+                }
+            }
+            else
+            {
+                //
+            }
+        }
+
+        /// <summary>
         /// Occurs when the "Back" button is "clicked."
         /// </summary>
         private void BackBtn_Click(object sender, EventArgs e)
