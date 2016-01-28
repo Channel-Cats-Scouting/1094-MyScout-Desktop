@@ -31,7 +31,7 @@ namespace MyScout
         /// <summary>
         /// TODO: Documentation
         /// </summary>
-        public Alliance[] Alliances = new Alliance[2];
+        public Alliance[] Alliances = new Alliance[2] { new Alliance(), new Alliance() };
 
         public Event(string name, string begindate, string enddate) { this.name = name; this.begindate = begindate; this.enddate = enddate; }
     }

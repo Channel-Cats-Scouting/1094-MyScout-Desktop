@@ -38,6 +38,14 @@ namespace MyScout
             EventList.Enabled = AddEventBtn.Enabled = RemoveEventBtn.Enabled = EditEventBtn.Enabled = !TeamPnl.Visible;
         }
 
+        private void RefreshTeamPnl()
+        {
+            if (Program.selectedteam != -1)
+            {
+                TeamNameLbl.Text = $"{Program.events[Program.currentevent].teams[Program.selectedteam].name} - {Program.events[Program.currentevent].teams[Program.selectedteam].id.ToString()}";
+            }
+        }
+
         #region GUI Events
         /// <summary>
         /// Occurs when one of the team buttons is "clicked."
@@ -45,21 +53,51 @@ namespace MyScout
         private void TeamBtn_MouseClick(object sender, MouseEventArgs e)
         {
             Button btn = sender as Button;
+            int allianceid = (btn == RedAllianceBtn1) ? 0 : (btn == RedAllianceBtn2) ? 1 : (btn == RedAllianceBtn3) ? 2 :
+                (btn == BlueAllianceBtn1) ? 3 : (btn == BlueAllianceBtn2) ? 4 : 5;
+
             if (btn.Tag == null || e.Button == MouseButtons.Right)
             {
                 TeamFrm tf = new TeamFrm();
                 if (tf.ShowDialog() == DialogResult.OK)
                 {
                     Team selectedteam = Program.events[Program.currentevent].teams[tf.selectedteam];
+                    Program.events[Program.currentevent].Alliances[(allianceid < 3)?0:1].teams[(allianceid < 3)?allianceid:allianceid-3] = tf.selectedteam;
 
-                    TeamNameLbl.Text = $"{selectedteam.name} - {selectedteam.id.ToString()}";
+                    Program.selectedteam = tf.selectedteam;
                     btn.Text = selectedteam.id.ToString();
                     btn.Tag = tf.selectedteam;
+
+                    Program.selectedteam = (int)btn.Tag;
+                    foreach (Control control in AllianceBtnPnl.Controls)
+                    {
+                        //If the control is a button...
+                        if (control.GetType() == typeof(Button))
+                        {
+                            Button button = control as Button;
+                            button.FlatAppearance.BorderSize = 0;
+                        }
+                    }
+                    btn.FlatAppearance.BorderSize = 1;
+
+                    RefreshTeamPnl();
                 }
             }
             else
             {
-                //TODO
+                Program.selectedteam = (int)btn.Tag;
+                foreach (Control control in AllianceBtnPnl.Controls)
+                {
+                    //If the control is a button...
+                    if (control.GetType() == typeof(Button))
+                    {
+                        Button button = control as Button;
+                        button.FlatAppearance.BorderSize = 0;
+                    }
+                }
+
+                btn.FlatAppearance.BorderSize = 1;
+                RefreshTeamPnl();
             }
         }
 

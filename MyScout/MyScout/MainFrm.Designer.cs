@@ -144,9 +144,8 @@
             this.ChooseAnEventLbl.Font = new System.Drawing.Font("Segoe UI", 22F);
             this.ChooseAnEventLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.ChooseAnEventLbl.Location = new System.Drawing.Point(0, 0);
-            this.ChooseAnEventLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ChooseAnEventLbl.Name = "ChooseAnEventLbl";
-            this.ChooseAnEventLbl.Size = new System.Drawing.Size(1176, 106);
+            this.ChooseAnEventLbl.Size = new System.Drawing.Size(788, 69);
             this.ChooseAnEventLbl.TabIndex = 0;
             this.ChooseAnEventLbl.Text = "Choose an Event to Begin";
             this.ChooseAnEventLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -158,9 +157,8 @@
             this.EventPnl.Controls.Add(this.EventBtnPnl);
             this.EventPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EventPnl.Location = new System.Drawing.Point(0, 0);
-            this.EventPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.EventPnl.Name = "EventPnl";
-            this.EventPnl.Size = new System.Drawing.Size(1176, 709);
+            this.EventPnl.Size = new System.Drawing.Size(788, 461);
             this.EventPnl.TabIndex = 1;
             // 
             // EventList
@@ -171,11 +169,10 @@
             this.EndDateHeader});
             this.EventList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EventList.FullRowSelect = true;
-            this.EventList.Location = new System.Drawing.Point(0, 106);
-            this.EventList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EventList.Location = new System.Drawing.Point(0, 69);
             this.EventList.MultiSelect = false;
             this.EventList.Name = "EventList";
-            this.EventList.Size = new System.Drawing.Size(1176, 521);
+            this.EventList.Size = new System.Drawing.Size(788, 339);
             this.EventList.TabIndex = 2;
             this.EventList.UseCompatibleStateImageBehavior = false;
             this.EventList.View = System.Windows.Forms.View.Details;
@@ -201,9 +198,8 @@
             this.HeaderPnl.Controls.Add(this.ChooseAnEventLbl);
             this.HeaderPnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.HeaderPnl.Location = new System.Drawing.Point(0, 0);
-            this.HeaderPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HeaderPnl.Name = "HeaderPnl";
-            this.HeaderPnl.Size = new System.Drawing.Size(1176, 106);
+            this.HeaderPnl.Size = new System.Drawing.Size(788, 69);
             this.HeaderPnl.TabIndex = 3;
             // 
             // EventBtnPnl
@@ -212,10 +208,9 @@
             this.EventBtnPnl.Controls.Add(this.EditEventBtn);
             this.EventBtnPnl.Controls.Add(this.AddEventBtn);
             this.EventBtnPnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.EventBtnPnl.Location = new System.Drawing.Point(0, 627);
-            this.EventBtnPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EventBtnPnl.Location = new System.Drawing.Point(0, 408);
             this.EventBtnPnl.Name = "EventBtnPnl";
-            this.EventBtnPnl.Size = new System.Drawing.Size(1176, 82);
+            this.EventBtnPnl.Size = new System.Drawing.Size(788, 53);
             this.EventBtnPnl.TabIndex = 1;
             // 
             // RemoveEventBtn
@@ -223,10 +218,9 @@
             this.RemoveEventBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.RemoveEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.RemoveEventBtn.Location = new System.Drawing.Point(4, 0);
-            this.RemoveEventBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoveEventBtn.Location = new System.Drawing.Point(3, 0);
             this.RemoveEventBtn.Name = "RemoveEventBtn";
-            this.RemoveEventBtn.Size = new System.Drawing.Size(375, 82);
+            this.RemoveEventBtn.Size = new System.Drawing.Size(250, 53);
             this.RemoveEventBtn.TabIndex = 2;
             this.RemoveEventBtn.Text = "&Remove Event";
             this.RemoveEventBtn.UseVisualStyleBackColor = true;
@@ -238,10 +232,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EditEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.EditEventBtn.Location = new System.Drawing.Point(400, 0);
-            this.EditEventBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EditEventBtn.Location = new System.Drawing.Point(267, 0);
             this.EditEventBtn.Name = "EditEventBtn";
-            this.EditEventBtn.Size = new System.Drawing.Size(375, 82);
+            this.EditEventBtn.Size = new System.Drawing.Size(254, 53);
             this.EditEventBtn.TabIndex = 1;
             this.EditEventBtn.Text = "&Edit Event";
             this.EditEventBtn.UseVisualStyleBackColor = true;
@@ -252,10 +245,9 @@
             this.AddEventBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.AddEventBtn.Location = new System.Drawing.Point(796, 0);
-            this.AddEventBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AddEventBtn.Location = new System.Drawing.Point(535, 0);
             this.AddEventBtn.Name = "AddEventBtn";
-            this.AddEventBtn.Size = new System.Drawing.Size(375, 82);
+            this.AddEventBtn.Size = new System.Drawing.Size(250, 53);
             this.AddEventBtn.TabIndex = 0;
             this.AddEventBtn.Text = "&Add Event";
             this.AddEventBtn.UseVisualStyleBackColor = true;
@@ -268,9 +260,8 @@
             this.TeamPnl.Controls.Add(this.AllianceBtnPnl);
             this.TeamPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TeamPnl.Location = new System.Drawing.Point(0, 0);
-            this.TeamPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TeamPnl.Name = "TeamPnl";
-            this.TeamPnl.Size = new System.Drawing.Size(1176, 709);
+            this.TeamPnl.Size = new System.Drawing.Size(788, 461);
             this.TeamPnl.TabIndex = 4;
             this.TeamPnl.Visible = false;
             // 
@@ -280,10 +271,9 @@
             this.TeamNamePnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TeamNamePnl.Controls.Add(this.TeamNameLbl);
             this.TeamNamePnl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TeamNamePnl.Location = new System.Drawing.Point(232, 0);
-            this.TeamNamePnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TeamNamePnl.Location = new System.Drawing.Point(155, 0);
             this.TeamNamePnl.Name = "TeamNamePnl";
-            this.TeamNamePnl.Size = new System.Drawing.Size(944, 137);
+            this.TeamNamePnl.Size = new System.Drawing.Size(633, 90);
             this.TeamNamePnl.TabIndex = 3;
             // 
             // TeamNameLbl
@@ -292,9 +282,8 @@
             this.TeamNameLbl.Font = new System.Drawing.Font("Segoe UI", 22F);
             this.TeamNameLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.TeamNameLbl.Location = new System.Drawing.Point(0, 0);
-            this.TeamNameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TeamNameLbl.Name = "TeamNameLbl";
-            this.TeamNameLbl.Size = new System.Drawing.Size(942, 135);
+            this.TeamNameLbl.Size = new System.Drawing.Size(631, 88);
             this.TeamNameLbl.TabIndex = 0;
             this.TeamNameLbl.Text = "No Team Selected";
             this.TeamNameLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -307,9 +296,10 @@
             this.MainPnl.Controls.Add(this.HPGroupBx);
             this.MainPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPnl.Enabled = false;
-            this.MainPnl.Location = new System.Drawing.Point(232, 0);
+            this.MainPnl.Location = new System.Drawing.Point(155, 0);
+            this.MainPnl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MainPnl.Name = "MainPnl";
-            this.MainPnl.Size = new System.Drawing.Size(944, 709);
+            this.MainPnl.Size = new System.Drawing.Size(633, 461);
             this.MainPnl.TabIndex = 14;
             // 
             // AGroupBx
@@ -330,11 +320,9 @@
             this.AGroupBx.Controls.Add(this.ALowGoalNUD);
             this.AGroupBx.Controls.Add(this.ACommentsLbl);
             this.AGroupBx.Controls.Add(this.ACommentsTxtBx);
-            this.AGroupBx.Location = new System.Drawing.Point(8, 143);
-            this.AGroupBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AGroupBx.Location = new System.Drawing.Point(7, 93);
             this.AGroupBx.Name = "AGroupBx";
-            this.AGroupBx.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.AGroupBx.Size = new System.Drawing.Size(931, 142);
+            this.AGroupBx.Size = new System.Drawing.Size(621, 92);
             this.AGroupBx.TabIndex = 4;
             this.AGroupBx.TabStop = false;
             this.AGroupBx.Text = "Autonomous";
@@ -342,10 +330,9 @@
             // APortcullis
             // 
             this.APortcullis.AutoSize = true;
-            this.APortcullis.Location = new System.Drawing.Point(10, 31);
-            this.APortcullis.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.APortcullis.Location = new System.Drawing.Point(7, 20);
             this.APortcullis.Name = "APortcullis";
-            this.APortcullis.Size = new System.Drawing.Size(98, 24);
+            this.APortcullis.Size = new System.Drawing.Size(68, 17);
             this.APortcullis.TabIndex = 0;
             this.APortcullis.Text = "Portcullis";
             this.APortcullis.UseVisualStyleBackColor = true;
@@ -353,10 +340,9 @@
             // AChevalDeFrise
             // 
             this.AChevalDeFrise.AutoSize = true;
-            this.AChevalDeFrise.Location = new System.Drawing.Point(10, 66);
-            this.AChevalDeFrise.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AChevalDeFrise.Location = new System.Drawing.Point(7, 43);
             this.AChevalDeFrise.Name = "AChevalDeFrise";
-            this.AChevalDeFrise.Size = new System.Drawing.Size(144, 24);
+            this.AChevalDeFrise.Size = new System.Drawing.Size(99, 17);
             this.AChevalDeFrise.TabIndex = 1;
             this.AChevalDeFrise.Text = "Cheval de Frise";
             this.AChevalDeFrise.UseVisualStyleBackColor = true;
@@ -364,10 +350,9 @@
             // AMoat
             // 
             this.AMoat.AutoSize = true;
-            this.AMoat.Location = new System.Drawing.Point(10, 102);
-            this.AMoat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AMoat.Location = new System.Drawing.Point(7, 66);
             this.AMoat.Name = "AMoat";
-            this.AMoat.Size = new System.Drawing.Size(71, 24);
+            this.AMoat.Size = new System.Drawing.Size(50, 17);
             this.AMoat.TabIndex = 2;
             this.AMoat.Text = "Moat";
             this.AMoat.UseVisualStyleBackColor = true;
@@ -375,10 +360,9 @@
             // ARamparts
             // 
             this.ARamparts.AutoSize = true;
-            this.ARamparts.Location = new System.Drawing.Point(160, 31);
-            this.ARamparts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ARamparts.Location = new System.Drawing.Point(107, 20);
             this.ARamparts.Name = "ARamparts";
-            this.ARamparts.Size = new System.Drawing.Size(105, 24);
+            this.ARamparts.Size = new System.Drawing.Size(71, 17);
             this.ARamparts.TabIndex = 3;
             this.ARamparts.Text = "Ramparts";
             this.ARamparts.UseVisualStyleBackColor = true;
@@ -386,10 +370,9 @@
             // ADrawbridge
             // 
             this.ADrawbridge.AutoSize = true;
-            this.ADrawbridge.Location = new System.Drawing.Point(160, 66);
-            this.ADrawbridge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ADrawbridge.Location = new System.Drawing.Point(107, 43);
             this.ADrawbridge.Name = "ADrawbridge";
-            this.ADrawbridge.Size = new System.Drawing.Size(116, 24);
+            this.ADrawbridge.Size = new System.Drawing.Size(80, 17);
             this.ADrawbridge.TabIndex = 4;
             this.ADrawbridge.Text = "Drawbridge";
             this.ADrawbridge.UseVisualStyleBackColor = true;
@@ -397,10 +380,9 @@
             // ASallyPort
             // 
             this.ASallyPort.AutoSize = true;
-            this.ASallyPort.Location = new System.Drawing.Point(160, 102);
-            this.ASallyPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ASallyPort.Location = new System.Drawing.Point(107, 66);
             this.ASallyPort.Name = "ASallyPort";
-            this.ASallyPort.Size = new System.Drawing.Size(101, 24);
+            this.ASallyPort.Size = new System.Drawing.Size(70, 17);
             this.ASallyPort.TabIndex = 5;
             this.ASallyPort.Text = "Sally Port";
             this.ASallyPort.UseVisualStyleBackColor = true;
@@ -408,10 +390,9 @@
             // ARockWall
             // 
             this.ARockWall.AutoSize = true;
-            this.ARockWall.Location = new System.Drawing.Point(294, 31);
-            this.ARockWall.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ARockWall.Location = new System.Drawing.Point(196, 20);
             this.ARockWall.Name = "ARockWall";
-            this.ARockWall.Size = new System.Drawing.Size(106, 24);
+            this.ARockWall.Size = new System.Drawing.Size(76, 17);
             this.ARockWall.TabIndex = 5;
             this.ARockWall.Text = "Rock Wall";
             this.ARockWall.UseVisualStyleBackColor = true;
@@ -419,10 +400,9 @@
             // ARoughTerrain
             // 
             this.ARoughTerrain.AutoSize = true;
-            this.ARoughTerrain.Location = new System.Drawing.Point(294, 66);
-            this.ARoughTerrain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ARoughTerrain.Location = new System.Drawing.Point(196, 43);
             this.ARoughTerrain.Name = "ARoughTerrain";
-            this.ARoughTerrain.Size = new System.Drawing.Size(136, 24);
+            this.ARoughTerrain.Size = new System.Drawing.Size(94, 17);
             this.ARoughTerrain.TabIndex = 6;
             this.ARoughTerrain.Text = "Rough Terrain";
             this.ARoughTerrain.UseVisualStyleBackColor = true;
@@ -430,10 +410,9 @@
             // ALowBar
             // 
             this.ALowBar.AutoSize = true;
-            this.ALowBar.Location = new System.Drawing.Point(294, 102);
-            this.ALowBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ALowBar.Location = new System.Drawing.Point(196, 66);
             this.ALowBar.Name = "ALowBar";
-            this.ALowBar.Size = new System.Drawing.Size(93, 24);
+            this.ALowBar.Size = new System.Drawing.Size(65, 17);
             this.ALowBar.TabIndex = 13;
             this.ALowBar.Text = "Low Bar";
             this.ALowBar.UseVisualStyleBackColor = true;
@@ -441,59 +420,53 @@
             // AHighGoalLbl
             // 
             this.AHighGoalLbl.AutoSize = true;
-            this.AHighGoalLbl.Location = new System.Drawing.Point(440, 20);
-            this.AHighGoalLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.AHighGoalLbl.Location = new System.Drawing.Point(293, 13);
             this.AHighGoalLbl.Name = "AHighGoalLbl";
-            this.AHighGoalLbl.Size = new System.Drawing.Size(80, 20);
+            this.AHighGoalLbl.Size = new System.Drawing.Size(54, 13);
             this.AHighGoalLbl.TabIndex = 10;
             this.AHighGoalLbl.Text = "High Goal";
             // 
             // AHighGoalNUD
             // 
-            this.AHighGoalNUD.Location = new System.Drawing.Point(444, 45);
-            this.AHighGoalNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AHighGoalNUD.Location = new System.Drawing.Point(296, 29);
             this.AHighGoalNUD.Name = "AHighGoalNUD";
             this.AHighGoalNUD.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.AHighGoalNUD.Size = new System.Drawing.Size(78, 26);
+            this.AHighGoalNUD.Size = new System.Drawing.Size(52, 20);
             this.AHighGoalNUD.TabIndex = 7;
             // 
             // ALowGoalLbl
             // 
             this.ALowGoalLbl.AutoSize = true;
-            this.ALowGoalLbl.Location = new System.Drawing.Point(444, 80);
-            this.ALowGoalLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ALowGoalLbl.Location = new System.Drawing.Point(296, 52);
             this.ALowGoalLbl.Name = "ALowGoalLbl";
-            this.ALowGoalLbl.Size = new System.Drawing.Size(76, 20);
+            this.ALowGoalLbl.Size = new System.Drawing.Size(52, 13);
             this.ALowGoalLbl.TabIndex = 11;
             this.ALowGoalLbl.Text = "Low Goal";
             // 
             // ALowGoalNUD
             // 
-            this.ALowGoalNUD.Location = new System.Drawing.Point(444, 102);
-            this.ALowGoalNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ALowGoalNUD.Location = new System.Drawing.Point(296, 66);
             this.ALowGoalNUD.Name = "ALowGoalNUD";
             this.ALowGoalNUD.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ALowGoalNUD.Size = new System.Drawing.Size(78, 26);
+            this.ALowGoalNUD.Size = new System.Drawing.Size(52, 20);
             this.ALowGoalNUD.TabIndex = 8;
             // 
             // ACommentsLbl
             // 
             this.ACommentsLbl.AutoSize = true;
-            this.ACommentsLbl.Location = new System.Drawing.Point(570, 40);
-            this.ACommentsLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.ACommentsLbl.Location = new System.Drawing.Point(380, 26);
             this.ACommentsLbl.Name = "ACommentsLbl";
-            this.ACommentsLbl.Size = new System.Drawing.Size(86, 60);
+            this.ACommentsLbl.Size = new System.Drawing.Size(56, 39);
             this.ACommentsLbl.TabIndex = 12;
             this.ACommentsLbl.Text = "Auto\r\nComments\r\n--->\r\n";
             this.ACommentsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ACommentsTxtBx
             // 
-            this.ACommentsTxtBx.Location = new System.Drawing.Point(664, 20);
-            this.ACommentsTxtBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ACommentsTxtBx.Location = new System.Drawing.Point(443, 13);
             this.ACommentsTxtBx.Multiline = true;
             this.ACommentsTxtBx.Name = "ACommentsTxtBx";
-            this.ACommentsTxtBx.Size = new System.Drawing.Size(259, 106);
+            this.ACommentsTxtBx.Size = new System.Drawing.Size(174, 70);
             this.ACommentsTxtBx.TabIndex = 9;
             // 
             // TGroupBx
@@ -526,11 +499,9 @@
             this.TGroupBx.Controls.Add(this.TCommentsTxtbx);
             this.TGroupBx.Controls.Add(this.THighGoalLbl);
             this.TGroupBx.Controls.Add(this.THighGoalNUD);
-            this.TGroupBx.Location = new System.Drawing.Point(8, 295);
-            this.TGroupBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TGroupBx.Location = new System.Drawing.Point(5, 192);
             this.TGroupBx.Name = "TGroupBx";
-            this.TGroupBx.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TGroupBx.Size = new System.Drawing.Size(530, 395);
+            this.TGroupBx.Size = new System.Drawing.Size(353, 257);
             this.TGroupBx.TabIndex = 5;
             this.TGroupBx.TabStop = false;
             this.TGroupBx.Text = "Tele-Op";
@@ -538,201 +509,179 @@
             // TPortcullisLbl
             // 
             this.TPortcullisLbl.AutoSize = true;
-            this.TPortcullisLbl.Location = new System.Drawing.Point(9, 31);
-            this.TPortcullisLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TPortcullisLbl.Location = new System.Drawing.Point(6, 20);
             this.TPortcullisLbl.Name = "TPortcullisLbl";
-            this.TPortcullisLbl.Size = new System.Drawing.Size(72, 20);
+            this.TPortcullisLbl.Size = new System.Drawing.Size(49, 13);
             this.TPortcullisLbl.TabIndex = 1;
             this.TPortcullisLbl.Text = "Portcullis";
             // 
             // TPortcullisNUD
             // 
-            this.TPortcullisNUD.Location = new System.Drawing.Point(9, 51);
-            this.TPortcullisNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TPortcullisNUD.Location = new System.Drawing.Point(6, 33);
             this.TPortcullisNUD.Name = "TPortcullisNUD";
-            this.TPortcullisNUD.Size = new System.Drawing.Size(99, 26);
+            this.TPortcullisNUD.Size = new System.Drawing.Size(66, 20);
             this.TPortcullisNUD.TabIndex = 0;
             // 
             // TChevalDeFriseLbl
             // 
             this.TChevalDeFriseLbl.AutoSize = true;
-            this.TChevalDeFriseLbl.Location = new System.Drawing.Point(5, 95);
-            this.TChevalDeFriseLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TChevalDeFriseLbl.Location = new System.Drawing.Point(3, 62);
             this.TChevalDeFriseLbl.Name = "TChevalDeFriseLbl";
-            this.TChevalDeFriseLbl.Size = new System.Drawing.Size(118, 20);
+            this.TChevalDeFriseLbl.Size = new System.Drawing.Size(80, 13);
             this.TChevalDeFriseLbl.TabIndex = 3;
             this.TChevalDeFriseLbl.Text = "Cheval de Frise";
             // 
             // TChevalDeFristNUD
             // 
-            this.TChevalDeFristNUD.Location = new System.Drawing.Point(9, 115);
-            this.TChevalDeFristNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TChevalDeFristNUD.Location = new System.Drawing.Point(6, 75);
             this.TChevalDeFristNUD.Name = "TChevalDeFristNUD";
-            this.TChevalDeFristNUD.Size = new System.Drawing.Size(99, 26);
+            this.TChevalDeFristNUD.Size = new System.Drawing.Size(66, 20);
             this.TChevalDeFristNUD.TabIndex = 2;
             // 
             // TMoatLbl
             // 
             this.TMoatLbl.AutoSize = true;
-            this.TMoatLbl.Location = new System.Drawing.Point(5, 158);
-            this.TMoatLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TMoatLbl.Location = new System.Drawing.Point(3, 103);
             this.TMoatLbl.Name = "TMoatLbl";
-            this.TMoatLbl.Size = new System.Drawing.Size(45, 20);
+            this.TMoatLbl.Size = new System.Drawing.Size(31, 13);
             this.TMoatLbl.TabIndex = 5;
             this.TMoatLbl.Text = "Moat";
             // 
             // TMoatNUD
             // 
-            this.TMoatNUD.Location = new System.Drawing.Point(9, 178);
-            this.TMoatNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TMoatNUD.Location = new System.Drawing.Point(6, 116);
             this.TMoatNUD.Name = "TMoatNUD";
-            this.TMoatNUD.Size = new System.Drawing.Size(99, 26);
+            this.TMoatNUD.Size = new System.Drawing.Size(66, 20);
             this.TMoatNUD.TabIndex = 4;
             // 
             // TRampartsLbl
             // 
             this.TRampartsLbl.AutoSize = true;
-            this.TRampartsLbl.Location = new System.Drawing.Point(5, 223);
-            this.TRampartsLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TRampartsLbl.Location = new System.Drawing.Point(3, 145);
             this.TRampartsLbl.Name = "TRampartsLbl";
-            this.TRampartsLbl.Size = new System.Drawing.Size(79, 20);
+            this.TRampartsLbl.Size = new System.Drawing.Size(52, 13);
             this.TRampartsLbl.TabIndex = 7;
             this.TRampartsLbl.Text = "Ramparts";
             // 
             // TRampartsNUD
             // 
-            this.TRampartsNUD.Location = new System.Drawing.Point(9, 243);
-            this.TRampartsNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TRampartsNUD.Location = new System.Drawing.Point(6, 158);
             this.TRampartsNUD.Name = "TRampartsNUD";
-            this.TRampartsNUD.Size = new System.Drawing.Size(99, 26);
+            this.TRampartsNUD.Size = new System.Drawing.Size(66, 20);
             this.TRampartsNUD.TabIndex = 6;
             // 
             // TDrawbridgeLbl
             // 
             this.TDrawbridgeLbl.AutoSize = true;
-            this.TDrawbridgeLbl.Location = new System.Drawing.Point(5, 292);
-            this.TDrawbridgeLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TDrawbridgeLbl.Location = new System.Drawing.Point(3, 190);
             this.TDrawbridgeLbl.Name = "TDrawbridgeLbl";
-            this.TDrawbridgeLbl.Size = new System.Drawing.Size(90, 20);
+            this.TDrawbridgeLbl.Size = new System.Drawing.Size(61, 13);
             this.TDrawbridgeLbl.TabIndex = 9;
             this.TDrawbridgeLbl.Text = "Drawbridge";
             // 
             // TDrawbridgeNUD
             // 
-            this.TDrawbridgeNUD.Location = new System.Drawing.Point(9, 312);
-            this.TDrawbridgeNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TDrawbridgeNUD.Location = new System.Drawing.Point(6, 203);
             this.TDrawbridgeNUD.Name = "TDrawbridgeNUD";
-            this.TDrawbridgeNUD.Size = new System.Drawing.Size(99, 26);
+            this.TDrawbridgeNUD.Size = new System.Drawing.Size(66, 20);
             this.TDrawbridgeNUD.TabIndex = 8;
             // 
             // TSallyPortLbl
             // 
             this.TSallyPortLbl.AutoSize = true;
-            this.TSallyPortLbl.Location = new System.Drawing.Point(136, 31);
-            this.TSallyPortLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TSallyPortLbl.Location = new System.Drawing.Point(91, 20);
             this.TSallyPortLbl.Name = "TSallyPortLbl";
-            this.TSallyPortLbl.Size = new System.Drawing.Size(75, 20);
+            this.TSallyPortLbl.Size = new System.Drawing.Size(51, 13);
             this.TSallyPortLbl.TabIndex = 11;
             this.TSallyPortLbl.Text = "Sally Port";
             // 
             // TSallyPortNUD
             // 
-            this.TSallyPortNUD.Location = new System.Drawing.Point(140, 51);
-            this.TSallyPortNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TSallyPortNUD.Location = new System.Drawing.Point(93, 33);
             this.TSallyPortNUD.Name = "TSallyPortNUD";
-            this.TSallyPortNUD.Size = new System.Drawing.Size(99, 26);
+            this.TSallyPortNUD.Size = new System.Drawing.Size(66, 20);
             this.TSallyPortNUD.TabIndex = 10;
             // 
             // TRockWallLbl
             // 
             this.TRockWallLbl.AutoSize = true;
-            this.TRockWallLbl.Location = new System.Drawing.Point(136, 95);
-            this.TRockWallLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TRockWallLbl.Location = new System.Drawing.Point(91, 62);
             this.TRockWallLbl.Name = "TRockWallLbl";
-            this.TRockWallLbl.Size = new System.Drawing.Size(80, 20);
+            this.TRockWallLbl.Size = new System.Drawing.Size(57, 13);
             this.TRockWallLbl.TabIndex = 13;
             this.TRockWallLbl.Text = "Rock Wall";
             // 
             // TRockWallNUD
             // 
-            this.TRockWallNUD.Location = new System.Drawing.Point(140, 115);
-            this.TRockWallNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TRockWallNUD.Location = new System.Drawing.Point(93, 75);
             this.TRockWallNUD.Name = "TRockWallNUD";
-            this.TRockWallNUD.Size = new System.Drawing.Size(99, 26);
+            this.TRockWallNUD.Size = new System.Drawing.Size(66, 20);
             this.TRockWallNUD.TabIndex = 12;
             // 
             // TRoughTerrainLbl
             // 
             this.TRoughTerrainLbl.AutoSize = true;
-            this.TRoughTerrainLbl.Location = new System.Drawing.Point(136, 158);
-            this.TRoughTerrainLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TRoughTerrainLbl.Location = new System.Drawing.Point(91, 103);
             this.TRoughTerrainLbl.Name = "TRoughTerrainLbl";
-            this.TRoughTerrainLbl.Size = new System.Drawing.Size(110, 20);
+            this.TRoughTerrainLbl.Size = new System.Drawing.Size(75, 13);
             this.TRoughTerrainLbl.TabIndex = 15;
             this.TRoughTerrainLbl.Text = "Rough Terrain";
             // 
             // TRoughTerrainNUD
             // 
-            this.TRoughTerrainNUD.Location = new System.Drawing.Point(140, 178);
-            this.TRoughTerrainNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TRoughTerrainNUD.Location = new System.Drawing.Point(93, 116);
             this.TRoughTerrainNUD.Name = "TRoughTerrainNUD";
-            this.TRoughTerrainNUD.Size = new System.Drawing.Size(99, 26);
+            this.TRoughTerrainNUD.Size = new System.Drawing.Size(66, 20);
             this.TRoughTerrainNUD.TabIndex = 14;
             // 
             // TLowBarLbl
             // 
             this.TLowBarLbl.AutoSize = true;
-            this.TLowBarLbl.Location = new System.Drawing.Point(136, 223);
-            this.TLowBarLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TLowBarLbl.Location = new System.Drawing.Point(91, 145);
             this.TLowBarLbl.Name = "TLowBarLbl";
-            this.TLowBarLbl.Size = new System.Drawing.Size(67, 20);
+            this.TLowBarLbl.Size = new System.Drawing.Size(46, 13);
             this.TLowBarLbl.TabIndex = 17;
             this.TLowBarLbl.Text = "Low Bar";
             // 
             // TLowBarNUD
             // 
-            this.TLowBarNUD.Location = new System.Drawing.Point(140, 243);
-            this.TLowBarNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TLowBarNUD.Location = new System.Drawing.Point(93, 158);
             this.TLowBarNUD.Name = "TLowBarNUD";
-            this.TLowBarNUD.Size = new System.Drawing.Size(99, 26);
+            this.TLowBarNUD.Size = new System.Drawing.Size(66, 20);
             this.TLowBarNUD.TabIndex = 16;
             // 
             // TCommentsLbl
             // 
             this.TCommentsLbl.AutoSize = true;
-            this.TCommentsLbl.Location = new System.Drawing.Point(136, 283);
-            this.TCommentsLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TCommentsLbl.Location = new System.Drawing.Point(91, 184);
             this.TCommentsLbl.Name = "TCommentsLbl";
-            this.TCommentsLbl.Size = new System.Drawing.Size(86, 80);
+            this.TCommentsLbl.Size = new System.Drawing.Size(56, 52);
             this.TCommentsLbl.TabIndex = 23;
             this.TCommentsLbl.Text = "------------>\r\nTele-Op\r\nComments\r\n------------>";
             // 
             // TLowGoalLbl
             // 
             this.TLowGoalLbl.AutoSize = true;
-            this.TLowGoalLbl.Location = new System.Drawing.Point(257, 31);
-            this.TLowGoalLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TLowGoalLbl.Location = new System.Drawing.Point(171, 20);
             this.TLowGoalLbl.Name = "TLowGoalLbl";
-            this.TLowGoalLbl.Size = new System.Drawing.Size(76, 20);
+            this.TLowGoalLbl.Size = new System.Drawing.Size(52, 13);
             this.TLowGoalLbl.TabIndex = 19;
             this.TLowGoalLbl.Text = "Low Goal";
             this.TLowGoalLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TLowGoalNUD
             // 
-            this.TLowGoalNUD.Location = new System.Drawing.Point(261, 51);
-            this.TLowGoalNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TLowGoalNUD.Location = new System.Drawing.Point(174, 33);
             this.TLowGoalNUD.Name = "TLowGoalNUD";
-            this.TLowGoalNUD.Size = new System.Drawing.Size(93, 26);
+            this.TLowGoalNUD.Size = new System.Drawing.Size(62, 20);
             this.TLowGoalNUD.TabIndex = 18;
             // 
             // TScaledTowerChkbx
             // 
             this.TScaledTowerChkbx.AutoSize = true;
-            this.TScaledTowerChkbx.Location = new System.Drawing.Point(261, 100);
-            this.TScaledTowerChkbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TScaledTowerChkbx.Location = new System.Drawing.Point(174, 65);
             this.TScaledTowerChkbx.Name = "TScaledTowerChkbx";
-            this.TScaledTowerChkbx.Size = new System.Drawing.Size(131, 24);
+            this.TScaledTowerChkbx.Size = new System.Drawing.Size(92, 17);
             this.TScaledTowerChkbx.TabIndex = 25;
             this.TScaledTowerChkbx.Text = "Scaled Tower";
             this.TScaledTowerChkbx.UseVisualStyleBackColor = true;
@@ -740,39 +689,35 @@
             // TChallengedTowerChkbx
             // 
             this.TChallengedTowerChkbx.AutoSize = true;
-            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(261, 126);
-            this.TChallengedTowerChkbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(174, 82);
             this.TChallengedTowerChkbx.Name = "TChallengedTowerChkbx";
-            this.TChallengedTowerChkbx.Size = new System.Drawing.Size(162, 24);
+            this.TChallengedTowerChkbx.Size = new System.Drawing.Size(112, 17);
             this.TChallengedTowerChkbx.TabIndex = 24;
             this.TChallengedTowerChkbx.Text = "Challenged Tower";
             this.TChallengedTowerChkbx.UseVisualStyleBackColor = true;
             // 
             // TCommentsTxtbx
             // 
-            this.TCommentsTxtbx.Location = new System.Drawing.Point(261, 178);
-            this.TCommentsTxtbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TCommentsTxtbx.Location = new System.Drawing.Point(174, 116);
             this.TCommentsTxtbx.Multiline = true;
             this.TCommentsTxtbx.Name = "TCommentsTxtbx";
-            this.TCommentsTxtbx.Size = new System.Drawing.Size(258, 204);
+            this.TCommentsTxtbx.Size = new System.Drawing.Size(173, 134);
             this.TCommentsTxtbx.TabIndex = 22;
             // 
             // THighGoalLbl
             // 
             this.THighGoalLbl.AutoSize = true;
-            this.THighGoalLbl.Location = new System.Drawing.Point(390, 31);
-            this.THighGoalLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.THighGoalLbl.Location = new System.Drawing.Point(260, 20);
             this.THighGoalLbl.Name = "THighGoalLbl";
-            this.THighGoalLbl.Size = new System.Drawing.Size(80, 20);
+            this.THighGoalLbl.Size = new System.Drawing.Size(54, 13);
             this.THighGoalLbl.TabIndex = 21;
             this.THighGoalLbl.Text = "High Goal";
             // 
             // THighGoalNUD
             // 
-            this.THighGoalNUD.Location = new System.Drawing.Point(394, 51);
-            this.THighGoalNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.THighGoalNUD.Location = new System.Drawing.Point(263, 33);
             this.THighGoalNUD.Name = "THighGoalNUD";
-            this.THighGoalNUD.Size = new System.Drawing.Size(93, 26);
+            this.THighGoalNUD.Size = new System.Drawing.Size(62, 20);
             this.THighGoalNUD.TabIndex = 20;
             // 
             // RDGroupBx
@@ -792,11 +737,9 @@
             this.RDGroupBx.Controls.Add(this.RDCommentsLbl);
             this.RDGroupBx.Controls.Add(this.RDComments);
             this.RDGroupBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDGroupBx.Location = new System.Drawing.Point(546, 291);
-            this.RDGroupBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDGroupBx.Location = new System.Drawing.Point(368, 189);
             this.RDGroupBx.Name = "RDGroupBx";
-            this.RDGroupBx.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RDGroupBx.Size = new System.Drawing.Size(393, 238);
+            this.RDGroupBx.Size = new System.Drawing.Size(262, 155);
             this.RDGroupBx.TabIndex = 6;
             this.RDGroupBx.TabStop = false;
             this.RDGroupBx.Text = "DEATH";
@@ -804,10 +747,9 @@
             // DiedChkbx
             // 
             this.DiedChkbx.AutoSize = true;
-            this.DiedChkbx.Location = new System.Drawing.Point(14, 0);
-            this.DiedChkbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DiedChkbx.Location = new System.Drawing.Point(9, 0);
             this.DiedChkbx.Name = "DiedChkbx";
-            this.DiedChkbx.Size = new System.Drawing.Size(74, 24);
+            this.DiedChkbx.Size = new System.Drawing.Size(52, 17);
             this.DiedChkbx.TabIndex = 3;
             this.DiedChkbx.Text = "Died";
             this.DiedChkbx.UseVisualStyleBackColor = true;
@@ -818,10 +760,9 @@
             this.RDPortcullis.AutoSize = true;
             this.RDPortcullis.Enabled = false;
             this.RDPortcullis.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDPortcullis.Location = new System.Drawing.Point(14, 29);
-            this.RDPortcullis.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDPortcullis.Location = new System.Drawing.Point(9, 19);
             this.RDPortcullis.Name = "RDPortcullis";
-            this.RDPortcullis.Size = new System.Drawing.Size(91, 21);
+            this.RDPortcullis.Size = new System.Drawing.Size(67, 17);
             this.RDPortcullis.TabIndex = 14;
             this.RDPortcullis.Text = "Portcullis";
             this.RDPortcullis.UseVisualStyleBackColor = true;
@@ -831,10 +772,9 @@
             this.RDChevalDeFrise.AutoSize = true;
             this.RDChevalDeFrise.Enabled = false;
             this.RDChevalDeFrise.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDChevalDeFrise.Location = new System.Drawing.Point(14, 65);
-            this.RDChevalDeFrise.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDChevalDeFrise.Location = new System.Drawing.Point(9, 42);
             this.RDChevalDeFrise.Name = "RDChevalDeFrise";
-            this.RDChevalDeFrise.Size = new System.Drawing.Size(134, 21);
+            this.RDChevalDeFrise.Size = new System.Drawing.Size(101, 17);
             this.RDChevalDeFrise.TabIndex = 15;
             this.RDChevalDeFrise.Text = "Cheval De Frise";
             this.RDChevalDeFrise.UseVisualStyleBackColor = true;
@@ -844,10 +784,9 @@
             this.RDMoat.AutoSize = true;
             this.RDMoat.Enabled = false;
             this.RDMoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDMoat.Location = new System.Drawing.Point(14, 100);
-            this.RDMoat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDMoat.Location = new System.Drawing.Point(9, 65);
             this.RDMoat.Name = "RDMoat";
-            this.RDMoat.Size = new System.Drawing.Size(65, 21);
+            this.RDMoat.Size = new System.Drawing.Size(50, 17);
             this.RDMoat.TabIndex = 16;
             this.RDMoat.Text = "Moat";
             this.RDMoat.UseVisualStyleBackColor = true;
@@ -857,10 +796,9 @@
             this.RDRockWall.AutoSize = true;
             this.RDRockWall.Enabled = false;
             this.RDRockWall.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDRockWall.Location = new System.Drawing.Point(14, 135);
-            this.RDRockWall.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDRockWall.Location = new System.Drawing.Point(9, 88);
             this.RDRockWall.Name = "RDRockWall";
-            this.RDRockWall.Size = new System.Drawing.Size(97, 21);
+            this.RDRockWall.Size = new System.Drawing.Size(71, 17);
             this.RDRockWall.TabIndex = 20;
             this.RDRockWall.Text = "Rock Wall";
             this.RDRockWall.UseVisualStyleBackColor = true;
@@ -870,10 +808,9 @@
             this.RDRoughTerrain.AutoSize = true;
             this.RDRoughTerrain.Enabled = false;
             this.RDRoughTerrain.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDRoughTerrain.Location = new System.Drawing.Point(14, 171);
-            this.RDRoughTerrain.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDRoughTerrain.Location = new System.Drawing.Point(9, 111);
             this.RDRoughTerrain.Name = "RDRoughTerrain";
-            this.RDRoughTerrain.Size = new System.Drawing.Size(126, 21);
+            this.RDRoughTerrain.Size = new System.Drawing.Size(91, 17);
             this.RDRoughTerrain.TabIndex = 21;
             this.RDRoughTerrain.Text = "Rough Terrain";
             this.RDRoughTerrain.UseVisualStyleBackColor = true;
@@ -883,10 +820,9 @@
             this.RDLowBar.AutoSize = true;
             this.RDLowBar.Enabled = false;
             this.RDLowBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDLowBar.Location = new System.Drawing.Point(14, 206);
-            this.RDLowBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDLowBar.Location = new System.Drawing.Point(9, 134);
             this.RDLowBar.Name = "RDLowBar";
-            this.RDLowBar.Size = new System.Drawing.Size(85, 21);
+            this.RDLowBar.Size = new System.Drawing.Size(65, 17);
             this.RDLowBar.TabIndex = 22;
             this.RDLowBar.Text = "Low Bar";
             this.RDLowBar.UseVisualStyleBackColor = true;
@@ -896,10 +832,9 @@
             this.RDRamparts.AutoSize = true;
             this.RDRamparts.Enabled = false;
             this.RDRamparts.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDRamparts.Location = new System.Drawing.Point(178, 29);
-            this.RDRamparts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDRamparts.Location = new System.Drawing.Point(119, 19);
             this.RDRamparts.Name = "RDRamparts";
-            this.RDRamparts.Size = new System.Drawing.Size(95, 21);
+            this.RDRamparts.Size = new System.Drawing.Size(70, 17);
             this.RDRamparts.TabIndex = 17;
             this.RDRamparts.Text = "Ramparts";
             this.RDRamparts.UseVisualStyleBackColor = true;
@@ -909,10 +844,9 @@
             this.RDDrawbridge.AutoSize = true;
             this.RDDrawbridge.Enabled = false;
             this.RDDrawbridge.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDDrawbridge.Location = new System.Drawing.Point(178, 65);
-            this.RDDrawbridge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDDrawbridge.Location = new System.Drawing.Point(119, 42);
             this.RDDrawbridge.Name = "RDDrawbridge";
-            this.RDDrawbridge.Size = new System.Drawing.Size(106, 21);
+            this.RDDrawbridge.Size = new System.Drawing.Size(80, 17);
             this.RDDrawbridge.TabIndex = 18;
             this.RDDrawbridge.Text = "Drawbridge";
             this.RDDrawbridge.UseVisualStyleBackColor = true;
@@ -922,10 +856,9 @@
             this.RDSallyPort.AutoSize = true;
             this.RDSallyPort.Enabled = false;
             this.RDSallyPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDSallyPort.Location = new System.Drawing.Point(178, 100);
-            this.RDSallyPort.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDSallyPort.Location = new System.Drawing.Point(119, 65);
             this.RDSallyPort.Name = "RDSallyPort";
-            this.RDSallyPort.Size = new System.Drawing.Size(94, 21);
+            this.RDSallyPort.Size = new System.Drawing.Size(70, 17);
             this.RDSallyPort.TabIndex = 19;
             this.RDSallyPort.Text = "Sally Port";
             this.RDSallyPort.UseVisualStyleBackColor = true;
@@ -934,10 +867,9 @@
             // 
             this.RDCommentsLbl.AutoSize = true;
             this.RDCommentsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDCommentsLbl.Location = new System.Drawing.Point(295, 65);
-            this.RDCommentsLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.RDCommentsLbl.Location = new System.Drawing.Point(197, 42);
             this.RDCommentsLbl.Name = "RDCommentsLbl";
-            this.RDCommentsLbl.Size = new System.Drawing.Size(90, 60);
+            this.RDCommentsLbl.Size = new System.Drawing.Size(56, 39);
             this.RDCommentsLbl.TabIndex = 24;
             this.RDCommentsLbl.Text = "Death\r\nComments\r\nvvvvvvvv";
             this.RDCommentsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -945,11 +877,10 @@
             // RDComments
             // 
             this.RDComments.Enabled = false;
-            this.RDComments.Location = new System.Drawing.Point(177, 131);
-            this.RDComments.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RDComments.Location = new System.Drawing.Point(118, 85);
             this.RDComments.Multiline = true;
             this.RDComments.Name = "RDComments";
-            this.RDComments.Size = new System.Drawing.Size(208, 96);
+            this.RDComments.Size = new System.Drawing.Size(140, 64);
             this.RDComments.TabIndex = 23;
             // 
             // HPGroupBx
@@ -958,11 +889,9 @@
             this.HPGroupBx.Controls.Add(this.HPDiedChkbx);
             this.HPGroupBx.Controls.Add(this.HPCommentsLbl);
             this.HPGroupBx.Controls.Add(this.HPCommentsTxtbx);
-            this.HPGroupBx.Location = new System.Drawing.Point(546, 535);
-            this.HPGroupBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HPGroupBx.Location = new System.Drawing.Point(368, 348);
             this.HPGroupBx.Name = "HPGroupBx";
-            this.HPGroupBx.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.HPGroupBx.Size = new System.Drawing.Size(393, 155);
+            this.HPGroupBx.Size = new System.Drawing.Size(262, 101);
             this.HPGroupBx.TabIndex = 7;
             this.HPGroupBx.TabStop = false;
             this.HPGroupBx.Text = "Human Player";
@@ -970,10 +899,9 @@
             // HPDiedChkbx
             // 
             this.HPDiedChkbx.AutoSize = true;
-            this.HPDiedChkbx.Location = new System.Drawing.Point(286, 29);
-            this.HPDiedChkbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HPDiedChkbx.Location = new System.Drawing.Point(191, 19);
             this.HPDiedChkbx.Name = "HPDiedChkbx";
-            this.HPDiedChkbx.Size = new System.Drawing.Size(68, 24);
+            this.HPDiedChkbx.Size = new System.Drawing.Size(48, 17);
             this.HPDiedChkbx.TabIndex = 0;
             this.HPDiedChkbx.Text = "Died";
             this.HPDiedChkbx.UseVisualStyleBackColor = true;
@@ -982,20 +910,18 @@
             // 
             this.HPCommentsLbl.AutoSize = true;
             this.HPCommentsLbl.BackColor = System.Drawing.Color.Transparent;
-            this.HPCommentsLbl.Location = new System.Drawing.Point(9, 43);
-            this.HPCommentsLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.HPCommentsLbl.Location = new System.Drawing.Point(6, 28);
             this.HPCommentsLbl.Name = "HPCommentsLbl";
-            this.HPCommentsLbl.Size = new System.Drawing.Size(189, 20);
+            this.HPCommentsLbl.Size = new System.Drawing.Size(125, 13);
             this.HPCommentsLbl.TabIndex = 2;
             this.HPCommentsLbl.Text = "Human Player Comments";
             // 
             // HPCommentsTxtbx
             // 
-            this.HPCommentsTxtbx.Location = new System.Drawing.Point(9, 68);
-            this.HPCommentsTxtbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HPCommentsTxtbx.Location = new System.Drawing.Point(6, 44);
             this.HPCommentsTxtbx.Multiline = true;
             this.HPCommentsTxtbx.Name = "HPCommentsTxtbx";
-            this.HPCommentsTxtbx.Size = new System.Drawing.Size(348, 76);
+            this.HPCommentsTxtbx.Size = new System.Drawing.Size(233, 51);
             this.HPCommentsTxtbx.TabIndex = 1;
             // 
             // AllianceBtnPnl
@@ -1009,9 +935,8 @@
             this.AllianceBtnPnl.Controls.Add(this.RedAllianceBtn3);
             this.AllianceBtnPnl.Dock = System.Windows.Forms.DockStyle.Left;
             this.AllianceBtnPnl.Location = new System.Drawing.Point(0, 0);
-            this.AllianceBtnPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AllianceBtnPnl.Name = "AllianceBtnPnl";
-            this.AllianceBtnPnl.Size = new System.Drawing.Size(232, 709);
+            this.AllianceBtnPnl.Size = new System.Drawing.Size(155, 461);
             this.AllianceBtnPnl.TabIndex = 2;
             // 
             // BackBtn
@@ -1019,10 +944,9 @@
             this.BackBtn.FlatAppearance.BorderSize = 0;
             this.BackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBtn.Image = ((System.Drawing.Image)(resources.GetObject("BackBtn.Image")));
-            this.BackBtn.Location = new System.Drawing.Point(10, 5);
-            this.BackBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BackBtn.Location = new System.Drawing.Point(7, 3);
             this.BackBtn.Name = "BackBtn";
-            this.BackBtn.Size = new System.Drawing.Size(60, 62);
+            this.BackBtn.Size = new System.Drawing.Size(40, 40);
             this.BackBtn.TabIndex = 0;
             this.BackBtn.UseVisualStyleBackColor = true;
             this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
@@ -1031,13 +955,14 @@
             // 
             this.BlueAllianceBtn1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BlueAllianceBtn1.BackColor = System.Drawing.Color.Blue;
+            this.BlueAllianceBtn1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BlueAllianceBtn1.FlatAppearance.BorderSize = 0;
             this.BlueAllianceBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BlueAllianceBtn1.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.BlueAllianceBtn1.ForeColor = System.Drawing.Color.White;
-            this.BlueAllianceBtn1.Location = new System.Drawing.Point(18, 395);
-            this.BlueAllianceBtn1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BlueAllianceBtn1.Location = new System.Drawing.Point(12, 257);
             this.BlueAllianceBtn1.Name = "BlueAllianceBtn1";
-            this.BlueAllianceBtn1.Size = new System.Drawing.Size(192, 85);
+            this.BlueAllianceBtn1.Size = new System.Drawing.Size(128, 55);
             this.BlueAllianceBtn1.TabIndex = 4;
             this.BlueAllianceBtn1.Text = "----";
             this.BlueAllianceBtn1.UseVisualStyleBackColor = false;
@@ -1047,13 +972,14 @@
             // 
             this.BlueAllianceBtn2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BlueAllianceBtn2.BackColor = System.Drawing.Color.Blue;
+            this.BlueAllianceBtn2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BlueAllianceBtn2.FlatAppearance.BorderSize = 0;
             this.BlueAllianceBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BlueAllianceBtn2.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.BlueAllianceBtn2.ForeColor = System.Drawing.Color.White;
-            this.BlueAllianceBtn2.Location = new System.Drawing.Point(18, 500);
-            this.BlueAllianceBtn2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BlueAllianceBtn2.Location = new System.Drawing.Point(12, 325);
             this.BlueAllianceBtn2.Name = "BlueAllianceBtn2";
-            this.BlueAllianceBtn2.Size = new System.Drawing.Size(192, 85);
+            this.BlueAllianceBtn2.Size = new System.Drawing.Size(128, 55);
             this.BlueAllianceBtn2.TabIndex = 5;
             this.BlueAllianceBtn2.Text = "----";
             this.BlueAllianceBtn2.UseVisualStyleBackColor = false;
@@ -1063,13 +989,14 @@
             // 
             this.BlueAllianceBtn3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.BlueAllianceBtn3.BackColor = System.Drawing.Color.Blue;
+            this.BlueAllianceBtn3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BlueAllianceBtn3.FlatAppearance.BorderSize = 0;
             this.BlueAllianceBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BlueAllianceBtn3.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.BlueAllianceBtn3.ForeColor = System.Drawing.Color.White;
-            this.BlueAllianceBtn3.Location = new System.Drawing.Point(18, 605);
-            this.BlueAllianceBtn3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BlueAllianceBtn3.Location = new System.Drawing.Point(12, 393);
             this.BlueAllianceBtn3.Name = "BlueAllianceBtn3";
-            this.BlueAllianceBtn3.Size = new System.Drawing.Size(192, 85);
+            this.BlueAllianceBtn3.Size = new System.Drawing.Size(128, 55);
             this.BlueAllianceBtn3.TabIndex = 6;
             this.BlueAllianceBtn3.Text = "----";
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
@@ -1079,13 +1006,14 @@
             // 
             this.RedAllianceBtn1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RedAllianceBtn1.BackColor = System.Drawing.Color.Red;
+            this.RedAllianceBtn1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.RedAllianceBtn1.FlatAppearance.BorderSize = 0;
             this.RedAllianceBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RedAllianceBtn1.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.RedAllianceBtn1.ForeColor = System.Drawing.Color.White;
-            this.RedAllianceBtn1.Location = new System.Drawing.Point(18, 82);
-            this.RedAllianceBtn1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RedAllianceBtn1.Location = new System.Drawing.Point(12, 53);
             this.RedAllianceBtn1.Name = "RedAllianceBtn1";
-            this.RedAllianceBtn1.Size = new System.Drawing.Size(192, 85);
+            this.RedAllianceBtn1.Size = new System.Drawing.Size(128, 55);
             this.RedAllianceBtn1.TabIndex = 1;
             this.RedAllianceBtn1.Text = "----";
             this.RedAllianceBtn1.UseVisualStyleBackColor = false;
@@ -1095,13 +1023,14 @@
             // 
             this.RedAllianceBtn2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RedAllianceBtn2.BackColor = System.Drawing.Color.Red;
+            this.RedAllianceBtn2.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.RedAllianceBtn2.FlatAppearance.BorderSize = 0;
             this.RedAllianceBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RedAllianceBtn2.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.RedAllianceBtn2.ForeColor = System.Drawing.Color.White;
-            this.RedAllianceBtn2.Location = new System.Drawing.Point(18, 186);
-            this.RedAllianceBtn2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RedAllianceBtn2.Location = new System.Drawing.Point(12, 121);
             this.RedAllianceBtn2.Name = "RedAllianceBtn2";
-            this.RedAllianceBtn2.Size = new System.Drawing.Size(192, 85);
+            this.RedAllianceBtn2.Size = new System.Drawing.Size(128, 55);
             this.RedAllianceBtn2.TabIndex = 2;
             this.RedAllianceBtn2.Text = "----";
             this.RedAllianceBtn2.UseVisualStyleBackColor = false;
@@ -1111,13 +1040,14 @@
             // 
             this.RedAllianceBtn3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RedAllianceBtn3.BackColor = System.Drawing.Color.Red;
+            this.RedAllianceBtn3.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.RedAllianceBtn3.FlatAppearance.BorderSize = 0;
             this.RedAllianceBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RedAllianceBtn3.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.RedAllianceBtn3.ForeColor = System.Drawing.Color.White;
-            this.RedAllianceBtn3.Location = new System.Drawing.Point(18, 291);
-            this.RedAllianceBtn3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RedAllianceBtn3.Location = new System.Drawing.Point(12, 189);
             this.RedAllianceBtn3.Name = "RedAllianceBtn3";
-            this.RedAllianceBtn3.Size = new System.Drawing.Size(192, 85);
+            this.RedAllianceBtn3.Size = new System.Drawing.Size(128, 55);
             this.RedAllianceBtn3.TabIndex = 3;
             this.RedAllianceBtn3.Text = "----";
             this.RedAllianceBtn3.UseVisualStyleBackColor = false;
@@ -1126,15 +1056,14 @@
             // MainFrm
             // 
             this.AcceptButton = this.AddEventBtn;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1176, 709);
+            this.ClientSize = new System.Drawing.Size(788, 461);
             this.Controls.Add(this.TeamPnl);
             this.Controls.Add(this.EventPnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MinimumSize = new System.Drawing.Size(1198, 765);
+            this.MinimumSize = new System.Drawing.Size(804, 486);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyScout 2016";

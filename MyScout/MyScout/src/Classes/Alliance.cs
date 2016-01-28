@@ -14,7 +14,7 @@ namespace MyScout
         /// <summary>
         /// The IDs associated with the teams that are a part of the alliance.
         /// </summary>
-        public int[] teams = new int[3];
+        public int[] teams = new int[3] { -1, -1, -1 };
         /// <summary>
         /// The alliance's current score.
         /// </summary>
