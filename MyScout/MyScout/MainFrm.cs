@@ -61,12 +61,11 @@ namespace MyScout
                 TeamFrm tf = new TeamFrm();
                 if (tf.ShowDialog() == DialogResult.OK)
                 {
-                    Team selectedteam = Program.events[Program.currentevent].teams[tf.selectedteam];
-                    Program.events[Program.currentevent].Alliances[(allianceid < 3)?0:1].teams[(allianceid < 3)?allianceid:allianceid-3] = tf.selectedteam;
+                    Team selectedteam = Program.events[Program.currentevent].teams[Program.selectedteam];
+                    Program.events[Program.currentevent].Alliances[(allianceid < 3)?0:1].teams[(allianceid < 3)?allianceid:allianceid-3] = Program.selectedteam;
 
-                    Program.selectedteam = tf.selectedteam;
                     btn.Text = selectedteam.id.ToString();
-                    btn.Tag = tf.selectedteam;
+                    btn.Tag = Program.selectedteam;
 
                     Program.selectedteam = (int)btn.Tag;
                     foreach (Control control in AllianceBtnPnl.Controls)

@@ -12,8 +12,6 @@ namespace MyScout
 {
     public partial class TeamFrm : Form
     {
-        public int selectedteam;
-
         public TeamFrm()
         {
             InitializeComponent();
@@ -64,7 +62,7 @@ namespace MyScout
         /// </summary>
         private void TeamList_DoubleClick(object sender, EventArgs e)
         {
-            selectedteam = TeamList.SelectedIndices[0];
+            Program.selectedteam = TeamList.SelectedIndices[0];
             DialogResult = DialogResult.OK;
             Close();
         }
