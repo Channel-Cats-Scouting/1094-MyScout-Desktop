@@ -195,5 +195,11 @@ namespace MyScout
             RDMoat.Enabled = RDComments.Enabled = DiedChkbx.Checked;
         }
         #endregion
+
+        //vvv Code for Enter Code box
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Form1().ShowDialog();
+        }
     }
 }
