@@ -83,9 +83,39 @@ namespace MyScout.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bubble_2_1_ {
+            get {
+                object obj = ResourceManager.GetObject("bubble-2[1]", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IMG_0572 {
             get {
                 object obj = ResourceManager.GetObject("IMG_0572", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Vista_Bubble {
+            get {
+                object obj = ResourceManager.GetObject("Vista Bubble", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Vista_Bubble1 {
+            get {
+                object obj = ResourceManager.GetObject("Vista Bubble1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
