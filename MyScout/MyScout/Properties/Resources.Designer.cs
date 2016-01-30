@@ -73,16 +73,6 @@ namespace MyScout.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bubble_2_1_ {
-            get {
-                object obj = ResourceManager.GetObject("bubble-2[1]", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap coconut {
             get {
                 object obj = ResourceManager.GetObject("coconut", resourceCulture);
@@ -103,19 +93,9 @@ namespace MyScout.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Vista_Bubble {
+        internal static System.Drawing.Bitmap VistaBubble {
             get {
-                object obj = ResourceManager.GetObject("Vista Bubble", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Vista_Bubble1 {
-            get {
-                object obj = ResourceManager.GetObject("Vista Bubble1", resourceCulture);
+                object obj = ResourceManager.GetObject("VistaBubble", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

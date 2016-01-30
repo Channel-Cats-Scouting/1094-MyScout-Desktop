@@ -12,6 +12,7 @@ namespace MyScout
 {
     public partial class MainFrm : Form
     {
+        #region Not pointless secrets™
         /// <summary>
         /// ...It's not a secret™
         /// </summary>
@@ -24,6 +25,15 @@ namespace MyScout
         /// ...IT'S DEFINITELY NOT A SECRET™
         /// </summary>
         private bool konamicodeactivated = false;
+        /// <summary>
+        /// shhhhh
+        /// </summary>
+        private Bubble[] bubbles;
+        /// <summary>
+        /// Not for a secret™
+        /// </summary>
+        private Random rnd = new Random();
+        #endregion
 
         public MainFrm()
         {
@@ -207,6 +217,14 @@ namespace MyScout
                         MessageBox.Show("Go play your Atari games you cheater.");
                         konamicodeindex = 0;
                         konamicodeactivated = true;
+
+                        bubbles = new Bubble[rnd.Next(10)];
+                        for (int i = 0; i < bubbles.Length; i++)
+                        {
+                            bubbles[i] = new Bubble();
+                            bubbles[i].Location = new Point(rnd.Next(Screen.PrimaryScreen.Bounds.Width),rnd.Next(Screen.PrimaryScreen.Bounds.Height));
+                            bubbles[i].Show();
+                        }
                     }
                 }
             }
