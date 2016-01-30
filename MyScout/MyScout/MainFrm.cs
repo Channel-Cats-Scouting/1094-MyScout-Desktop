@@ -12,6 +12,19 @@ namespace MyScout
 {
     public partial class MainFrm : Form
     {
+        /// <summary>
+        /// ...It's not a secret™
+        /// </summary>
+        private int konamicodeindex = 0;
+        /// <summary>
+        /// ...It's still not a secret™
+        /// </summary>
+        private Keys[] konamicodekeys = new Keys[10] { Keys.Up, Keys.Up, Keys.Down, Keys.Down, Keys.Left, Keys.Right, Keys.Left, Keys.Right, Keys.B, Keys.A };
+        /// <summary>
+        /// ...IT'S DEFINITELY NOT A SECRET™
+        /// </summary>
+        private bool konamicodeactivated = false;
+
         public MainFrm()
         {
             InitializeComponent();
@@ -182,6 +195,20 @@ namespace MyScout
                     RemoveEventBtn.PerformClick();
                     return true;
                 }
+                else if (konamicodeindex > 9) { konamicodeindex = 0; }
+                else if (!konamicodeactivated && keyData == konamicodekeys[konamicodeindex])
+                {
+                    if (konamicodeindex < 9)
+                    {
+                        konamicodeindex++;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Go play your Atari games you cheater.");
+                        konamicodeindex = 0;
+                        konamicodeactivated = true;
+                    }
+                }
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -195,11 +222,5 @@ namespace MyScout
             RDMoat.Enabled = RDComments.Enabled = DiedChkbx.Checked;
         }
         #endregion
-
-        //vvv Code for Enter Code box
-        private void button1_Click(object sender, EventArgs e)
-        {
-            new Form1().ShowDialog();
-        }
     }
 }

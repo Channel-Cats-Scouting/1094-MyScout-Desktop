@@ -105,15 +105,13 @@
             this.HPCommentsLbl = new System.Windows.Forms.Label();
             this.HPCommentsTxtbx = new System.Windows.Forms.TextBox();
             this.AllianceBtnPnl = new System.Windows.Forms.Panel();
+            this.BackBtn = new System.Windows.Forms.Button();
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn2 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn3 = new System.Windows.Forms.Button();
             this.RedAllianceBtn1 = new System.Windows.Forms.Button();
             this.RedAllianceBtn2 = new System.Windows.Forms.Button();
             this.RedAllianceBtn3 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.BackBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -138,7 +136,6 @@
             this.RDGroupBx.SuspendLayout();
             this.HPGroupBx.SuspendLayout();
             this.AllianceBtnPnl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ChooseAnEventLbl
@@ -198,7 +195,6 @@
             // 
             // HeaderPnl
             // 
-            this.HeaderPnl.Controls.Add(this.button1);
             this.HeaderPnl.Controls.Add(this.ChooseAnEventLbl);
             this.HeaderPnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.HeaderPnl.Location = new System.Drawing.Point(0, 0);
@@ -273,7 +269,6 @@
             // 
             this.TeamNamePnl.BackColor = System.Drawing.Color.White;
             this.TeamNamePnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TeamNamePnl.Controls.Add(this.pictureBox1);
             this.TeamNamePnl.Controls.Add(this.TeamNameLbl);
             this.TeamNamePnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.TeamNamePnl.Location = new System.Drawing.Point(155, 0);
@@ -944,6 +939,18 @@
             this.AllianceBtnPnl.Size = new System.Drawing.Size(155, 461);
             this.AllianceBtnPnl.TabIndex = 2;
             // 
+            // BackBtn
+            // 
+            this.BackBtn.FlatAppearance.BorderSize = 0;
+            this.BackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackBtn.Image = ((System.Drawing.Image)(resources.GetObject("BackBtn.Image")));
+            this.BackBtn.Location = new System.Drawing.Point(7, 3);
+            this.BackBtn.Name = "BackBtn";
+            this.BackBtn.Size = new System.Drawing.Size(40, 40);
+            this.BackBtn.TabIndex = 0;
+            this.BackBtn.UseVisualStyleBackColor = true;
+            this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
+            // 
             // BlueAllianceBtn1
             // 
             this.BlueAllianceBtn1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1046,38 +1053,6 @@
             this.RedAllianceBtn3.UseVisualStyleBackColor = false;
             this.RedAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::MyScout.Properties.Resources._4268223207_e8802fa3e1_b_1_;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 73);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
-            // BackBtn
-            // 
-            this.BackBtn.FlatAppearance.BorderSize = 0;
-            this.BackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BackBtn.Image = ((System.Drawing.Image)(resources.GetObject("BackBtn.Image")));
-            this.BackBtn.Location = new System.Drawing.Point(7, 3);
-            this.BackBtn.Name = "BackBtn";
-            this.BackBtn.Size = new System.Drawing.Size(40, 40);
-            this.BackBtn.TabIndex = 0;
-            this.BackBtn.UseVisualStyleBackColor = true;
-            this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Enter Code";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainFrm
             // 
             this.AcceptButton = this.AddEventBtn;
@@ -1085,8 +1060,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(788, 461);
-            this.Controls.Add(this.EventPnl);
             this.Controls.Add(this.TeamPnl);
+            this.Controls.Add(this.EventPnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(804, 486);
             this.Name = "MainFrm";
@@ -1120,7 +1095,6 @@
             this.HPGroupBx.ResumeLayout(false);
             this.HPGroupBx.PerformLayout();
             this.AllianceBtnPnl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1210,8 +1184,6 @@
         private System.Windows.Forms.CheckBox TScaledTowerChkbx;
         private System.Windows.Forms.CheckBox TChallengedTowerChkbx;
         private System.Windows.Forms.Panel MainPnl;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
     }
 }
 
