@@ -235,7 +235,7 @@ namespace MyScout
         private void DiedChkbx_CheckedChanged(object sender, EventArgs e)
         {
             //Enable/disable every control inside the "Died" groupbox
-            RDGroupBx.Enabled = DiedChkbx.Checked;
+            DiedCombobx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = DiedChkbx.Checked;
         }
         #endregion
     }

@@ -109,7 +109,7 @@
             this.ChooseAnEventLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.ChooseAnEventLbl.Location = new System.Drawing.Point(0, 0);
             this.ChooseAnEventLbl.Name = "ChooseAnEventLbl";
-            this.ChooseAnEventLbl.Size = new System.Drawing.Size(788, 69);
+            this.ChooseAnEventLbl.Size = new System.Drawing.Size(596, 69);
             this.ChooseAnEventLbl.TabIndex = 0;
             this.ChooseAnEventLbl.Text = "Choose an Event to Begin";
             this.ChooseAnEventLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -122,7 +122,7 @@
             this.EventPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EventPnl.Location = new System.Drawing.Point(0, 0);
             this.EventPnl.Name = "EventPnl";
-            this.EventPnl.Size = new System.Drawing.Size(788, 461);
+            this.EventPnl.Size = new System.Drawing.Size(596, 461);
             this.EventPnl.TabIndex = 1;
             // 
             // EventList
@@ -136,7 +136,7 @@
             this.EventList.Location = new System.Drawing.Point(0, 69);
             this.EventList.MultiSelect = false;
             this.EventList.Name = "EventList";
-            this.EventList.Size = new System.Drawing.Size(788, 339);
+            this.EventList.Size = new System.Drawing.Size(596, 339);
             this.EventList.TabIndex = 2;
             this.EventList.UseCompatibleStateImageBehavior = false;
             this.EventList.View = System.Windows.Forms.View.Details;
@@ -145,7 +145,7 @@
             // NameHeader
             // 
             this.NameHeader.Text = "Name";
-            this.NameHeader.Width = 479;
+            this.NameHeader.Width = 290;
             // 
             // BeginDateHeader
             // 
@@ -163,7 +163,7 @@
             this.HeaderPnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.HeaderPnl.Location = new System.Drawing.Point(0, 0);
             this.HeaderPnl.Name = "HeaderPnl";
-            this.HeaderPnl.Size = new System.Drawing.Size(788, 69);
+            this.HeaderPnl.Size = new System.Drawing.Size(596, 69);
             this.HeaderPnl.TabIndex = 3;
             // 
             // EventBtnPnl
@@ -174,7 +174,7 @@
             this.EventBtnPnl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.EventBtnPnl.Location = new System.Drawing.Point(0, 408);
             this.EventBtnPnl.Name = "EventBtnPnl";
-            this.EventBtnPnl.Size = new System.Drawing.Size(788, 53);
+            this.EventBtnPnl.Size = new System.Drawing.Size(596, 53);
             this.EventBtnPnl.TabIndex = 1;
             // 
             // RemoveEventBtn
@@ -184,7 +184,7 @@
             this.RemoveEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.RemoveEventBtn.Location = new System.Drawing.Point(3, 0);
             this.RemoveEventBtn.Name = "RemoveEventBtn";
-            this.RemoveEventBtn.Size = new System.Drawing.Size(250, 53);
+            this.RemoveEventBtn.Size = new System.Drawing.Size(196, 53);
             this.RemoveEventBtn.TabIndex = 2;
             this.RemoveEventBtn.Text = "&Remove Event";
             this.RemoveEventBtn.UseVisualStyleBackColor = true;
@@ -196,9 +196,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EditEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.EditEventBtn.Location = new System.Drawing.Point(267, 0);
+            this.EditEventBtn.Location = new System.Drawing.Point(200, 0);
             this.EditEventBtn.Name = "EditEventBtn";
-            this.EditEventBtn.Size = new System.Drawing.Size(254, 53);
+            this.EditEventBtn.Size = new System.Drawing.Size(196, 53);
             this.EditEventBtn.TabIndex = 1;
             this.EditEventBtn.Text = "&Edit Event";
             this.EditEventBtn.UseVisualStyleBackColor = true;
@@ -209,9 +209,9 @@
             this.AddEventBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.AddEventBtn.Location = new System.Drawing.Point(535, 0);
+            this.AddEventBtn.Location = new System.Drawing.Point(397, 0);
             this.AddEventBtn.Name = "AddEventBtn";
-            this.AddEventBtn.Size = new System.Drawing.Size(250, 53);
+            this.AddEventBtn.Size = new System.Drawing.Size(196, 53);
             this.AddEventBtn.TabIndex = 0;
             this.AddEventBtn.Text = "&Add Event";
             this.AddEventBtn.UseVisualStyleBackColor = true;
@@ -225,7 +225,7 @@
             this.TeamPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TeamPnl.Location = new System.Drawing.Point(0, 0);
             this.TeamPnl.Name = "TeamPnl";
-            this.TeamPnl.Size = new System.Drawing.Size(788, 461);
+            this.TeamPnl.Size = new System.Drawing.Size(596, 461);
             this.TeamPnl.TabIndex = 4;
             this.TeamPnl.Visible = false;
             // 
@@ -237,7 +237,7 @@
             this.TeamNamePnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.TeamNamePnl.Location = new System.Drawing.Point(155, 0);
             this.TeamNamePnl.Name = "TeamNamePnl";
-            this.TeamNamePnl.Size = new System.Drawing.Size(633, 90);
+            this.TeamNamePnl.Size = new System.Drawing.Size(441, 90);
             this.TeamNamePnl.TabIndex = 3;
             // 
             // TeamNameLbl
@@ -247,7 +247,7 @@
             this.TeamNameLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.TeamNameLbl.Location = new System.Drawing.Point(0, 0);
             this.TeamNameLbl.Name = "TeamNameLbl";
-            this.TeamNameLbl.Size = new System.Drawing.Size(631, 88);
+            this.TeamNameLbl.Size = new System.Drawing.Size(439, 88);
             this.TeamNameLbl.TabIndex = 0;
             this.TeamNameLbl.Text = "No Team Selected";
             this.TeamNameLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -263,7 +263,7 @@
             this.MainPnl.Location = new System.Drawing.Point(155, 0);
             this.MainPnl.Margin = new System.Windows.Forms.Padding(2);
             this.MainPnl.Name = "MainPnl";
-            this.MainPnl.Size = new System.Drawing.Size(633, 461);
+            this.MainPnl.Size = new System.Drawing.Size(441, 461);
             this.MainPnl.TabIndex = 14;
             // 
             // AGroupBx
@@ -279,9 +279,9 @@
             this.AGroupBx.Controls.Add(this.ALowGoalNUD);
             this.AGroupBx.Controls.Add(this.ACommentsLbl);
             this.AGroupBx.Controls.Add(this.ACommentsTxtBx);
-            this.AGroupBx.Location = new System.Drawing.Point(99, 93);
+            this.AGroupBx.Location = new System.Drawing.Point(3, 93);
             this.AGroupBx.Name = "AGroupBx";
-            this.AGroupBx.Size = new System.Drawing.Size(435, 92);
+            this.AGroupBx.Size = new System.Drawing.Size(428, 92);
             this.AGroupBx.TabIndex = 4;
             this.AGroupBx.TabStop = false;
             this.AGroupBx.Text = "Autonomous";
@@ -394,7 +394,7 @@
             this.ACommentsTxtBx.Location = new System.Drawing.Point(274, 13);
             this.ACommentsTxtBx.Multiline = true;
             this.ACommentsTxtBx.Name = "ACommentsTxtBx";
-            this.ACommentsTxtBx.Size = new System.Drawing.Size(155, 70);
+            this.ACommentsTxtBx.Size = new System.Drawing.Size(147, 70);
             this.ACommentsTxtBx.TabIndex = 9;
             // 
             // TGroupBx
@@ -531,6 +531,8 @@
             // 
             // TCommentsTxtbx
             // 
+            this.TCommentsTxtbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TCommentsTxtbx.Location = new System.Drawing.Point(166, 31);
             this.TCommentsTxtbx.Multiline = true;
             this.TCommentsTxtbx.Name = "TCommentsTxtbx";
@@ -561,9 +563,8 @@
             this.RDGroupBx.Controls.Add(this.DiedChkbx);
             this.RDGroupBx.Controls.Add(this.RDCommentsLbl);
             this.RDGroupBx.Controls.Add(this.RDComments);
-            this.RDGroupBx.Enabled = false;
             this.RDGroupBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDGroupBx.Location = new System.Drawing.Point(470, 192);
+            this.RDGroupBx.Location = new System.Drawing.Point(278, 192);
             this.RDGroupBx.Name = "RDGroupBx";
             this.RDGroupBx.Size = new System.Drawing.Size(151, 155);
             this.RDGroupBx.TabIndex = 6;
@@ -572,6 +573,7 @@
             // 
             // DiedCombobx
             // 
+            this.DiedCombobx.Enabled = false;
             this.DiedCombobx.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.DiedCombobx.FormattingEnabled = true;
             this.DiedCombobx.Items.AddRange(new object[] {
@@ -603,6 +605,7 @@
             // RDCommentsLbl
             // 
             this.RDCommentsLbl.AutoSize = true;
+            this.RDCommentsLbl.Enabled = false;
             this.RDCommentsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RDCommentsLbl.Location = new System.Drawing.Point(32, 52);
             this.RDCommentsLbl.Name = "RDCommentsLbl";
@@ -613,6 +616,8 @@
             // 
             // RDComments
             // 
+            this.RDComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.RDComments.Enabled = false;
             this.RDComments.Location = new System.Drawing.Point(6, 68);
             this.RDComments.Multiline = true;
             this.RDComments.Name = "RDComments";
@@ -623,7 +628,7 @@
             // 
             this.HPGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.HPGroupBx.Controls.Add(this.HPCommentsTxtbx);
-            this.HPGroupBx.Location = new System.Drawing.Point(470, 348);
+            this.HPGroupBx.Location = new System.Drawing.Point(278, 348);
             this.HPGroupBx.Name = "HPGroupBx";
             this.HPGroupBx.Size = new System.Drawing.Size(153, 101);
             this.HPGroupBx.TabIndex = 7;
@@ -773,11 +778,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(788, 461);
+            this.ClientSize = new System.Drawing.Size(596, 461);
             this.Controls.Add(this.TeamPnl);
             this.Controls.Add(this.EventPnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(804, 486);
+            this.MinimumSize = new System.Drawing.Size(612, 500);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyScout 2016";
