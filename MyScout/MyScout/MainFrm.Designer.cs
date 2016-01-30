@@ -45,6 +45,15 @@
             this.TeamNameLbl = new System.Windows.Forms.Label();
             this.MainPnl = new System.Windows.Forms.Panel();
             this.AGroupBx = new System.Windows.Forms.GroupBox();
+            this.AMoat2 = new System.Windows.Forms.CheckBox();
+            this.AChevaldeFrise2 = new System.Windows.Forms.CheckBox();
+            this.APortcullis2 = new System.Windows.Forms.CheckBox();
+            this.ASallyPort2 = new System.Windows.Forms.CheckBox();
+            this.ADrawbridge2 = new System.Windows.Forms.CheckBox();
+            this.ARamparts2 = new System.Windows.Forms.CheckBox();
+            this.ALowBar2 = new System.Windows.Forms.CheckBox();
+            this.ARoughTerrain2 = new System.Windows.Forms.CheckBox();
+            this.ARockWall2 = new System.Windows.Forms.CheckBox();
             this.APortcullis = new System.Windows.Forms.CheckBox();
             this.AChevalDeFrise = new System.Windows.Forms.CheckBox();
             this.AMoat = new System.Windows.Forms.CheckBox();
@@ -61,23 +70,14 @@
             this.ACommentsLbl = new System.Windows.Forms.Label();
             this.ACommentsTxtBx = new System.Windows.Forms.TextBox();
             this.TGroupBx = new System.Windows.Forms.GroupBox();
-            this.TPortcullisLbl = new System.Windows.Forms.Label();
             this.TPortcullisNUD = new System.Windows.Forms.NumericUpDown();
-            this.TChevalDeFriseLbl = new System.Windows.Forms.Label();
             this.TChevalDeFristNUD = new System.Windows.Forms.NumericUpDown();
-            this.TMoatLbl = new System.Windows.Forms.Label();
             this.TMoatNUD = new System.Windows.Forms.NumericUpDown();
-            this.TRampartsLbl = new System.Windows.Forms.Label();
             this.TRampartsNUD = new System.Windows.Forms.NumericUpDown();
-            this.TDrawbridgeLbl = new System.Windows.Forms.Label();
             this.TDrawbridgeNUD = new System.Windows.Forms.NumericUpDown();
-            this.TSallyPortLbl = new System.Windows.Forms.Label();
             this.TSallyPortNUD = new System.Windows.Forms.NumericUpDown();
-            this.TRockWallLbl = new System.Windows.Forms.Label();
             this.TRockWallNUD = new System.Windows.Forms.NumericUpDown();
-            this.TRoughTerrainLbl = new System.Windows.Forms.Label();
             this.TRoughTerrainNUD = new System.Windows.Forms.NumericUpDown();
-            this.TLowBarLbl = new System.Windows.Forms.Label();
             this.TLowBarNUD = new System.Windows.Forms.NumericUpDown();
             this.TCommentsLbl = new System.Windows.Forms.Label();
             this.TLowGoalLbl = new System.Windows.Forms.Label();
@@ -112,15 +112,15 @@
             this.RedAllianceBtn1 = new System.Windows.Forms.Button();
             this.RedAllianceBtn2 = new System.Windows.Forms.Button();
             this.RedAllianceBtn3 = new System.Windows.Forms.Button();
+            this.TPortcullis = new System.Windows.Forms.CheckBox();
+            this.TSallyPort = new System.Windows.Forms.CheckBox();
+            this.TChevaldeFrise = new System.Windows.Forms.CheckBox();
+            this.TMoat = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.TDrawbridge = new System.Windows.Forms.CheckBox();
+            this.TRockWall = new System.Windows.Forms.CheckBox();
+            this.TRoughTerrain = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -314,15 +314,15 @@
             // AGroupBx
             // 
             this.AGroupBx.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.AGroupBx.Controls.Add(this.checkBox7);
-            this.AGroupBx.Controls.Add(this.checkBox8);
-            this.AGroupBx.Controls.Add(this.checkBox9);
-            this.AGroupBx.Controls.Add(this.checkBox4);
-            this.AGroupBx.Controls.Add(this.checkBox5);
-            this.AGroupBx.Controls.Add(this.checkBox6);
-            this.AGroupBx.Controls.Add(this.checkBox3);
-            this.AGroupBx.Controls.Add(this.checkBox2);
-            this.AGroupBx.Controls.Add(this.checkBox1);
+            this.AGroupBx.Controls.Add(this.AMoat2);
+            this.AGroupBx.Controls.Add(this.AChevaldeFrise2);
+            this.AGroupBx.Controls.Add(this.APortcullis2);
+            this.AGroupBx.Controls.Add(this.ASallyPort2);
+            this.AGroupBx.Controls.Add(this.ADrawbridge2);
+            this.AGroupBx.Controls.Add(this.ARamparts2);
+            this.AGroupBx.Controls.Add(this.ALowBar2);
+            this.AGroupBx.Controls.Add(this.ARoughTerrain2);
+            this.AGroupBx.Controls.Add(this.ARockWall2);
             this.AGroupBx.Controls.Add(this.APortcullis);
             this.AGroupBx.Controls.Add(this.AChevalDeFrise);
             this.AGroupBx.Controls.Add(this.AMoat);
@@ -345,6 +345,87 @@
             this.AGroupBx.TabStop = false;
             this.AGroupBx.Text = "Autonomous";
             // 
+            // AMoat2
+            // 
+            this.AMoat2.AutoSize = true;
+            this.AMoat2.Location = new System.Drawing.Point(3, 66);
+            this.AMoat2.Name = "AMoat2";
+            this.AMoat2.Size = new System.Drawing.Size(15, 14);
+            this.AMoat2.TabIndex = 22;
+            this.AMoat2.UseVisualStyleBackColor = true;
+            // 
+            // AChevaldeFrise2
+            // 
+            this.AChevaldeFrise2.AutoSize = true;
+            this.AChevaldeFrise2.Location = new System.Drawing.Point(3, 43);
+            this.AChevaldeFrise2.Name = "AChevaldeFrise2";
+            this.AChevaldeFrise2.Size = new System.Drawing.Size(15, 14);
+            this.AChevaldeFrise2.TabIndex = 21;
+            this.AChevaldeFrise2.UseVisualStyleBackColor = true;
+            // 
+            // APortcullis2
+            // 
+            this.APortcullis2.AutoSize = true;
+            this.APortcullis2.Location = new System.Drawing.Point(3, 20);
+            this.APortcullis2.Name = "APortcullis2";
+            this.APortcullis2.Size = new System.Drawing.Size(15, 14);
+            this.APortcullis2.TabIndex = 20;
+            this.APortcullis2.UseVisualStyleBackColor = true;
+            // 
+            // ASallyPort2
+            // 
+            this.ASallyPort2.AutoSize = true;
+            this.ASallyPort2.Location = new System.Drawing.Point(119, 64);
+            this.ASallyPort2.Name = "ASallyPort2";
+            this.ASallyPort2.Size = new System.Drawing.Size(15, 14);
+            this.ASallyPort2.TabIndex = 19;
+            this.ASallyPort2.UseVisualStyleBackColor = true;
+            // 
+            // ADrawbridge2
+            // 
+            this.ADrawbridge2.AutoSize = true;
+            this.ADrawbridge2.Location = new System.Drawing.Point(119, 41);
+            this.ADrawbridge2.Name = "ADrawbridge2";
+            this.ADrawbridge2.Size = new System.Drawing.Size(15, 14);
+            this.ADrawbridge2.TabIndex = 18;
+            this.ADrawbridge2.UseVisualStyleBackColor = true;
+            // 
+            // ARamparts2
+            // 
+            this.ARamparts2.AutoSize = true;
+            this.ARamparts2.Location = new System.Drawing.Point(119, 18);
+            this.ARamparts2.Name = "ARamparts2";
+            this.ARamparts2.Size = new System.Drawing.Size(15, 14);
+            this.ARamparts2.TabIndex = 17;
+            this.ARamparts2.UseVisualStyleBackColor = true;
+            // 
+            // ALowBar2
+            // 
+            this.ALowBar2.AutoSize = true;
+            this.ALowBar2.Location = new System.Drawing.Point(226, 66);
+            this.ALowBar2.Name = "ALowBar2";
+            this.ALowBar2.Size = new System.Drawing.Size(15, 14);
+            this.ALowBar2.TabIndex = 16;
+            this.ALowBar2.UseVisualStyleBackColor = true;
+            // 
+            // ARoughTerrain2
+            // 
+            this.ARoughTerrain2.AutoSize = true;
+            this.ARoughTerrain2.Location = new System.Drawing.Point(226, 44);
+            this.ARoughTerrain2.Name = "ARoughTerrain2";
+            this.ARoughTerrain2.Size = new System.Drawing.Size(15, 14);
+            this.ARoughTerrain2.TabIndex = 15;
+            this.ARoughTerrain2.UseVisualStyleBackColor = true;
+            // 
+            // ARockWall2
+            // 
+            this.ARockWall2.AutoSize = true;
+            this.ARockWall2.Location = new System.Drawing.Point(226, 21);
+            this.ARockWall2.Name = "ARockWall2";
+            this.ARockWall2.Size = new System.Drawing.Size(15, 14);
+            this.ARockWall2.TabIndex = 14;
+            this.ARockWall2.UseVisualStyleBackColor = true;
+            // 
             // APortcullis
             // 
             this.APortcullis.AutoSize = true;
@@ -360,9 +441,9 @@
             this.AChevalDeFrise.AutoSize = true;
             this.AChevalDeFrise.Location = new System.Drawing.Point(18, 42);
             this.AChevalDeFrise.Name = "AChevalDeFrise";
-            this.AChevalDeFrise.Size = new System.Drawing.Size(99, 17);
+            this.AChevalDeFrise.Size = new System.Drawing.Size(83, 17);
             this.AChevalDeFrise.TabIndex = 1;
-            this.AChevalDeFrise.Text = "Cheval de Frise";
+            this.AChevalDeFrise.Text = "Tippy Ramp";
             this.AChevalDeFrise.UseVisualStyleBackColor = true;
             // 
             // AMoat
@@ -491,23 +572,23 @@
             // 
             this.TGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.TGroupBx.Controls.Add(this.TPortcullisLbl);
+            this.TGroupBx.Controls.Add(this.checkBox2);
+            this.TGroupBx.Controls.Add(this.TRoughTerrain);
+            this.TGroupBx.Controls.Add(this.TRockWall);
+            this.TGroupBx.Controls.Add(this.TDrawbridge);
+            this.TGroupBx.Controls.Add(this.checkBox1);
+            this.TGroupBx.Controls.Add(this.TMoat);
+            this.TGroupBx.Controls.Add(this.TChevaldeFrise);
+            this.TGroupBx.Controls.Add(this.TSallyPort);
+            this.TGroupBx.Controls.Add(this.TPortcullis);
             this.TGroupBx.Controls.Add(this.TPortcullisNUD);
-            this.TGroupBx.Controls.Add(this.TChevalDeFriseLbl);
             this.TGroupBx.Controls.Add(this.TChevalDeFristNUD);
-            this.TGroupBx.Controls.Add(this.TMoatLbl);
             this.TGroupBx.Controls.Add(this.TMoatNUD);
-            this.TGroupBx.Controls.Add(this.TRampartsLbl);
             this.TGroupBx.Controls.Add(this.TRampartsNUD);
-            this.TGroupBx.Controls.Add(this.TDrawbridgeLbl);
             this.TGroupBx.Controls.Add(this.TDrawbridgeNUD);
-            this.TGroupBx.Controls.Add(this.TSallyPortLbl);
             this.TGroupBx.Controls.Add(this.TSallyPortNUD);
-            this.TGroupBx.Controls.Add(this.TRockWallLbl);
             this.TGroupBx.Controls.Add(this.TRockWallNUD);
-            this.TGroupBx.Controls.Add(this.TRoughTerrainLbl);
             this.TGroupBx.Controls.Add(this.TRoughTerrainNUD);
-            this.TGroupBx.Controls.Add(this.TLowBarLbl);
             this.TGroupBx.Controls.Add(this.TLowBarNUD);
             this.TGroupBx.Controls.Add(this.TCommentsLbl);
             this.TGroupBx.Controls.Add(this.TLowGoalLbl);
@@ -524,146 +605,74 @@
             this.TGroupBx.TabStop = false;
             this.TGroupBx.Text = "Tele-Op";
             // 
-            // TPortcullisLbl
-            // 
-            this.TPortcullisLbl.AutoSize = true;
-            this.TPortcullisLbl.Location = new System.Drawing.Point(6, 20);
-            this.TPortcullisLbl.Name = "TPortcullisLbl";
-            this.TPortcullisLbl.Size = new System.Drawing.Size(49, 13);
-            this.TPortcullisLbl.TabIndex = 1;
-            this.TPortcullisLbl.Text = "Portcullis";
-            // 
             // TPortcullisNUD
             // 
+            this.TPortcullisNUD.Enabled = false;
             this.TPortcullisNUD.Location = new System.Drawing.Point(6, 33);
             this.TPortcullisNUD.Name = "TPortcullisNUD";
             this.TPortcullisNUD.Size = new System.Drawing.Size(66, 20);
             this.TPortcullisNUD.TabIndex = 0;
             // 
-            // TChevalDeFriseLbl
-            // 
-            this.TChevalDeFriseLbl.AutoSize = true;
-            this.TChevalDeFriseLbl.Location = new System.Drawing.Point(3, 62);
-            this.TChevalDeFriseLbl.Name = "TChevalDeFriseLbl";
-            this.TChevalDeFriseLbl.Size = new System.Drawing.Size(80, 13);
-            this.TChevalDeFriseLbl.TabIndex = 3;
-            this.TChevalDeFriseLbl.Text = "Cheval de Frise";
-            // 
             // TChevalDeFristNUD
             // 
+            this.TChevalDeFristNUD.Enabled = false;
             this.TChevalDeFristNUD.Location = new System.Drawing.Point(6, 75);
             this.TChevalDeFristNUD.Name = "TChevalDeFristNUD";
             this.TChevalDeFristNUD.Size = new System.Drawing.Size(66, 20);
             this.TChevalDeFristNUD.TabIndex = 2;
             // 
-            // TMoatLbl
-            // 
-            this.TMoatLbl.AutoSize = true;
-            this.TMoatLbl.Location = new System.Drawing.Point(3, 103);
-            this.TMoatLbl.Name = "TMoatLbl";
-            this.TMoatLbl.Size = new System.Drawing.Size(31, 13);
-            this.TMoatLbl.TabIndex = 5;
-            this.TMoatLbl.Text = "Moat";
-            // 
             // TMoatNUD
             // 
+            this.TMoatNUD.Enabled = false;
             this.TMoatNUD.Location = new System.Drawing.Point(6, 116);
             this.TMoatNUD.Name = "TMoatNUD";
             this.TMoatNUD.Size = new System.Drawing.Size(66, 20);
             this.TMoatNUD.TabIndex = 4;
             // 
-            // TRampartsLbl
-            // 
-            this.TRampartsLbl.AutoSize = true;
-            this.TRampartsLbl.Location = new System.Drawing.Point(3, 145);
-            this.TRampartsLbl.Name = "TRampartsLbl";
-            this.TRampartsLbl.Size = new System.Drawing.Size(52, 13);
-            this.TRampartsLbl.TabIndex = 7;
-            this.TRampartsLbl.Text = "Ramparts";
-            // 
             // TRampartsNUD
             // 
+            this.TRampartsNUD.Enabled = false;
             this.TRampartsNUD.Location = new System.Drawing.Point(6, 158);
             this.TRampartsNUD.Name = "TRampartsNUD";
             this.TRampartsNUD.Size = new System.Drawing.Size(66, 20);
             this.TRampartsNUD.TabIndex = 6;
             // 
-            // TDrawbridgeLbl
-            // 
-            this.TDrawbridgeLbl.AutoSize = true;
-            this.TDrawbridgeLbl.Location = new System.Drawing.Point(3, 190);
-            this.TDrawbridgeLbl.Name = "TDrawbridgeLbl";
-            this.TDrawbridgeLbl.Size = new System.Drawing.Size(61, 13);
-            this.TDrawbridgeLbl.TabIndex = 9;
-            this.TDrawbridgeLbl.Text = "Drawbridge";
-            // 
             // TDrawbridgeNUD
             // 
+            this.TDrawbridgeNUD.Enabled = false;
             this.TDrawbridgeNUD.Location = new System.Drawing.Point(6, 203);
             this.TDrawbridgeNUD.Name = "TDrawbridgeNUD";
             this.TDrawbridgeNUD.Size = new System.Drawing.Size(66, 20);
             this.TDrawbridgeNUD.TabIndex = 8;
             // 
-            // TSallyPortLbl
-            // 
-            this.TSallyPortLbl.AutoSize = true;
-            this.TSallyPortLbl.Location = new System.Drawing.Point(91, 20);
-            this.TSallyPortLbl.Name = "TSallyPortLbl";
-            this.TSallyPortLbl.Size = new System.Drawing.Size(51, 13);
-            this.TSallyPortLbl.TabIndex = 11;
-            this.TSallyPortLbl.Text = "Sally Port";
-            // 
             // TSallyPortNUD
             // 
-            this.TSallyPortNUD.Location = new System.Drawing.Point(93, 33);
+            this.TSallyPortNUD.Enabled = false;
+            this.TSallyPortNUD.Location = new System.Drawing.Point(91, 33);
             this.TSallyPortNUD.Name = "TSallyPortNUD";
             this.TSallyPortNUD.Size = new System.Drawing.Size(66, 20);
             this.TSallyPortNUD.TabIndex = 10;
             // 
-            // TRockWallLbl
-            // 
-            this.TRockWallLbl.AutoSize = true;
-            this.TRockWallLbl.Location = new System.Drawing.Point(91, 62);
-            this.TRockWallLbl.Name = "TRockWallLbl";
-            this.TRockWallLbl.Size = new System.Drawing.Size(57, 13);
-            this.TRockWallLbl.TabIndex = 13;
-            this.TRockWallLbl.Text = "Rock Wall";
-            // 
             // TRockWallNUD
             // 
-            this.TRockWallNUD.Location = new System.Drawing.Point(93, 75);
+            this.TRockWallNUD.Enabled = false;
+            this.TRockWallNUD.Location = new System.Drawing.Point(91, 75);
             this.TRockWallNUD.Name = "TRockWallNUD";
             this.TRockWallNUD.Size = new System.Drawing.Size(66, 20);
             this.TRockWallNUD.TabIndex = 12;
             // 
-            // TRoughTerrainLbl
-            // 
-            this.TRoughTerrainLbl.AutoSize = true;
-            this.TRoughTerrainLbl.Location = new System.Drawing.Point(91, 103);
-            this.TRoughTerrainLbl.Name = "TRoughTerrainLbl";
-            this.TRoughTerrainLbl.Size = new System.Drawing.Size(75, 13);
-            this.TRoughTerrainLbl.TabIndex = 15;
-            this.TRoughTerrainLbl.Text = "Rough Terrain";
-            // 
             // TRoughTerrainNUD
             // 
-            this.TRoughTerrainNUD.Location = new System.Drawing.Point(93, 116);
+            this.TRoughTerrainNUD.Enabled = false;
+            this.TRoughTerrainNUD.Location = new System.Drawing.Point(91, 116);
             this.TRoughTerrainNUD.Name = "TRoughTerrainNUD";
             this.TRoughTerrainNUD.Size = new System.Drawing.Size(66, 20);
             this.TRoughTerrainNUD.TabIndex = 14;
             // 
-            // TLowBarLbl
-            // 
-            this.TLowBarLbl.AutoSize = true;
-            this.TLowBarLbl.Location = new System.Drawing.Point(91, 145);
-            this.TLowBarLbl.Name = "TLowBarLbl";
-            this.TLowBarLbl.Size = new System.Drawing.Size(46, 13);
-            this.TLowBarLbl.TabIndex = 17;
-            this.TLowBarLbl.Text = "Low Bar";
-            // 
             // TLowBarNUD
             // 
-            this.TLowBarNUD.Location = new System.Drawing.Point(93, 158);
+            this.TLowBarNUD.Enabled = false;
+            this.TLowBarNUD.Location = new System.Drawing.Point(91, 158);
             this.TLowBarNUD.Name = "TLowBarNUD";
             this.TLowBarNUD.Size = new System.Drawing.Size(66, 20);
             this.TLowBarNUD.TabIndex = 16;
@@ -671,7 +680,7 @@
             // TCommentsLbl
             // 
             this.TCommentsLbl.AutoSize = true;
-            this.TCommentsLbl.Location = new System.Drawing.Point(91, 184);
+            this.TCommentsLbl.Location = new System.Drawing.Point(89, 184);
             this.TCommentsLbl.Name = "TCommentsLbl";
             this.TCommentsLbl.Size = new System.Drawing.Size(56, 52);
             this.TCommentsLbl.TabIndex = 23;
@@ -680,7 +689,7 @@
             // TLowGoalLbl
             // 
             this.TLowGoalLbl.AutoSize = true;
-            this.TLowGoalLbl.Location = new System.Drawing.Point(171, 20);
+            this.TLowGoalLbl.Location = new System.Drawing.Point(186, 16);
             this.TLowGoalLbl.Name = "TLowGoalLbl";
             this.TLowGoalLbl.Size = new System.Drawing.Size(52, 13);
             this.TLowGoalLbl.TabIndex = 19;
@@ -689,7 +698,7 @@
             // 
             // TLowGoalNUD
             // 
-            this.TLowGoalNUD.Location = new System.Drawing.Point(174, 33);
+            this.TLowGoalNUD.Location = new System.Drawing.Point(189, 32);
             this.TLowGoalNUD.Name = "TLowGoalNUD";
             this.TLowGoalNUD.Size = new System.Drawing.Size(62, 20);
             this.TLowGoalNUD.TabIndex = 18;
@@ -697,7 +706,7 @@
             // TScaledTowerChkbx
             // 
             this.TScaledTowerChkbx.AutoSize = true;
-            this.TScaledTowerChkbx.Location = new System.Drawing.Point(174, 65);
+            this.TScaledTowerChkbx.Location = new System.Drawing.Point(189, 63);
             this.TScaledTowerChkbx.Name = "TScaledTowerChkbx";
             this.TScaledTowerChkbx.Size = new System.Drawing.Size(92, 17);
             this.TScaledTowerChkbx.TabIndex = 25;
@@ -707,7 +716,7 @@
             // TChallengedTowerChkbx
             // 
             this.TChallengedTowerChkbx.AutoSize = true;
-            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(174, 82);
+            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(189, 80);
             this.TChallengedTowerChkbx.Name = "TChallengedTowerChkbx";
             this.TChallengedTowerChkbx.Size = new System.Drawing.Size(112, 17);
             this.TChallengedTowerChkbx.TabIndex = 24;
@@ -716,16 +725,16 @@
             // 
             // TCommentsTxtbx
             // 
-            this.TCommentsTxtbx.Location = new System.Drawing.Point(174, 116);
+            this.TCommentsTxtbx.Location = new System.Drawing.Point(188, 116);
             this.TCommentsTxtbx.Multiline = true;
             this.TCommentsTxtbx.Name = "TCommentsTxtbx";
-            this.TCommentsTxtbx.Size = new System.Drawing.Size(173, 134);
+            this.TCommentsTxtbx.Size = new System.Drawing.Size(159, 134);
             this.TCommentsTxtbx.TabIndex = 22;
             // 
             // THighGoalLbl
             // 
             this.THighGoalLbl.AutoSize = true;
-            this.THighGoalLbl.Location = new System.Drawing.Point(260, 20);
+            this.THighGoalLbl.Location = new System.Drawing.Point(275, 15);
             this.THighGoalLbl.Name = "THighGoalLbl";
             this.THighGoalLbl.Size = new System.Drawing.Size(54, 13);
             this.THighGoalLbl.TabIndex = 21;
@@ -733,7 +742,7 @@
             // 
             // THighGoalNUD
             // 
-            this.THighGoalNUD.Location = new System.Drawing.Point(263, 33);
+            this.THighGoalNUD.Location = new System.Drawing.Point(278, 32);
             this.THighGoalNUD.Name = "THighGoalNUD";
             this.THighGoalNUD.Size = new System.Drawing.Size(62, 20);
             this.THighGoalNUD.TabIndex = 20;
@@ -1071,86 +1080,95 @@
             this.RedAllianceBtn3.UseVisualStyleBackColor = false;
             this.RedAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
+            // TPortcullis
+            // 
+            this.TPortcullis.AutoSize = true;
+            this.TPortcullis.Location = new System.Drawing.Point(7, 15);
+            this.TPortcullis.Name = "TPortcullis";
+            this.TPortcullis.Size = new System.Drawing.Size(68, 17);
+            this.TPortcullis.TabIndex = 26;
+            this.TPortcullis.Text = "Portcullis";
+            this.TPortcullis.UseVisualStyleBackColor = true;
+            // 
+            // TSallyPort
+            // 
+            this.TSallyPort.AutoSize = true;
+            this.TSallyPort.Location = new System.Drawing.Point(91, 15);
+            this.TSallyPort.Name = "TSallyPort";
+            this.TSallyPort.Size = new System.Drawing.Size(70, 17);
+            this.TSallyPort.TabIndex = 27;
+            this.TSallyPort.Text = "Sally Port";
+            this.TSallyPort.UseVisualStyleBackColor = true;
+            // 
+            // TChevaldeFrise
+            // 
+            this.TChevaldeFrise.AutoSize = true;
+            this.TChevaldeFrise.Location = new System.Drawing.Point(6, 58);
+            this.TChevaldeFrise.Name = "TChevaldeFrise";
+            this.TChevaldeFrise.Size = new System.Drawing.Size(83, 17);
+            this.TChevaldeFrise.TabIndex = 28;
+            this.TChevaldeFrise.Text = "Tippy Ramp";
+            this.TChevaldeFrise.UseVisualStyleBackColor = true;
+            // 
+            // TMoat
+            // 
+            this.TMoat.AutoSize = true;
+            this.TMoat.Location = new System.Drawing.Point(6, 99);
+            this.TMoat.Name = "TMoat";
+            this.TMoat.Size = new System.Drawing.Size(50, 17);
+            this.TMoat.TabIndex = 29;
+            this.TMoat.Text = "Moat";
+            this.TMoat.UseVisualStyleBackColor = true;
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(226, 21);
+            this.checkBox1.Location = new System.Drawing.Point(6, 141);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 14;
+            this.checkBox1.Size = new System.Drawing.Size(71, 17);
+            this.checkBox1.TabIndex = 30;
+            this.checkBox1.Text = "Ramparts";
             this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // TDrawbridge
+            // 
+            this.TDrawbridge.AutoSize = true;
+            this.TDrawbridge.Location = new System.Drawing.Point(7, 183);
+            this.TDrawbridge.Name = "TDrawbridge";
+            this.TDrawbridge.Size = new System.Drawing.Size(80, 17);
+            this.TDrawbridge.TabIndex = 31;
+            this.TDrawbridge.Text = "Drawbridge";
+            this.TDrawbridge.UseVisualStyleBackColor = true;
+            // 
+            // TRockWall
+            // 
+            this.TRockWall.AutoSize = true;
+            this.TRockWall.Location = new System.Drawing.Point(91, 58);
+            this.TRockWall.Name = "TRockWall";
+            this.TRockWall.Size = new System.Drawing.Size(76, 17);
+            this.TRockWall.TabIndex = 32;
+            this.TRockWall.Text = "Rock Wall";
+            this.TRockWall.UseVisualStyleBackColor = true;
+            // 
+            // TRoughTerrain
+            // 
+            this.TRoughTerrain.AutoSize = true;
+            this.TRoughTerrain.Location = new System.Drawing.Point(91, 99);
+            this.TRoughTerrain.Name = "TRoughTerrain";
+            this.TRoughTerrain.Size = new System.Drawing.Size(94, 17);
+            this.TRoughTerrain.TabIndex = 33;
+            this.TRoughTerrain.Text = "Rough Terrain";
+            this.TRoughTerrain.UseVisualStyleBackColor = true;
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(226, 44);
+            this.checkBox2.Location = new System.Drawing.Point(91, 141);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(15, 14);
-            this.checkBox2.TabIndex = 15;
+            this.checkBox2.Size = new System.Drawing.Size(65, 17);
+            this.checkBox2.TabIndex = 34;
+            this.checkBox2.Text = "Low Bar";
             this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(226, 66);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(15, 14);
-            this.checkBox3.TabIndex = 16;
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(119, 64);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(15, 14);
-            this.checkBox4.TabIndex = 19;
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(119, 41);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(15, 14);
-            this.checkBox5.TabIndex = 18;
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(119, 18);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(15, 14);
-            this.checkBox6.TabIndex = 17;
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(3, 66);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(15, 14);
-            this.checkBox7.TabIndex = 22;
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(3, 43);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(15, 14);
-            this.checkBox8.TabIndex = 21;
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox9
-            // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(3, 20);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(15, 14);
-            this.checkBox9.TabIndex = 20;
-            this.checkBox9.UseVisualStyleBackColor = true;
             // 
             // MainFrm
             // 
@@ -1243,25 +1261,16 @@
         private System.Windows.Forms.Label HPCommentsLbl;
         private System.Windows.Forms.TextBox HPCommentsTxtbx;
         private System.Windows.Forms.CheckBox HPDiedChkbx;
-        private System.Windows.Forms.Label TPortcullisLbl;
         private System.Windows.Forms.NumericUpDown TPortcullisNUD;
-        private System.Windows.Forms.Label TChevalDeFriseLbl;
         private System.Windows.Forms.NumericUpDown TChevalDeFristNUD;
         private System.Windows.Forms.Label TLowGoalLbl;
         private System.Windows.Forms.NumericUpDown TLowGoalNUD;
-        private System.Windows.Forms.Label TLowBarLbl;
         private System.Windows.Forms.NumericUpDown TLowBarNUD;
-        private System.Windows.Forms.Label TRoughTerrainLbl;
         private System.Windows.Forms.NumericUpDown TRoughTerrainNUD;
-        private System.Windows.Forms.Label TRockWallLbl;
         private System.Windows.Forms.NumericUpDown TRockWallNUD;
-        private System.Windows.Forms.Label TSallyPortLbl;
         private System.Windows.Forms.NumericUpDown TSallyPortNUD;
-        private System.Windows.Forms.Label TDrawbridgeLbl;
         private System.Windows.Forms.NumericUpDown TDrawbridgeNUD;
-        private System.Windows.Forms.Label TRampartsLbl;
         private System.Windows.Forms.NumericUpDown TRampartsNUD;
-        private System.Windows.Forms.Label TMoatLbl;
         private System.Windows.Forms.NumericUpDown TMoatNUD;
         private System.Windows.Forms.CheckBox ALowBar;
         private System.Windows.Forms.CheckBox RDLowBar;
@@ -1283,15 +1292,24 @@
         private System.Windows.Forms.CheckBox TScaledTowerChkbx;
         private System.Windows.Forms.CheckBox TChallengedTowerChkbx;
         private System.Windows.Forms.Panel MainPnl;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox AMoat2;
+        private System.Windows.Forms.CheckBox AChevaldeFrise2;
+        private System.Windows.Forms.CheckBox APortcullis2;
+        private System.Windows.Forms.CheckBox ASallyPort2;
+        private System.Windows.Forms.CheckBox ADrawbridge2;
+        private System.Windows.Forms.CheckBox ARamparts2;
+        private System.Windows.Forms.CheckBox ALowBar2;
+        private System.Windows.Forms.CheckBox ARoughTerrain2;
+        private System.Windows.Forms.CheckBox ARockWall2;
+        private System.Windows.Forms.CheckBox TPortcullis;
+        private System.Windows.Forms.CheckBox TSallyPort;
+        private System.Windows.Forms.CheckBox TChevaldeFrise;
+        private System.Windows.Forms.CheckBox TMoat;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox TDrawbridge;
+        private System.Windows.Forms.CheckBox TRoughTerrain;
+        private System.Windows.Forms.CheckBox TRockWall;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
 

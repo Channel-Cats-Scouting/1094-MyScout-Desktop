@@ -46,6 +46,26 @@ namespace MyScout
         }
 
         /// <summary>
+        /// Occurs when the "Edit Team" button "clicked."
+        /// </summary>
+        private void EditTeamBtn_Click(object sender, EventArgs e)
+        {
+            if (TeamList.SelectedIndices.Count > 0)
+            {
+                AddDataFrm adddata = new AddDataFrm(AddDataFrm.Data.Team);
+                adddata.textBox1.Text = Program.events[Program.currentevent].teams[TeamList.SelectedIndices[0]].id.ToString();
+                adddata.textBox2.Text = Program.events[Program.currentevent].teams[TeamList.SelectedIndices[0]].name;
+
+                if (adddata.ShowDialog() == DialogResult.OK)
+                {
+                    Program.events[Program.currentevent].teams[TeamList.SelectedIndices[0]].id = Convert.ToInt32(adddata.textBox1.Text);
+                    Program.events[Program.currentevent].teams[TeamList.SelectedIndices[0]].name = adddata.textBox2.Text;
+                    RefreshTeamList();
+                }
+            }
+        }
+
+        /// <summary>
         /// Occurs when the "Remove Team" button is "clicked."
         /// </summary>
         private void RemoveTeamBtn_Click(object sender, EventArgs e)
