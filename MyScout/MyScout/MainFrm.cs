@@ -101,7 +101,7 @@ namespace MyScout
                         }
                     }
                     btn.FlatAppearance.BorderSize = 1;
-
+                    MainPnl.Enabled = true;
                     RefreshTeamPnl();
                 }
             }
@@ -235,9 +235,7 @@ namespace MyScout
         private void DiedChkbx_CheckedChanged(object sender, EventArgs e)
         {
             //Enable/disable every control inside the "Died" groupbox
-            RDPortcullis.Enabled = RDRamparts.Enabled = RDDrawbridge.Enabled = RDLowBar.Enabled =
-            RDChevalDeFrise.Enabled = RDSallyPort.Enabled = RDRoughTerrain.Enabled = RDRockWall.Enabled =
-            RDMoat.Enabled = RDComments.Enabled = DiedChkbx.Checked;
+            RDGroupBx.Enabled = DiedChkbx.Checked;
         }
         #endregion
     }
