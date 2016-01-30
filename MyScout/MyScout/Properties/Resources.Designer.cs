@@ -63,9 +63,9 @@ namespace MyScout.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _4268223207_e8802fa3e1_b_1_ {
+        internal static System.Drawing.Bitmap backbtn {
             get {
-                object obj = ResourceManager.GetObject("4268223207_e8802fa3e1_b[1]", resourceCulture);
+                object obj = ResourceManager.GetObject("backbtn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace MyScout.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap backbtn {
+        internal static System.Drawing.Bitmap coconut {
             get {
-                object obj = ResourceManager.GetObject("backbtn", resourceCulture);
+                object obj = ResourceManager.GetObject("coconut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
