@@ -101,5 +101,10 @@ namespace MyScout
             return base.ProcessCmdKey(ref msg, keyData);
         }
         #endregion
+
+        private void TeamFrm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

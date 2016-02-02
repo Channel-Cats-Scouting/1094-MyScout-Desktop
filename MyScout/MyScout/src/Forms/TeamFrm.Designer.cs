@@ -35,9 +35,9 @@
             this.IDHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.NameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BtnPnl = new System.Windows.Forms.Panel();
+            this.EditTeamBtn = new System.Windows.Forms.Button();
             this.RemoveTeamBtn = new System.Windows.Forms.Button();
             this.AddTeamBtn = new System.Windows.Forms.Button();
-            this.EditTeamBtn = new System.Windows.Forms.Button();
             this.LblPnl.SuspendLayout();
             this.MainPnl.SuspendLayout();
             this.BtnPnl.SuspendLayout();
@@ -110,6 +110,16 @@
             this.BtnPnl.Size = new System.Drawing.Size(484, 52);
             this.BtnPnl.TabIndex = 0;
             // 
+            // EditTeamBtn
+            // 
+            this.EditTeamBtn.Location = new System.Drawing.Point(167, 3);
+            this.EditTeamBtn.Name = "EditTeamBtn";
+            this.EditTeamBtn.Size = new System.Drawing.Size(151, 46);
+            this.EditTeamBtn.TabIndex = 3;
+            this.EditTeamBtn.Text = "&Edit Team";
+            this.EditTeamBtn.UseVisualStyleBackColor = true;
+            this.EditTeamBtn.Click += new System.EventHandler(this.EditTeamBtn_Click);
+            // 
             // RemoveTeamBtn
             // 
             this.RemoveTeamBtn.Location = new System.Drawing.Point(3, 3);
@@ -130,16 +140,6 @@
             this.AddTeamBtn.UseVisualStyleBackColor = true;
             this.AddTeamBtn.Click += new System.EventHandler(this.AddTeamBtn_Click);
             // 
-            // EditTeamBtn
-            // 
-            this.EditTeamBtn.Location = new System.Drawing.Point(167, 3);
-            this.EditTeamBtn.Name = "EditTeamBtn";
-            this.EditTeamBtn.Size = new System.Drawing.Size(151, 46);
-            this.EditTeamBtn.TabIndex = 3;
-            this.EditTeamBtn.Text = "&Edit Team";
-            this.EditTeamBtn.UseVisualStyleBackColor = true;
-            this.EditTeamBtn.Click += new System.EventHandler(this.EditTeamBtn_Click);
-            // 
             // TeamFrm
             // 
             this.AcceptButton = this.AddTeamBtn;
@@ -156,6 +156,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Teams";
+            this.Load += new System.EventHandler(this.TeamFrm_Load);
             this.LblPnl.ResumeLayout(false);
             this.MainPnl.ResumeLayout(false);
             this.BtnPnl.ResumeLayout(false);
