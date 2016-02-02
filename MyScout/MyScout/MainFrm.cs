@@ -38,6 +38,7 @@ namespace MyScout
         public MainFrm()
         {
             InitializeComponent();
+            DefenseCBx.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -228,6 +229,17 @@ namespace MyScout
                     }
                 }
             }
+            else
+            {
+                if (keyData == Keys.W)
+                {
+                    button1.PerformClick();
+                }
+                else if (keyData == Keys.S)
+                {
+                    button2.PerformClick();
+                }
+            }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -236,6 +248,26 @@ namespace MyScout
         {
             //Enable/disable every control inside the "Died" groupbox
             RDDefenseLbl.Enabled = RDDefenseChkbx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = RDDied.Checked;
+        }
+
+        private void TeleOpRB_CheckedChanged(object sender, EventArgs e)
+        {
+            TScaledTowerChkbx.Enabled = TChallengedTowerChkbx.Enabled = TeleOpRB.Checked;
+        }
+
+        private void ReachedRB_CheckedChanged(object sender, EventArgs e)
+        {
+            TimesCrossedLbl.Enabled = CrossedNUD.Enabled = ReachedRB.Checked;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (DefenseCBx.SelectedIndex > 0) { DefenseCBx.SelectedIndex--; }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (DefenseCBx.SelectedIndex < DefenseCBx.Items.Count-1) { DefenseCBx.SelectedIndex++; }
         }
         #endregion
     }

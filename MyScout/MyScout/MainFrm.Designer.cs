@@ -45,14 +45,14 @@
             this.TeamNameLbl = new System.Windows.Forms.Label();
             this.MainPnl = new System.Windows.Forms.Panel();
             this.TGroupBx = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.DefenseGBx = new System.Windows.Forms.GroupBox();
+            this.DefenseCBx = new System.Windows.Forms.ComboBox();
+            this.CrossedNUD = new System.Windows.Forms.NumericUpDown();
+            this.ReachedRB = new System.Windows.Forms.RadioButton();
+            this.TimesCrossedLbl = new System.Windows.Forms.Label();
+            this.DidNothingRB = new System.Windows.Forms.RadioButton();
+            this.AutonomousRB = new System.Windows.Forms.RadioButton();
+            this.TeleOpRB = new System.Windows.Forms.RadioButton();
             this.TCommentsLbl = new System.Windows.Forms.Label();
             this.TLowGoalLbl = new System.Windows.Forms.Label();
             this.TLowGoalNUD = new System.Windows.Forms.NumericUpDown();
@@ -77,6 +77,8 @@
             this.RedAllianceBtn1 = new System.Windows.Forms.Button();
             this.RedAllianceBtn2 = new System.Windows.Forms.Button();
             this.RedAllianceBtn3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -84,8 +86,8 @@
             this.TeamNamePnl.SuspendLayout();
             this.MainPnl.SuspendLayout();
             this.TGroupBx.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.DefenseGBx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CrossedNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TLowGoalNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.THighGoalNUD)).BeginInit();
             this.RDGroupBx.SuspendLayout();
@@ -260,9 +262,9 @@
             // 
             this.TGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.TGroupBx.Controls.Add(this.groupBox1);
-            this.TGroupBx.Controls.Add(this.radioButton2);
-            this.TGroupBx.Controls.Add(this.radioButton1);
+            this.TGroupBx.Controls.Add(this.DefenseGBx);
+            this.TGroupBx.Controls.Add(this.AutonomousRB);
+            this.TGroupBx.Controls.Add(this.TeleOpRB);
             this.TGroupBx.Controls.Add(this.TCommentsLbl);
             this.TGroupBx.Controls.Add(this.TLowGoalLbl);
             this.TGroupBx.Controls.Add(this.TLowGoalNUD);
@@ -278,25 +280,27 @@
             this.TGroupBx.TabStop = false;
             this.TGroupBx.Text = "                                                 ";
             // 
-            // groupBox1
+            // DefenseGBx
             // 
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.numericUpDown2);
-            this.groupBox1.Controls.Add(this.radioButton6);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.radioButton4);
-            this.groupBox1.Location = new System.Drawing.Point(6, 38);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(183, 142);
-            this.groupBox1.TabIndex = 33;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Defenses";
+            this.DefenseGBx.Controls.Add(this.button2);
+            this.DefenseGBx.Controls.Add(this.button1);
+            this.DefenseGBx.Controls.Add(this.DefenseCBx);
+            this.DefenseGBx.Controls.Add(this.CrossedNUD);
+            this.DefenseGBx.Controls.Add(this.ReachedRB);
+            this.DefenseGBx.Controls.Add(this.TimesCrossedLbl);
+            this.DefenseGBx.Controls.Add(this.DidNothingRB);
+            this.DefenseGBx.Location = new System.Drawing.Point(6, 38);
+            this.DefenseGBx.Name = "DefenseGBx";
+            this.DefenseGBx.Size = new System.Drawing.Size(183, 184);
+            this.DefenseGBx.TabIndex = 33;
+            this.DefenseGBx.TabStop = false;
+            this.DefenseGBx.Text = "Defenses";
             // 
-            // comboBox2
+            // DefenseCBx
             // 
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.DefenseCBx.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.DefenseCBx.FormattingEnabled = true;
+            this.DefenseCBx.Items.AddRange(new object[] {
             "Portcullis",
             "Cheval de Frise",
             "Moat",
@@ -306,78 +310,80 @@
             "Rock Wall",
             "Rough Terrain",
             "Low Bar"});
-            this.comboBox2.Location = new System.Drawing.Point(9, 19);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(166, 21);
-            this.comboBox2.TabIndex = 17;
+            this.DefenseCBx.Location = new System.Drawing.Point(9, 45);
+            this.DefenseCBx.Name = "DefenseCBx";
+            this.DefenseCBx.Size = new System.Drawing.Size(166, 21);
+            this.DefenseCBx.TabIndex = 17;
             // 
-            // numericUpDown2
+            // CrossedNUD
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(43, 104);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(97, 20);
-            this.numericUpDown2.TabIndex = 26;
+            this.CrossedNUD.Enabled = false;
+            this.CrossedNUD.Location = new System.Drawing.Point(44, 154);
+            this.CrossedNUD.Name = "CrossedNUD";
+            this.CrossedNUD.Size = new System.Drawing.Size(97, 20);
+            this.CrossedNUD.TabIndex = 26;
             // 
-            // radioButton6
+            // ReachedRB
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Enabled = false;
-            this.radioButton6.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton6.Location = new System.Drawing.Point(108, 46);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(75, 18);
-            this.radioButton6.TabIndex = 27;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Reached";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.ReachedRB.AutoSize = true;
+            this.ReachedRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ReachedRB.Location = new System.Drawing.Point(108, 107);
+            this.ReachedRB.Name = "ReachedRB";
+            this.ReachedRB.Size = new System.Drawing.Size(75, 18);
+            this.ReachedRB.TabIndex = 27;
+            this.ReachedRB.TabStop = true;
+            this.ReachedRB.Text = "Reached";
+            this.ReachedRB.UseVisualStyleBackColor = true;
+            this.ReachedRB.CheckedChanged += new System.EventHandler(this.ReachedRB_CheckedChanged);
             // 
-            // label2
+            // TimesCrossedLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(50, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "Times Crossed:";
+            this.TimesCrossedLbl.AutoSize = true;
+            this.TimesCrossedLbl.Enabled = false;
+            this.TimesCrossedLbl.Location = new System.Drawing.Point(51, 136);
+            this.TimesCrossedLbl.Name = "TimesCrossedLbl";
+            this.TimesCrossedLbl.Size = new System.Drawing.Size(79, 13);
+            this.TimesCrossedLbl.TabIndex = 27;
+            this.TimesCrossedLbl.Text = "Times Crossed:";
             // 
-            // radioButton4
+            // DidNothingRB
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
-            this.radioButton4.Enabled = false;
-            this.radioButton4.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton4.Location = new System.Drawing.Point(9, 46);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(85, 18);
-            this.radioButton4.TabIndex = 29;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Did nothing";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.DidNothingRB.AutoSize = true;
+            this.DidNothingRB.Checked = true;
+            this.DidNothingRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.DidNothingRB.Location = new System.Drawing.Point(9, 107);
+            this.DidNothingRB.Name = "DidNothingRB";
+            this.DidNothingRB.Size = new System.Drawing.Size(85, 18);
+            this.DidNothingRB.TabIndex = 29;
+            this.DidNothingRB.TabStop = true;
+            this.DidNothingRB.Text = "Did nothing";
+            this.DidNothingRB.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // AutonomousRB
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton2.Location = new System.Drawing.Point(10, -1);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(90, 18);
-            this.radioButton2.TabIndex = 32;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Autonomous";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.AutonomousRB.AutoSize = true;
+            this.AutonomousRB.Checked = true;
+            this.AutonomousRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.AutonomousRB.Location = new System.Drawing.Point(10, -1);
+            this.AutonomousRB.Name = "AutonomousRB";
+            this.AutonomousRB.Size = new System.Drawing.Size(90, 18);
+            this.AutonomousRB.TabIndex = 32;
+            this.AutonomousRB.TabStop = true;
+            this.AutonomousRB.Text = "Autonomous";
+            this.AutonomousRB.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // TeleOpRB
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton1.Location = new System.Drawing.Point(106, -1);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(69, 18);
-            this.radioButton1.TabIndex = 31;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Tele-Op";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.TeleOpRB.AutoSize = true;
+            this.TeleOpRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.TeleOpRB.Location = new System.Drawing.Point(106, -1);
+            this.TeleOpRB.Name = "TeleOpRB";
+            this.TeleOpRB.Size = new System.Drawing.Size(69, 18);
+            this.TeleOpRB.TabIndex = 31;
+            this.TeleOpRB.TabStop = true;
+            this.TeleOpRB.Text = "Tele-Op";
+            this.TeleOpRB.UseVisualStyleBackColor = true;
+            this.TeleOpRB.CheckedChanged += new System.EventHandler(this.TeleOpRB_CheckedChanged);
             // 
             // TCommentsLbl
             // 
@@ -393,7 +399,7 @@
             // 
             this.TLowGoalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TLowGoalLbl.AutoSize = true;
-            this.TLowGoalLbl.Location = new System.Drawing.Point(6, 221);
+            this.TLowGoalLbl.Location = new System.Drawing.Point(6, 238);
             this.TLowGoalLbl.Name = "TLowGoalLbl";
             this.TLowGoalLbl.Size = new System.Drawing.Size(52, 13);
             this.TLowGoalLbl.TabIndex = 19;
@@ -403,7 +409,7 @@
             // TLowGoalNUD
             // 
             this.TLowGoalNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.TLowGoalNUD.Location = new System.Drawing.Point(9, 238);
+            this.TLowGoalNUD.Location = new System.Drawing.Point(9, 255);
             this.TLowGoalNUD.Name = "TLowGoalNUD";
             this.TLowGoalNUD.Size = new System.Drawing.Size(62, 20);
             this.TLowGoalNUD.TabIndex = 18;
@@ -448,7 +454,7 @@
             // 
             this.THighGoalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.THighGoalLbl.AutoSize = true;
-            this.THighGoalLbl.Location = new System.Drawing.Point(111, 221);
+            this.THighGoalLbl.Location = new System.Drawing.Point(111, 238);
             this.THighGoalLbl.Name = "THighGoalLbl";
             this.THighGoalLbl.Size = new System.Drawing.Size(54, 13);
             this.THighGoalLbl.TabIndex = 21;
@@ -457,7 +463,7 @@
             // THighGoalNUD
             // 
             this.THighGoalNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.THighGoalNUD.Location = new System.Drawing.Point(114, 238);
+            this.THighGoalNUD.Location = new System.Drawing.Point(114, 255);
             this.THighGoalNUD.Name = "THighGoalNUD";
             this.THighGoalNUD.Size = new System.Drawing.Size(62, 20);
             this.THighGoalNUD.TabIndex = 20;
@@ -699,6 +705,28 @@
             this.RedAllianceBtn3.UseVisualStyleBackColor = false;
             this.RedAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button1.Location = new System.Drawing.Point(9, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(166, 23);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "▲";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button2.Location = new System.Drawing.Point(9, 69);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(166, 23);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "▼";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainFrm
             // 
             this.AcceptButton = this.AddEventBtn;
@@ -721,9 +749,9 @@
             this.MainPnl.ResumeLayout(false);
             this.TGroupBx.ResumeLayout(false);
             this.TGroupBx.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.DefenseGBx.ResumeLayout(false);
+            this.DefenseGBx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CrossedNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TLowGoalNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.THighGoalNUD)).EndInit();
             this.RDGroupBx.ResumeLayout(false);
@@ -775,16 +803,18 @@
         private System.Windows.Forms.CheckBox TScaledTowerChkbx;
         private System.Windows.Forms.CheckBox TChallengedTowerChkbx;
         private System.Windows.Forms.Panel MainPnl;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.RadioButton DidNothingRB;
+        private System.Windows.Forms.RadioButton ReachedRB;
+        private System.Windows.Forms.NumericUpDown CrossedNUD;
+        private System.Windows.Forms.ComboBox DefenseCBx;
         private System.Windows.Forms.ComboBox RDDefenseChkbx;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton AutonomousRB;
+        private System.Windows.Forms.RadioButton TeleOpRB;
+        private System.Windows.Forms.Label TimesCrossedLbl;
         private System.Windows.Forms.Label RDDefenseLbl;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox DefenseGBx;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
