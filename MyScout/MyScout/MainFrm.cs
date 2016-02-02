@@ -32,7 +32,7 @@ namespace MyScout
         /// <summary>
         /// Not for a secret™
         /// </summary>
-        private Random rnd = new Random();
+        public static Random rnd = new Random();
         #endregion
 
         public MainFrm()
@@ -235,7 +235,7 @@ namespace MyScout
         private void DiedChkbx_CheckedChanged(object sender, EventArgs e)
         {
             //Enable/disable every control inside the "Died" groupbox
-            DiedCombobx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = DiedChkbx.Checked;
+            RDDefenseLbl.Enabled = RDDefenseChkbx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = RDDied.Checked;
         }
         #endregion
     }

@@ -45,10 +45,14 @@
             this.TeamNameLbl = new System.Windows.Forms.Label();
             this.MainPnl = new System.Windows.Forms.Panel();
             this.TGroupBx = new System.Windows.Forms.GroupBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.TCommentsLbl = new System.Windows.Forms.Label();
             this.TLowGoalLbl = new System.Windows.Forms.Label();
             this.TLowGoalNUD = new System.Windows.Forms.NumericUpDown();
@@ -58,8 +62,9 @@
             this.THighGoalLbl = new System.Windows.Forms.Label();
             this.THighGoalNUD = new System.Windows.Forms.NumericUpDown();
             this.RDGroupBx = new System.Windows.Forms.GroupBox();
-            this.DiedCombobx = new System.Windows.Forms.ComboBox();
-            this.DiedChkbx = new System.Windows.Forms.CheckBox();
+            this.RDDefenseLbl = new System.Windows.Forms.Label();
+            this.RDDefenseChkbx = new System.Windows.Forms.ComboBox();
+            this.RDDied = new System.Windows.Forms.CheckBox();
             this.RDCommentsLbl = new System.Windows.Forms.Label();
             this.RDComments = new System.Windows.Forms.TextBox();
             this.HPGroupBx = new System.Windows.Forms.GroupBox();
@@ -72,11 +77,6 @@
             this.RedAllianceBtn1 = new System.Windows.Forms.Button();
             this.RedAllianceBtn2 = new System.Windows.Forms.Button();
             this.RedAllianceBtn3 = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -84,13 +84,13 @@
             this.TeamNamePnl.SuspendLayout();
             this.MainPnl.SuspendLayout();
             this.TGroupBx.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TLowGoalNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.THighGoalNUD)).BeginInit();
             this.RDGroupBx.SuspendLayout();
             this.HPGroupBx.SuspendLayout();
             this.AllianceBtnPnl.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ChooseAnEventLbl
@@ -258,6 +258,8 @@
             // 
             // TGroupBx
             // 
+            this.TGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.TGroupBx.Controls.Add(this.groupBox1);
             this.TGroupBx.Controls.Add(this.radioButton2);
             this.TGroupBx.Controls.Add(this.radioButton1);
@@ -276,39 +278,19 @@
             this.TGroupBx.TabStop = false;
             this.TGroupBx.Text = "                                                 ";
             // 
-            // radioButton4
+            // groupBox1
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
-            this.radioButton4.Enabled = false;
-            this.radioButton4.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton4.Location = new System.Drawing.Point(9, 46);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(85, 18);
-            this.radioButton4.TabIndex = 29;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Did nothing";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Enabled = false;
-            this.radioButton6.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton6.Location = new System.Drawing.Point(108, 46);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(75, 18);
-            this.radioButton6.TabIndex = 27;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Reached";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(43, 104);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(97, 20);
-            this.numericUpDown2.TabIndex = 26;
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.numericUpDown2);
+            this.groupBox1.Controls.Add(this.radioButton6);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.radioButton4);
+            this.groupBox1.Location = new System.Drawing.Point(6, 38);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(183, 142);
+            this.groupBox1.TabIndex = 33;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Defenses";
             // 
             // comboBox2
             // 
@@ -329,8 +311,77 @@
             this.comboBox2.Size = new System.Drawing.Size(166, 21);
             this.comboBox2.TabIndex = 17;
             // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(43, 104);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(97, 20);
+            this.numericUpDown2.TabIndex = 26;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Enabled = false;
+            this.radioButton6.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioButton6.Location = new System.Drawing.Point(108, 46);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(75, 18);
+            this.radioButton6.TabIndex = 27;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Reached";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(50, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Times Crossed:";
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Checked = true;
+            this.radioButton4.Enabled = false;
+            this.radioButton4.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioButton4.Location = new System.Drawing.Point(9, 46);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(85, 18);
+            this.radioButton4.TabIndex = 29;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Did nothing";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioButton2.Location = new System.Drawing.Point(10, -1);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(90, 18);
+            this.radioButton2.TabIndex = 32;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Autonomous";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.radioButton1.Location = new System.Drawing.Point(106, -1);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(69, 18);
+            this.radioButton1.TabIndex = 31;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Tele-Op";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
             // TCommentsLbl
             // 
+            this.TCommentsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TCommentsLbl.AutoSize = true;
             this.TCommentsLbl.Location = new System.Drawing.Point(214, 25);
             this.TCommentsLbl.Name = "TCommentsLbl";
@@ -340,6 +391,7 @@
             // 
             // TLowGoalLbl
             // 
+            this.TLowGoalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TLowGoalLbl.AutoSize = true;
             this.TLowGoalLbl.Location = new System.Drawing.Point(6, 221);
             this.TLowGoalLbl.Name = "TLowGoalLbl";
@@ -350,6 +402,7 @@
             // 
             // TLowGoalNUD
             // 
+            this.TLowGoalNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TLowGoalNUD.Location = new System.Drawing.Point(9, 238);
             this.TLowGoalNUD.Name = "TLowGoalNUD";
             this.TLowGoalNUD.Size = new System.Drawing.Size(62, 20);
@@ -357,20 +410,26 @@
             // 
             // TScaledTowerChkbx
             // 
+            this.TScaledTowerChkbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TScaledTowerChkbx.AutoSize = true;
-            this.TScaledTowerChkbx.Location = new System.Drawing.Point(6, 279);
+            this.TScaledTowerChkbx.Enabled = false;
+            this.TScaledTowerChkbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.TScaledTowerChkbx.Location = new System.Drawing.Point(9, 295);
             this.TScaledTowerChkbx.Name = "TScaledTowerChkbx";
-            this.TScaledTowerChkbx.Size = new System.Drawing.Size(92, 17);
+            this.TScaledTowerChkbx.Size = new System.Drawing.Size(98, 18);
             this.TScaledTowerChkbx.TabIndex = 25;
             this.TScaledTowerChkbx.Text = "Scaled Tower";
             this.TScaledTowerChkbx.UseVisualStyleBackColor = true;
             // 
             // TChallengedTowerChkbx
             // 
+            this.TChallengedTowerChkbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TChallengedTowerChkbx.AutoSize = true;
-            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(6, 296);
+            this.TChallengedTowerChkbx.Enabled = false;
+            this.TChallengedTowerChkbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(9, 312);
             this.TChallengedTowerChkbx.Name = "TChallengedTowerChkbx";
-            this.TChallengedTowerChkbx.Size = new System.Drawing.Size(112, 17);
+            this.TChallengedTowerChkbx.Size = new System.Drawing.Size(118, 18);
             this.TChallengedTowerChkbx.TabIndex = 24;
             this.TChallengedTowerChkbx.Text = "Challenged Tower";
             this.TChallengedTowerChkbx.UseVisualStyleBackColor = true;
@@ -387,8 +446,9 @@
             // 
             // THighGoalLbl
             // 
+            this.THighGoalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.THighGoalLbl.AutoSize = true;
-            this.THighGoalLbl.Location = new System.Drawing.Point(94, 221);
+            this.THighGoalLbl.Location = new System.Drawing.Point(111, 221);
             this.THighGoalLbl.Name = "THighGoalLbl";
             this.THighGoalLbl.Size = new System.Drawing.Size(54, 13);
             this.THighGoalLbl.TabIndex = 21;
@@ -396,7 +456,8 @@
             // 
             // THighGoalNUD
             // 
-            this.THighGoalNUD.Location = new System.Drawing.Point(97, 238);
+            this.THighGoalNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.THighGoalNUD.Location = new System.Drawing.Point(114, 238);
             this.THighGoalNUD.Name = "THighGoalNUD";
             this.THighGoalNUD.Size = new System.Drawing.Size(62, 20);
             this.THighGoalNUD.TabIndex = 20;
@@ -405,9 +466,9 @@
             // 
             this.RDGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RDGroupBx.Controls.Add(this.label3);
-            this.RDGroupBx.Controls.Add(this.DiedCombobx);
-            this.RDGroupBx.Controls.Add(this.DiedChkbx);
+            this.RDGroupBx.Controls.Add(this.RDDefenseLbl);
+            this.RDGroupBx.Controls.Add(this.RDDefenseChkbx);
+            this.RDGroupBx.Controls.Add(this.RDDied);
             this.RDGroupBx.Controls.Add(this.RDCommentsLbl);
             this.RDGroupBx.Controls.Add(this.RDComments);
             this.RDGroupBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -416,14 +477,27 @@
             this.RDGroupBx.Size = new System.Drawing.Size(151, 184);
             this.RDGroupBx.TabIndex = 6;
             this.RDGroupBx.TabStop = false;
-            this.RDGroupBx.Text = "DEATH";
+            this.RDGroupBx.Text = "     ";
             // 
-            // DiedCombobx
+            // RDDefenseLbl
             // 
-            this.DiedCombobx.Enabled = false;
-            this.DiedCombobx.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.DiedCombobx.FormattingEnabled = true;
-            this.DiedCombobx.Items.AddRange(new object[] {
+            this.RDDefenseLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RDDefenseLbl.AutoSize = true;
+            this.RDDefenseLbl.Enabled = false;
+            this.RDDefenseLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RDDefenseLbl.Location = new System.Drawing.Point(8, 24);
+            this.RDDefenseLbl.Name = "RDDefenseLbl";
+            this.RDDefenseLbl.Size = new System.Drawing.Size(135, 13);
+            this.RDDefenseLbl.TabIndex = 32;
+            this.RDDefenseLbl.Text = "Defense That Killed Robot:";
+            // 
+            // RDDefenseChkbx
+            // 
+            this.RDDefenseChkbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RDDefenseChkbx.Enabled = false;
+            this.RDDefenseChkbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.RDDefenseChkbx.FormattingEnabled = true;
+            this.RDDefenseChkbx.Items.AddRange(new object[] {
             "Portcullis",
             "Cheval de Frise",
             "Moat",
@@ -433,25 +507,28 @@
             "Rock Wall",
             "Rough Terrain",
             "Low Bar"});
-            this.DiedCombobx.Location = new System.Drawing.Point(8, 40);
-            this.DiedCombobx.Name = "DiedCombobx";
-            this.DiedCombobx.Size = new System.Drawing.Size(135, 21);
-            this.DiedCombobx.TabIndex = 31;
+            this.RDDefenseChkbx.Location = new System.Drawing.Point(8, 40);
+            this.RDDefenseChkbx.Name = "RDDefenseChkbx";
+            this.RDDefenseChkbx.Size = new System.Drawing.Size(135, 21);
+            this.RDDefenseChkbx.TabIndex = 31;
             // 
-            // DiedChkbx
+            // RDDied
             // 
-            this.DiedChkbx.AutoSize = true;
-            this.DiedChkbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DiedChkbx.Location = new System.Drawing.Point(9, 0);
-            this.DiedChkbx.Name = "DiedChkbx";
-            this.DiedChkbx.Size = new System.Drawing.Size(52, 17);
-            this.DiedChkbx.TabIndex = 3;
-            this.DiedChkbx.Text = "Died";
-            this.DiedChkbx.UseVisualStyleBackColor = true;
-            this.DiedChkbx.CheckedChanged += new System.EventHandler(this.DiedChkbx_CheckedChanged);
+            this.RDDied.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RDDied.AutoSize = true;
+            this.RDDied.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RDDied.Location = new System.Drawing.Point(9, 0);
+            this.RDDied.Name = "RDDied";
+            this.RDDied.Size = new System.Drawing.Size(52, 17);
+            this.RDDied.TabIndex = 3;
+            this.RDDied.Text = "Died";
+            this.RDDied.UseVisualStyleBackColor = true;
+            this.RDDied.CheckedChanged += new System.EventHandler(this.DiedChkbx_CheckedChanged);
             // 
             // RDCommentsLbl
             // 
+            this.RDCommentsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RDCommentsLbl.AutoSize = true;
             this.RDCommentsLbl.Enabled = false;
             this.RDCommentsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -464,7 +541,8 @@
             // 
             // RDComments
             // 
-            this.RDComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.RDComments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RDComments.Enabled = false;
             this.RDComments.Location = new System.Drawing.Point(6, 93);
             this.RDComments.Multiline = true;
@@ -485,6 +563,7 @@
             // 
             // HPCommentsTxtbx
             // 
+            this.HPCommentsTxtbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.HPCommentsTxtbx.Location = new System.Drawing.Point(6, 19);
             this.HPCommentsTxtbx.Multiline = true;
             this.HPCommentsTxtbx.Name = "HPCommentsTxtbx";
@@ -620,61 +699,6 @@
             this.RedAllianceBtn3.UseVisualStyleBackColor = false;
             this.RedAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(50, 86);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 13);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "Times Crossed:";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(9, -1);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(63, 17);
-            this.radioButton1.TabIndex = 31;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Tele-Op";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(78, -1);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(84, 17);
-            this.radioButton2.TabIndex = 32;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Autonomous";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(8, 24);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(135, 13);
-            this.label3.TabIndex = 32;
-            this.label3.Text = "Defense That Killed Robot:";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.numericUpDown2);
-            this.groupBox1.Controls.Add(this.radioButton6);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.radioButton4);
-            this.groupBox1.Location = new System.Drawing.Point(6, 40);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(183, 142);
-            this.groupBox1.TabIndex = 33;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Defenses";
-            // 
             // MainFrm
             // 
             this.AcceptButton = this.AddEventBtn;
@@ -697,6 +721,8 @@
             this.MainPnl.ResumeLayout(false);
             this.TGroupBx.ResumeLayout(false);
             this.TGroupBx.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TLowGoalNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.THighGoalNUD)).EndInit();
@@ -705,8 +731,6 @@
             this.HPGroupBx.ResumeLayout(false);
             this.HPGroupBx.PerformLayout();
             this.AllianceBtnPnl.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -745,7 +769,7 @@
         private System.Windows.Forms.TextBox TCommentsTxtbx;
         private System.Windows.Forms.Label THighGoalLbl;
         private System.Windows.Forms.NumericUpDown THighGoalNUD;
-        private System.Windows.Forms.CheckBox DiedChkbx;
+        private System.Windows.Forms.CheckBox RDDied;
         private System.Windows.Forms.TextBox RDComments;
         private System.Windows.Forms.Label RDCommentsLbl;
         private System.Windows.Forms.CheckBox TScaledTowerChkbx;
@@ -755,11 +779,11 @@
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox DiedCombobx;
+        private System.Windows.Forms.ComboBox RDDefenseChkbx;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label RDDefenseLbl;
         private System.Windows.Forms.GroupBox groupBox1;
     }
 }
