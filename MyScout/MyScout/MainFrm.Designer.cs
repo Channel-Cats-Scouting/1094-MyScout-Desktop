@@ -44,19 +44,7 @@
             this.TeamNamePnl = new System.Windows.Forms.Panel();
             this.TeamNameLbl = new System.Windows.Forms.Label();
             this.MainPnl = new System.Windows.Forms.Panel();
-            this.AGroupBx = new System.Windows.Forms.GroupBox();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.AHighGoalLbl = new System.Windows.Forms.Label();
-            this.AHighGoalNUD = new System.Windows.Forms.NumericUpDown();
-            this.ALowGoalLbl = new System.Windows.Forms.Label();
-            this.ALowGoalNUD = new System.Windows.Forms.NumericUpDown();
-            this.ACommentsLbl = new System.Windows.Forms.Label();
-            this.ACommentsTxtBx = new System.Windows.Forms.TextBox();
             this.TGroupBx = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton6 = new System.Windows.Forms.RadioButton();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -84,15 +72,17 @@
             this.RedAllianceBtn1 = new System.Windows.Forms.Button();
             this.RedAllianceBtn2 = new System.Windows.Forms.Button();
             this.RedAllianceBtn3 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
             this.TeamPnl.SuspendLayout();
             this.TeamNamePnl.SuspendLayout();
             this.MainPnl.SuspendLayout();
-            this.AGroupBx.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AHighGoalNUD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ALowGoalNUD)).BeginInit();
             this.TGroupBx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TLowGoalNUD)).BeginInit();
@@ -100,6 +90,7 @@
             this.RDGroupBx.SuspendLayout();
             this.HPGroupBx.SuspendLayout();
             this.AllianceBtnPnl.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ChooseAnEventLbl
@@ -109,7 +100,7 @@
             this.ChooseAnEventLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.ChooseAnEventLbl.Location = new System.Drawing.Point(0, 0);
             this.ChooseAnEventLbl.Name = "ChooseAnEventLbl";
-            this.ChooseAnEventLbl.Size = new System.Drawing.Size(596, 69);
+            this.ChooseAnEventLbl.Size = new System.Drawing.Size(630, 69);
             this.ChooseAnEventLbl.TabIndex = 0;
             this.ChooseAnEventLbl.Text = "Choose an Event to Begin";
             this.ChooseAnEventLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -122,7 +113,7 @@
             this.EventPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EventPnl.Location = new System.Drawing.Point(0, 0);
             this.EventPnl.Name = "EventPnl";
-            this.EventPnl.Size = new System.Drawing.Size(596, 461);
+            this.EventPnl.Size = new System.Drawing.Size(630, 461);
             this.EventPnl.TabIndex = 1;
             // 
             // EventList
@@ -136,7 +127,7 @@
             this.EventList.Location = new System.Drawing.Point(0, 69);
             this.EventList.MultiSelect = false;
             this.EventList.Name = "EventList";
-            this.EventList.Size = new System.Drawing.Size(596, 339);
+            this.EventList.Size = new System.Drawing.Size(630, 339);
             this.EventList.TabIndex = 2;
             this.EventList.UseCompatibleStateImageBehavior = false;
             this.EventList.View = System.Windows.Forms.View.Details;
@@ -163,7 +154,7 @@
             this.HeaderPnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.HeaderPnl.Location = new System.Drawing.Point(0, 0);
             this.HeaderPnl.Name = "HeaderPnl";
-            this.HeaderPnl.Size = new System.Drawing.Size(596, 69);
+            this.HeaderPnl.Size = new System.Drawing.Size(630, 69);
             this.HeaderPnl.TabIndex = 3;
             // 
             // EventBtnPnl
@@ -174,7 +165,7 @@
             this.EventBtnPnl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.EventBtnPnl.Location = new System.Drawing.Point(0, 408);
             this.EventBtnPnl.Name = "EventBtnPnl";
-            this.EventBtnPnl.Size = new System.Drawing.Size(596, 53);
+            this.EventBtnPnl.Size = new System.Drawing.Size(630, 53);
             this.EventBtnPnl.TabIndex = 1;
             // 
             // RemoveEventBtn
@@ -198,7 +189,7 @@
             this.EditEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.EditEventBtn.Location = new System.Drawing.Point(200, 0);
             this.EditEventBtn.Name = "EditEventBtn";
-            this.EditEventBtn.Size = new System.Drawing.Size(196, 53);
+            this.EditEventBtn.Size = new System.Drawing.Size(230, 53);
             this.EditEventBtn.TabIndex = 1;
             this.EditEventBtn.Text = "&Edit Event";
             this.EditEventBtn.UseVisualStyleBackColor = true;
@@ -209,7 +200,7 @@
             this.AddEventBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.AddEventBtn.Location = new System.Drawing.Point(397, 0);
+            this.AddEventBtn.Location = new System.Drawing.Point(431, 0);
             this.AddEventBtn.Name = "AddEventBtn";
             this.AddEventBtn.Size = new System.Drawing.Size(196, 53);
             this.AddEventBtn.TabIndex = 0;
@@ -225,7 +216,7 @@
             this.TeamPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TeamPnl.Location = new System.Drawing.Point(0, 0);
             this.TeamPnl.Name = "TeamPnl";
-            this.TeamPnl.Size = new System.Drawing.Size(596, 461);
+            this.TeamPnl.Size = new System.Drawing.Size(630, 461);
             this.TeamPnl.TabIndex = 4;
             this.TeamPnl.Visible = false;
             // 
@@ -237,7 +228,7 @@
             this.TeamNamePnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.TeamNamePnl.Location = new System.Drawing.Point(155, 0);
             this.TeamNamePnl.Name = "TeamNamePnl";
-            this.TeamNamePnl.Size = new System.Drawing.Size(441, 90);
+            this.TeamNamePnl.Size = new System.Drawing.Size(475, 90);
             this.TeamNamePnl.TabIndex = 3;
             // 
             // TeamNameLbl
@@ -247,14 +238,13 @@
             this.TeamNameLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.TeamNameLbl.Location = new System.Drawing.Point(0, 0);
             this.TeamNameLbl.Name = "TeamNameLbl";
-            this.TeamNameLbl.Size = new System.Drawing.Size(439, 88);
+            this.TeamNameLbl.Size = new System.Drawing.Size(473, 88);
             this.TeamNameLbl.TabIndex = 0;
             this.TeamNameLbl.Text = "No Team Selected";
             this.TeamNameLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainPnl
             // 
-            this.MainPnl.Controls.Add(this.AGroupBx);
             this.MainPnl.Controls.Add(this.TGroupBx);
             this.MainPnl.Controls.Add(this.RDGroupBx);
             this.MainPnl.Controls.Add(this.HPGroupBx);
@@ -263,149 +253,14 @@
             this.MainPnl.Location = new System.Drawing.Point(155, 0);
             this.MainPnl.Margin = new System.Windows.Forms.Padding(2);
             this.MainPnl.Name = "MainPnl";
-            this.MainPnl.Size = new System.Drawing.Size(441, 461);
+            this.MainPnl.Size = new System.Drawing.Size(475, 461);
             this.MainPnl.TabIndex = 14;
-            // 
-            // AGroupBx
-            // 
-            this.AGroupBx.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.AGroupBx.Controls.Add(this.radioButton3);
-            this.AGroupBx.Controls.Add(this.radioButton2);
-            this.AGroupBx.Controls.Add(this.radioButton1);
-            this.AGroupBx.Controls.Add(this.comboBox1);
-            this.AGroupBx.Controls.Add(this.AHighGoalLbl);
-            this.AGroupBx.Controls.Add(this.AHighGoalNUD);
-            this.AGroupBx.Controls.Add(this.ALowGoalLbl);
-            this.AGroupBx.Controls.Add(this.ALowGoalNUD);
-            this.AGroupBx.Controls.Add(this.ACommentsLbl);
-            this.AGroupBx.Controls.Add(this.ACommentsTxtBx);
-            this.AGroupBx.Location = new System.Drawing.Point(3, 93);
-            this.AGroupBx.Name = "AGroupBx";
-            this.AGroupBx.Size = new System.Drawing.Size(428, 92);
-            this.AGroupBx.TabIndex = 4;
-            this.AGroupBx.TabStop = false;
-            this.AGroupBx.Text = "Autonomous";
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Enabled = false;
-            this.radioButton3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton3.Location = new System.Drawing.Point(34, 46);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 18);
-            this.radioButton3.TabIndex = 16;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Did nothing";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Enabled = false;
-            this.radioButton2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton2.Location = new System.Drawing.Point(84, 66);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(69, 18);
-            this.radioButton2.TabIndex = 15;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Crossed";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Enabled = false;
-            this.radioButton1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton1.Location = new System.Drawing.Point(6, 66);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(75, 18);
-            this.radioButton1.TabIndex = 14;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Reached";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Portcullis",
-            "Cheval de Frise",
-            "Moat",
-            "Ramparts",
-            "Drawbridge",
-            "Sally Port",
-            "Rock Wall",
-            "Rough Terrain",
-            "Low Bar"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(135, 21);
-            this.comboBox1.TabIndex = 13;
-            // 
-            // AHighGoalLbl
-            // 
-            this.AHighGoalLbl.AutoSize = true;
-            this.AHighGoalLbl.Location = new System.Drawing.Point(151, 12);
-            this.AHighGoalLbl.Name = "AHighGoalLbl";
-            this.AHighGoalLbl.Size = new System.Drawing.Size(54, 13);
-            this.AHighGoalLbl.TabIndex = 10;
-            this.AHighGoalLbl.Text = "High Goal";
-            // 
-            // AHighGoalNUD
-            // 
-            this.AHighGoalNUD.Location = new System.Drawing.Point(154, 28);
-            this.AHighGoalNUD.Name = "AHighGoalNUD";
-            this.AHighGoalNUD.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.AHighGoalNUD.Size = new System.Drawing.Size(52, 20);
-            this.AHighGoalNUD.TabIndex = 7;
-            // 
-            // ALowGoalLbl
-            // 
-            this.ALowGoalLbl.AutoSize = true;
-            this.ALowGoalLbl.Location = new System.Drawing.Point(154, 51);
-            this.ALowGoalLbl.Name = "ALowGoalLbl";
-            this.ALowGoalLbl.Size = new System.Drawing.Size(52, 13);
-            this.ALowGoalLbl.TabIndex = 11;
-            this.ALowGoalLbl.Text = "Low Goal";
-            // 
-            // ALowGoalNUD
-            // 
-            this.ALowGoalNUD.Location = new System.Drawing.Point(154, 65);
-            this.ALowGoalNUD.Name = "ALowGoalNUD";
-            this.ALowGoalNUD.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ALowGoalNUD.Size = new System.Drawing.Size(52, 20);
-            this.ALowGoalNUD.TabIndex = 8;
-            // 
-            // ACommentsLbl
-            // 
-            this.ACommentsLbl.AutoSize = true;
-            this.ACommentsLbl.Location = new System.Drawing.Point(212, 28);
-            this.ACommentsLbl.Name = "ACommentsLbl";
-            this.ACommentsLbl.Size = new System.Drawing.Size(56, 39);
-            this.ACommentsLbl.TabIndex = 12;
-            this.ACommentsLbl.Text = "Auto\r\nComments\r\n--->\r\n";
-            this.ACommentsLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ACommentsTxtBx
-            // 
-            this.ACommentsTxtBx.Location = new System.Drawing.Point(274, 13);
-            this.ACommentsTxtBx.Multiline = true;
-            this.ACommentsTxtBx.Name = "ACommentsTxtBx";
-            this.ACommentsTxtBx.Size = new System.Drawing.Size(147, 70);
-            this.ACommentsTxtBx.TabIndex = 9;
             // 
             // TGroupBx
             // 
-            this.TGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.TGroupBx.Controls.Add(this.label1);
-            this.TGroupBx.Controls.Add(this.radioButton4);
-            this.TGroupBx.Controls.Add(this.radioButton6);
-            this.TGroupBx.Controls.Add(this.numericUpDown2);
-            this.TGroupBx.Controls.Add(this.comboBox2);
+            this.TGroupBx.Controls.Add(this.groupBox1);
+            this.TGroupBx.Controls.Add(this.radioButton2);
+            this.TGroupBx.Controls.Add(this.radioButton1);
             this.TGroupBx.Controls.Add(this.TCommentsLbl);
             this.TGroupBx.Controls.Add(this.TLowGoalLbl);
             this.TGroupBx.Controls.Add(this.TLowGoalNUD);
@@ -414,21 +269,12 @@
             this.TGroupBx.Controls.Add(this.TCommentsTxtbx);
             this.TGroupBx.Controls.Add(this.THighGoalLbl);
             this.TGroupBx.Controls.Add(this.THighGoalNUD);
-            this.TGroupBx.Location = new System.Drawing.Point(4, 192);
+            this.TGroupBx.Location = new System.Drawing.Point(4, 96);
             this.TGroupBx.Name = "TGroupBx";
-            this.TGroupBx.Size = new System.Drawing.Size(265, 257);
+            this.TGroupBx.Size = new System.Drawing.Size(298, 353);
             this.TGroupBx.TabIndex = 5;
             this.TGroupBx.TabStop = false;
-            this.TGroupBx.Text = "Tele-Op";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "Defenses:\r\n";
+            this.TGroupBx.Text = "                                                 ";
             // 
             // radioButton4
             // 
@@ -436,7 +282,7 @@
             this.radioButton4.Checked = true;
             this.radioButton4.Enabled = false;
             this.radioButton4.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton4.Location = new System.Drawing.Point(6, 58);
+            this.radioButton4.Location = new System.Drawing.Point(9, 46);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(85, 18);
             this.radioButton4.TabIndex = 29;
@@ -449,7 +295,7 @@
             this.radioButton6.AutoSize = true;
             this.radioButton6.Enabled = false;
             this.radioButton6.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.radioButton6.Location = new System.Drawing.Point(6, 78);
+            this.radioButton6.Location = new System.Drawing.Point(108, 46);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(75, 18);
             this.radioButton6.TabIndex = 27;
@@ -459,9 +305,9 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(87, 78);
+            this.numericUpDown2.Location = new System.Drawing.Point(43, 104);
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(62, 20);
+            this.numericUpDown2.Size = new System.Drawing.Size(97, 20);
             this.numericUpDown2.TabIndex = 26;
             // 
             // comboBox2
@@ -478,24 +324,24 @@
             "Rock Wall",
             "Rough Terrain",
             "Low Bar"});
-            this.comboBox2.Location = new System.Drawing.Point(6, 31);
+            this.comboBox2.Location = new System.Drawing.Point(9, 19);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(135, 21);
+            this.comboBox2.Size = new System.Drawing.Size(166, 21);
             this.comboBox2.TabIndex = 17;
             // 
             // TCommentsLbl
             // 
             this.TCommentsLbl.AutoSize = true;
-            this.TCommentsLbl.Location = new System.Drawing.Point(159, 13);
+            this.TCommentsLbl.Location = new System.Drawing.Point(214, 25);
             this.TCommentsLbl.Name = "TCommentsLbl";
-            this.TCommentsLbl.Size = new System.Drawing.Size(100, 13);
+            this.TCommentsLbl.Size = new System.Drawing.Size(59, 13);
             this.TCommentsLbl.TabIndex = 23;
-            this.TCommentsLbl.Text = "Tele-Op Comments:\r\n";
+            this.TCommentsLbl.Text = "Comments:\r\n";
             // 
             // TLowGoalLbl
             // 
             this.TLowGoalLbl.AutoSize = true;
-            this.TLowGoalLbl.Location = new System.Drawing.Point(6, 164);
+            this.TLowGoalLbl.Location = new System.Drawing.Point(6, 221);
             this.TLowGoalLbl.Name = "TLowGoalLbl";
             this.TLowGoalLbl.Size = new System.Drawing.Size(52, 13);
             this.TLowGoalLbl.TabIndex = 19;
@@ -504,7 +350,7 @@
             // 
             // TLowGoalNUD
             // 
-            this.TLowGoalNUD.Location = new System.Drawing.Point(9, 180);
+            this.TLowGoalNUD.Location = new System.Drawing.Point(9, 238);
             this.TLowGoalNUD.Name = "TLowGoalNUD";
             this.TLowGoalNUD.Size = new System.Drawing.Size(62, 20);
             this.TLowGoalNUD.TabIndex = 18;
@@ -512,7 +358,7 @@
             // TScaledTowerChkbx
             // 
             this.TScaledTowerChkbx.AutoSize = true;
-            this.TScaledTowerChkbx.Location = new System.Drawing.Point(9, 211);
+            this.TScaledTowerChkbx.Location = new System.Drawing.Point(6, 279);
             this.TScaledTowerChkbx.Name = "TScaledTowerChkbx";
             this.TScaledTowerChkbx.Size = new System.Drawing.Size(92, 17);
             this.TScaledTowerChkbx.TabIndex = 25;
@@ -522,7 +368,7 @@
             // TChallengedTowerChkbx
             // 
             this.TChallengedTowerChkbx.AutoSize = true;
-            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(9, 228);
+            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(6, 296);
             this.TChallengedTowerChkbx.Name = "TChallengedTowerChkbx";
             this.TChallengedTowerChkbx.Size = new System.Drawing.Size(112, 17);
             this.TChallengedTowerChkbx.TabIndex = 24;
@@ -533,16 +379,16 @@
             // 
             this.TCommentsTxtbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TCommentsTxtbx.Location = new System.Drawing.Point(166, 31);
+            this.TCommentsTxtbx.Location = new System.Drawing.Point(195, 44);
             this.TCommentsTxtbx.Multiline = true;
             this.TCommentsTxtbx.Name = "TCommentsTxtbx";
-            this.TCommentsTxtbx.Size = new System.Drawing.Size(82, 220);
+            this.TCommentsTxtbx.Size = new System.Drawing.Size(97, 301);
             this.TCommentsTxtbx.TabIndex = 22;
             // 
             // THighGoalLbl
             // 
             this.THighGoalLbl.AutoSize = true;
-            this.THighGoalLbl.Location = new System.Drawing.Point(84, 163);
+            this.THighGoalLbl.Location = new System.Drawing.Point(94, 221);
             this.THighGoalLbl.Name = "THighGoalLbl";
             this.THighGoalLbl.Size = new System.Drawing.Size(54, 13);
             this.THighGoalLbl.TabIndex = 21;
@@ -550,7 +396,7 @@
             // 
             // THighGoalNUD
             // 
-            this.THighGoalNUD.Location = new System.Drawing.Point(87, 180);
+            this.THighGoalNUD.Location = new System.Drawing.Point(97, 238);
             this.THighGoalNUD.Name = "THighGoalNUD";
             this.THighGoalNUD.Size = new System.Drawing.Size(62, 20);
             this.THighGoalNUD.TabIndex = 20;
@@ -559,14 +405,15 @@
             // 
             this.RDGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.RDGroupBx.Controls.Add(this.label3);
             this.RDGroupBx.Controls.Add(this.DiedCombobx);
             this.RDGroupBx.Controls.Add(this.DiedChkbx);
             this.RDGroupBx.Controls.Add(this.RDCommentsLbl);
             this.RDGroupBx.Controls.Add(this.RDComments);
-            this.RDGroupBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDGroupBx.Location = new System.Drawing.Point(278, 192);
+            this.RDGroupBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RDGroupBx.Location = new System.Drawing.Point(314, 96);
             this.RDGroupBx.Name = "RDGroupBx";
-            this.RDGroupBx.Size = new System.Drawing.Size(151, 155);
+            this.RDGroupBx.Size = new System.Drawing.Size(151, 184);
             this.RDGroupBx.TabIndex = 6;
             this.RDGroupBx.TabStop = false;
             this.RDGroupBx.Text = "DEATH";
@@ -586,7 +433,7 @@
             "Rock Wall",
             "Rough Terrain",
             "Low Bar"});
-            this.DiedCombobx.Location = new System.Drawing.Point(6, 23);
+            this.DiedCombobx.Location = new System.Drawing.Point(8, 40);
             this.DiedCombobx.Name = "DiedCombobx";
             this.DiedCombobx.Size = new System.Drawing.Size(135, 21);
             this.DiedCombobx.TabIndex = 31;
@@ -594,6 +441,7 @@
             // DiedChkbx
             // 
             this.DiedChkbx.AutoSize = true;
+            this.DiedChkbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DiedChkbx.Location = new System.Drawing.Point(9, 0);
             this.DiedChkbx.Name = "DiedChkbx";
             this.DiedChkbx.Size = new System.Drawing.Size(52, 17);
@@ -607,7 +455,7 @@
             this.RDCommentsLbl.AutoSize = true;
             this.RDCommentsLbl.Enabled = false;
             this.RDCommentsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDCommentsLbl.Location = new System.Drawing.Point(32, 52);
+            this.RDCommentsLbl.Location = new System.Drawing.Point(32, 73);
             this.RDCommentsLbl.Name = "RDCommentsLbl";
             this.RDCommentsLbl.Size = new System.Drawing.Size(91, 13);
             this.RDCommentsLbl.TabIndex = 24;
@@ -618,19 +466,19 @@
             // 
             this.RDComments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.RDComments.Enabled = false;
-            this.RDComments.Location = new System.Drawing.Point(6, 68);
+            this.RDComments.Location = new System.Drawing.Point(6, 93);
             this.RDComments.Multiline = true;
             this.RDComments.Name = "RDComments";
-            this.RDComments.Size = new System.Drawing.Size(140, 81);
+            this.RDComments.Size = new System.Drawing.Size(140, 85);
             this.RDComments.TabIndex = 23;
             // 
             // HPGroupBx
             // 
             this.HPGroupBx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.HPGroupBx.Controls.Add(this.HPCommentsTxtbx);
-            this.HPGroupBx.Location = new System.Drawing.Point(278, 348);
+            this.HPGroupBx.Location = new System.Drawing.Point(312, 286);
             this.HPGroupBx.Name = "HPGroupBx";
-            this.HPGroupBx.Size = new System.Drawing.Size(153, 101);
+            this.HPGroupBx.Size = new System.Drawing.Size(153, 163);
             this.HPGroupBx.TabIndex = 7;
             this.HPGroupBx.TabStop = false;
             this.HPGroupBx.Text = "Human Player";
@@ -640,7 +488,7 @@
             this.HPCommentsTxtbx.Location = new System.Drawing.Point(6, 19);
             this.HPCommentsTxtbx.Multiline = true;
             this.HPCommentsTxtbx.Name = "HPCommentsTxtbx";
-            this.HPCommentsTxtbx.Size = new System.Drawing.Size(140, 76);
+            this.HPCommentsTxtbx.Size = new System.Drawing.Size(140, 136);
             this.HPCommentsTxtbx.TabIndex = 1;
             // 
             // AllianceBtnPnl
@@ -772,13 +620,68 @@
             this.RedAllianceBtn3.UseVisualStyleBackColor = false;
             this.RedAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(50, 86);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Times Crossed:";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(9, -1);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(63, 17);
+            this.radioButton1.TabIndex = 31;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Tele-Op";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(78, -1);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(84, 17);
+            this.radioButton2.TabIndex = 32;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Autonomous";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(8, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(135, 13);
+            this.label3.TabIndex = 32;
+            this.label3.Text = "Defense That Killed Robot:";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.numericUpDown2);
+            this.groupBox1.Controls.Add(this.radioButton6);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.radioButton4);
+            this.groupBox1.Location = new System.Drawing.Point(6, 40);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(183, 142);
+            this.groupBox1.TabIndex = 33;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Defenses";
+            // 
             // MainFrm
             // 
             this.AcceptButton = this.AddEventBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(596, 461);
+            this.ClientSize = new System.Drawing.Size(630, 461);
             this.Controls.Add(this.TeamPnl);
             this.Controls.Add(this.EventPnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -792,10 +695,6 @@
             this.TeamPnl.ResumeLayout(false);
             this.TeamNamePnl.ResumeLayout(false);
             this.MainPnl.ResumeLayout(false);
-            this.AGroupBx.ResumeLayout(false);
-            this.AGroupBx.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AHighGoalNUD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ALowGoalNUD)).EndInit();
             this.TGroupBx.ResumeLayout(false);
             this.TGroupBx.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
@@ -806,6 +705,8 @@
             this.HPGroupBx.ResumeLayout(false);
             this.HPGroupBx.PerformLayout();
             this.AllianceBtnPnl.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -834,15 +735,8 @@
         private System.Windows.Forms.Button BlueAllianceBtn3;
         private System.Windows.Forms.Panel TeamNamePnl;
         private System.Windows.Forms.Label TeamNameLbl;
-        private System.Windows.Forms.GroupBox AGroupBx;
         private System.Windows.Forms.GroupBox RDGroupBx;
         private System.Windows.Forms.GroupBox TGroupBx;
-        private System.Windows.Forms.Label ACommentsLbl;
-        private System.Windows.Forms.Label ALowGoalLbl;
-        private System.Windows.Forms.Label AHighGoalLbl;
-        private System.Windows.Forms.TextBox ACommentsTxtBx;
-        private System.Windows.Forms.NumericUpDown ALowGoalNUD;
-        private System.Windows.Forms.NumericUpDown AHighGoalNUD;
         private System.Windows.Forms.GroupBox HPGroupBx;
         private System.Windows.Forms.TextBox HPCommentsTxtbx;
         private System.Windows.Forms.Label TLowGoalLbl;
@@ -857,16 +751,16 @@
         private System.Windows.Forms.CheckBox TScaledTowerChkbx;
         private System.Windows.Forms.CheckBox TChallengedTowerChkbx;
         private System.Windows.Forms.Panel MainPnl;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox DiedCombobx;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
