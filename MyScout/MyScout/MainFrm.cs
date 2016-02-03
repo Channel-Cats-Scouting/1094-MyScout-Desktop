@@ -257,7 +257,7 @@ namespace MyScout
 
         private void ReachedRB_CheckedChanged(object sender, EventArgs e)
         {
-            TimesCrossedLbl.Enabled = CrossedNUD.Enabled = ReachedRB.Checked;
+            TimesCrossedLbl.Enabled = TimesCrossed.Enabled = button3.Enabled = button4.Enabled = ReachedRB.Checked;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -270,5 +270,15 @@ namespace MyScout
             if (DefenseCBx.SelectedIndex < DefenseCBx.Items.Count-1) { DefenseCBx.SelectedIndex++; }
         }
         #endregion
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text)+1).ToString();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(TimesCrossed.Text) > 0) { TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) - 1).ToString(); }
+        }
     }
 }
