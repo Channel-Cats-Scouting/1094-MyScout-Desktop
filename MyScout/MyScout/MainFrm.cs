@@ -12,6 +12,7 @@ namespace MyScout
 {
     public partial class MainFrm : Form
     {
+        float BackBtnWidth, FrmWidth, BackBtnHeight, FrmHeight;
         #region Not pointless secrets™
         /// <summary>
         /// ...It's not a secret™
@@ -34,10 +35,7 @@ namespace MyScout
         /// </summary>
         public static Random rnd = new Random();
         #endregion
-        float BackBtnWidth;
-        float FrmWidth;
-        float BackBtnHeight;
-        float FrmHeight;
+
         public MainFrm()
         {
             InitializeComponent();
@@ -63,14 +61,57 @@ namespace MyScout
         private void RefreshControls()
         {
             EventList.Enabled = AddEventBtn.Enabled = RemoveEventBtn.Enabled = EditEventBtn.Enabled = !TeamPnl.Visible;
+
+            if (TeamPnl.Visible)
+            {
+                for (int index = 0; index < AllianceBtnPnl.Controls.Count; index++)
+                {
+                    if (AllianceBtnPnl.Controls[index].Name != "BackBtn")
+                    {
+                        Button btn = AllianceBtnPnl.Controls[index] as Button;
+                        int i = index - 1;
+
+                        btn.FlatAppearance.BorderSize = 0;
+                        Console.WriteLine(btn.Name);
+                        btn.Tag = (Program.events[Program.currentevent].Alliances[(i < 3) ? 0 : 1].teams[(i < 3) ? i : i - 3] == -1)? null : (object)Program.events[Program.currentevent].Alliances[(i < 3) ? 0 : 1].teams[(i < 3) ? i : i - 3];
+                        btn.Text = (Program.events[Program.currentevent].Alliances[(i < 3) ? 0 : 1].teams[(i < 3) ? i : i - 3] == -1) ? "----" : Program.events[Program.currentevent].teams[Program.events[Program.currentevent].Alliances[(i < 3) ? 0 : 1].teams[(i < 3) ? i : i - 3]].id.ToString();
+                    }
+                }
+            }
         }
 
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
         private void RefreshTeamPnl()
         {
             if (Program.selectedteam != -1)
             {
                 TeamNameLbl.Text = $"{Program.events[Program.currentevent].teams[Program.selectedteam].name} - {Program.events[Program.currentevent].teams[Program.selectedteam].id.ToString()}";
+                TimesCrossed.Text = Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].timescrossed.ToString();
+                ReachedRB.Checked = Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].reached;
+                DidNothingRB.Checked = !ReachedRB.Checked;
+
+                RefreshDefenseCrossedBtns();
             }
+            else
+            {
+                TeamNameLbl.Text = "No Team Selected";
+                TimesCrossed.Text = "0";
+                ReachedRB.Checked = false;
+                DidNothingRB.Checked = true;
+
+                RefreshDefenseCrossedBtns();
+            }
+        }
+
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        private void RefreshDefenseCrossedBtns()
+        {
+            button4.Enabled = (ReachedRB.Checked && Convert.ToInt32(TimesCrossed.Text) < 2);
+            button3.Enabled = (ReachedRB.Checked && Convert.ToInt32(TimesCrossed.Text) > 0);
         }
 
         #region GUI Events
@@ -106,24 +147,50 @@ namespace MyScout
                     }
                     btn.FlatAppearance.BorderSize = 1;
                     MainPnl.Enabled = true;
+                    DefenseCBx.SelectedIndex = 0;
+
                     RefreshTeamPnl();
                 }
             }
             else
             {
-                Program.selectedteam = (int)btn.Tag;
-                foreach (Control control in AllianceBtnPnl.Controls)
+                if (Program.selectedteam != (int)btn.Tag)
                 {
-                    //If the control is a button...
-                    if (control.GetType() == typeof(Button))
+                    Program.selectedteam = (int)btn.Tag;
+                    foreach (Control control in AllianceBtnPnl.Controls)
                     {
-                        Button button = control as Button;
-                        button.FlatAppearance.BorderSize = 0;
+                        //If the control is a button...
+                        if (control.GetType() == typeof(Button))
+                        {
+                            Button button = control as Button;
+                            button.FlatAppearance.BorderSize = 0;
+                        }
                     }
-                }
 
-                btn.FlatAppearance.BorderSize = 1;
-                RefreshTeamPnl();
+                    btn.FlatAppearance.BorderSize = 1;
+                    DefenseCBx.SelectedIndex = 0;
+                    MainPnl.Enabled = true;
+                    RefreshTeamPnl();
+                }
+                else if (MessageBox.Show("This team is already selected! Do you want to remove it from it's slot?", "MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    btn.Tag = null; btn.Text = "----";
+                    Program.selectedteam = -1;
+
+                    foreach (Control control in AllianceBtnPnl.Controls)
+                    {
+                        //If the control is a button...
+                        if (control.GetType() == typeof(Button))
+                        {
+                            Button button = control as Button;
+                            button.FlatAppearance.BorderSize = 0;
+                        }
+                    }
+
+                    DefenseCBx.SelectedIndex = 0;
+                    MainPnl.Enabled = false;
+                    RefreshTeamPnl();
+                }
             }
         }
 
@@ -191,9 +258,12 @@ namespace MyScout
         /// </summary>
         private void EventList_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            TeamPnl.Visible = true;
-            Text = Program.events[EventList.SelectedIndices[0]].name + " - MyScout 2016";
-            RefreshControls();
+            if (EventList.SelectedIndices.Count > 0)
+            {
+                TeamPnl.Visible = true;
+                Text = Program.events[EventList.SelectedIndices[0]].name + " - MyScout 2016";
+                RefreshControls();
+            }
         }
         
         /// <summary>
@@ -226,7 +296,7 @@ namespace MyScout
                         for (int i = 0; i < bubbles.Length; i++)
                         {
                             bubbles[i] = new Bubble();
-                            bubbles[i].Location = new Point(rnd.Next(Screen.PrimaryScreen.Bounds.Width),rnd.Next(Screen.PrimaryScreen.Bounds.Height));
+                            bubbles[i].Location = new Point(rnd.Next(Screen.PrimaryScreen.Bounds.Width), rnd.Next(Screen.PrimaryScreen.Bounds.Height));
                             bubbles[i].Show();
                         }
                     }
@@ -234,11 +304,11 @@ namespace MyScout
             }
             else
             {
-                if (keyData == Keys.W)
+                if (keyData == (Keys.Control | Keys.W))
                 {
                     button1.PerformClick();
                 }
-                else if (keyData == Keys.S)
+                else if (keyData == (Keys.Control | Keys.S))
                 {
                     button2.PerformClick();
                 }
@@ -253,7 +323,6 @@ namespace MyScout
             RDDefenseLbl.Enabled = RDDefenseChkbx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = RDDied.Checked;
         }
 
-<<<<<<< HEAD
         private void TeleOpRB_CheckedChanged(object sender, EventArgs e)
         {
             TScaledTowerChkbx.Enabled = TChallengedTowerChkbx.Enabled = TeleOpRB.Checked;
@@ -261,7 +330,14 @@ namespace MyScout
 
         private void ReachedRB_CheckedChanged(object sender, EventArgs e)
         {
-            TimesCrossedLbl.Enabled = TimesCrossed.Enabled = button3.Enabled = button4.Enabled = ReachedRB.Checked;
+            if (Program.selectedteam != -1)
+            {
+                //Set a whole lotta' things to the value of "ReachedRB.Checked."
+                Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].reached
+                = TimesCrossedLbl.Enabled = TimesCrossed.Enabled = button4.Enabled = ReachedRB.Checked;
+
+                RefreshDefenseCrossedBtns();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -273,21 +349,25 @@ namespace MyScout
         {
             if (DefenseCBx.SelectedIndex < DefenseCBx.Items.Count-1) { DefenseCBx.SelectedIndex++; }
         }
-        #endregion
 
         private void button4_Click(object sender, EventArgs e)
         {
-            TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text)+1).ToString();
+            if (Convert.ToInt32(TimesCrossed.Text) < 2)
+            {
+                TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) + 1).ToString();
+                Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
+                RefreshDefenseCrossedBtns();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(TimesCrossed.Text) > 0) { TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) - 1).ToString(); }
-        }
-=======
-        private void MainFrm_Load(object sender, EventArgs e)
-        {
-
+            if (Convert.ToInt32(TimesCrossed.Text) > 0)
+            {
+                TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) - 1).ToString();
+                Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
+                RefreshDefenseCrossedBtns();
+            }
         }
 
         private void MainFrm_ResizeEnd(object sender, EventArgs e)
@@ -301,9 +381,14 @@ namespace MyScout
             BackBtnHeight = (float)Math.Round(FrmHeight * .10f);
             BackBtn.Height = (int)BackBtnHeight;
         }
+
+        private void DefenseCBx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Program.events.Count > Program.currentevent && Program.events[Program.currentevent] != null)
+            {
+                RefreshTeamPnl();
+            }
+        }
         #endregion
-
-
->>>>>>> ae5b257f0298a3aadc357c95a2a4ed34faaa1a30
     }
 }

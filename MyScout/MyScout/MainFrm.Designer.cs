@@ -46,7 +46,6 @@
             this.MainPnl = new System.Windows.Forms.Panel();
             this.TGroupBx = new System.Windows.Forms.GroupBox();
             this.DefenseGBx = new System.Windows.Forms.GroupBox();
-            this.TimesCrossed = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -55,6 +54,7 @@
             this.ReachedRB = new System.Windows.Forms.RadioButton();
             this.TimesCrossedLbl = new System.Windows.Forms.Label();
             this.DidNothingRB = new System.Windows.Forms.RadioButton();
+            this.TimesCrossed = new System.Windows.Forms.Label();
             this.AutonomousRB = new System.Windows.Forms.RadioButton();
             this.TeleOpRB = new System.Windows.Forms.RadioButton();
             this.TCommentsLbl = new System.Windows.Forms.Label();
@@ -299,24 +299,11 @@
             this.DefenseGBx.TabStop = false;
             this.DefenseGBx.Text = "Defenses";
             // 
-            // TimesCrossed
-            // 
-            this.TimesCrossed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TimesCrossed.Enabled = false;
-            this.TimesCrossed.Font = new System.Drawing.Font("Segoe UI", 20F);
-            this.TimesCrossed.Location = new System.Drawing.Point(3, 16);
-            this.TimesCrossed.Name = "TimesCrossed";
-            this.TimesCrossed.Padding = new System.Windows.Forms.Padding(0, 0, 0, 50);
-            this.TimesCrossed.Size = new System.Drawing.Size(177, 255);
-            this.TimesCrossed.TabIndex = 34;
-            this.TimesCrossed.Text = "0";
-            this.TimesCrossed.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // button3
             // 
             this.button3.Enabled = false;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button3.Location = new System.Drawing.Point(10, 229);
+            this.button3.Location = new System.Drawing.Point(8, 231);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(166, 33);
             this.button3.TabIndex = 33;
@@ -328,7 +315,7 @@
             // 
             this.button4.Enabled = false;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button4.Location = new System.Drawing.Point(7, 145);
+            this.button4.Location = new System.Drawing.Point(8, 145);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(166, 33);
             this.button4.TabIndex = 32;
@@ -376,6 +363,7 @@
             this.DefenseCBx.Name = "DefenseCBx";
             this.DefenseCBx.Size = new System.Drawing.Size(166, 21);
             this.DefenseCBx.TabIndex = 17;
+            this.DefenseCBx.SelectedIndexChanged += new System.EventHandler(this.DefenseCBx_SelectedIndexChanged);
             // 
             // ReachedRB
             // 
@@ -412,6 +400,19 @@
             this.DidNothingRB.TabStop = true;
             this.DidNothingRB.Text = "Did nothing";
             this.DidNothingRB.UseVisualStyleBackColor = true;
+            // 
+            // TimesCrossed
+            // 
+            this.TimesCrossed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TimesCrossed.Enabled = false;
+            this.TimesCrossed.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.TimesCrossed.Location = new System.Drawing.Point(3, 16);
+            this.TimesCrossed.Name = "TimesCrossed";
+            this.TimesCrossed.Padding = new System.Windows.Forms.Padding(0, 0, 0, 50);
+            this.TimesCrossed.Size = new System.Drawing.Size(177, 255);
+            this.TimesCrossed.TabIndex = 34;
+            this.TimesCrossed.Text = "0";
+            this.TimesCrossed.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // AutonomousRB
             // 
@@ -653,6 +654,7 @@
             this.BackBtn.BackgroundImage = global::MyScout.Properties.Resources.backbtn;
             this.BackBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BackBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BackBtn.FlatAppearance.BorderSize = 0;
             this.BackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBtn.Location = new System.Drawing.Point(7, 3);
             this.BackBtn.Name = "BackBtn";
@@ -777,7 +779,6 @@
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyScout 2016";
-            this.Load += new System.EventHandler(this.MainFrm_Load);
             this.ResizeEnd += new System.EventHandler(this.MainFrm_ResizeEnd);
             this.EventPnl.ResumeLayout(false);
             this.HeaderPnl.ResumeLayout(false);
