@@ -34,7 +34,10 @@ namespace MyScout
         /// </summary>
         public static Random rnd = new Random();
         #endregion
-
+        float BackBtnWidth;
+        float FrmWidth;
+        float BackBtnHeight;
+        float FrmHeight;
         public MainFrm()
         {
             InitializeComponent();
@@ -250,6 +253,7 @@ namespace MyScout
             RDDefenseLbl.Enabled = RDDefenseChkbx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = RDDied.Checked;
         }
 
+<<<<<<< HEAD
         private void TeleOpRB_CheckedChanged(object sender, EventArgs e)
         {
             TScaledTowerChkbx.Enabled = TChallengedTowerChkbx.Enabled = TeleOpRB.Checked;
@@ -280,5 +284,26 @@ namespace MyScout
         {
             if (Convert.ToInt32(TimesCrossed.Text) > 0) { TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) - 1).ToString(); }
         }
+=======
+        private void MainFrm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainFrm_ResizeEnd(object sender, EventArgs e)
+        {
+            BackBtnWidth = BackBtn.Width;
+            FrmWidth = Width;
+            BackBtnWidth = (float)Math.Round(FrmWidth * .06f);
+            BackBtn.Width = (int)BackBtnWidth;
+            BackBtnHeight = BackBtn.Height;
+            FrmHeight = Height;
+            BackBtnHeight = (float)Math.Round(FrmHeight * .10f);
+            BackBtn.Height = (int)BackBtnHeight;
+        }
+        #endregion
+
+
+>>>>>>> ae5b257f0298a3aadc357c95a2a4ed34faaa1a30
     }
 }

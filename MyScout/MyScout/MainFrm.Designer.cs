@@ -650,9 +650,10 @@
             // 
             // BackBtn
             // 
-            this.BackBtn.FlatAppearance.BorderSize = 0;
+            this.BackBtn.BackgroundImage = global::MyScout.Properties.Resources.backbtn;
+            this.BackBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BackBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BackBtn.Image = ((System.Drawing.Image)(resources.GetObject("BackBtn.Image")));
             this.BackBtn.Location = new System.Drawing.Point(7, 3);
             this.BackBtn.Name = "BackBtn";
             this.BackBtn.Size = new System.Drawing.Size(40, 40);
@@ -776,6 +777,8 @@
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyScout 2016";
+            this.Load += new System.EventHandler(this.MainFrm_Load);
+            this.ResizeEnd += new System.EventHandler(this.MainFrm_ResizeEnd);
             this.EventPnl.ResumeLayout(false);
             this.HeaderPnl.ResumeLayout(false);
             this.EventBtnPnl.ResumeLayout(false);
