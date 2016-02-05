@@ -637,12 +637,12 @@
             // AllianceBtnPnl
             // 
             this.AllianceBtnPnl.Controls.Add(this.BackBtn);
-            this.AllianceBtnPnl.Controls.Add(this.BlueAllianceBtn1);
-            this.AllianceBtnPnl.Controls.Add(this.BlueAllianceBtn2);
-            this.AllianceBtnPnl.Controls.Add(this.BlueAllianceBtn3);
             this.AllianceBtnPnl.Controls.Add(this.RedAllianceBtn1);
             this.AllianceBtnPnl.Controls.Add(this.RedAllianceBtn2);
             this.AllianceBtnPnl.Controls.Add(this.RedAllianceBtn3);
+            this.AllianceBtnPnl.Controls.Add(this.BlueAllianceBtn1);
+            this.AllianceBtnPnl.Controls.Add(this.BlueAllianceBtn2);
+            this.AllianceBtnPnl.Controls.Add(this.BlueAllianceBtn3);
             this.AllianceBtnPnl.Dock = System.Windows.Forms.DockStyle.Left;
             this.AllianceBtnPnl.Location = new System.Drawing.Point(0, 0);
             this.AllianceBtnPnl.Name = "AllianceBtnPnl";

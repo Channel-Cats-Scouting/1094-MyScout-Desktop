@@ -260,8 +260,26 @@ namespace MyScout
         {
             if (EventList.SelectedIndices.Count > 0)
             {
+                Program.selectedteam = -1;
+
+                foreach (Control control in AllianceBtnPnl.Controls)
+                {
+                    //If the control is a button...
+                    if (control.GetType() == typeof(Button))
+                    {
+                        Button button = control as Button;
+                        button.Tag = null; button.Text = "----";
+                        button.FlatAppearance.BorderSize = 0;
+                    }
+                }
+
+                DefenseCBx.SelectedIndex = 0;
+                MainPnl.Enabled = false;
+                RefreshTeamPnl();
+
                 TeamPnl.Visible = true;
                 Text = Program.events[EventList.SelectedIndices[0]].name + " - MyScout 2016";
+                Program.currentevent = EventList.SelectedIndices[0];
                 RefreshControls();
             }
         }
