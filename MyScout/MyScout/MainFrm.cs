@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace MyScout
 {
@@ -40,6 +42,15 @@ namespace MyScout
         {
             InitializeComponent();
             DefenseCBx.SelectedIndex = 0;
+
+            if (!Directory.Exists(Application.StartupPath+"\\Events"))
+            {
+                Directory.CreateDirectory(Application.StartupPath+"\\Events");
+            }
+            else
+            {
+                //TODO: Load Events
+            }
         }
 
         /// <summary>
@@ -112,6 +123,52 @@ namespace MyScout
         {
             button4.Enabled = (ReachedRB.Checked && Convert.ToInt32(TimesCrossed.Text) < 2);
             button3.Enabled = (ReachedRB.Checked && Convert.ToInt32(TimesCrossed.Text) > 0);
+        }
+
+        /// <summary>
+        /// Save the given event as an XML file.
+        /// </summary>
+        /// <param name="eventid">The event to save as an XML file.</param>
+        private void SaveEvent(int eventid)
+        {
+            if (File.Exists(Application.StartupPath+"\\Events\\Event"+eventid.ToString()+".xml"))
+            {
+                File.Delete(Application.StartupPath+"\\Events\\Event"+eventid.ToString()+".xml");
+            }
+
+            using (XmlWriter writer = XmlWriter.Create(Application.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("Event");
+                writer.WriteElementString("Name", Program.events[eventid].name);
+
+                writer.WriteStartElement("Teams");
+
+                foreach (Team team in Program.events[eventid].teams)
+                {
+                    writer.WriteStartElement("Team");
+                    writer.WriteElementString("Name", team.name);
+                    writer.WriteElementString("ID", team.id.ToString());
+                    writer.WriteElementString("Score",team.score.ToString());
+
+                    writer.WriteStartElement("Defenses");
+
+                    foreach (Defense defense in team.defenses)
+                    {
+                        writer.WriteStartElement("Defense");
+                        writer.WriteElementString("Reached",defense.reached.ToString());
+                        writer.WriteElementString("TimesCrossed", defense.timescrossed.ToString());
+                        //writer.WriteElementString("Skill",defense.skill.ToString());
+                        writer.WriteEndElement();
+                    }
+
+                    writer.WriteEndElement();
+                    writer.WriteEndElement();
+                }
+
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+            }
         }
 
         #region GUI Events
@@ -375,6 +432,14 @@ namespace MyScout
                 TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) + 1).ToString();
                 Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
                 RefreshDefenseCrossedBtns();
+            }
+        }
+
+        private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Program.events.Count > Program.currentevent && MessageBox.Show("The current event has not yet been saved! Would you like to do so now?","MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                SaveEvent(Program.currentevent);
             }
         }
 
