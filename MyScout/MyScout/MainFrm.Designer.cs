@@ -277,6 +277,7 @@
             this.TGroupBx.TabIndex = 5;
             this.TGroupBx.TabStop = false;
             this.TGroupBx.Text = "                                                 ";
+            this.TGroupBx.SizeChanged += new System.EventHandler(this.TGroupBx_SizeChanged);
             // 
             // groupBox1
             // 
@@ -590,6 +591,7 @@
             this.BackBtn.BackgroundImage = global::MyScout.Properties.Resources.backbtn;
             this.BackBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BackBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.BackBtn.FlatAppearance.BorderSize = 0;
             this.BackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackBtn.Location = new System.Drawing.Point(7, 3);
             this.BackBtn.Name = "BackBtn";
@@ -713,7 +715,7 @@
             this.MinimumSize = new System.Drawing.Size(612, 500);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MyScout 2016";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.MainFrm_Load);
             this.ResizeEnd += new System.EventHandler(this.MainFrm_ResizeEnd);
             this.EventPnl.ResumeLayout(false);

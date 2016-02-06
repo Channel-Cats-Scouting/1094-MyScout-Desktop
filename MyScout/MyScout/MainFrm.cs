@@ -34,9 +34,25 @@ namespace MyScout
         /// </summary>
         public static Random rnd = new Random();
         #endregion
+
+        //Variables for scaling of GUI
+        //Back Button
         float BackBtnWidth;
-        float FrmWidth;
         float BackBtnHeight;
+        //Red Alliance Button 1
+        float RDGroupBxWidth;
+        float RDGroupBxHeight;
+        //Red Alliance Button 1
+        float HPGroupBxWidth;
+        float HPGroupBxHeight;
+        //Tele-op and Auto Group Box
+        float TGroupBxHeight;
+        float TGroupBxWidth;
+        //Defenses Group Box
+        float groupBox1Height;
+        float groupBox1Width;
+        //Form Height/Width
+        float FrmWidth;
         float FrmHeight;
         public MainFrm()
         {
@@ -248,17 +264,59 @@ namespace MyScout
 
         private void MainFrm_ResizeEnd(object sender, EventArgs e)
         {
+            //Back Button Scaling
             BackBtnWidth = BackBtn.Width;
             FrmWidth = Width;
             BackBtnWidth = (float)Math.Round(FrmWidth * .06f);
             BackBtn.Width = (int)BackBtnWidth;
             BackBtnHeight = BackBtn.Height;
             FrmHeight = Height;
-            BackBtnHeight = (float)Math.Round(FrmHeight * .10f);
+            BackBtnHeight = (float)Math.Round(FrmHeight * .1f);
             BackBtn.Height = (int)BackBtnHeight;
+
+            //Robot Death Group Box Scaling
+            RDGroupBxWidth = RDGroupBx.Width;
+            FrmWidth = Width;
+            RDGroupBxWidth = (float)Math.Round(FrmWidth * .23f);
+            RDGroupBx.Width = (int)RDGroupBxWidth;
+            RDGroupBxHeight = RDGroupBx.Height;
+            FrmHeight = Height;
+            RDGroupBxHeight = (float)Math.Round(FrmHeight * .50f);
+            RDGroupBx.Height = (int)RDGroupBxHeight;
+
+            //Human Player Group Box Scaling
+            HPGroupBxWidth = HPGroupBx.Width;
+            FrmWidth = Width;
+            HPGroupBxWidth = (float)Math.Round(FrmWidth * .25);
+            HPGroupBx.Width = (int)HPGroupBxWidth;
+            FrmHeight = Height;
+            HPGroupBxHeight = (float)Math.Round(FrmHeight * .25);
+            HPGroupBx.Height = (int)HPGroupBxHeight;
+
+            //Tele-op and Auto Group Box Scaling
+            TGroupBxWidth = TGroupBx.Width;
+            FrmWidth = Width;
+            TGroupBxWidth = (float)Math.Round(FrmWidth * .5);
+            TGroupBx.Width = (int)TGroupBxWidth;
+            FrmHeight = Height;
+            TGroupBxHeight = (float)Math.Round(FrmHeight * .83);
+            TGroupBx.Height = (int)TGroupBxHeight;
+
+
         }
+
         #endregion
 
-
+        private void TGroupBx_SizeChanged(object sender, EventArgs e)
+        {
+            //Defenses Group Box Scaling
+            groupBox1Width = groupBox1.Width;
+            FrmWidth = Width;
+            groupBox1Width = (float)Math.Round(FrmWidth * .3);
+            groupBox1.Width = (int)groupBox1Width;
+            FrmHeight = Height;
+            groupBox1Height = (float)Math.Round(FrmHeight * .5);
+            groupBox1.Height = (int)groupBox1Height;
+        }
     }
 }
