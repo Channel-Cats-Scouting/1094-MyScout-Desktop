@@ -14,7 +14,6 @@ namespace MyScout
 {
     public partial class MainFrm : Form
     {
-        float BackBtnWidth, FrmWidth, BackBtnHeight, FrmHeight;
         #region Not pointless secrets™
         /// <summary>
         /// ...It's not a secret™
@@ -38,7 +37,6 @@ namespace MyScout
         public static Random rnd = new Random();
         #endregion
 
-<<<<<<< HEAD
         //Variables for scaling of GUI
         //Back Button
         float BackBtnWidth;
@@ -53,13 +51,11 @@ namespace MyScout
         float TGroupBxHeight;
         float TGroupBxWidth;
         //Defenses Group Box
-        float groupBox1Height;
-        float groupBox1Width;
+        float DefenseGBxHeight;
+        float DefenseGBxWidth;
         //Form Height/Width
         float FrmWidth;
         float FrmHeight;
-=======
->>>>>>> origin/2016
         public MainFrm()
         {
             InitializeComponent();
@@ -517,22 +513,20 @@ namespace MyScout
 
 
         }
-<<<<<<< HEAD
 
         #endregion
 
         private void TGroupBx_SizeChanged(object sender, EventArgs e)
         {
             //Defenses Group Box Scaling
-            groupBox1Width = groupBox1.Width;
+            DefenseGBxWidth = DefenseGBx.Width;
             FrmWidth = Width;
-            groupBox1Width = (float)Math.Round(FrmWidth * .3);
-            groupBox1.Width = (int)groupBox1Width;
+            DefenseGBxWidth = (float)Math.Round(FrmWidth * .3);
+            DefenseGBx.Width = (int)DefenseGBxWidth;
             FrmHeight = Height;
-            groupBox1Height = (float)Math.Round(FrmHeight * .5);
-            groupBox1.Height = (int)groupBox1Height;
+            DefenseGBxHeight = (float)Math.Round(FrmHeight * .5);
+            DefenseGBx.Height = (int)DefenseGBxHeight;
         }
-=======
 
         private void DefenseCBx_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -541,7 +535,5 @@ namespace MyScout
                 RefreshTeamPnl();
             }
         }
-        #endregion
->>>>>>> origin/2016
     }
 }
