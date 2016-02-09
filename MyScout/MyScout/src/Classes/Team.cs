@@ -23,38 +23,11 @@ namespace MyScout
         /// The team's current score.
         /// </summary>
         public int score = 0;
-
         /// <summary>
-        /// How well the team does with crossing each defense.
-        /// Each defense coresponds with an ID which is used to identify it.<para />
-        /// 
-        /// 0 = Portcullis,
-        /// 1 = Cheval de Frise,
-        /// 2 = Moat,
-        /// 3 = Ramparts,
-        /// 4 = Drawbridge,
-        /// 5 = Sally Port,
-        /// 6 = Rock Wall,
-        /// 7 = Rough Terrain,
-        /// 8 = Low Bar <para/>
-        /// 
-        /// As an example, if a team does a really good job of breaching the Moat,
-        /// skillwithdefenses[2] would equal "Rating.Good." Whereas if the same team
-        /// did a poor job of breaching the Rough Terrain, skillwithdefenses[7] would
-        /// equal "Rating.Poor."
+        /// TODO: Documentation
         /// </summary>
-        public Rating[] skillwithdefenses = new Rating[9];
+        public Defense[] defenses = new Defense[9] { new Defense(), new Defense(), new Defense(), new Defense(), new Defense(), new Defense(), new Defense(), new Defense(), new Defense() };
 
         public Team(int id, string name) { this.id = id; this.name = name; }
-    }
-
-    /// <summary>
-    /// An enumerator used to rate something.
-    /// </summary>
-    public enum Rating
-    {
-        Good,
-        Mediocre,
-        Poor
     }
 }
