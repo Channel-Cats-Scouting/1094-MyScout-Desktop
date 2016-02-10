@@ -486,7 +486,7 @@ namespace MyScout
             //Robot Death Group Box Scaling
             RDGroupBxWidth = RDGroupBx.Width;
             FrmWidth = Width;
-            RDGroupBxWidth = (float)Math.Round(FrmWidth * .23f);
+            RDGroupBxWidth = (float)Math.Round(FrmWidth * .37f);
             RDGroupBx.Width = (int)RDGroupBxWidth;
             RDGroupBxHeight = RDGroupBx.Height;
             FrmHeight = Height;
@@ -496,10 +496,10 @@ namespace MyScout
             //Human Player Group Box Scaling
             HPGroupBxWidth = HPGroupBx.Width;
             FrmWidth = Width;
-            HPGroupBxWidth = (float)Math.Round(FrmWidth * .25);
+            HPGroupBxWidth = (float)Math.Round(FrmWidth * .37);
             HPGroupBx.Width = (int)HPGroupBxWidth;
             FrmHeight = Height;
-            HPGroupBxHeight = (float)Math.Round(FrmHeight * .25);
+            HPGroupBxHeight = (float)Math.Round(FrmHeight * .3);
             HPGroupBx.Height = (int)HPGroupBxHeight;
 
             //Tele-op and Auto Group Box Scaling
@@ -526,6 +526,8 @@ namespace MyScout
             FrmHeight = Height;
             DefenseGBxHeight = (float)Math.Round(FrmHeight * .5);
             DefenseGBx.Height = (int)DefenseGBxHeight;
+            RDGroupBx.Location = new Point(831, 96);
+            HPGroupBx.Location = new Point(831, 550);
         }
 
         private void DefenseCBx_SelectedIndexChanged(object sender, EventArgs e)
