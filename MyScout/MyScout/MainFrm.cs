@@ -14,6 +14,8 @@ namespace MyScout
 {
     public partial class MainFrm : Form
     {
+        string versionstring = "1.0";
+
         #region Not pointless secrets™
         /// <summary>
         /// ...It's not a secret™
@@ -37,25 +39,26 @@ namespace MyScout
         public static Random rnd = new Random();
         #endregion
 
-        //Variables for scaling of GUI
-        //Back Button
-        float BackBtnWidth;
-        float BackBtnHeight;
-        //Red Alliance Button 1
-        float RDGroupBxWidth;
-        float RDGroupBxHeight;
-        //Red Alliance Button 1
-        float HPGroupBxWidth;
-        float HPGroupBxHeight;
-        //Tele-op and Auto Group Box
-        float TGroupBxHeight;
-        float TGroupBxWidth;
-        //Defenses Group Box
-        float DefenseGBxHeight;
-        float DefenseGBxWidth;
-        //Form Height/Width
-        float FrmWidth;
-        float FrmHeight;
+        ////Variables for scaling of GUI
+        ////Back Button
+        //float BackBtnWidth;
+        //float BackBtnHeight;
+        ////Red Alliance Button 1
+        //float RDGroupBxWidth;
+        //float RDGroupBxHeight;
+        ////Red Alliance Button 1
+        //float HPGroupBxWidth;
+        //float HPGroupBxHeight;
+        ////Tele-op and Auto Group Box
+        //float TGroupBxHeight;
+        //float TGroupBxWidth;
+        ////Defenses Group Box
+        //float DefenseGBxHeight;
+        //float DefenseGBxWidth;
+        ////Form Height/Width
+        //float FrmWidth;
+        //float FrmHeight;
+
         public MainFrm()
         {
             InitializeComponent();
@@ -67,7 +70,12 @@ namespace MyScout
             }
             else
             {
-                //TODO: Load Events
+                string[] files = Directory.GetFiles(Application.StartupPath + "\\Events");
+                for (int i = 0; i < files.Length; i++)
+                {
+                    LoadEvent(i);
+                }
+                RefreshEventList();
             }
         }
 
@@ -154,19 +162,28 @@ namespace MyScout
                 File.Delete(Application.StartupPath+"\\Events\\Event"+eventid.ToString()+".xml");
             }
 
-            using (XmlWriter writer = XmlWriter.Create(Application.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+            using (XmlTextWriter writer = new XmlTextWriter(Application.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml",Encoding.ASCII))
             {
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 4;
+
                 writer.WriteStartDocument();
+                //writer.WriteStartElement("FileInfo");
+                //writer.WriteElementString("Version",versionstring);
+                //writer.WriteEndElement();
                 writer.WriteStartElement("Event");
                 writer.WriteElementString("Name", Program.events[eventid].name);
+                writer.WriteElementString("BeginDate",Program.events[eventid].begindate);
+                writer.WriteElementString("EndDate", Program.events[eventid].enddate);
 
                 writer.WriteStartElement("Teams");
+                writer.WriteElementString("Count",Program.events[eventid].teams.Count.ToString());
 
                 foreach (Team team in Program.events[eventid].teams)
                 {
                     writer.WriteStartElement("Team");
-                    writer.WriteElementString("Name", team.name);
                     writer.WriteElementString("ID", team.id.ToString());
+                    writer.WriteElementString("Name", team.name);
                     writer.WriteElementString("Score",team.score.ToString());
 
                     writer.WriteStartElement("Defenses");
@@ -186,6 +203,55 @@ namespace MyScout
 
                 writer.WriteEndElement();
                 writer.WriteEndElement();
+            }
+        }
+
+        /// <summary>
+        /// Loads the given event from an XML file.
+        /// </summary>
+        /// <param name="eventid">The ID of the XML file to load.</param>
+        private void LoadEvent(int eventid)
+        {
+            if (File.Exists(Application.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+            {
+                using (XmlReader reader = XmlReader.Create(Application.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+                {
+                    //reader.ReadStartElement("FileInfo");
+                    //if (Convert.ToSingle(reader.ReadElementString("Version")) <= Convert.ToSingle(versionstring))
+                    //{
+                        //reader.ReadEndElement();
+                        reader.ReadStartElement("Event");
+                        Program.events.Add(new Event(reader.ReadElementString("Name"),reader.ReadElementString("BeginDate"),reader.ReadElementString("EndDate")));
+
+                        reader.ReadStartElement("Teams");
+                        int count = Convert.ToInt32(reader.ReadElementString("Count"));
+
+                        for (int i = 0; i < count; i++)
+                        {
+                            reader.ReadStartElement("Team");
+                            Team team = new Team(Convert.ToInt32(reader.ReadElementString("ID")),reader.ReadElementString("Name"));
+                            team.score = Convert.ToInt32(reader.ReadElementString("Score"));
+
+                            reader.ReadStartElement("Defenses");
+
+                            for (int i2 = 0; i2 < 9; i2++)
+                            {
+                                reader.ReadStartElement("Defense");
+                                team.defenses[i2].reached = Convert.ToBoolean(reader.ReadElementString("Reached"));
+                                team.defenses[i2].timescrossed = Convert.ToInt32(reader.ReadElementString("TimesCrossed"));
+                                //TODO: reader.ReadElementString("Skill",defense.skill.ToString());
+                                reader.ReadEndElement();
+                            }
+
+                            Program.events[Program.events.Count - 1].teams.Add(team);
+                            reader.ReadEndElement();
+                            reader.ReadEndElement();
+                        }
+
+                        reader.ReadEndElement();
+                        reader.ReadEndElement();
+                    //}
+                }
             }
         }
 
@@ -471,63 +537,63 @@ namespace MyScout
             }
         }
 
+        //TODO: Re-enable scaling
+        //Temporarily disabled the scaling
         private void MainFrm_ResizeEnd(object sender, EventArgs e)
         {
-            //Back Button Scaling
-            BackBtnWidth = BackBtn.Width;
-            FrmWidth = Width;
-            BackBtnWidth = (float)Math.Round(FrmWidth * .06f);
-            BackBtn.Width = (int)BackBtnWidth;
-            BackBtnHeight = BackBtn.Height;
-            FrmHeight = Height;
-            BackBtnHeight = (float)Math.Round(FrmHeight * .1f);
-            BackBtn.Height = (int)BackBtnHeight;
+            ////Back Button Scaling
+            //BackBtnWidth = BackBtn.Width;
+            //FrmWidth = Width;
+            //BackBtnWidth = (float)Math.Round(FrmWidth * .06f);
+            //BackBtn.Width = (int)BackBtnWidth;
+            //BackBtnHeight = BackBtn.Height;
+            //FrmHeight = Height;
+            //BackBtnHeight = (float)Math.Round(FrmHeight * .1f);
+            //BackBtn.Height = (int)BackBtnHeight;
 
-            //Robot Death Group Box Scaling
-            RDGroupBxWidth = RDGroupBx.Width;
-            FrmWidth = Width;
-            RDGroupBxWidth = (float)Math.Round(FrmWidth * .37f);
-            RDGroupBx.Width = (int)RDGroupBxWidth;
-            RDGroupBxHeight = RDGroupBx.Height;
-            FrmHeight = Height;
-            RDGroupBxHeight = (float)Math.Round(FrmHeight * .50f);
-            RDGroupBx.Height = (int)RDGroupBxHeight;
+            ////Robot Death Group Box Scaling
+            //RDGroupBxWidth = RDGroupBx.Width;
+            //FrmWidth = Width;
+            //RDGroupBxWidth = (float)Math.Round(FrmWidth * .37f);
+            //RDGroupBx.Width = (int)RDGroupBxWidth;
+            //RDGroupBxHeight = RDGroupBx.Height;
+            //FrmHeight = Height;
+            //RDGroupBxHeight = (float)Math.Round(FrmHeight * .50f);
+            //RDGroupBx.Height = (int)RDGroupBxHeight;
 
-            //Human Player Group Box Scaling
-            HPGroupBxWidth = HPGroupBx.Width;
-            FrmWidth = Width;
-            HPGroupBxWidth = (float)Math.Round(FrmWidth * .37);
-            HPGroupBx.Width = (int)HPGroupBxWidth;
-            FrmHeight = Height;
-            HPGroupBxHeight = (float)Math.Round(FrmHeight * .3);
-            HPGroupBx.Height = (int)HPGroupBxHeight;
+            ////Human Player Group Box Scaling
+            //HPGroupBxWidth = HPGroupBx.Width;
+            //FrmWidth = Width;
+            //HPGroupBxWidth = (float)Math.Round(FrmWidth * .37);
+            //HPGroupBx.Width = (int)HPGroupBxWidth;
+            //FrmHeight = Height;
+            //HPGroupBxHeight = (float)Math.Round(FrmHeight * .3);
+            //HPGroupBx.Height = (int)HPGroupBxHeight;
 
-            //Tele-op and Auto Group Box Scaling
-            TGroupBxWidth = TGroupBx.Width;
-            FrmWidth = Width;
-            TGroupBxWidth = (float)Math.Round(FrmWidth * .5);
-            TGroupBx.Width = (int)TGroupBxWidth;
-            FrmHeight = Height;
-            TGroupBxHeight = (float)Math.Round(FrmHeight * .83);
-            TGroupBx.Height = (int)TGroupBxHeight;
-
-
+            ////Tele-op and Auto Group Box Scaling
+            //TGroupBxWidth = TGroupBx.Width;
+            //FrmWidth = Width;
+            //TGroupBxWidth = (float)Math.Round(FrmWidth * .5);
+            //TGroupBx.Width = (int)TGroupBxWidth;
+            //FrmHeight = Height;
+            //TGroupBxHeight = (float)Math.Round(FrmHeight * .83);
+            //TGroupBx.Height = (int)TGroupBxHeight;
         }
 
         #endregion
 
         private void TGroupBx_SizeChanged(object sender, EventArgs e)
         {
-            //Defenses Group Box Scaling
-            DefenseGBxWidth = DefenseGBx.Width;
-            FrmWidth = Width;
-            DefenseGBxWidth = (float)Math.Round(FrmWidth * .3);
-            DefenseGBx.Width = (int)DefenseGBxWidth;
-            FrmHeight = Height;
-            DefenseGBxHeight = (float)Math.Round(FrmHeight * .5);
-            DefenseGBx.Height = (int)DefenseGBxHeight;
-            RDGroupBx.Location = new Point(831, 96);
-            HPGroupBx.Location = new Point(831, 550);
+            ////Defenses Group Box Scaling
+            //DefenseGBxWidth = DefenseGBx.Width;
+            //FrmWidth = Width;
+            //DefenseGBxWidth = (float)Math.Round(FrmWidth * .3);
+            //DefenseGBx.Width = (int)DefenseGBxWidth;
+            //FrmHeight = Height;
+            //DefenseGBxHeight = (float)Math.Round(FrmHeight * .5);
+            //DefenseGBx.Height = (int)DefenseGBxHeight;
+            //RDGroupBx.Location = new Point(831, 96);
+            //HPGroupBx.Location = new Point(831, 550);
         }
 
         private void DefenseCBx_SelectedIndexChanged(object sender, EventArgs e)
