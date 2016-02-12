@@ -492,6 +492,10 @@ namespace MyScout
             FrmHeight = Height;
             RDGroupBxHeight = (float)Math.Round(FrmHeight * .50f);
             RDGroupBx.Height = (int)RDGroupBxHeight;
+            RDComments.Location = new Point(6, 120);
+            RDComments.Size = new Size(586, 310);
+            RDDied.Location = new Point(9, -1);
+            RDCommentsLbl.Location = new Point(9, 100);
 
             //Human Player Group Box Scaling
             HPGroupBxWidth = HPGroupBx.Width;
@@ -508,9 +512,8 @@ namespace MyScout
             TGroupBxWidth = (float)Math.Round(FrmWidth * .5);
             TGroupBx.Width = (int)TGroupBxWidth;
             FrmHeight = Height;
-            TGroupBxHeight = (float)Math.Round(FrmHeight * .83);
+            TGroupBxHeight = (float)Math.Round(FrmHeight * .75);
             TGroupBx.Height = (int)TGroupBxHeight;
-
 
         }
 
