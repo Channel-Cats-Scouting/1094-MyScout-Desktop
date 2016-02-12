@@ -541,7 +541,6 @@ namespace MyScout
         //Temporarily disabled the scaling
         private void MainFrm_ResizeEnd(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             ////Back Button Scaling
             //BackBtnWidth = BackBtn.Width;
             //FrmWidth = Width;
@@ -561,6 +560,10 @@ namespace MyScout
             //FrmHeight = Height;
             //RDGroupBxHeight = (float)Math.Round(FrmHeight * .50f);
             //RDGroupBx.Height = (int)RDGroupBxHeight;
+            //RDComments.Location = new Point(6, 120);
+            //RDComments.Size = new Size(586, 310);
+            //RDDied.Location = new Point(9, -1);
+            //RDCommentsLbl.Location = new Point(9, 100);
 
             ////Human Player Group Box Scaling
             //HPGroupBxWidth = HPGroupBx.Width;
@@ -577,52 +580,8 @@ namespace MyScout
             //TGroupBxWidth = (float)Math.Round(FrmWidth * .5);
             //TGroupBx.Width = (int)TGroupBxWidth;
             //FrmHeight = Height;
-            //TGroupBxHeight = (float)Math.Round(FrmHeight * .83);
+            //TGroupBxHeight = (float)Math.Round(FrmHeight * .75);
             //TGroupBx.Height = (int)TGroupBxHeight;
-=======
-            //Back Button Scaling
-            BackBtnWidth = BackBtn.Width;
-            FrmWidth = Width;
-            BackBtnWidth = (float)Math.Round(FrmWidth * .06f);
-            BackBtn.Width = (int)BackBtnWidth;
-            BackBtnHeight = BackBtn.Height;
-            FrmHeight = Height;
-            BackBtnHeight = (float)Math.Round(FrmHeight * .1f);
-            BackBtn.Height = (int)BackBtnHeight;
-
-            //Robot Death Group Box Scaling
-            RDGroupBxWidth = RDGroupBx.Width;
-            FrmWidth = Width;
-            RDGroupBxWidth = (float)Math.Round(FrmWidth * .37f);
-            RDGroupBx.Width = (int)RDGroupBxWidth;
-            RDGroupBxHeight = RDGroupBx.Height;
-            FrmHeight = Height;
-            RDGroupBxHeight = (float)Math.Round(FrmHeight * .50f);
-            RDGroupBx.Height = (int)RDGroupBxHeight;
-            RDComments.Location = new Point(6, 120);
-            RDComments.Size = new Size(586, 310);
-            RDDied.Location = new Point(9, -1);
-            RDCommentsLbl.Location = new Point(9, 100);
-
-            //Human Player Group Box Scaling
-            HPGroupBxWidth = HPGroupBx.Width;
-            FrmWidth = Width;
-            HPGroupBxWidth = (float)Math.Round(FrmWidth * .37);
-            HPGroupBx.Width = (int)HPGroupBxWidth;
-            FrmHeight = Height;
-            HPGroupBxHeight = (float)Math.Round(FrmHeight * .3);
-            HPGroupBx.Height = (int)HPGroupBxHeight;
-
-            //Tele-op and Auto Group Box Scaling
-            TGroupBxWidth = TGroupBx.Width;
-            FrmWidth = Width;
-            TGroupBxWidth = (float)Math.Round(FrmWidth * .5);
-            TGroupBx.Width = (int)TGroupBxWidth;
-            FrmHeight = Height;
-            TGroupBxHeight = (float)Math.Round(FrmHeight * .75);
-            TGroupBx.Height = (int)TGroupBxHeight;
-
->>>>>>> 887a68ceb93577f0ab7193a394e292379a676b3c
         }
 
         #endregion
