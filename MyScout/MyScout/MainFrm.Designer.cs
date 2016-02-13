@@ -76,6 +76,16 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.DefenseGBx = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.DefenseCBx = new System.Windows.Forms.ComboBox();
+            this.ReachedRB = new System.Windows.Forms.RadioButton();
+            this.TimesCrossedLbl = new System.Windows.Forms.Label();
+            this.DidNothingRB = new System.Windows.Forms.RadioButton();
+            this.TimesCrossed = new System.Windows.Forms.Label();
             this.AutonomousRB = new System.Windows.Forms.RadioButton();
             this.TeleOpRB = new System.Windows.Forms.RadioButton();
             this.TCommentsLbl = new System.Windows.Forms.Label();
@@ -102,16 +112,6 @@
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn2 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn3 = new System.Windows.Forms.Button();
-            this.TimesCrossed = new System.Windows.Forms.Label();
-            this.DidNothingRB = new System.Windows.Forms.RadioButton();
-            this.TimesCrossedLbl = new System.Windows.Forms.Label();
-            this.ReachedRB = new System.Windows.Forms.RadioButton();
-            this.DefenseCBx = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.DefenseGBx = new System.Windows.Forms.GroupBox();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -120,12 +120,12 @@
             this.MainPnl.SuspendLayout();
             this.TGroupBx.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.DefenseGBx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TLowGoalNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.THighGoalNUD)).BeginInit();
             this.RDGroupBx.SuspendLayout();
             this.HPGroupBx.SuspendLayout();
             this.AllianceBtnPnl.SuspendLayout();
-            this.DefenseGBx.SuspendLayout();
             this.SuspendLayout();
             // 
             // ChooseAnEventLbl
@@ -272,12 +272,9 @@
             // button6
             // 
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button6.Cursor = System.Windows.Forms.Cursors.Default;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
-<<<<<<< HEAD
-            this.button6.Location = new System.Drawing.Point(388, 59);
-=======
-            this.button6.Location = new System.Drawing.Point(198, 59);
->>>>>>> origin/2016
+            this.button6.Location = new System.Drawing.Point(363, 59);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(25, 23);
             this.button6.TabIndex = 3;
@@ -289,11 +286,7 @@
             // 
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-<<<<<<< HEAD
-            this.button5.Location = new System.Drawing.Point(508, 59);
-=======
-            this.button5.Location = new System.Drawing.Point(401, 59);
->>>>>>> origin/2016
+            this.button5.Location = new System.Drawing.Point(536, 59);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(25, 23);
             this.button5.TabIndex = 2;
@@ -719,6 +712,139 @@
             this.checkBox1.Text = "Cheval de Frise";
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
+            // DefenseGBx
+            // 
+            this.DefenseGBx.Controls.Add(this.button3);
+            this.DefenseGBx.Controls.Add(this.button4);
+            this.DefenseGBx.Controls.Add(this.button2);
+            this.DefenseGBx.Controls.Add(this.button1);
+            this.DefenseGBx.Controls.Add(this.DefenseCBx);
+            this.DefenseGBx.Controls.Add(this.ReachedRB);
+            this.DefenseGBx.Controls.Add(this.TimesCrossedLbl);
+            this.DefenseGBx.Controls.Add(this.DidNothingRB);
+            this.DefenseGBx.Controls.Add(this.TimesCrossed);
+            this.DefenseGBx.Location = new System.Drawing.Point(473, 167);
+            this.DefenseGBx.Name = "DefenseGBx";
+            this.DefenseGBx.Size = new System.Drawing.Size(38, 19);
+            this.DefenseGBx.TabIndex = 33;
+            this.DefenseGBx.TabStop = false;
+            this.DefenseGBx.Text = "Defenses";
+            // 
+            // button3
+            // 
+            this.button3.Enabled = false;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button3.Location = new System.Drawing.Point(8, 231);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(166, 33);
+            this.button3.TabIndex = 33;
+            this.button3.Text = "▼";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button4.Location = new System.Drawing.Point(8, 145);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(166, 33);
+            this.button4.TabIndex = 32;
+            this.button4.Text = "▲";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button2
+            // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button2.Location = new System.Drawing.Point(8, 69);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(166, 23);
+            this.button2.TabIndex = 31;
+            this.button2.Text = "▼";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button1.Location = new System.Drawing.Point(8, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(166, 23);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "▲";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // DefenseCBx
+            // 
+            this.DefenseCBx.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.DefenseCBx.FormattingEnabled = true;
+            this.DefenseCBx.Items.AddRange(new object[] {
+            "Portcullis",
+            "Cheval de Frise",
+            "Moat",
+            "Ramparts",
+            "Drawbridge",
+            "Sally Port",
+            "Rock Wall",
+            "Rough Terrain",
+            "Low Bar"});
+            this.DefenseCBx.Location = new System.Drawing.Point(8, 45);
+            this.DefenseCBx.Name = "DefenseCBx";
+            this.DefenseCBx.Size = new System.Drawing.Size(166, 21);
+            this.DefenseCBx.TabIndex = 17;
+            this.DefenseCBx.SelectedIndexChanged += new System.EventHandler(this.DefenseCBx_SelectedIndexChanged);
+            // 
+            // ReachedRB
+            // 
+            this.ReachedRB.AutoSize = true;
+            this.ReachedRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ReachedRB.Location = new System.Drawing.Point(108, 107);
+            this.ReachedRB.Name = "ReachedRB";
+            this.ReachedRB.Size = new System.Drawing.Size(75, 18);
+            this.ReachedRB.TabIndex = 27;
+            this.ReachedRB.TabStop = true;
+            this.ReachedRB.Text = "Reached";
+            this.ReachedRB.UseVisualStyleBackColor = true;
+            this.ReachedRB.CheckedChanged += new System.EventHandler(this.ReachedRB_CheckedChanged);
+            // 
+            // TimesCrossedLbl
+            // 
+            this.TimesCrossedLbl.AutoSize = true;
+            this.TimesCrossedLbl.Enabled = false;
+            this.TimesCrossedLbl.Location = new System.Drawing.Point(52, 129);
+            this.TimesCrossedLbl.Name = "TimesCrossedLbl";
+            this.TimesCrossedLbl.Size = new System.Drawing.Size(79, 13);
+            this.TimesCrossedLbl.TabIndex = 27;
+            this.TimesCrossedLbl.Text = "Times Crossed:";
+            // 
+            // DidNothingRB
+            // 
+            this.DidNothingRB.AutoSize = true;
+            this.DidNothingRB.Checked = true;
+            this.DidNothingRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.DidNothingRB.Location = new System.Drawing.Point(9, 107);
+            this.DidNothingRB.Name = "DidNothingRB";
+            this.DidNothingRB.Size = new System.Drawing.Size(85, 18);
+            this.DidNothingRB.TabIndex = 29;
+            this.DidNothingRB.TabStop = true;
+            this.DidNothingRB.Text = "Did nothing";
+            this.DidNothingRB.UseVisualStyleBackColor = true;
+            // 
+            // TimesCrossed
+            // 
+            this.TimesCrossed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TimesCrossed.Enabled = false;
+            this.TimesCrossed.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.TimesCrossed.Location = new System.Drawing.Point(3, 16);
+            this.TimesCrossed.Name = "TimesCrossed";
+            this.TimesCrossed.Padding = new System.Windows.Forms.Padding(0, 0, 0, 50);
+            this.TimesCrossed.Size = new System.Drawing.Size(32, 0);
+            this.TimesCrossed.TabIndex = 34;
+            this.TimesCrossed.Text = "0";
+            this.TimesCrossed.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // AutonomousRB
             // 
             this.AutonomousRB.AutoSize = true;
@@ -1079,139 +1205,6 @@
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
             this.BlueAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
-            // TimesCrossed
-            // 
-            this.TimesCrossed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TimesCrossed.Enabled = false;
-            this.TimesCrossed.Font = new System.Drawing.Font("Segoe UI", 20F);
-            this.TimesCrossed.Location = new System.Drawing.Point(3, 16);
-            this.TimesCrossed.Name = "TimesCrossed";
-            this.TimesCrossed.Padding = new System.Windows.Forms.Padding(0, 0, 0, 50);
-            this.TimesCrossed.Size = new System.Drawing.Size(32, 0);
-            this.TimesCrossed.TabIndex = 34;
-            this.TimesCrossed.Text = "0";
-            this.TimesCrossed.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // DidNothingRB
-            // 
-            this.DidNothingRB.AutoSize = true;
-            this.DidNothingRB.Checked = true;
-            this.DidNothingRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.DidNothingRB.Location = new System.Drawing.Point(9, 107);
-            this.DidNothingRB.Name = "DidNothingRB";
-            this.DidNothingRB.Size = new System.Drawing.Size(85, 18);
-            this.DidNothingRB.TabIndex = 29;
-            this.DidNothingRB.TabStop = true;
-            this.DidNothingRB.Text = "Did nothing";
-            this.DidNothingRB.UseVisualStyleBackColor = true;
-            // 
-            // TimesCrossedLbl
-            // 
-            this.TimesCrossedLbl.AutoSize = true;
-            this.TimesCrossedLbl.Enabled = false;
-            this.TimesCrossedLbl.Location = new System.Drawing.Point(52, 129);
-            this.TimesCrossedLbl.Name = "TimesCrossedLbl";
-            this.TimesCrossedLbl.Size = new System.Drawing.Size(79, 13);
-            this.TimesCrossedLbl.TabIndex = 27;
-            this.TimesCrossedLbl.Text = "Times Crossed:";
-            // 
-            // ReachedRB
-            // 
-            this.ReachedRB.AutoSize = true;
-            this.ReachedRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ReachedRB.Location = new System.Drawing.Point(108, 107);
-            this.ReachedRB.Name = "ReachedRB";
-            this.ReachedRB.Size = new System.Drawing.Size(75, 18);
-            this.ReachedRB.TabIndex = 27;
-            this.ReachedRB.TabStop = true;
-            this.ReachedRB.Text = "Reached";
-            this.ReachedRB.UseVisualStyleBackColor = true;
-            this.ReachedRB.CheckedChanged += new System.EventHandler(this.ReachedRB_CheckedChanged);
-            // 
-            // DefenseCBx
-            // 
-            this.DefenseCBx.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.DefenseCBx.FormattingEnabled = true;
-            this.DefenseCBx.Items.AddRange(new object[] {
-            "Portcullis",
-            "Cheval de Frise",
-            "Moat",
-            "Ramparts",
-            "Drawbridge",
-            "Sally Port",
-            "Rock Wall",
-            "Rough Terrain",
-            "Low Bar"});
-            this.DefenseCBx.Location = new System.Drawing.Point(8, 45);
-            this.DefenseCBx.Name = "DefenseCBx";
-            this.DefenseCBx.Size = new System.Drawing.Size(166, 21);
-            this.DefenseCBx.TabIndex = 17;
-            this.DefenseCBx.SelectedIndexChanged += new System.EventHandler(this.DefenseCBx_SelectedIndexChanged);
-            // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Location = new System.Drawing.Point(8, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(166, 23);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "▲";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(8, 69);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(166, 23);
-            this.button2.TabIndex = 31;
-            this.button2.Text = "▼";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button4
-            // 
-            this.button4.Enabled = false;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button4.Location = new System.Drawing.Point(8, 145);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(166, 33);
-            this.button4.TabIndex = 32;
-            this.button4.Text = "▲";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button3
-            // 
-            this.button3.Enabled = false;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button3.Location = new System.Drawing.Point(8, 231);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(166, 33);
-            this.button3.TabIndex = 33;
-            this.button3.Text = "▼";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // DefenseGBx
-            // 
-            this.DefenseGBx.Controls.Add(this.button3);
-            this.DefenseGBx.Controls.Add(this.button4);
-            this.DefenseGBx.Controls.Add(this.button2);
-            this.DefenseGBx.Controls.Add(this.button1);
-            this.DefenseGBx.Controls.Add(this.DefenseCBx);
-            this.DefenseGBx.Controls.Add(this.ReachedRB);
-            this.DefenseGBx.Controls.Add(this.TimesCrossedLbl);
-            this.DefenseGBx.Controls.Add(this.DidNothingRB);
-            this.DefenseGBx.Controls.Add(this.TimesCrossed);
-            this.DefenseGBx.Location = new System.Drawing.Point(473, 167);
-            this.DefenseGBx.Name = "DefenseGBx";
-            this.DefenseGBx.Size = new System.Drawing.Size(38, 19);
-            this.DefenseGBx.TabIndex = 33;
-            this.DefenseGBx.TabStop = false;
-            this.DefenseGBx.Text = "Defenses";
-            // 
             // MainFrm
             // 
             this.AcceptButton = this.AddEventBtn;
@@ -1240,6 +1233,8 @@
             this.TGroupBx.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.DefenseGBx.ResumeLayout(false);
+            this.DefenseGBx.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TLowGoalNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.THighGoalNUD)).EndInit();
             this.RDGroupBx.ResumeLayout(false);
@@ -1247,8 +1242,6 @@
             this.HPGroupBx.ResumeLayout(false);
             this.HPGroupBx.PerformLayout();
             this.AllianceBtnPnl.ResumeLayout(false);
-            this.DefenseGBx.ResumeLayout(false);
-            this.DefenseGBx.PerformLayout();
             this.ResumeLayout(false);
 
         }
