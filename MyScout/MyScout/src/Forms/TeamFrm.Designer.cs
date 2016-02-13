@@ -38,6 +38,7 @@
             this.EditTeamBtn = new System.Windows.Forms.Button();
             this.RemoveTeamBtn = new System.Windows.Forms.Button();
             this.AddTeamBtn = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.LblPnl.SuspendLayout();
             this.MainPnl.SuspendLayout();
             this.BtnPnl.SuspendLayout();
@@ -50,18 +51,20 @@
             this.MainLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.MainLbl.Location = new System.Drawing.Point(0, 0);
             this.MainLbl.Name = "MainLbl";
-            this.MainLbl.Size = new System.Drawing.Size(484, 61);
+            this.MainLbl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            this.MainLbl.Size = new System.Drawing.Size(484, 81);
             this.MainLbl.TabIndex = 0;
             this.MainLbl.Text = "Choose a Team";
             this.MainLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LblPnl
             // 
+            this.LblPnl.Controls.Add(this.textBox1);
             this.LblPnl.Controls.Add(this.MainLbl);
             this.LblPnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.LblPnl.Location = new System.Drawing.Point(0, 0);
             this.LblPnl.Name = "LblPnl";
-            this.LblPnl.Size = new System.Drawing.Size(484, 61);
+            this.LblPnl.Size = new System.Drawing.Size(484, 81);
             this.LblPnl.TabIndex = 1;
             // 
             // MainPnl
@@ -69,9 +72,9 @@
             this.MainPnl.Controls.Add(this.TeamList);
             this.MainPnl.Controls.Add(this.BtnPnl);
             this.MainPnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPnl.Location = new System.Drawing.Point(0, 61);
+            this.MainPnl.Location = new System.Drawing.Point(0, 81);
             this.MainPnl.Name = "MainPnl";
-            this.MainPnl.Size = new System.Drawing.Size(484, 200);
+            this.MainPnl.Size = new System.Drawing.Size(484, 214);
             this.MainPnl.TabIndex = 2;
             // 
             // TeamList
@@ -84,7 +87,7 @@
             this.TeamList.Location = new System.Drawing.Point(0, 0);
             this.TeamList.MultiSelect = false;
             this.TeamList.Name = "TeamList";
-            this.TeamList.Size = new System.Drawing.Size(484, 148);
+            this.TeamList.Size = new System.Drawing.Size(484, 162);
             this.TeamList.TabIndex = 1;
             this.TeamList.UseCompatibleStateImageBehavior = false;
             this.TeamList.View = System.Windows.Forms.View.Details;
@@ -105,7 +108,7 @@
             this.BtnPnl.Controls.Add(this.RemoveTeamBtn);
             this.BtnPnl.Controls.Add(this.AddTeamBtn);
             this.BtnPnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BtnPnl.Location = new System.Drawing.Point(0, 148);
+            this.BtnPnl.Location = new System.Drawing.Point(0, 162);
             this.BtnPnl.Name = "BtnPnl";
             this.BtnPnl.Size = new System.Drawing.Size(484, 52);
             this.BtnPnl.TabIndex = 0;
@@ -140,13 +143,21 @@
             this.AddTeamBtn.UseVisualStyleBackColor = true;
             this.AddTeamBtn.Click += new System.EventHandler(this.AddTeamBtn_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(10, 56);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(465, 20);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // TeamFrm
             // 
             this.AcceptButton = this.AddTeamBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(484, 261);
+            this.ClientSize = new System.Drawing.Size(484, 295);
             this.Controls.Add(this.MainPnl);
             this.Controls.Add(this.LblPnl);
             this.MaximizeBox = false;
@@ -158,6 +169,7 @@
             this.Text = "Teams";
             this.Load += new System.EventHandler(this.TeamFrm_Load);
             this.LblPnl.ResumeLayout(false);
+            this.LblPnl.PerformLayout();
             this.MainPnl.ResumeLayout(false);
             this.BtnPnl.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -176,5 +188,6 @@
         private System.Windows.Forms.ColumnHeader IDHeader;
         private System.Windows.Forms.ColumnHeader NameHeader;
         private System.Windows.Forms.Button EditTeamBtn;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

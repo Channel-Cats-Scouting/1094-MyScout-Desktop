@@ -82,7 +82,7 @@ namespace MyScout
         /// </summary>
         private void TeamList_DoubleClick(object sender, EventArgs e)
         {
-            Program.selectedteam = TeamList.SelectedIndices[0];
+            Program.selectedteam = (string.IsNullOrEmpty(textBox1.Text))?TeamList.SelectedIndices[0]:(int)TeamList.SelectedItems[0].Tag;
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -105,6 +105,23 @@ namespace MyScout
         private void TeamFrm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox1.Text)) RefreshTeamList();
+            else
+            {
+                TeamList.Items.Clear();
+                for (int i = 0; i < Program.events[Program.currentevent].teams.Count; i++)
+                {
+                    Team team = Program.events[Program.currentevent].teams[i];
+                    if (team.name.Contains(textBox1.Text) || team.id.ToString().Contains(textBox1.Text))
+                    {
+                        TeamList.Items.Add(new ListViewItem(new string[] { team.id.ToString(), team.name }) { Tag = i });
+                    }
+                }
+            }
         }
     }
 }
