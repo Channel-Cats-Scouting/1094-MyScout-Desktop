@@ -42,6 +42,9 @@
             this.AddEventBtn = new System.Windows.Forms.Button();
             this.TeamPnl = new System.Windows.Forms.Panel();
             this.TeamNamePnl = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.TeamNameLbl = new System.Windows.Forms.Label();
             this.MainPnl = new System.Windows.Forms.Panel();
             this.TGroupBx = new System.Windows.Forms.GroupBox();
@@ -227,12 +230,50 @@
             // 
             this.TeamNamePnl.BackColor = System.Drawing.Color.White;
             this.TeamNamePnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TeamNamePnl.Controls.Add(this.button6);
+            this.TeamNamePnl.Controls.Add(this.button5);
+            this.TeamNamePnl.Controls.Add(this.label1);
             this.TeamNamePnl.Controls.Add(this.TeamNameLbl);
             this.TeamNamePnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.TeamNamePnl.Location = new System.Drawing.Point(155, 0);
             this.TeamNamePnl.Name = "TeamNamePnl";
             this.TeamNamePnl.Size = new System.Drawing.Size(626, 90);
             this.TeamNamePnl.TabIndex = 3;
+            // 
+            // button6
+            // 
+            this.button6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button6.Location = new System.Drawing.Point(198, 59);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(25, 23);
+            this.button6.TabIndex = 3;
+            this.button6.Text = "<-";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button5.Location = new System.Drawing.Point(401, 59);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(25, 23);
+            this.button5.TabIndex = 2;
+            this.button5.Text = "+";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label1.Location = new System.Drawing.Point(268, 61);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Round 1 of 1";
             // 
             // TeamNameLbl
             // 
@@ -241,6 +282,7 @@
             this.TeamNameLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.TeamNameLbl.Location = new System.Drawing.Point(0, 0);
             this.TeamNameLbl.Name = "TeamNameLbl";
+            this.TeamNameLbl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.TeamNameLbl.Size = new System.Drawing.Size(624, 88);
             this.TeamNameLbl.TabIndex = 0;
             this.TeamNameLbl.Text = "No Team Selected";
@@ -776,12 +818,11 @@
             this.Controls.Add(this.TeamPnl);
             this.Controls.Add(this.EventPnl);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(612, 500);
+            this.MinimumSize = new System.Drawing.Size(797, 600);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyScout 2016";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
-            this.Load += new System.EventHandler(this.MainFrm_Load);
             this.ResizeEnd += new System.EventHandler(this.MainFrm_ResizeEnd);
             this.EventPnl.ResumeLayout(false);
             this.HeaderPnl.ResumeLayout(false);
@@ -858,6 +899,9 @@
         private System.Windows.Forms.Label TimesCrossed;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
 
