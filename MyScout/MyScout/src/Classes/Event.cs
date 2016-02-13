@@ -29,9 +29,9 @@ namespace MyScout
         /// </summary>
         public List<Team> teams = new List<Team>();
         /// <summary>
-        /// TODO: Documentation
+        /// TODO: Documentation.
         /// </summary>
-        public Alliance[] Alliances = new Alliance[2] { new Alliance(), new Alliance() };
+        public List<Round> rounds = new List<Round>() { new Round() };
 
         public Event(string name, string begindate, string enddate) { this.name = name; this.begindate = begindate; this.enddate = enddate; }
     }

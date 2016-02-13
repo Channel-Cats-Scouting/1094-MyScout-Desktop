@@ -23,10 +23,6 @@ namespace MyScout
         /// The team's current score.
         /// </summary>
         public int score = 0;
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public Defense[] defenses = new Defense[9] { new Defense(), new Defense(), new Defense(), new Defense(), new Defense(), new Defense(), new Defense(), new Defense(), new Defense() };
 
         public Team(int id, string name) { this.id = id; this.name = name; }
     }

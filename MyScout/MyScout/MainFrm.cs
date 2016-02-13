@@ -14,7 +14,7 @@ namespace MyScout
 {
     public partial class MainFrm : Form
     {
-        string versionstring = "1.0";
+        string versionstring = "2.0";
 
         #region Not pointless secrets™
         /// <summary>
@@ -110,8 +110,8 @@ namespace MyScout
 
                         btn.FlatAppearance.BorderSize = 0;
                         Console.WriteLine(btn.Name);
-                        btn.Tag = (Program.events[Program.currentevent].Alliances[(i < 3) ? 0 : 1].teams[(i < 3) ? i : i - 3] == -1)? null : (object)Program.events[Program.currentevent].Alliances[(i < 3) ? 0 : 1].teams[(i < 3) ? i : i - 3];
-                        btn.Text = (Program.events[Program.currentevent].Alliances[(i < 3) ? 0 : 1].teams[(i < 3) ? i : i - 3] == -1) ? "----" : Program.events[Program.currentevent].teams[Program.events[Program.currentevent].Alliances[(i < 3) ? 0 : 1].teams[(i < 3) ? i : i - 3]].id.ToString();
+                        btn.Tag = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1)? null : (object)Program.events[Program.currentevent].rounds[Program.currentround].teams[i];
+                        btn.Text = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? "----" : Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]].id.ToString();
                     }
                 }
             }
@@ -125,8 +125,8 @@ namespace MyScout
             if (Program.selectedteam != -1)
             {
                 TeamNameLbl.Text = $"{Program.events[Program.currentevent].teams[Program.selectedteam].name} - {Program.events[Program.currentevent].teams[Program.selectedteam].id.ToString()}";
-                TimesCrossed.Text = Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].timescrossed.ToString();
-                ReachedRB.Checked = Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].reached;
+                TimesCrossed.Text = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].timescrossed.ToString();
+                ReachedRB.Checked = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].reached;
                 DidNothingRB.Checked = !ReachedRB.Checked;
 
                 RefreshDefenseCrossedBtns();
@@ -149,6 +149,29 @@ namespace MyScout
         {
             button4.Enabled = (ReachedRB.Checked && Convert.ToInt32(TimesCrossed.Text) < 2);
             button3.Enabled = (ReachedRB.Checked && Convert.ToInt32(TimesCrossed.Text) > 0);
+        }
+
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        private int GetTeamBtnID(Button TeamBtn)
+        {
+            switch (TeamBtn.Name)
+            {
+                case "RedAllianceBtn1":
+                    return 0;
+                case "RedAllianceBtn2":
+                    return 1;
+                case "RedAllianceBtn3":
+                    return 2;
+                case "BlueAllianceBtn1":
+                    return 3;
+                case "BlueAllianceBtn2":
+                    return 4;
+                case "BlueAllianceBtn3":
+                    return 5;
+            }
+            return 0;
         }
 
         /// <summary>
@@ -185,22 +208,42 @@ namespace MyScout
                     writer.WriteElementString("ID", team.id.ToString());
                     writer.WriteElementString("Name", team.name);
                     writer.WriteElementString("Score",team.score.ToString());
-
-                    writer.WriteStartElement("Defenses");
-
-                    foreach (Defense defense in team.defenses)
-                    {
-                        writer.WriteStartElement("Defense");
-                        writer.WriteElementString("Reached",defense.reached.ToString());
-                        writer.WriteElementString("TimesCrossed", defense.timescrossed.ToString());
-                        //writer.WriteElementString("Skill",defense.skill.ToString());
-                        writer.WriteEndElement();
-                    }
-
-                    writer.WriteEndElement();
                     writer.WriteEndElement();
                 }
 
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("Rounds");
+                writer.WriteElementString("Current", (eventid == Program.currentevent)?Program.currentround.ToString():(Program.events[eventid].rounds.Count-1).ToString());
+                writer.WriteElementString("AllianceScore1",Round.score[0].ToString());
+                writer.WriteElementString("AllianceScore2", Round.score[1].ToString());
+
+                writer.WriteElementString("Count", Program.events[eventid].rounds.Count.ToString());
+                foreach (Round round in Program.events[eventid].rounds)
+                {
+                    writer.WriteStartElement("Round");
+                    writer.WriteStartElement("Teams");
+
+                    for (int i = 0; i < 6; i++)
+                    {
+                        writer.WriteElementString("Team", round.teams[i].ToString());
+                    }
+                    writer.WriteEndElement();
+
+                    writer.WriteStartElement("Defenses");
+                    for (int i = 0; i < 6; i++)
+                    {
+                        for (int i2 = 0; i2 < 9; i2++)
+                        {
+                            writer.WriteStartElement("Defense");
+                            writer.WriteElementString("Reached", round.defenses[i, i2].reached.ToString());
+                            writer.WriteElementString("TimesCrossed",round.defenses[i,i2].timescrossed.ToString());
+                            writer.WriteEndElement();
+                        }
+                    }
+                    writer.WriteEndElement();
+                    writer.WriteEndElement();
+                }
                 writer.WriteEndElement();
                 writer.WriteEndElement();
             }
@@ -232,19 +275,45 @@ namespace MyScout
                             Team team = new Team(Convert.ToInt32(reader.ReadElementString("ID")),reader.ReadElementString("Name"));
                             team.score = Convert.ToInt32(reader.ReadElementString("Score"));
 
-                            reader.ReadStartElement("Defenses");
-
-                            for (int i2 = 0; i2 < 9; i2++)
-                            {
-                                reader.ReadStartElement("Defense");
-                                team.defenses[i2].reached = Convert.ToBoolean(reader.ReadElementString("Reached"));
-                                team.defenses[i2].timescrossed = Convert.ToInt32(reader.ReadElementString("TimesCrossed"));
-                                //TODO: reader.ReadElementString("Skill",defense.skill.ToString());
-                                reader.ReadEndElement();
-                            }
-
                             Program.events[Program.events.Count - 1].teams.Add(team);
                             reader.ReadEndElement();
+                        }
+
+                        reader.ReadEndElement();
+
+                        reader.ReadStartElement("Rounds");
+                        Program.currentround = Convert.ToInt32(reader.ReadElementString("Current"));
+                        Round.score[0] = Convert.ToInt32(reader.ReadElementString("AllianceScore1"));
+                        Round.score[1] = Convert.ToInt32(reader.ReadElementString("AllianceScore2"));
+
+                        count = Convert.ToInt32(reader.ReadElementString("Count"));
+                        for (int i = 0; i < count; i++)
+                        {
+                            reader.ReadStartElement("Round");
+                            Round round = new Round();
+
+                            reader.ReadStartElement("Teams");
+                            for (int i2 = 0; i2 < 6; i2++)
+                            {
+                                round.teams[i2] = Convert.ToInt32(reader.ReadElementString("Team"));
+                            }
+                            reader.ReadEndElement();
+
+                            reader.ReadStartElement("Defenses");
+                            for (int i2 = 0; i2 < 6; i2++)
+                            {
+                                for (int i3 = 0; i3 < 9; i3++)
+                                {
+                                    reader.ReadStartElement("Defense");
+                                    round.defenses[i2, i3].reached = Convert.ToBoolean(reader.ReadElementString("Reached"));
+                                    round.defenses[i2, i3].timescrossed = Convert.ToInt32(reader.ReadElementString("TimesCrossed"));
+                                    MessageBox.Show($"{i2},{i3},{round.defenses[i2, i3].reached}");
+                                    reader.ReadEndElement();
+                                }
+                            }
+                            reader.ReadEndElement();
+
+                            Program.events[Program.events.Count - 1].rounds.Add(round);
                             reader.ReadEndElement();
                         }
 
@@ -271,12 +340,12 @@ namespace MyScout
                 if (tf.ShowDialog() == DialogResult.OK)
                 {
                     Team selectedteam = Program.events[Program.currentevent].teams[Program.selectedteam];
-                    Program.events[Program.currentevent].Alliances[(allianceid < 3)?0:1].teams[(allianceid < 3)?allianceid:allianceid-3] = Program.selectedteam;
+                    Program.events[Program.currentevent].rounds[Program.currentround].teams[GetTeamBtnID(btn)] = Program.selectedteam;
 
                     btn.Text = selectedteam.id.ToString();
                     btn.Tag = Program.selectedteam;
 
-                    Program.selectedteam = (int)btn.Tag;
+                    Program.selectedteamroundindex = GetTeamBtnID(btn);
                     foreach (Control control in AllianceBtnPnl.Controls)
                     {
                         //If the control is a button...
@@ -295,9 +364,10 @@ namespace MyScout
             }
             else
             {
-                if (Program.selectedteam != (int)btn.Tag)
+                if (Program.selectedteamroundindex != GetTeamBtnID(btn))
                 {
                     Program.selectedteam = (int)btn.Tag;
+                    Program.selectedteamroundindex = GetTeamBtnID(btn);
                     foreach (Control control in AllianceBtnPnl.Controls)
                     {
                         //If the control is a button...
@@ -316,7 +386,7 @@ namespace MyScout
                 else if (MessageBox.Show("This team is already selected! Do you want to remove it from it's slot?", "MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     btn.Tag = null; btn.Text = "----";
-                    Program.selectedteam = -1;
+                    Program.selectedteam = Program.selectedteamroundindex = -1;
 
                     foreach (Control control in AllianceBtnPnl.Controls)
                     {
@@ -406,7 +476,7 @@ namespace MyScout
         {
             if (EventList.SelectedIndices.Count > 0)
             {
-                Program.selectedteam = -1;
+                Program.selectedteam = Program.selectedteamroundindex = -1;
 
                 foreach (Control control in AllianceBtnPnl.Controls)
                 {
@@ -494,10 +564,10 @@ namespace MyScout
 
         private void ReachedRB_CheckedChanged(object sender, EventArgs e)
         {
-            if (Program.selectedteam != -1)
+            if (Program.selectedteam != -1 && Program.selectedteamroundindex != 1)
             {
                 //Set a whole lotta' things to the value of "ReachedRB.Checked."
-                Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].reached
+                Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].reached
                 = TimesCrossedLbl.Enabled = TimesCrossed.Enabled = button4.Enabled = ReachedRB.Checked;
 
                 RefreshDefenseCrossedBtns();
@@ -519,7 +589,7 @@ namespace MyScout
             if (Convert.ToInt32(TimesCrossed.Text) < 2)
             {
                 TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) + 1).ToString();
-                Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
+                Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
                 RefreshDefenseCrossedBtns();
             }
         }
@@ -545,7 +615,7 @@ namespace MyScout
             if (Convert.ToInt32(TimesCrossed.Text) > 0)
             {
                 TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) - 1).ToString();
-                Program.events[Program.currentevent].teams[Program.selectedteam].defenses[DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
+                Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
                 RefreshDefenseCrossedBtns();
             }
         }
