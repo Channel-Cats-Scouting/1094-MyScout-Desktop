@@ -94,6 +94,8 @@ namespace MyScout
                     }
                 }
                 label1.Text = $"Round {Program.currentround+1} of {Program.events[Program.currentevent].rounds.Count}";
+                button6.Enabled = Program.currentround != 0;
+                button5.Text = (Program.currentround < Program.events[Program.currentevent].rounds.Count - 1)?"->":"+";
             }
         }
 
@@ -181,17 +183,23 @@ namespace MyScout
                 writer.WriteElementString("BeginDate",Program.events[eventid].begindate);
                 writer.WriteElementString("EndDate", Program.events[eventid].enddate);
 
+                Console.WriteLine("Saved Event Info");
+
                 writer.WriteStartElement("Teams");
                 writer.WriteElementString("Count",Program.events[eventid].teams.Count.ToString());
 
-                foreach (Team team in Program.events[eventid].teams)
+                foreach (Team team in Program.events[eventid].teams)//Convert team information to a tokenized int string
                 {
                     writer.WriteStartElement("Team");
-                    writer.WriteElementString("ID", team.id.ToString());
-                    writer.WriteElementString("Name", team.name);
-                    writer.WriteElementString("Score",team.score.ToString());
+                    List<object> tokens = new List<object>();
+                    tokens.Add(team.id);
+                    tokens.Add(team.name);
+                    tokens.Add(team.score);
+                    writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
                     writer.WriteEndElement();
                 }
+
+                Console.WriteLine("Saved Teams Info");
 
                 writer.WriteEndElement();
 
@@ -201,30 +209,37 @@ namespace MyScout
                 writer.WriteElementString("AllianceScore2", Round.score[1].ToString());
 
                 writer.WriteElementString("Count", Program.events[eventid].rounds.Count.ToString());
+                int debugTicker = 0;
                 foreach (Round round in Program.events[eventid].rounds)
                 {
+                    debugTicker++;
+
                     writer.WriteStartElement("Round");
                     writer.WriteStartElement("Teams");
-
+                    List<object> teams = new List<object>();//Save teams for each round
                     for (int i = 0; i < 6; i++)
                     {
-                        writer.WriteElementString("Team", round.teams[i].ToString());
+                        teams.Add(round.teams[i]);
                     }
+                    writer.WriteElementString("TeamTokens", TokenizeStringHandler.CreateTokenizedString(teams));
                     writer.WriteEndElement();
 
                     writer.WriteStartElement("Defenses");
                     for (int i = 0; i < 6; i++)
                     {
+                        List<object> reachedTokens = new List<object>();//Save defenses information per team
+                        List<object> crossedTokens = new List<object>();
                         for (int i2 = 0; i2 < 9; i2++)
                         {
-                            writer.WriteStartElement("Defense");
-                            writer.WriteElementString("Reached", round.defenses[i, i2].reached.ToString());
-                            writer.WriteElementString("TimesCrossed",round.defenses[i,i2].timescrossed.ToString());
-                            writer.WriteEndElement();
+                            reachedTokens.Add(round.defenses[i, i2].reached);
+                            crossedTokens.Add(round.defenses[i, i2].timescrossed);
                         }
+                        writer.WriteElementString("ReachedTokens", TokenizeStringHandler.CreateTokenizedString(reachedTokens));
+                        writer.WriteElementString("TimesCrossedTokens", TokenizeStringHandler.CreateTokenizedString(crossedTokens));
                     }
                     writer.WriteEndElement();
                     writer.WriteEndElement();
+                    Console.WriteLine("Saved Round " + debugTicker);
                 }
                 writer.WriteEndElement();
                 writer.WriteEndElement();
@@ -248,14 +263,16 @@ namespace MyScout
                         reader.ReadStartElement("Event");
                         Program.events.Add(new Event(reader.ReadElementString("Name"),reader.ReadElementString("BeginDate"),reader.ReadElementString("EndDate")));
 
+                        
                         reader.ReadStartElement("Teams");
                         int count = Convert.ToInt32(reader.ReadElementString("Count"));
 
-                        for (int i = 0; i < count; i++)
+                        for (int i = 0; i < count; i++)//Load Team Info
                         {
                             reader.ReadStartElement("Team");
-                            Team team = new Team(Convert.ToInt32(reader.ReadElementString("ID")),reader.ReadElementString("Name"));
-                            team.score = Convert.ToInt32(reader.ReadElementString("Score"));
+                            List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
+                            Team team = new Team(Convert.ToInt32(tokens[0]),tokens[1].ToString());
+                            team.score = Convert.ToInt32(tokens[2]);
 
                             Program.events[Program.events.Count - 1].teams.Add(team);
                             reader.ReadEndElement();
@@ -274,23 +291,24 @@ namespace MyScout
                             reader.ReadStartElement("Round");
                             Round round = new Round();
 
-                            reader.ReadStartElement("Teams");
-                            for (int i2 = 0; i2 < 6; i2++)
+                            reader.ReadStartElement("Teams"); //Load the teams for each round
+                            List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
+                        for (int i2 = 0; i2 < 6; i2++)
                             {
-                                round.teams[i2] = Convert.ToInt32(reader.ReadElementString("Team"));
+                                round.teams[i2] = Convert.ToInt32(tokens[i2]);
                             }
                             reader.ReadEndElement();
 
                             reader.ReadStartElement("Defenses");
                             for (int i2 = 0; i2 < 6; i2++)
                             {
+                            List<object> reachedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("ReachedTokens"));
+                            List<object> timesCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TimesCrossedTokens"));
                                 for (int i3 = 0; i3 < 9; i3++)
                                 {
-                                    reader.ReadStartElement("Defense");
-                                    round.defenses[i2, i3].reached = Convert.ToBoolean(reader.ReadElementString("Reached"));
-                                    round.defenses[i2, i3].timescrossed = Convert.ToInt32(reader.ReadElementString("TimesCrossed"));
+                                    round.defenses[i2, i3].reached = (bool)reachedTokens[i3];
+                                    round.defenses[i2, i3].timescrossed = (int)timesCrossedTokens[i3];
                                     //MessageBox.Show($"{i2},{i3},{round.defenses[i2, i3].reached}");
-                                    reader.ReadEndElement();
                                 }
                             }
                             reader.ReadEndElement();
@@ -624,7 +642,7 @@ namespace MyScout
                 RefreshTeamPnl();
             }
         }
-
+        
         private void button5_Click(object sender, EventArgs e)
         {
             if (Program.currentround < Program.events[Program.currentevent].rounds.Count - 1)

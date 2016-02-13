@@ -273,7 +273,11 @@
             // 
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
+<<<<<<< HEAD
             this.button6.Location = new System.Drawing.Point(388, 59);
+=======
+            this.button6.Location = new System.Drawing.Point(198, 59);
+>>>>>>> origin/2016
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(25, 23);
             this.button6.TabIndex = 3;
@@ -285,7 +289,11 @@
             // 
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
+<<<<<<< HEAD
             this.button5.Location = new System.Drawing.Point(508, 59);
+=======
+            this.button5.Location = new System.Drawing.Point(401, 59);
+>>>>>>> origin/2016
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(25, 23);
             this.button5.TabIndex = 2;
