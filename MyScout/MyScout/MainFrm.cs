@@ -521,9 +521,12 @@ namespace MyScout
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Program.events.Count > Program.currentevent && MessageBox.Show("The current event has not yet been saved! Would you like to do so now?","MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (Program.events.Count > 0 && MessageBox.Show("You have unsaved changes! Would you like to save them now?","MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                SaveEvent(Program.currentevent);
+                for (int i = 0; i < Program.events.Count; i++)
+                {
+                    SaveEvent(i);
+                }
             }
         }
 
