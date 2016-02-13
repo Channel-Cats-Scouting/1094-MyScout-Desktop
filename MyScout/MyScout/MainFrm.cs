@@ -109,11 +109,11 @@ namespace MyScout
                         int i = index - 1;
 
                         btn.FlatAppearance.BorderSize = 0;
-                        Console.WriteLine(btn.Name);
                         btn.Tag = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1)? null : (object)Program.events[Program.currentevent].rounds[Program.currentround].teams[i];
                         btn.Text = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? "----" : Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]].id.ToString();
                     }
                 }
+                label1.Text = $"Round {Program.currentround+1} of {Program.events[Program.currentevent].rounds.Count}";
             }
         }
 
@@ -140,6 +140,8 @@ namespace MyScout
 
                 RefreshDefenseCrossedBtns();
             }
+
+            label1.Text = $"Round {Program.currentround+1} of {Program.events[Program.currentevent].rounds.Count}";
         }
 
         /// <summary>
@@ -307,7 +309,7 @@ namespace MyScout
                                     reader.ReadStartElement("Defense");
                                     round.defenses[i2, i3].reached = Convert.ToBoolean(reader.ReadElementString("Reached"));
                                     round.defenses[i2, i3].timescrossed = Convert.ToInt32(reader.ReadElementString("TimesCrossed"));
-                                    MessageBox.Show($"{i2},{i3},{round.defenses[i2, i3].reached}");
+                                    //MessageBox.Show($"{i2},{i3},{round.defenses[i2, i3].reached}");
                                     reader.ReadEndElement();
                                 }
                             }
@@ -477,6 +479,7 @@ namespace MyScout
             if (EventList.SelectedIndices.Count > 0)
             {
                 Program.selectedteam = Program.selectedteamroundindex = -1;
+                Program.currentround = Program.events[EventList.SelectedIndices[0]].rounds.Count - 1;
 
                 foreach (Control control in AllianceBtnPnl.Controls)
                 {
@@ -689,6 +692,31 @@ namespace MyScout
             {
                 RefreshTeamPnl();
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (Program.currentround < Program.events[Program.currentevent].rounds.Count - 1)
+            {
+                Program.currentround++;
+            }
+            else
+            {
+                Program.events[Program.currentevent].rounds.Add(new Round());
+                Program.currentround = Program.events[Program.currentevent].rounds.Count - 1;
+            }
+            RefreshTeamPnl();
+            RefreshControls();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (Program.currentround > 0)
+            {
+                Program.currentround--;
+            }
+            RefreshTeamPnl();
+            RefreshControls();
         }
     }
 }
