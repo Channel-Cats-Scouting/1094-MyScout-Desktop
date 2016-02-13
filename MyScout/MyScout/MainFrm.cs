@@ -690,5 +690,10 @@ namespace MyScout
                 RefreshTeamPnl();
             }
         }
+
+        private void MainFrm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
