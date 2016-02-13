@@ -114,6 +114,8 @@ namespace MyScout
                     }
                 }
                 label1.Text = $"Round {Program.currentround+1} of {Program.events[Program.currentevent].rounds.Count}";
+                button6.Enabled = Program.currentround != 0;
+                button5.Text = (Program.currentround < Program.events[Program.currentevent].rounds.Count - 1)?"->":"+";
             }
         }
 
