@@ -20,8 +20,6 @@ namespace MyScout
             foreach (object o in input)
             {
                 output += (output.Length > 0 ? ":" : "") + o.ToString();
-                Console.WriteLine("Current object: " + o.ToString());
-                Console.WriteLine("Current output: " + output);
             }
 
             return output;

@@ -203,6 +203,8 @@ namespace MyScout
                 writer.WriteElementString("BeginDate",Program.events[eventid].begindate);
                 writer.WriteElementString("EndDate", Program.events[eventid].enddate);
 
+                Console.WriteLine("Saved Event Info");
+
                 writer.WriteStartElement("Teams");
                 writer.WriteElementString("Count",Program.events[eventid].teams.Count.ToString());
 
@@ -217,6 +219,8 @@ namespace MyScout
                     writer.WriteEndElement();
                 }
 
+                Console.WriteLine("Saved Teams Info");
+
                 writer.WriteEndElement();
 
                 writer.WriteStartElement("Rounds");
@@ -225,8 +229,11 @@ namespace MyScout
                 writer.WriteElementString("AllianceScore2", Round.score[1].ToString());
 
                 writer.WriteElementString("Count", Program.events[eventid].rounds.Count.ToString());
+                int debugTicker = 0;
                 foreach (Round round in Program.events[eventid].rounds)
                 {
+                    debugTicker++;
+
                     writer.WriteStartElement("Round");
                     writer.WriteStartElement("Teams");
                     List<object> teams = new List<object>();//Save teams for each round
@@ -252,6 +259,7 @@ namespace MyScout
                     }
                     writer.WriteEndElement();
                     writer.WriteEndElement();
+                    Console.WriteLine("Saved Round " + debugTicker);
                 }
                 writer.WriteEndElement();
                 writer.WriteEndElement();
