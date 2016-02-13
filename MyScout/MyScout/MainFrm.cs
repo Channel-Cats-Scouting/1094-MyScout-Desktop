@@ -39,26 +39,6 @@ namespace MyScout
         public static Random rnd = new Random();
         #endregion
 
-        ////Variables for scaling of GUI
-        ////Back Button
-        //float BackBtnWidth;
-        //float BackBtnHeight;
-        ////Red Alliance Button 1
-        //float RDGroupBxWidth;
-        //float RDGroupBxHeight;
-        ////Red Alliance Button 1
-        //float HPGroupBxWidth;
-        //float HPGroupBxHeight;
-        ////Tele-op and Auto Group Box
-        //float TGroupBxHeight;
-        //float TGroupBxWidth;
-        ////Defenses Group Box
-        //float DefenseGBxHeight;
-        //float DefenseGBxWidth;
-        ////Form Height/Width
-        //float FrmWidth;
-        //float FrmHeight;
-
         public MainFrm()
         {
             InitializeComponent();
@@ -627,63 +607,14 @@ namespace MyScout
         //Temporarily disabled the scaling
         private void MainFrm_ResizeEnd(object sender, EventArgs e)
         {
-            ////Back Button Scaling
-            //BackBtnWidth = BackBtn.Width;
-            //FrmWidth = Width;
-            //BackBtnWidth = (float)Math.Round(FrmWidth * .06f);
-            //BackBtn.Width = (int)BackBtnWidth;
-            //BackBtnHeight = BackBtn.Height;
-            //FrmHeight = Height;
-            //BackBtnHeight = (float)Math.Round(FrmHeight * .1f);
-            //BackBtn.Height = (int)BackBtnHeight;
 
-            ////Robot Death Group Box Scaling
-            //RDGroupBxWidth = RDGroupBx.Width;
-            //FrmWidth = Width;
-            //RDGroupBxWidth = (float)Math.Round(FrmWidth * .37f);
-            //RDGroupBx.Width = (int)RDGroupBxWidth;
-            //RDGroupBxHeight = RDGroupBx.Height;
-            //FrmHeight = Height;
-            //RDGroupBxHeight = (float)Math.Round(FrmHeight * .50f);
-            //RDGroupBx.Height = (int)RDGroupBxHeight;
-            //RDComments.Location = new Point(6, 120);
-            //RDComments.Size = new Size(586, 310);
-            //RDDied.Location = new Point(9, -1);
-            //RDCommentsLbl.Location = new Point(9, 100);
-
-            ////Human Player Group Box Scaling
-            //HPGroupBxWidth = HPGroupBx.Width;
-            //FrmWidth = Width;
-            //HPGroupBxWidth = (float)Math.Round(FrmWidth * .37);
-            //HPGroupBx.Width = (int)HPGroupBxWidth;
-            //FrmHeight = Height;
-            //HPGroupBxHeight = (float)Math.Round(FrmHeight * .3);
-            //HPGroupBx.Height = (int)HPGroupBxHeight;
-
-            ////Tele-op and Auto Group Box Scaling
-            //TGroupBxWidth = TGroupBx.Width;
-            //FrmWidth = Width;
-            //TGroupBxWidth = (float)Math.Round(FrmWidth * .5);
-            //TGroupBx.Width = (int)TGroupBxWidth;
-            //FrmHeight = Height;
-            //TGroupBxHeight = (float)Math.Round(FrmHeight * .75);
-            //TGroupBx.Height = (int)TGroupBxHeight;
         }
 
         #endregion
 
         private void TGroupBx_SizeChanged(object sender, EventArgs e)
         {
-            ////Defenses Group Box Scaling
-            //DefenseGBxWidth = DefenseGBx.Width;
-            //FrmWidth = Width;
-            //DefenseGBxWidth = (float)Math.Round(FrmWidth * .3);
-            //DefenseGBx.Width = (int)DefenseGBxWidth;
-            //FrmHeight = Height;
-            //DefenseGBxHeight = (float)Math.Round(FrmHeight * .5);
-            //DefenseGBx.Height = (int)DefenseGBxHeight;
-            //RDGroupBx.Location = new Point(831, 96);
-            //HPGroupBx.Location = new Point(831, 550);
+
         }
 
         private void DefenseCBx_SelectedIndexChanged(object sender, EventArgs e)
@@ -717,6 +648,11 @@ namespace MyScout
             }
             RefreshTeamPnl();
             RefreshControls();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
