@@ -214,8 +214,6 @@ namespace MyScout
                     tokens.Add(team.name);
                     tokens.Add(team.score);
                     writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
-                    Console.WriteLine(tokens[0].ToString() + ", " + tokens[1].ToString() + ", " + tokens[2].ToString());
-                    Console.WriteLine(TokenizeStringHandler.CreateTokenizedString(tokens));
                     writer.WriteEndElement();
                 }
 
@@ -231,7 +229,7 @@ namespace MyScout
                 {
                     writer.WriteStartElement("Round");
                     writer.WriteStartElement("Teams");
-                    List<object> teams = new List<object>();
+                    List<object> teams = new List<object>();//Save teams for each round
                     for (int i = 0; i < 6; i++)
                     {
                         teams.Add(round.teams[i]);
@@ -242,13 +240,15 @@ namespace MyScout
                     writer.WriteStartElement("Defenses");
                     for (int i = 0; i < 6; i++)
                     {
+                        List<object> reachedTokens = new List<object>();//Save defenses information per team
+                        List<object> crossedTokens = new List<object>();
                         for (int i2 = 0; i2 < 9; i2++)
                         {
-                            writer.WriteStartElement("Defense");
-                            writer.WriteElementString("Reached", round.defenses[i, i2].reached.ToString());
-                            writer.WriteElementString("TimesCrossed",round.defenses[i,i2].timescrossed.ToString());
-                            writer.WriteEndElement();
+                            reachedTokens.Add(round.defenses[i, i2].reached);
+                            crossedTokens.Add(round.defenses[i, i2].timescrossed);
                         }
+                        writer.WriteElementString("ReachedTokens", TokenizeStringHandler.CreateTokenizedString(reachedTokens));
+                        writer.WriteElementString("TimesCrossedTokens", TokenizeStringHandler.CreateTokenizedString(crossedTokens));
                     }
                     writer.WriteEndElement();
                     writer.WriteEndElement();
@@ -279,7 +279,7 @@ namespace MyScout
                         reader.ReadStartElement("Teams");
                         int count = Convert.ToInt32(reader.ReadElementString("Count"));
 
-                        for (int i = 0; i < count; i++)//Convert team information back to its normal form
+                        for (int i = 0; i < count; i++)//Load Team Info
                         {
                             reader.ReadStartElement("Team");
                             List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
@@ -303,7 +303,7 @@ namespace MyScout
                             reader.ReadStartElement("Round");
                             Round round = new Round();
 
-                            reader.ReadStartElement("Teams");
+                            reader.ReadStartElement("Teams"); //Load the teams for each round
                             List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
                         for (int i2 = 0; i2 < 6; i2++)
                             {
@@ -314,13 +314,13 @@ namespace MyScout
                             reader.ReadStartElement("Defenses");
                             for (int i2 = 0; i2 < 6; i2++)
                             {
+                            List<object> reachedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("ReachedTokens"));
+                            List<object> timesCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TimesCrossedTokens"));
                                 for (int i3 = 0; i3 < 9; i3++)
                                 {
-                                    reader.ReadStartElement("Defense");
-                                    round.defenses[i2, i3].reached = Convert.ToBoolean(reader.ReadElementString("Reached"));
-                                    round.defenses[i2, i3].timescrossed = Convert.ToInt32(reader.ReadElementString("TimesCrossed"));
+                                    round.defenses[i2, i3].reached = (bool)reachedTokens[i3];
+                                    round.defenses[i2, i3].timescrossed = (int)timesCrossedTokens[i3];
                                     //MessageBox.Show($"{i2},{i3},{round.defenses[i2, i3].reached}");
-                                    reader.ReadEndElement();
                                 }
                             }
                             reader.ReadEndElement();
