@@ -364,8 +364,13 @@ namespace MyScout
         /// </summary>
         private void RemoveEventBtn_Click(object sender, EventArgs e)
         {
-            if (EventList.SelectedItems.Count > 0 && MessageBox.Show("Are you SURE you want to remove the selected event?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (EventList.SelectedItems.Count > 0 && MessageBox.Show($"Are you SURE you want to permanently delete event \"{Program.events[EventList.SelectedIndices[0]].name}\"?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
+                if (File.Exists(Application.StartupPath+"\\Events\\Event"+EventList.SelectedIndices[0].ToString()+".xml"))
+                {
+                    File.Delete(Application.StartupPath + "\\Events\\Event" + EventList.SelectedIndices[0].ToString() + ".xml");
+                }
+
                 Program.events.RemoveAt(EventList.SelectedIndices[0]);
                 RefreshEventList();
             }
@@ -523,6 +528,11 @@ namespace MyScout
         {
             if (Program.events.Count > 0 && MessageBox.Show("You have unsaved changes! Would you like to save them now?","MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
+                foreach (string file in Directory.GetFiles(Application.StartupPath+"\\Events"))
+                {
+                    File.Delete(file);
+                }
+
                 for (int i = 0; i < Program.events.Count; i++)
                 {
                     SaveEvent(i);
