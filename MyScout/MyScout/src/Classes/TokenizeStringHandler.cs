@@ -19,7 +19,9 @@ namespace MyScout
 
             foreach (object o in input)
             {
-                output += output.Length > 0 ? "" : ":" + o.ToString();
+                output += (output.Length > 0 ? ":" : "") + o.ToString();
+                Console.WriteLine("Current object: " + o.ToString());
+                Console.WriteLine("Current output: " + output);
             }
 
             return output;
@@ -35,15 +37,18 @@ namespace MyScout
             List<object> output = new List<object>();
             String[] tokenArray = input.Split(':');
             int parsedNum;
-            
+            Boolean parsedBool;
 
             foreach (String s in tokenArray)
             {
                 var isNum = int.TryParse(s, out parsedNum);
+                var isBool = Boolean.TryParse(s, out parsedBool);
 
                 if (isNum)
                     output.Add(parsedNum);
-                else output.Add(s.Equals("True") ? true : false);
+                else if (isBool)
+                    output.Add(parsedBool);
+                else output.Add(s.ToString());
             }
 
             return output;

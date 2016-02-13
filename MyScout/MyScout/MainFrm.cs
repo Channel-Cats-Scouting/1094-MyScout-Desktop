@@ -206,12 +206,16 @@ namespace MyScout
                 writer.WriteStartElement("Teams");
                 writer.WriteElementString("Count",Program.events[eventid].teams.Count.ToString());
 
-                foreach (Team team in Program.events[eventid].teams)
+                foreach (Team team in Program.events[eventid].teams)//Convert team information to a tokenized int string
                 {
                     writer.WriteStartElement("Team");
-                    writer.WriteElementString("ID", team.id.ToString());
-                    writer.WriteElementString("Name", team.name);
-                    writer.WriteElementString("Score",team.score.ToString());
+                    List<object> tokens = new List<object>();
+                    tokens.Add(team.id);
+                    tokens.Add(team.name);
+                    tokens.Add(team.score);
+                    writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
+                    Console.WriteLine(tokens[0].ToString() + ", " + tokens[1].ToString() + ", " + tokens[2].ToString());
+                    Console.WriteLine(TokenizeStringHandler.CreateTokenizedString(tokens));
                     writer.WriteEndElement();
                 }
 
@@ -227,11 +231,12 @@ namespace MyScout
                 {
                     writer.WriteStartElement("Round");
                     writer.WriteStartElement("Teams");
-
+                    List<object> teams = new List<object>();
                     for (int i = 0; i < 6; i++)
                     {
-                        writer.WriteElementString("Team", round.teams[i].ToString());
+                        teams.Add(round.teams[i]);
                     }
+                    writer.WriteElementString("TeamTokens", TokenizeStringHandler.CreateTokenizedString(teams));
                     writer.WriteEndElement();
 
                     writer.WriteStartElement("Defenses");
@@ -270,14 +275,16 @@ namespace MyScout
                         reader.ReadStartElement("Event");
                         Program.events.Add(new Event(reader.ReadElementString("Name"),reader.ReadElementString("BeginDate"),reader.ReadElementString("EndDate")));
 
+                        
                         reader.ReadStartElement("Teams");
                         int count = Convert.ToInt32(reader.ReadElementString("Count"));
 
-                        for (int i = 0; i < count; i++)
+                        for (int i = 0; i < count; i++)//Convert team information back to its normal form
                         {
                             reader.ReadStartElement("Team");
-                            Team team = new Team(Convert.ToInt32(reader.ReadElementString("ID")),reader.ReadElementString("Name"));
-                            team.score = Convert.ToInt32(reader.ReadElementString("Score"));
+                            List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
+                            Team team = new Team(Convert.ToInt32(tokens[0]),tokens[1].ToString());
+                            team.score = Convert.ToInt32(tokens[2]);
 
                             Program.events[Program.events.Count - 1].teams.Add(team);
                             reader.ReadEndElement();
@@ -297,9 +304,10 @@ namespace MyScout
                             Round round = new Round();
 
                             reader.ReadStartElement("Teams");
-                            for (int i2 = 0; i2 < 6; i2++)
+                            List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
+                        for (int i2 = 0; i2 < 6; i2++)
                             {
-                                round.teams[i2] = Convert.ToInt32(reader.ReadElementString("Team"));
+                                round.teams[i2] = Convert.ToInt32(tokens[i2]);
                             }
                             reader.ReadEndElement();
 
