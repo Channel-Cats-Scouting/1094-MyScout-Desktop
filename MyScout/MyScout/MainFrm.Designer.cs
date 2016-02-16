@@ -1214,7 +1214,7 @@
             this.ClientSize = new System.Drawing.Size(1084, 561);
             this.Controls.Add(this.TeamPnl);
             this.Controls.Add(this.EventPnl);
-            this.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 900);
             this.MinimumSize = new System.Drawing.Size(797, 600);

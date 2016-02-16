@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -50,12 +51,30 @@ namespace MyScout
             }
             else
             {
-                string[] files = Directory.GetFiles(Application.StartupPath + "\\Events");
-                for (int i = 0; i < files.Length; i++)
-                {
-                    LoadEvent(i);
-                }
-                RefreshEventList();
+                new Thread(new ThreadStart(LoadAllEvents)).Start();
+            }
+        }
+
+        private void LoadAllEvents()
+        {
+            string[] files = Directory.GetFiles(Application.StartupPath + "\\Events");
+            for (int i = 0; i < files.Length; i++)
+            {
+                LoadEvent(i);
+            }
+            Invoke(new Action(() => { RefreshEventList(); }));
+        }
+
+        private void SaveAllEvents()
+        {
+            foreach (string file in Directory.GetFiles(Application.StartupPath + "\\Events"))
+            {
+                File.Delete(file);
+            }
+
+            for (int i = 0; i < Program.events.Count; i++)
+            {
+                SaveEvent(i);
             }
         }
 
@@ -599,15 +618,7 @@ namespace MyScout
         {
             if (Program.events.Count > 0 && MessageBox.Show("You have unsaved changes! Would you like to save them now?","MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                foreach (string file in Directory.GetFiles(Application.StartupPath+"\\Events"))
-                {
-                    File.Delete(file);
-                }
-
-                for (int i = 0; i < Program.events.Count; i++)
-                {
-                    SaveEvent(i);
-                }
+                new Thread(new ThreadStart(SaveAllEvents)).Start();
             }
         }
 
