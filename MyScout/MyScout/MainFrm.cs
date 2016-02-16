@@ -202,8 +202,6 @@ namespace MyScout
                 writer.WriteElementString("BeginDate",Program.events[eventid].begindate);
                 writer.WriteElementString("EndDate", Program.events[eventid].enddate);
 
-                Console.WriteLine("Saved Event Info");
-
                 writer.WriteStartElement("Teams");
                 writer.WriteElementString("Count",Program.events[eventid].teams.Count.ToString());
 
@@ -217,8 +215,6 @@ namespace MyScout
                     writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
                     writer.WriteEndElement();
                 }
-
-                Console.WriteLine("Saved Teams Info");
 
                 writer.WriteEndElement();
 
@@ -246,7 +242,7 @@ namespace MyScout
                     writer.WriteStartElement("Defenses");
                     for (int i = 0; i < 6; i++)
                     {
-                        List<object> reachedTokens = new List<object>();//Save defenses information per team
+                        List<object> reachedTokens = new List<object>(); //Save defenses information per team
                         List<object> crossedTokens = new List<object>();
                         for (int i2 = 0; i2 < 9; i2++)
                         {
@@ -258,7 +254,6 @@ namespace MyScout
                     }
                     writer.WriteEndElement();
                     writer.WriteEndElement();
-                    Console.WriteLine("Saved Round " + debugTicker);
                 }
                 writer.WriteEndElement();
                 writer.WriteEndElement();

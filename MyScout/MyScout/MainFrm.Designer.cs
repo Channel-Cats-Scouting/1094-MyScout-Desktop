@@ -299,11 +299,12 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(419, 61);
+            this.label1.Location = new System.Drawing.Point(363, 61);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.Size = new System.Drawing.Size(198, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Round 1 of 1";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // TeamNameLbl
             // 
@@ -422,11 +423,11 @@
             // 
             this.checkBox21.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox21.AutoSize = true;
-            this.checkBox21.Font = new System.Drawing.Font("AR JULIAN", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox21.Location = new System.Drawing.Point(289, 94);
             this.checkBox21.Name = "checkBox21";
             this.checkBox21.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox21.Size = new System.Drawing.Size(60, 21);
+            this.checkBox21.Size = new System.Drawing.Size(58, 21);
             this.checkBox21.TabIndex = 24;
             this.checkBox21.Text = "Moat";
             this.checkBox21.UseVisualStyleBackColor = true;
@@ -457,11 +458,11 @@
             // 
             this.checkBox24.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox24.AutoSize = true;
-            this.checkBox24.Font = new System.Drawing.Font("AR JULIAN", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox24.Location = new System.Drawing.Point(264, 60);
             this.checkBox24.Name = "checkBox24";
             this.checkBox24.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox24.Size = new System.Drawing.Size(85, 21);
+            this.checkBox24.Size = new System.Drawing.Size(78, 21);
             this.checkBox24.TabIndex = 21;
             this.checkBox24.Text = "Low Bar";
             this.checkBox24.UseVisualStyleBackColor = true;
@@ -492,11 +493,11 @@
             // 
             this.checkBox27.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox27.AutoSize = true;
-            this.checkBox27.Font = new System.Drawing.Font("AR JULIAN", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox27.Location = new System.Drawing.Point(245, 26);
             this.checkBox27.Name = "checkBox27";
             this.checkBox27.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox27.Size = new System.Drawing.Size(104, 21);
+            this.checkBox27.Size = new System.Drawing.Size(95, 21);
             this.checkBox27.TabIndex = 18;
             this.checkBox27.Text = "Salley Port";
             this.checkBox27.UseVisualStyleBackColor = true;
@@ -527,11 +528,11 @@
             // 
             this.checkBox15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox15.AutoSize = true;
-            this.checkBox15.Font = new System.Drawing.Font("AR JULIAN", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox15.Location = new System.Drawing.Point(448, 94);
             this.checkBox15.Name = "checkBox15";
             this.checkBox15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox15.Size = new System.Drawing.Size(94, 21);
+            this.checkBox15.Size = new System.Drawing.Size(84, 21);
             this.checkBox15.TabIndex = 15;
             this.checkBox15.Text = "Portcullis";
             this.checkBox15.UseVisualStyleBackColor = true;
@@ -562,7 +563,7 @@
             // 
             this.checkBox18.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox18.AutoSize = true;
-            this.checkBox18.Font = new System.Drawing.Font("AR JULIAN", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox18.Location = new System.Drawing.Point(454, 60);
             this.checkBox18.Name = "checkBox18";
             this.checkBox18.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -597,11 +598,11 @@
             // 
             this.checkBox9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox9.AutoSize = true;
-            this.checkBox9.Font = new System.Drawing.Font("AR JULIAN", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox9.Location = new System.Drawing.Point(444, 26);
             this.checkBox9.Name = "checkBox9";
             this.checkBox9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox9.Size = new System.Drawing.Size(98, 21);
+            this.checkBox9.Size = new System.Drawing.Size(90, 21);
             this.checkBox9.TabIndex = 9;
             this.checkBox9.Text = "Rock Wall";
             this.checkBox9.UseVisualStyleBackColor = true;
@@ -632,11 +633,11 @@
             // 
             this.checkBox12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox12.AutoSize = true;
-            this.checkBox12.Font = new System.Drawing.Font("AR JULIAN", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox12.Location = new System.Drawing.Point(53, 94);
             this.checkBox12.Name = "checkBox12";
             this.checkBox12.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox12.Size = new System.Drawing.Size(103, 21);
+            this.checkBox12.Size = new System.Drawing.Size(99, 21);
             this.checkBox12.TabIndex = 6;
             this.checkBox12.Text = "Drawbridge";
             this.checkBox12.UseVisualStyleBackColor = true;
@@ -667,11 +668,11 @@
             // 
             this.checkBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Font = new System.Drawing.Font("AR JULIAN", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox6.Location = new System.Drawing.Point(34, 60);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox6.Size = new System.Drawing.Size(122, 21);
+            this.checkBox6.Size = new System.Drawing.Size(119, 21);
             this.checkBox6.TabIndex = 3;
             this.checkBox6.Text = "Rough Terrain";
             this.checkBox6.UseVisualStyleBackColor = true;
@@ -702,12 +703,12 @@
             // 
             this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("AR JULIAN", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.Location = new System.Drawing.Point(27, 26);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.checkBox1.Size = new System.Drawing.Size(129, 21);
+            this.checkBox1.Size = new System.Drawing.Size(125, 21);
             this.checkBox1.TabIndex = 0;
             this.checkBox1.Text = "Cheval de Frise";
             this.checkBox1.UseVisualStyleBackColor = true;
