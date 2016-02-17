@@ -424,7 +424,7 @@
             this.checkBox21.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox21.AutoSize = true;
             this.checkBox21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox21.Location = new System.Drawing.Point(289, 94);
+            this.checkBox21.Location = new System.Drawing.Point(291, 94);
             this.checkBox21.Name = "checkBox21";
             this.checkBox21.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox21.Size = new System.Drawing.Size(58, 21);
@@ -459,7 +459,7 @@
             this.checkBox24.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox24.AutoSize = true;
             this.checkBox24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox24.Location = new System.Drawing.Point(264, 60);
+            this.checkBox24.Location = new System.Drawing.Point(271, 60);
             this.checkBox24.Name = "checkBox24";
             this.checkBox24.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox24.Size = new System.Drawing.Size(78, 21);
@@ -494,7 +494,7 @@
             this.checkBox27.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox27.AutoSize = true;
             this.checkBox27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox27.Location = new System.Drawing.Point(245, 26);
+            this.checkBox27.Location = new System.Drawing.Point(254, 26);
             this.checkBox27.Name = "checkBox27";
             this.checkBox27.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox27.Size = new System.Drawing.Size(95, 21);
@@ -529,7 +529,7 @@
             this.checkBox15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox15.AutoSize = true;
             this.checkBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox15.Location = new System.Drawing.Point(448, 94);
+            this.checkBox15.Location = new System.Drawing.Point(458, 94);
             this.checkBox15.Name = "checkBox15";
             this.checkBox15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox15.Size = new System.Drawing.Size(84, 21);
@@ -599,7 +599,7 @@
             this.checkBox9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox9.AutoSize = true;
             this.checkBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox9.Location = new System.Drawing.Point(444, 26);
+            this.checkBox9.Location = new System.Drawing.Point(452, 26);
             this.checkBox9.Name = "checkBox9";
             this.checkBox9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox9.Size = new System.Drawing.Size(90, 21);
@@ -634,7 +634,7 @@
             this.checkBox12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox12.AutoSize = true;
             this.checkBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox12.Location = new System.Drawing.Point(53, 94);
+            this.checkBox12.Location = new System.Drawing.Point(57, 94);
             this.checkBox12.Name = "checkBox12";
             this.checkBox12.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox12.Size = new System.Drawing.Size(99, 21);
@@ -669,7 +669,7 @@
             this.checkBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox6.AutoSize = true;
             this.checkBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox6.Location = new System.Drawing.Point(34, 60);
+            this.checkBox6.Location = new System.Drawing.Point(37, 60);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.checkBox6.Size = new System.Drawing.Size(119, 21);
@@ -704,7 +704,7 @@
             this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(27, 26);
+            this.checkBox1.Location = new System.Drawing.Point(31, 26);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
