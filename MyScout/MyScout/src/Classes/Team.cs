@@ -14,11 +14,11 @@ namespace MyScout
         /// <summary>
         /// The name of the team (E.G. "Channel Cats").
         /// </summary>
-        public string name = "All your base are belong to us"; //Sponsored by Greg™ incorporated
+        public string name = "NO NAME LOADED"; //Helpfulness Improved
         /// <summary>
         /// The id of the team (E.G. "1094").
         /// </summary>
-        public int id = 1094;
+        public int id = 0000; //Helpfulness Improved
         /// <summary>
         /// The team's current score.
         /// </summary>
