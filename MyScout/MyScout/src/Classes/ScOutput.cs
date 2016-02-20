@@ -20,7 +20,6 @@ namespace MyScout
             if (Directory.Exists(folderpath))
             {
                 Directory.CreateDirectory(folderpath);
-                File.Delete(filepath);
             }
             else Directory.CreateDirectory(folderpath);
 
@@ -69,7 +68,6 @@ namespace MyScout
                 worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore);
                 for (int j = 0; j < 8; j++)
                 {
-                    team.defensesCrossable[i] = true;
                     if (team.defensesCrossable[j])
                         worksheet.Cells[i, (j + 6)] = new Cell(" " + ((char)0x221A).ToString());
                 }
@@ -77,6 +75,13 @@ namespace MyScout
 
             workbook.Worksheets.Add(worksheet);
             workbook.Save(filepath);
+        }
+        
+        public static string GetFilePath(Event e)
+        {
+            string filepath = Path.Combine(Environment.GetFolderPath(
+    Environment.SpecialFolder.MyDoc‌​uments), "MyScout 2016", ("Scouting Report " + e.name + ".xls"));
+            return filepath;
         }
     }
 }

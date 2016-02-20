@@ -704,5 +704,19 @@ namespace MyScout
             RefreshTeamPnl();
             RefreshControls();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SaveAllEvents();
+
+            string filePath = ScOutput.GetFilePath(Program.events[Program.currentevent]);
+            if (!File.Exists(filePath))
+            {
+                return;
+            }
+            string argument = @"/select, " + filePath;
+
+            System.Diagnostics.Process.Start("explorer.exe", argument);
+        }
     }
 }
