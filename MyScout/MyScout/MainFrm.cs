@@ -226,7 +226,22 @@ namespace MyScout
                     List<object> tokens = new List<object>();
                     tokens.Add(team.id);
                     tokens.Add(team.name);
-                    tokens.Add(team.score);
+                    tokens.Add(team.totalScore);
+                    tokens.Add(team.teleDefensesCrossedCount);
+                    tokens.Add(team.teleHighGoals);
+                    tokens.Add(team.teleLowGoals);
+                    tokens.Add(team.towerScaledCount);
+                    for (int i = 0; i < 8; i++)
+                        tokens.Add(team.defensesCrossable[i]);
+                    tokens.Add(team.crossingPowerScore);
+                    tokens.Add(team.autoDefensesCrossed);
+                    tokens.Add(team.autoDefensesReached);
+                    tokens.Add(team.autoHighGoals);
+                    tokens.Add(team.autoLowGoals);
+                    tokens.Add(team.deathCount);
+                    for (int i = 0; i < 8; i++)
+                        tokens.Add(team.deathDefenses[i]);
+
                     writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
                     writer.WriteEndElement();
                 }
@@ -300,8 +315,21 @@ namespace MyScout
                         {
                             reader.ReadStartElement("Team");
                             List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
-                            Team team = new Team(Convert.ToInt32(tokens[0]),tokens[1].ToString());
-                            team.score = Convert.ToInt32(tokens[2]);
+                            Team team = new Team(Convert.ToInt16(tokens[0]),tokens[1].ToString());
+                            team.totalScore = Convert.ToInt16(tokens[2]);
+                        team.teleDefensesCrossedCount = Convert.ToInt16(tokens[3]);
+                        team.teleHighGoals = Convert.ToInt16(tokens[4]);
+                        team.teleLowGoals = Convert.ToInt16(tokens[5]);
+                        team.towerScaledCount = Convert.ToInt16(tokens[6]);
+                        for (int j = 0; j < 8; j++)
+                            team.defensesCrossable[j] = Convert.ToBoolean(tokens[j+7]);
+                        team.crossingPowerScore = Convert.ToInt16(tokens[16]);
+                        team.autoDefensesCrossed = Convert.ToInt16(tokens[17]);
+                        team.autoHighGoals = Convert.ToInt16(tokens[18]);
+                        team.autoLowGoals = Convert.ToInt16(tokens[19]);
+                        team.deathCount = Convert.ToInt16(tokens[20]);
+                        for (int j = 0; j < 8; j++)
+                            team.deathDefenses[j] = Convert.ToInt16(tokens[j + 21]);
 
                             Program.events[Program.events.Count - 1].teams.Add(team);
                             reader.ReadEndElement();

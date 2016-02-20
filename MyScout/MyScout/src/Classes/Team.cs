@@ -51,8 +51,18 @@ namespace MyScout
         /// </summary>
         public int crossingPowerScore = 0;
 
+        public int autoDefensesCrossed = 0;
+        public int autoDefensesReached = 0;
+        public int autoHighGoals = 0;
+        public int autoLowGoals = 0;
+
         /// <summary>
-        /// A list of defenses this team has interacted with in auto mode.
+        /// Total amount of times the robot stopped working at any moment on the field
+        /// </summary>
+        public int deathCount = 0;
+
+        /// <summary>
+        /// A list of defenses with the amount of times it failed on each.
         /// Each index references a different defense:
         /// [0]: Portcullis
         /// [1]: Cheval de Frise
@@ -64,14 +74,7 @@ namespace MyScout
         /// [7]: Rough Terrain
         /// [8]: Low Bar
         /// </summary>
-        public int autoDefensesCrossed = 0;
-        public int autoHighGoals = 0;
-        public int autoLowGoals = 0;
-
-        /// <summary>
-        /// Total amount of times the robot stopped working at any moment on the field
-        /// </summary>
-        public int deathCount = 0;
+        public int[] deathDefenses = new int[9];
 
         public Team(int id, string name) { this.id = id; this.name = name; }
     }
