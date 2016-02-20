@@ -62,7 +62,7 @@ namespace MyScout
                 Team team = teamList[i - 1];
                 worksheet.Cells[i, 0] = new Cell(team.id);
                 worksheet.Cells[i, 1] = new Cell(team.name);
-                worksheet.Cells[i, 2] = new Cell(team.totalScore);
+                worksheet.Cells[i, 2] = new Cell(team.avgScore);
                 worksheet.Cells[i, 3] = new Cell(team.teleHighGoals);
                 worksheet.Cells[i, 4] = new Cell(team.teleLowGoals);
                 worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore);
