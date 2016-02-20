@@ -16,6 +16,7 @@ namespace MyScout
     public partial class MainFrm : Form
     {
         string versionstring = "2.0";
+        Panel[] defensepnls;
 
         #region Not pointless secrets™
         /// <summary>
@@ -43,7 +44,8 @@ namespace MyScout
         public MainFrm()
         {
             InitializeComponent();
-            DefenseCBx.SelectedIndex = 0;
+            //DefenseCBx.SelectedIndex = 0;
+            defensepnls = new Panel[9] { panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9 };
 
             if (!Directory.Exists(Application.StartupPath+"\\Events"))
             {
@@ -126,18 +128,30 @@ namespace MyScout
             if (Program.selectedteam != -1)
             {
                 TeamNameLbl.Text = $"{Program.events[Program.currentevent].teams[Program.selectedteam].name} - {Program.events[Program.currentevent].teams[Program.selectedteam].id.ToString()}";
-                TimesCrossed.Text = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].timescrossed.ToString();
-                ReachedRB.Checked = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].reached;
-                DidNothingRB.Checked = !ReachedRB.Checked;
+
+                foreach (Panel pnl in defensepnls)
+                {
+                    //TODO: Get "Times Crossed" to be a thing again
+                    //TimesCrossed.Text = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].timescrossed.ToString();;
+                    (pnl.Controls[3] as RadioButton).Checked = false;
+                    (pnl.Controls[2] as RadioButton).Checked = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, pnl)].reached;
+                    //MessageBox.Show(Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, pnl)].reached.ToString());
+                    (pnl.Controls[1] as RadioButton).Checked = !(pnl.Controls[2] as RadioButton).Checked;
+                }
 
                 RefreshDefenseCrossedBtns();
             }
             else
             {
                 TeamNameLbl.Text = "No Team Selected";
-                TimesCrossed.Text = "0";
-                ReachedRB.Checked = false;
-                DidNothingRB.Checked = true;
+
+                foreach (Panel pnl in defensepnls)
+                {
+                    //TODO: Get "Times Crossed" to be a thing again
+                    //TimesCrossed.Text = "0";
+                    (pnl.Controls[2] as RadioButton).Checked = (pnl.Controls[3] as RadioButton).Checked = false;
+                    (pnl.Controls[1] as RadioButton).Checked = true;
+                }
 
                 RefreshDefenseCrossedBtns();
             }
@@ -150,8 +164,9 @@ namespace MyScout
         /// </summary>
         private void RefreshDefenseCrossedBtns()
         {
-            button4.Enabled = (ReachedRB.Checked && Convert.ToInt32(TimesCrossed.Text) < 2);
-            button3.Enabled = (ReachedRB.Checked && Convert.ToInt32(TimesCrossed.Text) > 0);
+            //TODO: Remove this or whatever when I maybe feel like it or something idk
+            //button4.Enabled = (ReachedRB.Checked && Convert.ToInt32(TimesCrossed.Text) < 2);
+            //button3.Enabled = (ReachedRB.Checked && Convert.ToInt32(TimesCrossed.Text) > 0);
         }
 
         /// <summary>
@@ -371,7 +386,7 @@ namespace MyScout
                     }
                     btn.FlatAppearance.BorderSize = 1;
                     MainPnl.Enabled = true;
-                    DefenseCBx.SelectedIndex = 0;
+                    //DefenseCBx.SelectedIndex = 0;
 
                     RefreshTeamPnl();
                 }
@@ -393,7 +408,7 @@ namespace MyScout
                     }
 
                     btn.FlatAppearance.BorderSize = 1;
-                    DefenseCBx.SelectedIndex = 0;
+                    //DefenseCBx.SelectedIndex = 0;
                     MainPnl.Enabled = true;
                     RefreshTeamPnl();
                 }
@@ -412,7 +427,7 @@ namespace MyScout
                         }
                     }
 
-                    DefenseCBx.SelectedIndex = 0;
+                    //DefenseCBx.SelectedIndex = 0;
                     MainPnl.Enabled = false;
                     RefreshTeamPnl();
                 }
@@ -504,7 +519,7 @@ namespace MyScout
                     }
                 }
 
-                DefenseCBx.SelectedIndex = 0;
+                //DefenseCBx.SelectedIndex = 0;
                 MainPnl.Enabled = false;
                 RefreshTeamPnl();
 
@@ -551,17 +566,6 @@ namespace MyScout
                     }
                 }
             }
-            else
-            {
-                if (keyData == (Keys.Control | Keys.W))
-                {
-                    button1.PerformClick();
-                }
-                else if (keyData == (Keys.Control | Keys.S))
-                {
-                    button2.PerformClick();
-                }
-            }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -577,36 +581,33 @@ namespace MyScout
             TScaledTowerChkbx.Enabled = TChallengedTowerChkbx.Enabled = TeleOpRB.Checked;
         }
 
-        private void ReachedRB_CheckedChanged(object sender, EventArgs e)
+        private void DefenseRB_CheckedChanged(object sender, EventArgs e)
         {
             if (Program.selectedteam != -1 && Program.selectedteamroundindex != 1)
             {
-                //Set a whole lotta' things to the value of "ReachedRB.Checked."
-                Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].reached
-                = TimesCrossedLbl.Enabled = TimesCrossed.Enabled = button4.Enabled = ReachedRB.Checked;
+                RadioButton rb = sender as RadioButton;
+                Panel containingpnl = (rb != null && rb.Parent != null) ? rb.Parent as Panel : null;
 
-                RefreshDefenseCrossedBtns();
+                if (containingpnl != null && defensepnls.Contains(containingpnl))
+                {
+                    //TODO: Get "Times Crossed" to be a thing again
+                    //Set a whole lotta' things
+                    Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls,containingpnl)].reached
+                    /*= TimesCrossedLbl.Enabled = TimesCrossed.Enabled = button4.Enabled*/ = (containingpnl.Controls[2] as RadioButton).Checked;
+
+                    RefreshDefenseCrossedBtns();
+                }
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (DefenseCBx.SelectedIndex > 0) { DefenseCBx.SelectedIndex--; }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (DefenseCBx.SelectedIndex < DefenseCBx.Items.Count-1) { DefenseCBx.SelectedIndex++; }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(TimesCrossed.Text) < 2)
-            {
-                TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) + 1).ToString();
-                Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
+            //if (Convert.ToInt32(TimesCrossed.Text) < 2)
+            //{
+                //TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) + 1).ToString();
+                //Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
                 RefreshDefenseCrossedBtns();
-            }
+            //}
         }
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
@@ -619,12 +620,13 @@ namespace MyScout
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(TimesCrossed.Text) > 0)
-            {
-                TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) - 1).ToString();
-                Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
+            //TODO: Get "Times Crossed" to be a thing again
+            //if (Convert.ToInt32(TimesCrossed.Text) > 0)
+            //{
+                //TimesCrossed.Text = (Convert.ToInt32(TimesCrossed.Text) - 1).ToString();
+                //Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].timescrossed = Convert.ToInt32(TimesCrossed.Text);
                 RefreshDefenseCrossedBtns();
-            }
+            //}
         }
 
         //TODO: Re-enable scaling
@@ -672,11 +674,6 @@ namespace MyScout
             }
             RefreshTeamPnl();
             RefreshControls();
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }
