@@ -13,9 +13,9 @@ namespace MyScout
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static String CreateTokenizedString(List<object> input)
+        public static string CreateTokenizedString(List<object> input)
         {
-            String output = "";
+            string output = "";
 
             foreach (object o in input)
             {
@@ -30,17 +30,17 @@ namespace MyScout
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static List<object> ReadTokenizedString(String input)
+        public static List<object> ReadTokenizedString(string input)
         {
             List<object> output = new List<object>();
-            String[] tokenArray = input.Split(':');
+            string[] tokenArray = input.Split(':');
             int parsedNum;
-            Boolean parsedBool;
+            bool parsedBool;
 
-            foreach (String s in tokenArray)
+            foreach (string s in tokenArray)
             {
                 var isNum = int.TryParse(s, out parsedNum);
-                var isBool = Boolean.TryParse(s, out parsedBool);
+                var isBool = bool.TryParse(s, out parsedBool);
 
                 if (isNum)
                     output.Add(parsedNum);
