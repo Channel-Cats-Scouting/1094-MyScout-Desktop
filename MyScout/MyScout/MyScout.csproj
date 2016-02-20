@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Classes\ScOutput.cs" />
     <Compile Include="src\Classes\Defense.cs" />
     <Compile Include="src\Classes\Event.cs" />
     <Compile Include="src\Classes\Round.cs" />

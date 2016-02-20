@@ -287,6 +287,7 @@ namespace MyScout
                 }
                 writer.WriteEndElement();
                 writer.WriteEndElement();
+                ScOutput.CreateTeamSpreadsheet(Program.events[eventid].teams, Program.events[eventid]);
             }
         }
 
