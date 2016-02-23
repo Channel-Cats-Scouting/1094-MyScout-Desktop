@@ -28,7 +28,14 @@ namespace MyScout
         /// The current team that's been selected.
         /// </summary>
         public static int selectedteam = -1;
-        //TODO: Un-comment this ^ and make a get-set event for it.
+        /// <summary>
+        /// The path the program was started from.
+        /// </summary>
+        public static string startuppath;
+        /// <summary>
+        /// A publicly-accessable instance of the main form.
+        /// </summary>
+        public static MainFrm mainfrm;
 
         /// <summary>
         /// The main entry point for the application.
@@ -36,9 +43,11 @@ namespace MyScout
         [STAThread]
         static void Main()
         {
+            startuppath = Application.StartupPath;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainFrm());
+            mainfrm = new MainFrm();
+            Application.Run(mainfrm);
         }
     }
 }

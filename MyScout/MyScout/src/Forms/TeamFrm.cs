@@ -82,9 +82,12 @@ namespace MyScout
         /// </summary>
         private void TeamList_DoubleClick(object sender, EventArgs e)
         {
-            Program.selectedteam = (string.IsNullOrEmpty(textBox1.Text))?TeamList.SelectedIndices[0]:(int)TeamList.SelectedItems[0].Tag;
-            DialogResult = DialogResult.OK;
-            Close();
+            if (TeamList.SelectedItems.Count > 0)
+            {
+                Program.selectedteam = (string.IsNullOrEmpty(textBox1.Text)) ? TeamList.SelectedIndices[0] : (int)TeamList.SelectedItems[0].Tag;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
         }
 
         /// <summary>
