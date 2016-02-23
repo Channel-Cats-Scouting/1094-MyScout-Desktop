@@ -383,7 +383,6 @@
             this.TGroupBx.TabIndex = 5;
             this.TGroupBx.TabStop = false;
             this.TGroupBx.Text = "                                                 ";
-            this.TGroupBx.SizeChanged += new System.EventHandler(this.TGroupBx_SizeChanged);
             // 
             // groupBox1
             // 
@@ -1350,7 +1349,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyScout 2016";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
-            this.ResizeEnd += new System.EventHandler(this.MainFrm_ResizeEnd);
             this.EventPnl.ResumeLayout(false);
             this.HeaderPnl.ResumeLayout(false);
             this.EventBtnPnl.ResumeLayout(false);
