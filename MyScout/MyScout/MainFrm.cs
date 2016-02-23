@@ -101,10 +101,10 @@ namespace MyScout
             {
                 for (int index = 0; index < AllianceBtnPnl.Controls.Count; index++)
                 {
-                    if (AllianceBtnPnl.Controls[index].Name != "BackBtn")
+                    if (AllianceBtnPnl.Controls[index].Name != "BackBtn" && AllianceBtnPnl.Controls[index].Name != "button1")
                     {
                         Button btn = AllianceBtnPnl.Controls[index] as Button;
-                        int i = index - 1;
+                        int i = index - 2;
 
                         btn.FlatAppearance.BorderSize = 0;
                         btn.Tag = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1)? null : (object)Program.events[Program.currentevent].rounds[Program.currentround].teams[i];
@@ -337,22 +337,10 @@ namespace MyScout
                 Program.selectedteam = Program.selectedteamroundindex = -1;
                 Program.currentround = Program.events[EventList.SelectedIndices[0]].rounds.Count - 1;
 
-                foreach (Control control in AllianceBtnPnl.Controls)
-                {
-                    //If the control is a button...
-                    if (control.GetType() == typeof(Button))
-                    {
-                        Button button = control as Button;
-                        button.Tag = null; button.Text = "----";
-                        button.FlatAppearance.BorderSize = 0;
-                    }
-                }
-
-                //DefenseCBx.SelectedIndex = 0;
                 MainPnl.Enabled = false;
                 RefreshTeamPnl();
-
                 TeamPnl.Visible = true;
+
                 Text = Program.events[EventList.SelectedIndices[0]].name + " - MyScout 2016";
                 Program.currentevent = EventList.SelectedIndices[0];
                 RefreshControls();
