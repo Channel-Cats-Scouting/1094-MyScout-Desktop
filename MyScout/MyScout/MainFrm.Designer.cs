@@ -42,6 +42,7 @@
             this.AddEventBtn = new System.Windows.Forms.Button();
             this.TeamPnl = new System.Windows.Forms.Panel();
             this.TeamNamePnl = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -120,7 +121,6 @@
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn2 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -152,7 +152,7 @@
             this.ChooseAnEventLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.ChooseAnEventLbl.Location = new System.Drawing.Point(0, 0);
             this.ChooseAnEventLbl.Name = "ChooseAnEventLbl";
-            this.ChooseAnEventLbl.Size = new System.Drawing.Size(908, 69);
+            this.ChooseAnEventLbl.Size = new System.Drawing.Size(1093, 69);
             this.ChooseAnEventLbl.TabIndex = 0;
             this.ChooseAnEventLbl.Text = "Choose an Event to Begin";
             this.ChooseAnEventLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -165,7 +165,7 @@
             this.EventPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.EventPnl.Location = new System.Drawing.Point(0, 0);
             this.EventPnl.Name = "EventPnl";
-            this.EventPnl.Size = new System.Drawing.Size(908, 482);
+            this.EventPnl.Size = new System.Drawing.Size(1093, 594);
             this.EventPnl.TabIndex = 1;
             // 
             // EventList
@@ -179,7 +179,7 @@
             this.EventList.Location = new System.Drawing.Point(0, 69);
             this.EventList.MultiSelect = false;
             this.EventList.Name = "EventList";
-            this.EventList.Size = new System.Drawing.Size(908, 360);
+            this.EventList.Size = new System.Drawing.Size(1093, 472);
             this.EventList.TabIndex = 2;
             this.EventList.UseCompatibleStateImageBehavior = false;
             this.EventList.View = System.Windows.Forms.View.Details;
@@ -206,7 +206,7 @@
             this.HeaderPnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.HeaderPnl.Location = new System.Drawing.Point(0, 0);
             this.HeaderPnl.Name = "HeaderPnl";
-            this.HeaderPnl.Size = new System.Drawing.Size(908, 69);
+            this.HeaderPnl.Size = new System.Drawing.Size(1093, 69);
             this.HeaderPnl.TabIndex = 3;
             // 
             // EventBtnPnl
@@ -215,9 +215,9 @@
             this.EventBtnPnl.Controls.Add(this.EditEventBtn);
             this.EventBtnPnl.Controls.Add(this.AddEventBtn);
             this.EventBtnPnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.EventBtnPnl.Location = new System.Drawing.Point(0, 429);
+            this.EventBtnPnl.Location = new System.Drawing.Point(0, 541);
             this.EventBtnPnl.Name = "EventBtnPnl";
-            this.EventBtnPnl.Size = new System.Drawing.Size(908, 53);
+            this.EventBtnPnl.Size = new System.Drawing.Size(1093, 53);
             this.EventBtnPnl.TabIndex = 1;
             // 
             // RemoveEventBtn
@@ -241,7 +241,7 @@
             this.EditEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.EditEventBtn.Location = new System.Drawing.Point(243, 0);
             this.EditEventBtn.Name = "EditEventBtn";
-            this.EditEventBtn.Size = new System.Drawing.Size(422, 53);
+            this.EditEventBtn.Size = new System.Drawing.Size(607, 53);
             this.EditEventBtn.TabIndex = 1;
             this.EditEventBtn.Text = "&Edit Event";
             this.EditEventBtn.UseVisualStyleBackColor = true;
@@ -252,7 +252,7 @@
             this.AddEventBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddEventBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.AddEventBtn.Location = new System.Drawing.Point(671, 0);
+            this.AddEventBtn.Location = new System.Drawing.Point(856, 0);
             this.AddEventBtn.Name = "AddEventBtn";
             this.AddEventBtn.Size = new System.Drawing.Size(234, 53);
             this.AddEventBtn.TabIndex = 0;
@@ -268,7 +268,7 @@
             this.TeamPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TeamPnl.Location = new System.Drawing.Point(0, 0);
             this.TeamPnl.Name = "TeamPnl";
-            this.TeamPnl.Size = new System.Drawing.Size(908, 482);
+            this.TeamPnl.Size = new System.Drawing.Size(1093, 594);
             this.TeamPnl.TabIndex = 4;
             this.TeamPnl.Visible = false;
             // 
@@ -284,15 +284,26 @@
             this.TeamNamePnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.TeamNamePnl.Location = new System.Drawing.Point(155, 0);
             this.TeamNamePnl.Name = "TeamNamePnl";
-            this.TeamNamePnl.Size = new System.Drawing.Size(753, 90);
+            this.TeamNamePnl.Size = new System.Drawing.Size(938, 90);
             this.TeamNamePnl.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(600, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(145, 71);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Open Report Folder";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button6
             // 
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button6.Cursor = System.Windows.Forms.Cursors.Default;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button6.Location = new System.Drawing.Point(274, 59);
+            this.button6.Location = new System.Drawing.Point(367, 59);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(25, 23);
             this.button6.TabIndex = 3;
@@ -304,7 +315,7 @@
             // 
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button5.Location = new System.Drawing.Point(448, 59);
+            this.button5.Location = new System.Drawing.Point(541, 59);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(25, 23);
             this.button5.TabIndex = 2;
@@ -317,7 +328,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(274, 61);
+            this.label1.Location = new System.Drawing.Point(367, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(198, 23);
             this.label1.TabIndex = 1;
@@ -329,7 +340,7 @@
             this.TeamNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.TeamNameLbl.Font = new System.Drawing.Font("Segoe UI", 22F);
             this.TeamNameLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.TeamNameLbl.Location = new System.Drawing.Point(62, 0);
+            this.TeamNameLbl.Location = new System.Drawing.Point(155, 0);
             this.TeamNameLbl.Name = "TeamNameLbl";
             this.TeamNameLbl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.TeamNameLbl.Size = new System.Drawing.Size(624, 88);
@@ -345,9 +356,9 @@
             this.MainPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPnl.Enabled = false;
             this.MainPnl.Location = new System.Drawing.Point(155, 0);
-            this.MainPnl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MainPnl.Margin = new System.Windows.Forms.Padding(2);
             this.MainPnl.Name = "MainPnl";
-            this.MainPnl.Size = new System.Drawing.Size(753, 482);
+            this.MainPnl.Size = new System.Drawing.Size(938, 594);
             this.MainPnl.TabIndex = 14;
             // 
             // TGroupBx
@@ -368,7 +379,7 @@
             this.TGroupBx.Controls.Add(this.THighGoalNUD);
             this.TGroupBx.Location = new System.Drawing.Point(9, 96);
             this.TGroupBx.Name = "TGroupBx";
-            this.TGroupBx.Size = new System.Drawing.Size(425, 374);
+            this.TGroupBx.Size = new System.Drawing.Size(610, 486);
             this.TGroupBx.TabIndex = 5;
             this.TGroupBx.TabStop = false;
             this.TGroupBx.Text = "                                                 ";
@@ -388,7 +399,7 @@
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(-82, -26);
+            this.groupBox1.Location = new System.Drawing.Point(11, 30);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(589, 219);
             this.groupBox1.TabIndex = 34;
@@ -939,7 +950,7 @@
             this.radioButton9.AutoSize = true;
             this.radioButton9.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioButton9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton9.Location = new System.Drawing.Point(2, 39);
+            this.radioButton9.Location = new System.Drawing.Point(2, 38);
             this.radioButton9.Name = "radioButton9";
             this.radioButton9.Size = new System.Drawing.Size(89, 22);
             this.radioButton9.TabIndex = 9;
@@ -953,7 +964,7 @@
             this.radioButton8.AutoSize = true;
             this.radioButton8.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.radioButton8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton8.Location = new System.Drawing.Point(2, 57);
+            this.radioButton8.Location = new System.Drawing.Point(2, 56);
             this.radioButton8.Name = "radioButton8";
             this.radioButton8.Size = new System.Drawing.Size(84, 22);
             this.radioButton8.TabIndex = 10;
@@ -993,7 +1004,7 @@
             this.TCommentsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TCommentsLbl.AutoSize = true;
             this.TCommentsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TCommentsLbl.Location = new System.Drawing.Point(8, 217);
+            this.TCommentsLbl.Location = new System.Drawing.Point(8, 329);
             this.TCommentsLbl.Name = "TCommentsLbl";
             this.TCommentsLbl.Size = new System.Drawing.Size(153, 31);
             this.TCommentsLbl.TabIndex = 23;
@@ -1004,7 +1015,7 @@
             this.TLowGoalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TLowGoalLbl.AutoSize = true;
             this.TLowGoalLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.TLowGoalLbl.Location = new System.Drawing.Point(181, 141);
+            this.TLowGoalLbl.Location = new System.Drawing.Point(181, 253);
             this.TLowGoalLbl.Name = "TLowGoalLbl";
             this.TLowGoalLbl.Size = new System.Drawing.Size(128, 31);
             this.TLowGoalLbl.TabIndex = 19;
@@ -1015,7 +1026,7 @@
             // 
             this.TLowGoalNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TLowGoalNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.TLowGoalNUD.Location = new System.Drawing.Point(187, 175);
+            this.TLowGoalNUD.Location = new System.Drawing.Point(187, 287);
             this.TLowGoalNUD.Name = "TLowGoalNUD";
             this.TLowGoalNUD.Size = new System.Drawing.Size(122, 38);
             this.TLowGoalNUD.TabIndex = 18;
@@ -1027,7 +1038,7 @@
             this.TScaledTowerChkbx.Enabled = false;
             this.TScaledTowerChkbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.TScaledTowerChkbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TScaledTowerChkbx.Location = new System.Drawing.Point(380, 156);
+            this.TScaledTowerChkbx.Location = new System.Drawing.Point(380, 268);
             this.TScaledTowerChkbx.Name = "TScaledTowerChkbx";
             this.TScaledTowerChkbx.Size = new System.Drawing.Size(158, 30);
             this.TScaledTowerChkbx.TabIndex = 25;
@@ -1041,7 +1052,7 @@
             this.TChallengedTowerChkbx.Enabled = false;
             this.TChallengedTowerChkbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.TChallengedTowerChkbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(380, 186);
+            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(380, 298);
             this.TChallengedTowerChkbx.Name = "TChallengedTowerChkbx";
             this.TChallengedTowerChkbx.Size = new System.Drawing.Size(197, 30);
             this.TChallengedTowerChkbx.TabIndex = 24;
@@ -1052,7 +1063,7 @@
             // 
             this.TCommentsTxtbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TCommentsTxtbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TCommentsTxtbx.Location = new System.Drawing.Point(11, 259);
+            this.TCommentsTxtbx.Location = new System.Drawing.Point(11, 371);
             this.TCommentsTxtbx.Multiline = true;
             this.TCommentsTxtbx.Name = "TCommentsTxtbx";
             this.TCommentsTxtbx.Size = new System.Drawing.Size(581, 107);
@@ -1063,7 +1074,7 @@
             this.THighGoalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.THighGoalLbl.AutoSize = true;
             this.THighGoalLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.THighGoalLbl.Location = new System.Drawing.Point(8, 141);
+            this.THighGoalLbl.Location = new System.Drawing.Point(8, 253);
             this.THighGoalLbl.Name = "THighGoalLbl";
             this.THighGoalLbl.Size = new System.Drawing.Size(134, 31);
             this.THighGoalLbl.TabIndex = 21;
@@ -1073,7 +1084,7 @@
             // 
             this.THighGoalNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.THighGoalNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.THighGoalNUD.Location = new System.Drawing.Point(12, 175);
+            this.THighGoalNUD.Location = new System.Drawing.Point(12, 287);
             this.THighGoalNUD.Name = "THighGoalNUD";
             this.THighGoalNUD.Size = new System.Drawing.Size(122, 38);
             this.THighGoalNUD.TabIndex = 20;
@@ -1088,9 +1099,9 @@
             this.RDGroupBx.Controls.Add(this.RDCommentsLbl);
             this.RDGroupBx.Controls.Add(this.RDComments);
             this.RDGroupBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDGroupBx.Location = new System.Drawing.Point(601, 96);
+            this.RDGroupBx.Location = new System.Drawing.Point(786, 96);
             this.RDGroupBx.Name = "RDGroupBx";
-            this.RDGroupBx.Size = new System.Drawing.Size(145, 374);
+            this.RDGroupBx.Size = new System.Drawing.Size(145, 486);
             this.RDGroupBx.TabIndex = 6;
             this.RDGroupBx.TabStop = false;
             this.RDGroupBx.Text = "     ";
@@ -1164,7 +1175,7 @@
             this.RDComments.Location = new System.Drawing.Point(3, 108);
             this.RDComments.Multiline = true;
             this.RDComments.Name = "RDComments";
-            this.RDComments.Size = new System.Drawing.Size(138, 260);
+            this.RDComments.Size = new System.Drawing.Size(138, 372);
             this.RDComments.TabIndex = 23;
             // 
             // HPGroupBx
@@ -1173,9 +1184,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.HPGroupBx.Controls.Add(this.HPCommentsTxtbx);
             this.HPGroupBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HPGroupBx.Location = new System.Drawing.Point(438, 92);
+            this.HPGroupBx.Location = new System.Drawing.Point(623, 92);
             this.HPGroupBx.Name = "HPGroupBx";
-            this.HPGroupBx.Size = new System.Drawing.Size(160, 378);
+            this.HPGroupBx.Size = new System.Drawing.Size(160, 490);
             this.HPGroupBx.TabIndex = 7;
             this.HPGroupBx.TabStop = false;
             this.HPGroupBx.Text = "Human Player";
@@ -1188,7 +1199,7 @@
             this.HPCommentsTxtbx.Location = new System.Drawing.Point(13, 26);
             this.HPCommentsTxtbx.Multiline = true;
             this.HPCommentsTxtbx.Name = "HPCommentsTxtbx";
-            this.HPCommentsTxtbx.Size = new System.Drawing.Size(140, 346);
+            this.HPCommentsTxtbx.Size = new System.Drawing.Size(140, 458);
             this.HPCommentsTxtbx.TabIndex = 1;
             // 
             // AllianceBtnPnl
@@ -1203,7 +1214,7 @@
             this.AllianceBtnPnl.Dock = System.Windows.Forms.DockStyle.Left;
             this.AllianceBtnPnl.Location = new System.Drawing.Point(0, 0);
             this.AllianceBtnPnl.Name = "AllianceBtnPnl";
-            this.AllianceBtnPnl.Size = new System.Drawing.Size(155, 482);
+            this.AllianceBtnPnl.Size = new System.Drawing.Size(155, 594);
             this.AllianceBtnPnl.TabIndex = 2;
             // 
             // BackBtn
@@ -1229,7 +1240,7 @@
             this.RedAllianceBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RedAllianceBtn1.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.RedAllianceBtn1.ForeColor = System.Drawing.Color.White;
-            this.RedAllianceBtn1.Location = new System.Drawing.Point(12, 64);
+            this.RedAllianceBtn1.Location = new System.Drawing.Point(12, 120);
             this.RedAllianceBtn1.Name = "RedAllianceBtn1";
             this.RedAllianceBtn1.Size = new System.Drawing.Size(128, 55);
             this.RedAllianceBtn1.TabIndex = 1;
@@ -1246,7 +1257,7 @@
             this.RedAllianceBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RedAllianceBtn2.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.RedAllianceBtn2.ForeColor = System.Drawing.Color.White;
-            this.RedAllianceBtn2.Location = new System.Drawing.Point(12, 132);
+            this.RedAllianceBtn2.Location = new System.Drawing.Point(12, 188);
             this.RedAllianceBtn2.Name = "RedAllianceBtn2";
             this.RedAllianceBtn2.Size = new System.Drawing.Size(128, 55);
             this.RedAllianceBtn2.TabIndex = 2;
@@ -1263,7 +1274,7 @@
             this.RedAllianceBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RedAllianceBtn3.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.RedAllianceBtn3.ForeColor = System.Drawing.Color.White;
-            this.RedAllianceBtn3.Location = new System.Drawing.Point(12, 200);
+            this.RedAllianceBtn3.Location = new System.Drawing.Point(12, 256);
             this.RedAllianceBtn3.Name = "RedAllianceBtn3";
             this.RedAllianceBtn3.Size = new System.Drawing.Size(128, 55);
             this.RedAllianceBtn3.TabIndex = 3;
@@ -1280,7 +1291,7 @@
             this.BlueAllianceBtn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BlueAllianceBtn1.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.BlueAllianceBtn1.ForeColor = System.Drawing.Color.White;
-            this.BlueAllianceBtn1.Location = new System.Drawing.Point(12, 268);
+            this.BlueAllianceBtn1.Location = new System.Drawing.Point(12, 324);
             this.BlueAllianceBtn1.Name = "BlueAllianceBtn1";
             this.BlueAllianceBtn1.Size = new System.Drawing.Size(128, 55);
             this.BlueAllianceBtn1.TabIndex = 4;
@@ -1297,7 +1308,7 @@
             this.BlueAllianceBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BlueAllianceBtn2.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.BlueAllianceBtn2.ForeColor = System.Drawing.Color.White;
-            this.BlueAllianceBtn2.Location = new System.Drawing.Point(12, 336);
+            this.BlueAllianceBtn2.Location = new System.Drawing.Point(12, 392);
             this.BlueAllianceBtn2.Name = "BlueAllianceBtn2";
             this.BlueAllianceBtn2.Size = new System.Drawing.Size(128, 55);
             this.BlueAllianceBtn2.TabIndex = 5;
@@ -1314,7 +1325,7 @@
             this.BlueAllianceBtn3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BlueAllianceBtn3.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.BlueAllianceBtn3.ForeColor = System.Drawing.Color.White;
-            this.BlueAllianceBtn3.Location = new System.Drawing.Point(12, 404);
+            this.BlueAllianceBtn3.Location = new System.Drawing.Point(12, 460);
             this.BlueAllianceBtn3.Name = "BlueAllianceBtn3";
             this.BlueAllianceBtn3.Size = new System.Drawing.Size(128, 55);
             this.BlueAllianceBtn3.TabIndex = 6;
@@ -1322,24 +1333,13 @@
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
             this.BlueAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(600, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(145, 71);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Open Report Folder";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainFrm
             // 
             this.AcceptButton = this.AddEventBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(908, 482);
+            this.ClientSize = new System.Drawing.Size(1093, 594);
             this.Controls.Add(this.TeamPnl);
             this.Controls.Add(this.EventPnl);
             this.Cursor = System.Windows.Forms.Cursors.Default;
