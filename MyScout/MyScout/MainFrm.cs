@@ -45,16 +45,6 @@ namespace MyScout
         {
             InitializeComponent();
             //DefenseCBx.SelectedIndex = 0;
-            defensepnls = new Panel[9] { panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9 };
-
-            if (!Directory.Exists(Application.StartupPath+"\\Events"))
-            {
-                Directory.CreateDirectory(Application.StartupPath+"\\Events");
-            }
-            else
-            {
-                new Thread(new ThreadStart(LoadAllEvents)).Start();
-            }
         }
 
         private void LoadAllEvents()
@@ -717,6 +707,20 @@ namespace MyScout
             string argument = @"/select, " + filePath;
 
             System.Diagnostics.Process.Start("explorer.exe", argument);
+        }
+
+        private void MainFrm_Load(object sender, EventArgs e)
+        {
+            defensepnls = new Panel[9] { panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9 };
+
+            if (!Directory.Exists(Application.StartupPath + "\\Events"))
+            {
+                Directory.CreateDirectory(Application.StartupPath + "\\Events");
+            }
+            else
+            {
+                new Thread(new ThreadStart(LoadAllEvents)).Start();
+            }
         }
     }
 }
