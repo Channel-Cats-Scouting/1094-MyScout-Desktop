@@ -9,6 +9,10 @@ namespace MyScout
     static class Program
     {
         /// <summary>
+        /// The current version of the application in string form.
+        /// </summary>
+        public static string versionstring = "2.0";
+        /// <summary>
         /// The list of events to be used by the application.
         /// </summary>
         public static List<Event> events = new List<Event>();

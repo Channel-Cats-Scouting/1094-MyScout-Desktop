@@ -15,10 +15,6 @@ namespace MyScout
     public partial class MainFrm : Form
     {
         /// <summary>
-        /// The current version of the application in string form.
-        /// </summary>
-        string versionstring = "2.0";
-        /// <summary>
         /// The panels that show all defense-related information on the GUI.
         /// </summary>
         Panel[] defensepnls;

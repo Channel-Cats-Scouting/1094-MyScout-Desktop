@@ -5,12 +5,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace MyScout
 {
     public static class IO
     {
+        #region Input-related functions
         /// <summary>
         /// Loads all events from the program's event folder.
         /// </summary>
@@ -25,6 +27,104 @@ namespace MyScout
             Program.mainfrm.Invoke(new Action(() => { Program.mainfrm.RefreshEventList(); }));
         }
 
+        /// <summary>
+        /// Loads the given event from an XML file.
+        /// </summary>
+        /// <param name="eventid">The ID of the XML file to load.</param>
+        public static void LoadEvent(int eventid)
+        {
+            try
+            {
+                if (File.Exists(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+                {
+                    using (XmlReader reader = XmlReader.Create(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+                    {
+                        reader.ReadStartElement("Event");
+
+                        if (reader.ReadElementString("Version") == Program.versionstring || (Convert.ToSingle(reader.ReadElementString("Version")) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+                        {
+                            Program.events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate")));
+
+                            reader.ReadStartElement("Teams");
+                            int count = Convert.ToInt32(reader.ReadElementString("Count"));
+
+                            //Load Team Info
+                            for (int i = 0; i < count; i++)
+                            {
+                                reader.ReadStartElement("Team");
+                                List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
+                                Team team = new Team(Convert.ToInt16(tokens[0]), tokens[1].ToString());
+                                team.avgScore = Convert.ToInt16(tokens[2]);
+                                team.teleDefensesCrossed = Convert.ToInt16(tokens[3]);
+                                team.teleHighGoals = Convert.ToInt16(tokens[4]);
+                                team.teleLowGoals = Convert.ToInt16(tokens[5]);
+                                team.towerScaledAvg = Convert.ToInt16(tokens[6]);
+                                for (int j = 0; j < 8; j++)
+                                    team.defensesCrossable[j] = Convert.ToBoolean(tokens[j + 7]);
+                                team.crossingPowerScore = Convert.ToInt16(tokens[16]);
+                                team.autoDefensesCrossed = Convert.ToInt16(tokens[17]);
+                                team.autoHighGoals = Convert.ToInt16(tokens[18]);
+                                team.autoLowGoals = Convert.ToInt16(tokens[19]);
+                                team.deathCount = Convert.ToInt16(tokens[20]);
+                                for (int j = 0; j < 8; j++)
+                                    team.deathDefenses[j] = Convert.ToInt16(tokens[j + 21]);
+
+                                Program.events[Program.events.Count - 1].teams.Add(team);
+                                reader.ReadEndElement();
+                            }
+
+                            reader.ReadEndElement();
+
+                            reader.ReadStartElement("Rounds");
+                            Program.currentround = Convert.ToInt32(reader.ReadElementString("Current"));
+                            Round.score[0] = Convert.ToInt32(reader.ReadElementString("AllianceScore1"));
+                            Round.score[1] = Convert.ToInt32(reader.ReadElementString("AllianceScore2"));
+
+                            count = Convert.ToInt32(reader.ReadElementString("Count"));
+                            for (int i = 0; i < count; i++)
+                            {
+                                reader.ReadStartElement("Round");
+                                Round round = new Round();
+
+                                reader.ReadStartElement("Teams"); //Load the teams for each round
+                                List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
+                                for (int i2 = 0; i2 < 6; i2++)
+                                {
+                                    round.teams[i2] = Convert.ToInt32(tokens[i2]);
+                                }
+                                reader.ReadEndElement();
+
+                                reader.ReadStartElement("Defenses");
+                                for (int i2 = 0; i2 < 6; i2++)
+                                {
+                                    List<object> reachedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("ReachedTokens"));
+                                    List<object> timesCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TimesCrossedTokens"));
+                                    for (int i3 = 0; i3 < 9; i3++)
+                                    {
+                                        round.defenses[i2, i3].reached = (bool)reachedTokens[i3];
+                                        round.defenses[i2, i3].timescrossed = (int)timesCrossedTokens[i3];
+                                    }
+                                }
+                                reader.ReadEndElement();
+
+                                Program.events[Program.events.Count - 1].rounds.Add(round);
+                                reader.ReadEndElement();
+                            }
+
+                            reader.ReadEndElement();
+                        }
+                        reader.ReadEndElement();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        #endregion
+
+        #region scOutput-related functions
         /// <summary>
         /// Saves all events in memory to the program's event folder.
         /// </summary>
@@ -43,192 +143,107 @@ namespace MyScout
         }
 
         /// <summary>
-        /// Loads the given event from an XML file.
-        /// </summary>
-        /// <param name="eventid">The ID of the XML file to load.</param>
-        public static void LoadEvent(int eventid)
-        {
-            if (File.Exists(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
-            {
-                using (XmlReader reader = XmlReader.Create(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
-                {
-                    //reader.ReadStartElement("FileInfo");
-                    //if (Convert.ToSingle(reader.ReadElementString("Version")) <= Convert.ToSingle(versionstring))
-                    //{
-                    //reader.ReadEndElement();
-                    reader.ReadStartElement("Event");
-                    Program.events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate")));
-
-
-                    reader.ReadStartElement("Teams");
-                    int count = Convert.ToInt32(reader.ReadElementString("Count"));
-
-                    for (int i = 0; i < count; i++)//Load Team Info
-                    {
-                        reader.ReadStartElement("Team");
-                        List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
-                        Team team = new Team(Convert.ToInt16(tokens[0]), tokens[1].ToString());
-                        team.avgScore = Convert.ToInt16(tokens[2]);
-                        team.teleDefensesCrossed = Convert.ToInt16(tokens[3]);
-                        team.teleHighGoals = Convert.ToInt16(tokens[4]);
-                        team.teleLowGoals = Convert.ToInt16(tokens[5]);
-                        team.towerScaledAvg = Convert.ToInt16(tokens[6]);
-                        for (int j = 0; j < 8; j++)
-                            team.defensesCrossable[j] = Convert.ToBoolean(tokens[j + 7]);
-                        team.crossingPowerScore = Convert.ToInt16(tokens[16]);
-                        team.autoDefensesCrossed = Convert.ToInt16(tokens[17]);
-                        team.autoHighGoals = Convert.ToInt16(tokens[18]);
-                        team.autoLowGoals = Convert.ToInt16(tokens[19]);
-                        team.deathCount = Convert.ToInt16(tokens[20]);
-                        for (int j = 0; j < 8; j++)
-                            team.deathDefenses[j] = Convert.ToInt16(tokens[j + 21]);
-
-                        Program.events[Program.events.Count - 1].teams.Add(team);
-                        reader.ReadEndElement();
-                    }
-
-                    reader.ReadEndElement();
-
-                    reader.ReadStartElement("Rounds");
-                    Program.currentround = Convert.ToInt32(reader.ReadElementString("Current"));
-                    Round.score[0] = Convert.ToInt32(reader.ReadElementString("AllianceScore1"));
-                    Round.score[1] = Convert.ToInt32(reader.ReadElementString("AllianceScore2"));
-
-                    count = Convert.ToInt32(reader.ReadElementString("Count"));
-                    for (int i = 0; i < count; i++)
-                    {
-                        reader.ReadStartElement("Round");
-                        Round round = new Round();
-
-                        reader.ReadStartElement("Teams"); //Load the teams for each round
-                        List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
-                        for (int i2 = 0; i2 < 6; i2++)
-                        {
-                            round.teams[i2] = Convert.ToInt32(tokens[i2]);
-                        }
-                        reader.ReadEndElement();
-
-                        reader.ReadStartElement("Defenses");
-                        for (int i2 = 0; i2 < 6; i2++)
-                        {
-                            List<object> reachedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("ReachedTokens"));
-                            List<object> timesCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TimesCrossedTokens"));
-                            for (int i3 = 0; i3 < 9; i3++)
-                            {
-                                round.defenses[i2, i3].reached = (bool)reachedTokens[i3];
-                                round.defenses[i2, i3].timescrossed = (int)timesCrossedTokens[i3];
-                                //MessageBox.Show($"{i2},{i3},{round.defenses[i2, i3].reached}");
-                            }
-                        }
-                        reader.ReadEndElement();
-
-                        Program.events[Program.events.Count - 1].rounds.Add(round);
-                        reader.ReadEndElement();
-                    }
-
-                    reader.ReadEndElement();
-                    reader.ReadEndElement();
-                    //}
-                }
-            }
-        }
-
-        /// <summary>
         /// Save the given event as an XML file.
         /// </summary>
         /// <param name="eventid">The event to save as an XML file.</param>
         public static void SaveEvent(int eventid)
         {
-            if (File.Exists(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+            try
             {
-                File.Delete(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml");
-            }
-
-            using (XmlTextWriter writer = new XmlTextWriter(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
-            {
-                writer.Formatting = Formatting.Indented;
-                writer.Indentation = 4;
-
-                writer.WriteStartDocument();
-                //writer.WriteStartElement("FileInfo");
-                //writer.WriteElementString("Version",versionstring);
-                //writer.WriteEndElement();
-                writer.WriteStartElement("Event");
-                writer.WriteElementString("Name", Program.events[eventid].name);
-                writer.WriteElementString("BeginDate", Program.events[eventid].begindate);
-                writer.WriteElementString("EndDate", Program.events[eventid].enddate);
-
-                writer.WriteStartElement("Teams");
-                writer.WriteElementString("Count", Program.events[eventid].teams.Count.ToString());
-
-                foreach (Team team in Program.events[eventid].teams)//Convert team information to a tokenized int string
+                if (File.Exists(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
                 {
-                    writer.WriteStartElement("Team");
-                    List<object> tokens = new List<object>();
-                    tokens.Add(team.id);
-                    tokens.Add(team.name);
-                    tokens.Add(team.avgScore);
-                    tokens.Add(team.teleDefensesCrossed);
-                    tokens.Add(team.teleHighGoals);
-                    tokens.Add(team.teleLowGoals);
-                    tokens.Add(team.towerScaledAvg);
-                    for (int i = 0; i < 8; i++)
-                        tokens.Add(team.defensesCrossable[i]);
-                    tokens.Add(team.crossingPowerScore);
-                    tokens.Add(team.autoDefensesCrossed);
-                    tokens.Add(team.autoDefensesReached);
-                    tokens.Add(team.autoHighGoals);
-                    tokens.Add(team.autoLowGoals);
-                    tokens.Add(team.deathCount);
-                    for (int i = 0; i < 8; i++)
-                        tokens.Add(team.deathDefenses[i]);
-
-                    writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
-                    writer.WriteEndElement();
+                    File.Delete(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml");
                 }
 
-                writer.WriteEndElement();
-
-                writer.WriteStartElement("Rounds");
-                writer.WriteElementString("Current", (eventid == Program.currentevent) ? Program.currentround.ToString() : (Program.events[eventid].rounds.Count - 1).ToString());
-                writer.WriteElementString("AllianceScore1", Round.score[0].ToString());
-                writer.WriteElementString("AllianceScore2", Round.score[1].ToString());
-
-                writer.WriteElementString("Count", Program.events[eventid].rounds.Count.ToString());
-                int debugTicker = 0;
-                foreach (Round round in Program.events[eventid].rounds)
+                using (XmlTextWriter writer = new XmlTextWriter(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
                 {
-                    debugTicker++;
+                    writer.Formatting = Formatting.Indented;
+                    writer.Indentation = 4;
 
-                    writer.WriteStartElement("Round");
+                    writer.WriteStartDocument();
+                    writer.WriteStartElement("Event");
+                    writer.WriteElementString("Version", Program.versionstring);
+                    writer.WriteElementString("Name", Program.events[eventid].name);
+                    writer.WriteElementString("BeginDate", Program.events[eventid].begindate);
+                    writer.WriteElementString("EndDate", Program.events[eventid].enddate);
+
                     writer.WriteStartElement("Teams");
-                    List<object> teams = new List<object>();//Save teams for each round
-                    for (int i = 0; i < 6; i++)
+                    writer.WriteElementString("Count", Program.events[eventid].teams.Count.ToString());
+
+                    //Convert team information to a tokenized int string
+                    foreach (Team team in Program.events[eventid].teams)
                     {
-                        teams.Add(round.teams[i]);
+                        writer.WriteStartElement("Team");
+                        List<object> tokens = new List<object>();
+                        tokens.Add(team.id);
+                        tokens.Add(team.name);
+                        tokens.Add(team.avgScore);
+                        tokens.Add(team.teleDefensesCrossed);
+                        tokens.Add(team.teleHighGoals);
+                        tokens.Add(team.teleLowGoals);
+                        tokens.Add(team.towerScaledAvg);
+                        for (int i = 0; i < 8; i++)
+                            tokens.Add(team.defensesCrossable[i]);
+                        tokens.Add(team.crossingPowerScore);
+                        tokens.Add(team.autoDefensesCrossed);
+                        tokens.Add(team.autoDefensesReached);
+                        tokens.Add(team.autoHighGoals);
+                        tokens.Add(team.autoLowGoals);
+                        tokens.Add(team.deathCount);
+                        for (int i = 0; i < 8; i++)
+                            tokens.Add(team.deathDefenses[i]);
+
+                        writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
+                        writer.WriteEndElement();
                     }
-                    writer.WriteElementString("TeamTokens", TokenizeStringHandler.CreateTokenizedString(teams));
+
                     writer.WriteEndElement();
 
-                    writer.WriteStartElement("Defenses");
-                    for (int i = 0; i < 6; i++)
+                    writer.WriteStartElement("Rounds");
+                    writer.WriteElementString("Current", (eventid == Program.currentevent) ? Program.currentround.ToString() : (Program.events[eventid].rounds.Count - 1).ToString());
+                    writer.WriteElementString("AllianceScore1", Round.score[0].ToString());
+                    writer.WriteElementString("AllianceScore2", Round.score[1].ToString());
+
+                    writer.WriteElementString("Count", Program.events[eventid].rounds.Count.ToString());
+                    int debugTicker = 0;
+                    foreach (Round round in Program.events[eventid].rounds)
                     {
-                        List<object> reachedTokens = new List<object>(); //Save defenses information per team
-                        List<object> crossedTokens = new List<object>();
-                        for (int i2 = 0; i2 < 9; i2++)
+                        debugTicker++;
+
+                        writer.WriteStartElement("Round");
+                        writer.WriteStartElement("Teams");
+                        List<object> teams = new List<object>();//Save teams for each round
+                        for (int i = 0; i < 6; i++)
                         {
-                            reachedTokens.Add(round.defenses[i, i2].reached);
-                            crossedTokens.Add(round.defenses[i, i2].timescrossed);
+                            teams.Add(round.teams[i]);
                         }
-                        writer.WriteElementString("ReachedTokens", TokenizeStringHandler.CreateTokenizedString(reachedTokens));
-                        writer.WriteElementString("TimesCrossedTokens", TokenizeStringHandler.CreateTokenizedString(crossedTokens));
+                        writer.WriteElementString("TeamTokens", TokenizeStringHandler.CreateTokenizedString(teams));
+                        writer.WriteEndElement();
+
+                        writer.WriteStartElement("Defenses");
+                        for (int i = 0; i < 6; i++)
+                        {
+                            List<object> reachedTokens = new List<object>(); //Save defenses information per team
+                            List<object> crossedTokens = new List<object>();
+                            for (int i2 = 0; i2 < 9; i2++)
+                            {
+                                reachedTokens.Add(round.defenses[i, i2].reached);
+                                crossedTokens.Add(round.defenses[i, i2].timescrossed);
+                            }
+                            writer.WriteElementString("ReachedTokens", TokenizeStringHandler.CreateTokenizedString(reachedTokens));
+                            writer.WriteElementString("TimesCrossedTokens", TokenizeStringHandler.CreateTokenizedString(crossedTokens));
+                        }
+                        writer.WriteEndElement();
+                        writer.WriteEndElement();
                     }
                     writer.WriteEndElement();
                     writer.WriteEndElement();
+                    CreateTeamSpreadsheet(Program.events[eventid].teams, Program.events[eventid]);
                 }
-                writer.WriteEndElement();
-                writer.WriteEndElement();
-                IO.CreateTeamSpreadsheet(Program.events[eventid].teams, Program.events[eventid]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Event #{eventid.ToString()} could not be saved. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -298,7 +313,8 @@ namespace MyScout
             workbook.Worksheets.Add(worksheet);
             //workbook.Save(filepath);
         }
-        
+        #endregion
+
         public static string GetFilePath(Event e)
         {
             string filepath = Path.Combine(Environment.GetFolderPath(

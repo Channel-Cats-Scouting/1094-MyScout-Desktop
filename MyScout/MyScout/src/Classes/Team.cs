@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MyScout
 {
@@ -11,14 +10,15 @@ namespace MyScout
     /// </summary>
     public class Team
     {
+        #region Variables
         /// <summary>
         /// The name of the team (E.G. "Channel Cats").
         /// </summary>
-        public string name = "NO NAME LOADED"; //Helpfulness improved at the cost of comedy :P
+        public string name = "NO NAME LOADED";
         /// <summary>
         /// The id of the team (E.G. "1094").
         /// </summary>
-        public int id = 0000; //Helpfulness Improved
+        public int id = 0000;
         /// <summary>
         /// The team's total score.
         /// </summary>
@@ -27,8 +27,17 @@ namespace MyScout
         /// The team's total count of defenses crossed.
         /// </summary>
         public float teleDefensesCrossed = 0;
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
         public float teleHighGoals = 0;
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
         public float teleLowGoals = 0;
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
         public float towerScaledAvg = 0;
 
         /// <summary>
@@ -78,7 +87,13 @@ namespace MyScout
         /// [8]: Low Bar
         /// </summary>
         public int[] deathDefenses = new int[9];
+        #endregion
 
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
         public Team(int id, string name) { this.id = id; this.name = name; }
 
         public void updateTeamScores()
@@ -118,24 +133,31 @@ namespace MyScout
             crossingPowerScore = 0;
             for(int i = 0; i < 8; i++)
             {
-                if(defensesCrossable[i])
+                if (defensesCrossable[i])
                 {
-                    if(i == 0)//portcullis
-                        crossingPowerScore += 5;
+                    switch (i)
+                    {
+                        case 0: //portcullis
+                        case 1: //cheval de frise
+                            crossingPowerScore += 5;
+                            break;
 
-                    else if(i == 1)//cheval de frise
-                        crossingPowerScore += 5;
+                        case 2: //moat
+                            crossingPowerScore += 3;
+                            break;
 
-                    else if(i == 2)//moat
-                        crossingPowerScore += 3;
+                        case 4: //drawbridge
+                            crossingPowerScore += 4;
+                            break;
 
-                    else if(i == 4)//drawbridge
-                        crossingPowerScore += 4;
+                        case 8: //low bar
+                            crossingPowerScore += 1;
+                            break;
 
-                    else if(i == 8)//low bar
-                        crossingPowerScore += 1;
-
-                    else crossingPowerScore += 2;
+                        default:
+                            crossingPowerScore += 2;
+                            break;
+                    }
                 }
             }
             return crossingPowerScore;
