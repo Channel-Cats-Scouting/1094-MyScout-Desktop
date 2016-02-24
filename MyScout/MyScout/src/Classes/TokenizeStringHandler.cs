@@ -17,9 +17,9 @@ namespace MyScout
         {
             string output = "";
 
-            foreach (object o in input)
+            for (int i = 0; i < input.Count; i++)
             {
-                output += (output.Length > 0 ? ":" : "") + o.ToString();
+                output += (output.Length > 0 ? ":" : "") + input[i].ToString();
             }
 
             return output;
@@ -33,20 +33,17 @@ namespace MyScout
         public static List<object> ReadTokenizedString(string input)
         {
             List<object> output = new List<object>();
-            string[] tokenArray = input.Split(':');
             int parsedNum;
             bool parsedBool;
 
-            foreach (string s in tokenArray)
+            foreach (string s in input.Split(':'))
             {
-                var isNum = int.TryParse(s, out parsedNum);
-                var isBool = bool.TryParse(s, out parsedBool);
-
-                if (isNum)
+                if (int.TryParse(s, out parsedNum))
                     output.Add(parsedNum);
-                else if (isBool)
+                else if (bool.TryParse(s, out parsedBool))
                     output.Add(parsedBool);
-                else output.Add(s.ToString());
+                else
+                    output.Add(s.ToString());
             }
 
             return output;

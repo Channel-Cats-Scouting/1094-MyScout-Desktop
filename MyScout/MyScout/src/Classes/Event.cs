@@ -32,6 +32,10 @@ namespace MyScout
         /// TODO: Documentation.
         /// </summary>
         public List<Round> rounds = new List<Round>() { new Round() };
+        /// <summary>
+        /// TODO: Documentation.
+        /// </summary>
+        public int lastviewedround = -1;
 
         public Event(string name, string begindate, string enddate) { this.name = name; this.begindate = begindate; this.enddate = enddate; }
     }

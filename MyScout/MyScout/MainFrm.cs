@@ -253,7 +253,9 @@ namespace MyScout
                 Program.events[Program.currentevent].rounds.Add(new Round());
                 Program.currentround = Program.events[Program.currentevent].rounds.Count - 1;
             }
+
             MainPnl.Enabled = false;
+            Program.events[Program.currentevent].lastviewedround = Program.currentround;
             RefreshControls();
         }
 
@@ -264,7 +266,9 @@ namespace MyScout
             {
                 Program.currentround--;
             }
+
             MainPnl.Enabled = false;
+            Program.events[Program.currentevent].lastviewedround = Program.currentround;
             RefreshControls();
         }
 
@@ -330,14 +334,14 @@ namespace MyScout
         {
             if (EventList.SelectedIndices.Count > 0)
             {
+                Program.currentevent = EventList.SelectedIndices[0];
                 Program.selectedteam = Program.selectedteamroundindex = -1;
-                Program.currentround = Program.events[EventList.SelectedIndices[0]].rounds.Count - 1;
+                Program.currentround = (Program.events[Program.currentevent].lastviewedround == -1)? Program.events[Program.currentevent].rounds.Count - 1 : Program.events[Program.currentevent].lastviewedround;
 
                 MainPnl.Enabled = false;
                 TeamPnl.Visible = true;
 
-                Text = Program.events[EventList.SelectedIndices[0]].name + " - MyScout 2016";
-                Program.currentevent = EventList.SelectedIndices[0];
+                Text = Program.events[Program.currentevent].name + " - MyScout 2016";
                 RefreshControls();
             }
         }

@@ -18,7 +18,6 @@ namespace MyScout
         /// </summary>
         public static void LoadAllEvents()
         {
-            Console.WriteLine("Loading all events");
             string[] files = Directory.GetFiles(Program.startuppath + "\\Events");
             for (int i = 0; i < files.Length; i++)
             {
@@ -44,6 +43,7 @@ namespace MyScout
                         if (reader.ReadElementString("Version") == Program.versionstring || (Convert.ToSingle(reader.ReadElementString("Version")) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
                         {
                             Program.events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate")));
+                            Program.events[Program.events.Count - 1].rounds.Clear();
 
                             reader.ReadStartElement("Teams");
                             int count = Convert.ToInt32(reader.ReadElementString("Count"));
@@ -53,21 +53,28 @@ namespace MyScout
                             {
                                 reader.ReadStartElement("Team");
                                 List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
-                                Team team = new Team(Convert.ToInt16(tokens[0]), tokens[1].ToString());
-                                team.avgScore = Convert.ToInt16(tokens[2]);
-                                team.teleDefensesCrossed = Convert.ToInt16(tokens[3]);
-                                team.teleHighGoals = Convert.ToInt16(tokens[4]);
-                                team.teleLowGoals = Convert.ToInt16(tokens[5]);
-                                team.towerScaledAvg = Convert.ToInt16(tokens[6]);
+                                Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString());
+                                team.avgScore = Convert.ToInt32(tokens[2]);
+                                team.teleDefensesCrossed = Convert.ToInt32(tokens[3]);
+                                team.teleHighGoals = Convert.ToInt32(tokens[4]);
+                                team.teleLowGoals = Convert.ToInt32(tokens[5]);
+                                team.towerScaledAvg = Convert.ToInt32(tokens[6]);
+
                                 for (int j = 0; j < 8; j++)
+                                {
                                     team.defensesCrossable[j] = Convert.ToBoolean(tokens[j + 7]);
-                                team.crossingPowerScore = Convert.ToInt16(tokens[16]);
-                                team.autoDefensesCrossed = Convert.ToInt16(tokens[17]);
-                                team.autoHighGoals = Convert.ToInt16(tokens[18]);
-                                team.autoLowGoals = Convert.ToInt16(tokens[19]);
-                                team.deathCount = Convert.ToInt16(tokens[20]);
+                                }
+
+                                team.crossingPowerScore = Convert.ToInt32(tokens[16]);
+                                team.autoDefensesCrossed = Convert.ToInt32(tokens[17]);
+                                team.autoHighGoals = Convert.ToInt32(tokens[18]);
+                                team.autoLowGoals = Convert.ToInt32(tokens[19]);
+                                team.deathCount = Convert.ToInt32(tokens[20]);
+
                                 for (int j = 0; j < 8; j++)
-                                    team.deathDefenses[j] = Convert.ToInt16(tokens[j + 21]);
+                                {
+                                    team.deathDefenses[j] = Convert.ToInt32(tokens[j + 21]);
+                                }
 
                                 Program.events[Program.events.Count - 1].teams.Add(team);
                                 reader.ReadEndElement();
@@ -76,7 +83,7 @@ namespace MyScout
                             reader.ReadEndElement();
 
                             reader.ReadStartElement("Rounds");
-                            Program.currentround = Convert.ToInt32(reader.ReadElementString("Current"));
+                            Program.events[Program.events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
                             Round.score[0] = Convert.ToInt32(reader.ReadElementString("AllianceScore1"));
                             Round.score[1] = Convert.ToInt32(reader.ReadElementString("AllianceScore2"));
 
@@ -124,7 +131,7 @@ namespace MyScout
         }
         #endregion
 
-        #region scOutput-related functions
+        #region scOutput-related functions (pun brought to you by the amazing Ethan™)
         /// <summary>
         /// Saves all events in memory to the program's event folder.
         /// </summary>
@@ -175,6 +182,7 @@ namespace MyScout
                     {
                         writer.WriteStartElement("Team");
                         List<object> tokens = new List<object>();
+
                         tokens.Add(team.id);
                         tokens.Add(team.name);
                         tokens.Add(team.avgScore);
@@ -182,16 +190,23 @@ namespace MyScout
                         tokens.Add(team.teleHighGoals);
                         tokens.Add(team.teleLowGoals);
                         tokens.Add(team.towerScaledAvg);
+
                         for (int i = 0; i < 8; i++)
+                        {
                             tokens.Add(team.defensesCrossable[i]);
+                        }
+
                         tokens.Add(team.crossingPowerScore);
                         tokens.Add(team.autoDefensesCrossed);
                         tokens.Add(team.autoDefensesReached);
                         tokens.Add(team.autoHighGoals);
                         tokens.Add(team.autoLowGoals);
                         tokens.Add(team.deathCount);
+
                         for (int i = 0; i < 8; i++)
+                        {
                             tokens.Add(team.deathDefenses[i]);
+                        }
 
                         writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
                         writer.WriteEndElement();
@@ -200,7 +215,7 @@ namespace MyScout
                     writer.WriteEndElement();
 
                     writer.WriteStartElement("Rounds");
-                    writer.WriteElementString("Current", (eventid == Program.currentevent) ? Program.currentround.ToString() : (Program.events[eventid].rounds.Count - 1).ToString());
+                    writer.WriteElementString("Current", (Program.events[eventid].lastviewedround == -1)? (Program.events[eventid].rounds.Count-1).ToString(): Program.events[eventid].lastviewedround.ToString());
                     writer.WriteElementString("AllianceScore1", Round.score[0].ToString());
                     writer.WriteElementString("AllianceScore2", Round.score[1].ToString());
 
@@ -225,6 +240,7 @@ namespace MyScout
                         {
                             List<object> reachedTokens = new List<object>(); //Save defenses information per team
                             List<object> crossedTokens = new List<object>();
+
                             for (int i2 = 0; i2 < 9; i2++)
                             {
                                 reachedTokens.Add(round.defenses[i, i2].reached);
@@ -236,6 +252,7 @@ namespace MyScout
                         writer.WriteEndElement();
                         writer.WriteEndElement();
                     }
+
                     writer.WriteEndElement();
                     writer.WriteEndElement();
                     CreateTeamSpreadsheet(Program.events[eventid].teams, Program.events[eventid]);
