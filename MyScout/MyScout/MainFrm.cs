@@ -229,16 +229,13 @@ namespace MyScout
         //TODO: Re-name "button1" to "OpenReportFolderBtn" or something similar.
         private void button1_Click(object sender, EventArgs e)
         {
-            IO.SaveAllEvents();
+            IO.SaveEvent(Program.currentevent);
+            string filePath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {Program.events[Program.currentevent].name}.xls";
 
-            string filePath = IO.GetFilePath(Program.events[Program.currentevent]);
-            if (!File.Exists(filePath))
+            if (File.Exists(filePath))
             {
-                return;
+                System.Diagnostics.Process.Start("explorer.exe", @"/select, " + filePath);
             }
-            string argument = @"/select, " + filePath;
-
-            System.Diagnostics.Process.Start("explorer.exe", argument);
         }
 
         //Re-name "button5" to "NextRoundBtn" or something similar.
