@@ -196,15 +196,18 @@ namespace MyScout
                     else
                     {
                         MessageBox.Show("Go play your Atari games you cheater.");
-                        konamicodeindex = 0;
-                        konamicodeactivated = true;
-
-                        bubbles = new Bubble[rnd.Next(10)];
-                        for (int i = 0; i < bubbles.Length; i++)
+                        if (MessageBox.Show("Oh.. also, er... are you prone to epileptic seizures? :|\nNo, seriously. This could be bad if so.. xD", "", MessageBoxButtons.YesNo) == DialogResult.No)
                         {
-                            bubbles[i] = new Bubble();
-                            bubbles[i].Location = new Point(rnd.Next(Screen.PrimaryScreen.Bounds.Width), rnd.Next(Screen.PrimaryScreen.Bounds.Height));
-                            bubbles[i].Show();
+                            konamicodeindex = 0;
+                            konamicodeactivated = true;
+
+                            bubbles = new Bubble[rnd.Next(10)];
+                            for (int i = 0; i < bubbles.Length; i++)
+                            {
+                                bubbles[i] = new Bubble();
+                                bubbles[i].Location = new Point(rnd.Next(Screen.PrimaryScreen.Bounds.Width), rnd.Next(Screen.PrimaryScreen.Bounds.Height));
+                                bubbles[i].Show();
+                            }
                         }
                     }
                 }

@@ -392,7 +392,7 @@
             this.TLowGoalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TLowGoalLbl.AutoSize = true;
             this.TLowGoalLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.TLowGoalLbl.Location = new System.Drawing.Point(572, 381);
+            this.TLowGoalLbl.Location = new System.Drawing.Point(619, 408);
             this.TLowGoalLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TLowGoalLbl.Name = "TLowGoalLbl";
             this.TLowGoalLbl.Size = new System.Drawing.Size(190, 46);
@@ -404,7 +404,7 @@
             // 
             this.TLowGoalNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TLowGoalNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.TLowGoalNUD.Location = new System.Drawing.Point(580, 432);
+            this.TLowGoalNUD.Location = new System.Drawing.Point(627, 459);
             this.TLowGoalNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TLowGoalNUD.Name = "TLowGoalNUD";
             this.TLowGoalNUD.Size = new System.Drawing.Size(183, 53);
@@ -1105,7 +1105,7 @@
             this.THighGoalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.THighGoalLbl.AutoSize = true;
             this.THighGoalLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.THighGoalLbl.Location = new System.Drawing.Point(571, 220);
+            this.THighGoalLbl.Location = new System.Drawing.Point(619, 220);
             this.THighGoalLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.THighGoalLbl.Name = "THighGoalLbl";
             this.THighGoalLbl.Size = new System.Drawing.Size(198, 46);
@@ -1127,7 +1127,7 @@
             // 
             this.THighGoalNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.THighGoalNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.THighGoalNUD.Location = new System.Drawing.Point(579, 271);
+            this.THighGoalNUD.Location = new System.Drawing.Point(627, 271);
             this.THighGoalNUD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.THighGoalNUD.Name = "THighGoalNUD";
             this.THighGoalNUD.Size = new System.Drawing.Size(183, 53);
@@ -1433,7 +1433,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MinimumSize = new System.Drawing.Size(1182, 718);
+            this.MinimumSize = new System.Drawing.Size(1662, 970);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyScout 2016";
