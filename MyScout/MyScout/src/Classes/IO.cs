@@ -210,6 +210,8 @@ namespace MyScout
                     {
                         debugTicker++;
 
+                        
+
                         writer.WriteStartElement("Round");
                         writer.WriteStartElement("Teams");
                         List<object> teams = new List<object>();//Save teams for each round
@@ -251,6 +253,8 @@ namespace MyScout
         {
             string folderpath = Path.Combine(Environment.GetFolderPath(
     Environment.SpecialFolder.MyDoc‌​uments), "MyScout 2016");
+
+            List<Team> sortedTeamList = teamList.OrderByDescending(team => team.avgScore).ToList();
 
             string filepath = Path.Combine(folderpath, ("Scouting Report " + e.name + ".xls"));
 
@@ -294,9 +298,9 @@ namespace MyScout
             worksheet.Cells[0, 15] = new Cell("LB");
             worksheet.Cells.ColumnWidth[14, 15] = 900;
 
-            for (int i = 1; i < (teamList.Count() + 1); i++)
+            for (int i = 1; i < (sortedTeamList.Count() + 1); i++)
             {
-                Team team = teamList[i - 1];
+                Team team = sortedTeamList[i - 1];
                 worksheet.Cells[i, 0] = new Cell(team.id);
                 worksheet.Cells[i, 1] = new Cell(team.name);
                 worksheet.Cells[i, 2] = new Cell(team.avgScore);
@@ -311,7 +315,7 @@ namespace MyScout
             }
 
             workbook.Worksheets.Add(worksheet);
-            //workbook.Save(filepath);
+            workbook.Save(filepath);
         }
         #endregion
 
