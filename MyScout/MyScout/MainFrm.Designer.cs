@@ -344,7 +344,7 @@
             this.TeamNameLbl.Location = new System.Drawing.Point(233, 0);
             this.TeamNameLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TeamNameLbl.Name = "TeamNameLbl";
-            this.TeamNameLbl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 8);
+            this.TeamNameLbl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 15);
             this.TeamNameLbl.Size = new System.Drawing.Size(936, 135);
             this.TeamNameLbl.TabIndex = 0;
             this.TeamNameLbl.Text = "No Team Selected";
@@ -1288,8 +1288,9 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 802);
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.button1.Location = new System.Drawing.Point(15, 802);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(202, 109);
@@ -1394,7 +1395,7 @@
             this.BlueAllianceBtn2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BlueAllianceBtn2.Font = new System.Drawing.Font("Segoe UI", 20F);
             this.BlueAllianceBtn2.ForeColor = System.Drawing.Color.White;
-            this.BlueAllianceBtn2.Location = new System.Drawing.Point(18, 615);
+            this.BlueAllianceBtn2.Location = new System.Drawing.Point(18, 608);
             this.BlueAllianceBtn2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BlueAllianceBtn2.Name = "BlueAllianceBtn2";
             this.BlueAllianceBtn2.Size = new System.Drawing.Size(192, 85);

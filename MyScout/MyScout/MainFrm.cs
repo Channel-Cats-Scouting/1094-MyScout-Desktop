@@ -100,6 +100,7 @@ namespace MyScout
             if (Program.selectedteam != -1)
             {
                 TeamNameLbl.Text = $"{Program.events[Program.currentevent].teams[Program.selectedteam].name} - {Program.events[Program.currentevent].teams[Program.selectedteam].id.ToString()}";
+                TeamNameLbl.ForeColor = label1.ForeColor = (TeamNameLbl.Text != "Channel Cats - 1094")?SystemColors.HotTrack:Color.Orange;
 
                 foreach (Panel pnl in defensepnls)
                 {
@@ -113,6 +114,7 @@ namespace MyScout
             else
             {
                 TeamNameLbl.Text = "No Team Selected";
+                TeamNameLbl.ForeColor = label1.ForeColor = SystemColors.HotTrack;
 
                 foreach (Panel pnl in defensepnls)
                 {
@@ -131,7 +133,7 @@ namespace MyScout
                     Button btn = AllianceBtnPnl.Controls[index] as Button;
                     int i = index - 2;
 
-                    if (Program.selectedteam != -1 && Program.selectedteam == i) { btn.FlatAppearance.BorderSize = 1; }
+                    if (Program.selectedteam != -1 && Program.selectedteamroundindex == i) { btn.FlatAppearance.BorderSize = 1; MainPnl.Visible = true; }
                     else { btn.FlatAppearance.BorderSize = 0; }
                     btn.Tag = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? null : (object)Program.events[Program.currentevent].rounds[Program.currentround].teams[i];
                     btn.Text = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? "----" : Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]].id.ToString();
@@ -252,6 +254,7 @@ namespace MyScout
             }
 
             MainPnl.Enabled = false;
+            Program.selectedteam = Program.selectedteamroundindex = -1;
             Program.events[Program.currentevent].lastviewedround = Program.currentround;
             RefreshControls();
         }
@@ -265,6 +268,7 @@ namespace MyScout
             }
 
             MainPnl.Enabled = false;
+            Program.selectedteam = Program.selectedteamroundindex = -1;
             Program.events[Program.currentevent].lastviewedround = Program.currentround;
             RefreshControls();
         }
@@ -351,8 +355,7 @@ namespace MyScout
         private void TeamBtn_MouseClick(object sender, MouseEventArgs e)
         {
             Button btn = sender as Button;
-            int allianceid = (btn == RedAllianceBtn1) ? 0 : (btn == RedAllianceBtn2) ? 1 : (btn == RedAllianceBtn3) ? 2 :
-                (btn == BlueAllianceBtn1) ? 3 : (btn == BlueAllianceBtn2) ? 4 : 5;
+            int allianceid = GetTeamBtnID(btn);
 
             if (btn.Tag == null || e.Button == MouseButtons.Right)
             {
@@ -375,6 +378,7 @@ namespace MyScout
                             button.FlatAppearance.BorderSize = 0;
                         }
                     }
+
                     btn.FlatAppearance.BorderSize = 1;
                     MainPnl.Enabled = true;
                 }
@@ -385,6 +389,7 @@ namespace MyScout
                 {
                     Program.selectedteam = (int)btn.Tag;
                     Program.selectedteamroundindex = GetTeamBtnID(btn);
+
                     foreach (Control control in AllianceBtnPnl.Controls)
                     {
                         //If the control is a button...
@@ -400,8 +405,9 @@ namespace MyScout
                 }
                 else if (MessageBox.Show("This team is already selected! Do you want to remove it from it's slot?", "MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    btn.Tag = null; btn.Text = "----";
+                    Program.events[Program.currentevent].rounds[Program.currentround].teams[Program.selectedteamroundindex] = -1;
                     Program.selectedteam = Program.selectedteamroundindex = -1;
+                    btn.Tag = null; btn.Text = "----";
 
                     foreach (Control control in AllianceBtnPnl.Controls)
                     {
@@ -416,6 +422,7 @@ namespace MyScout
                     MainPnl.Enabled = false;
                 }
             }
+
             RefreshControls();
         }
 
