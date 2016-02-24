@@ -51,32 +51,32 @@
             this.TLowGoalLbl = new System.Windows.Forms.Label();
             this.TLowGoalNUD = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.radioButton25 = new System.Windows.Forms.RadioButton();
             this.radioButton27 = new System.Windows.Forms.RadioButton();
             this.radioButton26 = new System.Windows.Forms.RadioButton();
-            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.radioButton22 = new System.Windows.Forms.RadioButton();
             this.radioButton24 = new System.Windows.Forms.RadioButton();
             this.radioButton23 = new System.Windows.Forms.RadioButton();
-            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.radioButton19 = new System.Windows.Forms.RadioButton();
             this.radioButton21 = new System.Windows.Forms.RadioButton();
             this.radioButton20 = new System.Windows.Forms.RadioButton();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.radioButton16 = new System.Windows.Forms.RadioButton();
             this.radioButton18 = new System.Windows.Forms.RadioButton();
             this.radioButton17 = new System.Windows.Forms.RadioButton();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.radioButton13 = new System.Windows.Forms.RadioButton();
             this.radioButton15 = new System.Windows.Forms.RadioButton();
             this.radioButton14 = new System.Windows.Forms.RadioButton();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.radioButton10 = new System.Windows.Forms.RadioButton();
             this.radioButton12 = new System.Windows.Forms.RadioButton();
@@ -130,12 +130,12 @@
             this.TGroupBx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TLowGoalNUD)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -413,15 +413,15 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox1.Controls.Add(this.panel9);
-            this.groupBox1.Controls.Add(this.panel8);
-            this.groupBox1.Controls.Add(this.panel7);
-            this.groupBox1.Controls.Add(this.panel6);
-            this.groupBox1.Controls.Add(this.panel5);
-            this.groupBox1.Controls.Add(this.panel4);
-            this.groupBox1.Controls.Add(this.panel3);
-            this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.panel1);
+            this.groupBox1.Controls.Add(this.panel2);
+            this.groupBox1.Controls.Add(this.panel3);
+            this.groupBox1.Controls.Add(this.panel4);
+            this.groupBox1.Controls.Add(this.panel5);
+            this.groupBox1.Controls.Add(this.panel6);
+            this.groupBox1.Controls.Add(this.panel7);
+            this.groupBox1.Controls.Add(this.panel8);
+            this.groupBox1.Controls.Add(this.panel9);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(15, 29);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -432,17 +432,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Defences";
             // 
-            // panel9
+            // panel7
             // 
-            this.panel9.Controls.Add(this.label10);
-            this.panel9.Controls.Add(this.radioButton25);
-            this.panel9.Controls.Add(this.radioButton27);
-            this.panel9.Controls.Add(this.radioButton26);
-            this.panel9.Location = new System.Drawing.Point(9, 335);
-            this.panel9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(156, 128);
-            this.panel9.TabIndex = 19;
+            this.panel7.Controls.Add(this.label10);
+            this.panel7.Controls.Add(this.radioButton25);
+            this.panel7.Controls.Add(this.radioButton27);
+            this.panel7.Controls.Add(this.radioButton26);
+            this.panel7.Location = new System.Drawing.Point(9, 335);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(156, 128);
+            this.panel7.TabIndex = 19;
             // 
             // label10
             // 
@@ -500,17 +500,17 @@
             this.radioButton26.UseVisualStyleBackColor = true;
             this.radioButton26.CheckedChanged += new System.EventHandler(this.DefenseRB_CheckedChanged);
             // 
-            // panel8
+            // panel6
             // 
-            this.panel8.Controls.Add(this.label9);
-            this.panel8.Controls.Add(this.radioButton22);
-            this.panel8.Controls.Add(this.radioButton24);
-            this.panel8.Controls.Add(this.radioButton23);
-            this.panel8.Location = new System.Drawing.Point(378, 189);
-            this.panel8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(156, 128);
-            this.panel8.TabIndex = 18;
+            this.panel6.Controls.Add(this.label9);
+            this.panel6.Controls.Add(this.radioButton22);
+            this.panel6.Controls.Add(this.radioButton24);
+            this.panel6.Controls.Add(this.radioButton23);
+            this.panel6.Location = new System.Drawing.Point(378, 189);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(156, 128);
+            this.panel6.TabIndex = 18;
             // 
             // label9
             // 
@@ -568,17 +568,17 @@
             this.radioButton23.UseVisualStyleBackColor = true;
             this.radioButton23.CheckedChanged += new System.EventHandler(this.DefenseRB_CheckedChanged);
             // 
-            // panel7
+            // panel5
             // 
-            this.panel7.Controls.Add(this.label8);
-            this.panel7.Controls.Add(this.radioButton19);
-            this.panel7.Controls.Add(this.radioButton21);
-            this.panel7.Controls.Add(this.radioButton20);
-            this.panel7.Location = new System.Drawing.Point(194, 189);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(156, 128);
-            this.panel7.TabIndex = 17;
+            this.panel5.Controls.Add(this.label8);
+            this.panel5.Controls.Add(this.radioButton19);
+            this.panel5.Controls.Add(this.radioButton21);
+            this.panel5.Controls.Add(this.radioButton20);
+            this.panel5.Location = new System.Drawing.Point(194, 189);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(156, 128);
+            this.panel5.TabIndex = 17;
             // 
             // label8
             // 
@@ -636,17 +636,17 @@
             this.radioButton20.UseVisualStyleBackColor = true;
             this.radioButton20.CheckedChanged += new System.EventHandler(this.DefenseRB_CheckedChanged);
             // 
-            // panel6
+            // panel4
             // 
-            this.panel6.Controls.Add(this.label7);
-            this.panel6.Controls.Add(this.radioButton16);
-            this.panel6.Controls.Add(this.radioButton18);
-            this.panel6.Controls.Add(this.radioButton17);
-            this.panel6.Location = new System.Drawing.Point(9, 189);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(156, 128);
-            this.panel6.TabIndex = 16;
+            this.panel4.Controls.Add(this.label7);
+            this.panel4.Controls.Add(this.radioButton16);
+            this.panel4.Controls.Add(this.radioButton18);
+            this.panel4.Controls.Add(this.radioButton17);
+            this.panel4.Location = new System.Drawing.Point(9, 189);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(156, 128);
+            this.panel4.TabIndex = 16;
             // 
             // label7
             // 
@@ -704,17 +704,17 @@
             this.radioButton17.UseVisualStyleBackColor = true;
             this.radioButton17.CheckedChanged += new System.EventHandler(this.DefenseRB_CheckedChanged);
             // 
-            // panel5
+            // panel9
             // 
-            this.panel5.Controls.Add(this.label6);
-            this.panel5.Controls.Add(this.radioButton13);
-            this.panel5.Controls.Add(this.radioButton15);
-            this.panel5.Controls.Add(this.radioButton14);
-            this.panel5.Location = new System.Drawing.Point(378, 335);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(156, 128);
-            this.panel5.TabIndex = 15;
+            this.panel9.Controls.Add(this.label6);
+            this.panel9.Controls.Add(this.radioButton13);
+            this.panel9.Controls.Add(this.radioButton15);
+            this.panel9.Controls.Add(this.radioButton14);
+            this.panel9.Location = new System.Drawing.Point(378, 335);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(156, 128);
+            this.panel9.TabIndex = 15;
             // 
             // label6
             // 
@@ -772,17 +772,17 @@
             this.radioButton14.UseVisualStyleBackColor = true;
             this.radioButton14.CheckedChanged += new System.EventHandler(this.DefenseRB_CheckedChanged);
             // 
-            // panel4
+            // panel8
             // 
-            this.panel4.Controls.Add(this.label5);
-            this.panel4.Controls.Add(this.radioButton10);
-            this.panel4.Controls.Add(this.radioButton12);
-            this.panel4.Controls.Add(this.radioButton11);
-            this.panel4.Location = new System.Drawing.Point(194, 335);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(156, 128);
-            this.panel4.TabIndex = 14;
+            this.panel8.Controls.Add(this.label5);
+            this.panel8.Controls.Add(this.radioButton10);
+            this.panel8.Controls.Add(this.radioButton12);
+            this.panel8.Controls.Add(this.radioButton11);
+            this.panel8.Location = new System.Drawing.Point(194, 335);
+            this.panel8.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(156, 128);
+            this.panel8.TabIndex = 14;
             // 
             // label5
             // 
@@ -1449,10 +1449,6 @@
             this.TGroupBx.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TLowGoalNUD)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -1461,6 +1457,10 @@
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1518,32 +1518,32 @@
         private System.Windows.Forms.Label TLowGoalLbl;
         private System.Windows.Forms.NumericUpDown TLowGoalNUD;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.RadioButton radioButton25;
         private System.Windows.Forms.RadioButton radioButton27;
         private System.Windows.Forms.RadioButton radioButton26;
-        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RadioButton radioButton22;
         private System.Windows.Forms.RadioButton radioButton24;
         private System.Windows.Forms.RadioButton radioButton23;
-        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RadioButton radioButton19;
         private System.Windows.Forms.RadioButton radioButton21;
         private System.Windows.Forms.RadioButton radioButton20;
-        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.RadioButton radioButton16;
         private System.Windows.Forms.RadioButton radioButton18;
         private System.Windows.Forms.RadioButton radioButton17;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RadioButton radioButton13;
         private System.Windows.Forms.RadioButton radioButton15;
         private System.Windows.Forms.RadioButton radioButton14;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton radioButton10;
         private System.Windows.Forms.RadioButton radioButton12;
