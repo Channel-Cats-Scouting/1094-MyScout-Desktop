@@ -441,7 +441,7 @@ namespace MyScout
         /// </summary>
         private void DefenseRB_CheckedChanged(object sender, EventArgs e)
         {
-            if (Program.selectedteam != -1 && Program.selectedteamroundindex != 1)
+            if (Program.selectedteam != -1 && Program.selectedteamroundindex != -1)
             {
                 RadioButton rb = sender as RadioButton;
                 Panel containingpnl = (rb != null && rb.Parent != null) ? rb.Parent as Panel : null;
