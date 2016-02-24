@@ -91,37 +91,12 @@ namespace MyScout
         }
 
         /// <summary>
-        /// Makes sure the only controls that are enabled are the ones you can currently see.
+        /// Refreshes the elements of the GUI
         /// </summary>
         public void RefreshControls()
         {
             EventList.Enabled = AddEventBtn.Enabled = RemoveEventBtn.Enabled = EditEventBtn.Enabled = !TeamPnl.Visible;
 
-            if (TeamPnl.Visible)
-            {
-                for (int index = 0; index < AllianceBtnPnl.Controls.Count; index++)
-                {
-                    if (AllianceBtnPnl.Controls[index].Name != "BackBtn" && AllianceBtnPnl.Controls[index].Name != "button1")
-                    {
-                        Button btn = AllianceBtnPnl.Controls[index] as Button;
-                        int i = index - 2;
-
-                        btn.FlatAppearance.BorderSize = 0;
-                        btn.Tag = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1)? null : (object)Program.events[Program.currentevent].rounds[Program.currentround].teams[i];
-                        btn.Text = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? "----" : Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]].id.ToString();
-                    }
-                }
-                label1.Text = $"Round {Program.currentround+1} of {Program.events[Program.currentevent].rounds.Count}";
-                button6.Enabled = Program.currentround != 0;
-                button5.Text = (Program.currentround < Program.events[Program.currentevent].rounds.Count - 1)?"->":"+";
-            }
-        }
-
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        private void RefreshTeamPnl()
-        {
             if (Program.selectedteam != -1)
             {
                 TeamNameLbl.Text = $"{Program.events[Program.currentevent].teams[Program.selectedteam].name} - {Program.events[Program.currentevent].teams[Program.selectedteam].id.ToString()}";
@@ -148,8 +123,26 @@ namespace MyScout
                 }
             }
 
-            label1.Text = $"Round {Program.currentround+1} of {Program.events[Program.currentevent].rounds.Count}";
+            //TODO: Documentation
+            for (int index = 0; index < AllianceBtnPnl.Controls.Count; index++)
+            {
+                if (AllianceBtnPnl.Controls[index].Name != "BackBtn" && AllianceBtnPnl.Controls[index].Name != "button1")
+                {
+                    Button btn = AllianceBtnPnl.Controls[index] as Button;
+                    int i = index - 2;
+
+                    if (Program.selectedteam != -1 && Program.selectedteam == i) { btn.FlatAppearance.BorderSize = 1; }
+                    else { btn.FlatAppearance.BorderSize = 0; }
+                    btn.Tag = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? null : (object)Program.events[Program.currentevent].rounds[Program.currentround].teams[i];
+                    btn.Text = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? "----" : Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]].id.ToString();
+                }
+            }
+
+            label1.Text = $"Round {Program.currentround + 1} of {Program.events[Program.currentevent].rounds.Count}";
+            button6.Enabled = Program.currentround != 0;
+            button5.Text = (Program.currentround < Program.events[Program.currentevent].rounds.Count - 1) ? "->" : "+";
         }
+
         #endregion
 
         #region GUI Events
@@ -257,7 +250,7 @@ namespace MyScout
                 Program.events[Program.currentevent].rounds.Add(new Round());
                 Program.currentround = Program.events[Program.currentevent].rounds.Count - 1;
             }
-            RefreshTeamPnl();
+            MainPnl.Enabled = false;
             RefreshControls();
         }
 
@@ -268,7 +261,7 @@ namespace MyScout
             {
                 Program.currentround--;
             }
-            RefreshTeamPnl();
+            MainPnl.Enabled = false;
             RefreshControls();
         }
 
@@ -338,7 +331,6 @@ namespace MyScout
                 Program.currentround = Program.events[EventList.SelectedIndices[0]].rounds.Count - 1;
 
                 MainPnl.Enabled = false;
-                RefreshTeamPnl();
                 TeamPnl.Visible = true;
 
                 Text = Program.events[EventList.SelectedIndices[0]].name + " - MyScout 2016";
@@ -381,9 +373,6 @@ namespace MyScout
                     }
                     btn.FlatAppearance.BorderSize = 1;
                     MainPnl.Enabled = true;
-                    //DefenseCBx.SelectedIndex = 0;
-
-                    RefreshTeamPnl();
                 }
             }
             else
@@ -403,9 +392,7 @@ namespace MyScout
                     }
 
                     btn.FlatAppearance.BorderSize = 1;
-                    //DefenseCBx.SelectedIndex = 0;
                     MainPnl.Enabled = true;
-                    RefreshTeamPnl();
                 }
                 else if (MessageBox.Show("This team is already selected! Do you want to remove it from it's slot?", "MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
@@ -422,24 +409,33 @@ namespace MyScout
                         }
                     }
 
-                    //DefenseCBx.SelectedIndex = 0;
                     MainPnl.Enabled = false;
-                    RefreshTeamPnl();
                 }
             }
+            RefreshControls();
         }
 
+        /// <summary>
+        /// Occurs when "TeleOpRB" is checked or unchecked.
+        /// </summary>
         private void DiedChkbx_CheckedChanged(object sender, EventArgs e)
         {
             //Enable/disable every control inside the "Died" groupbox
             RDDefenseLbl.Enabled = RDDefenseChkbx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = RDDied.Checked;
         }
 
+        /// <summary>
+        /// Occurs when "TeleOpRB" is checked or unchecked.
+        /// </summary>
         private void TeleOpRB_CheckedChanged(object sender, EventArgs e)
         {
+            //Enable/disable the "Scaled Tower" and "Challenged Tower" checkboxes
             TScaledTowerChkbx.Enabled = TChallengedTowerChkbx.Enabled = TeleOpRB.Checked;
         }
 
+        /// <summary>
+        /// Occurs when "DefenseRB" is checked or unchecked.
+        /// </summary>
         private void DefenseRB_CheckedChanged(object sender, EventArgs e)
         {
             if (Program.selectedteam != -1 && Program.selectedteamroundindex != 1)
