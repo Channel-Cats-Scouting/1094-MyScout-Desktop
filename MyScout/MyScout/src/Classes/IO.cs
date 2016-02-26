@@ -109,7 +109,7 @@ namespace MyScout
                                     for (int i3 = 0; i3 < 9; i3++)
                                     {
                                         round.defenses[i2, i3].reached = (bool)reachedTokens[i3];
-                                        round.defenses[i2, i3].timescrossed = (int)timesCrossedTokens[i3];
+                                        //round.defenses[i2, i3].timescrossed = (int)timesCrossedTokens[i3];
                                     }
                                 }
                                 reader.ReadEndElement();
@@ -244,7 +244,7 @@ namespace MyScout
                             for (int i2 = 0; i2 < 9; i2++)
                             {
                                 reachedTokens.Add(round.defenses[i, i2].reached);
-                                crossedTokens.Add(round.defenses[i, i2].timescrossed);
+                                //crossedTokens.Add(round.defenses[i, i2].timescrossed);
                             }
                             writer.WriteElementString("ReachedTokens", TokenizeStringHandler.CreateTokenizedString(reachedTokens));
                             writer.WriteElementString("TimesCrossedTokens", TokenizeStringHandler.CreateTokenizedString(crossedTokens));
@@ -255,7 +255,6 @@ namespace MyScout
 
                     writer.WriteEndElement();
                     writer.WriteEndElement();
-                    CreateTeamSpreadsheet(Program.events[eventid].teams, Program.events[eventid]);
                 }
             }
             catch (Exception ex)
@@ -264,10 +263,21 @@ namespace MyScout
             }
         }
 
-        public static void CreateTeamSpreadsheet(List<Team> teamList, Event e)
+        /// <summary>
+        /// Generate a team spreadsheet in "{Program.startuppath}\Spreadsheets\Scouting Report {ev.name}.xls"
+        /// </summary>
+        /// <param name="ev">The event to load data from</param>
+        /// <param name="sorting">How to sort the generated report; 1:TotalScore, 2:AutoScore, 3:CrossingPower</param>
+        public static void CreateTeamSpreadsheet(Event ev, int sorting)
         {
-            List<Team> sortedTeamList = teamList.OrderByDescending(team => team.avgScore).ToList();
-            string filepath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {e.name}.xls";
+            List<Team> teamList = ev.teams;
+
+            //Sort the team list based on the sorting int
+            List<Team> sortedTeamList = teamList.OrderByDescending(
+                team => (sorting == 1 ? team.avgScore : sorting == 2 ? team.autoDefensesCrossed : team.crossingPowerScore)
+                ).ToList();
+
+            string filepath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {ev.name}.xls";
 
             if (!Directory.Exists($"{Program.startuppath}\\Spreadsheets"))
             {
