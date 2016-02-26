@@ -3,3 +3,4 @@
 - [ ] Make searching for teams ignore capitalization.
 - [ ] Make a "rounds" form.
 - [ ] Store/load all other information related to teams (such as comments, etc).
+- [ ] Add an "Assist" checkbox.
