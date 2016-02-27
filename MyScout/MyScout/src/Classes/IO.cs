@@ -39,8 +39,9 @@ namespace MyScout
                     using (XmlReader reader = XmlReader.Create(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
                     {
                         reader.ReadStartElement("Event");
+                        string fileversionstring = reader.ReadElementString("Version");
 
-                        if (reader.ReadElementString("Version") == Program.versionstring || (Convert.ToSingle(reader.ReadElementString("Version")) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+                        if (fileversionstring == Program.versionstring || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
                         {
                             Program.events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate")));
                             Program.events[Program.events.Count - 1].rounds.Clear();
@@ -120,6 +121,7 @@ namespace MyScout
 
                             reader.ReadEndElement();
                         }
+                        else { return; }
                         reader.ReadEndElement();
                     }
                 }
@@ -128,7 +130,7 @@ namespace MyScout
             {
                 MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+}
         #endregion
 
         #region scOutput-related functions (pun brought to you by the amazing Ethan™)
