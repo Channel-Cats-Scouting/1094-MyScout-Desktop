@@ -442,6 +442,28 @@ namespace MyScout
         {
             //Enable/disable the "Scaled Tower" and "Challenged Tower" checkboxes
             TScaledTowerChkbx.Enabled = TChallengedTowerChkbx.Enabled = TeleOpRB.Checked;
+
+            //Rename and load data for radio buttons
+            if (TeleOpRB.Checked)
+            {
+                foreach (Panel p in defensepnls)
+                {
+                    p.Controls[1].Text = "0";
+                    p.Controls[2].Text = "1";
+                    p.Controls[3].Text = "2";
+                    p.Refresh();
+                }
+            }
+            else if (AutonomousRB.Checked)
+            {
+                foreach(Panel p in defensepnls)
+                {
+                    p.Controls[1].Text = "Did Nothing";
+                    p.Controls[2].Text = "Reached";
+                    p.Controls[3].Text = "Crossed";
+                    p.Refresh();
+                }
+            }
         }
 
         /// <summary>
