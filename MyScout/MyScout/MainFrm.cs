@@ -450,7 +450,7 @@ namespace MyScout
                 {
                     p.Controls[1].Text = "0";
                     p.Controls[2].Text = "1";
-                    p.Controls[3].Text = "2";
+                    p.Controls[3].Text = "2+";
                     p.Refresh();
                 }
             }
