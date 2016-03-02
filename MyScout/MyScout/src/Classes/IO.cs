@@ -330,17 +330,22 @@ namespace MyScout
             for (int i = 1; i < sortedTeamList.Count() + 1; i++)
             {
                 Team team = sortedTeamList[i - 1];
-                worksheet.Cells[i, 0] = new Cell(team.id.ToString());
-                worksheet.Cells[i, 1] = new Cell(team.name);
-                worksheet.Cells[i, 2] = new Cell(team.avgScore.ToString());
-                worksheet.Cells[i, 3] = new Cell(team.teleHighGoals.ToString());
-                worksheet.Cells[i, 4] = new Cell(team.teleLowGoals.ToString());
-                worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore.ToString());
-
-                for (int j = 0; j < 9; j++)
+                if (team != null)
                 {
-                    if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 6)] = new Cell(" " + ((char)0x221A).ToString());
+                    worksheet.Cells[i, 0] = new Cell(team.id.ToString());
+                    worksheet.Cells[i, 1] = new Cell(team.name);
+                    worksheet.Cells[i, 2] = new Cell(team.avgScore.ToString());
+                    worksheet.Cells[i, 3] = new Cell(team.teleHighGoals.ToString());
+                    worksheet.Cells[i, 4] = new Cell(team.teleLowGoals.ToString());
+                    worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore.ToString());
                 }
+                else worksheet.Cells[i, 0] = new Cell("null");
+
+                if(team != null)
+                    for (int j = 0; j < 9; j++)
+                    {
+                        if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 6)] = new Cell(" " + ((char)0x221A).ToString());
+                    }
             }
 
             workbook.Worksheets.Add(worksheet);
@@ -419,17 +424,22 @@ namespace MyScout
             for (int i = 1; i < sortedTeamList.Count() + 1; i++)
             {
                 Team team = sortedTeamList[i - 1];
-                worksheet.Cells[i, 0] = new Cell(team.id.ToString());
-                worksheet.Cells[i, 1] = new Cell(team.name);
-                worksheet.Cells[i, 2] = new Cell(team.avgScore.ToString());
-                worksheet.Cells[i, 3] = new Cell(team.teleHighGoals.ToString());
-                worksheet.Cells[i, 4] = new Cell(team.teleLowGoals.ToString());
-                worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore.ToString());
-
-                for (int j = 0; j < 9; j++)
+                if (team != null)
                 {
-                    if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 6)] = new Cell(" " + ((char)0x221A).ToString());
+                    worksheet.Cells[i, 0] = new Cell(team.id.ToString());
+                    worksheet.Cells[i, 1] = new Cell(team.name);
+                    worksheet.Cells[i, 2] = new Cell(team.avgScore.ToString());
+                    worksheet.Cells[i, 3] = new Cell(team.teleHighGoals.ToString());
+                    worksheet.Cells[i, 4] = new Cell(team.teleLowGoals.ToString());
+                    worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore.ToString());
                 }
+                else worksheet.Cells[i, 0] = new Cell("null");
+
+                if(team != null)
+                    for (int j = 0; j < 9; j++)
+                    {
+                        if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 6)] = new Cell(" " + ((char)0x221A).ToString());
+                    }
             }
 
             workbook.Worksheets.Add(worksheet);
