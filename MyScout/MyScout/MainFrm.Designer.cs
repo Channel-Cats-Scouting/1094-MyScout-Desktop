@@ -344,7 +344,7 @@
             this.MainPnl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPnl.Enabled = false;
             this.MainPnl.Location = new System.Drawing.Point(155, 0);
-            this.MainPnl.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MainPnl.Margin = new System.Windows.Forms.Padding(2);
             this.MainPnl.Name = "MainPnl";
             this.MainPnl.Size = new System.Drawing.Size(942, 605);
             this.MainPnl.TabIndex = 14;
@@ -1207,11 +1207,11 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.button1.Location = new System.Drawing.Point(10, 532);
+            this.button1.Location = new System.Drawing.Point(12, 538);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(135, 71);
+            this.button1.Size = new System.Drawing.Size(128, 55);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Open Report Folder";
+            this.button1.Text = "Generate Report";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

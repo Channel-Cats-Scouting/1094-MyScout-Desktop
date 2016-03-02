@@ -232,11 +232,25 @@ namespace MyScout
         private void button1_Click(object sender, EventArgs e)
         {
             IO.SaveEvent(Program.currentevent);
-            string filePath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {Program.events[Program.currentevent].name}.xls";
+            
+            
 
-            if (File.Exists(filePath))
+            //Open report generation dialog
+            GenReport genreport = new GenReport();
+
+            if(genreport.ShowDialog() == DialogResult.OK)
             {
-                System.Diagnostics.Process.Start("explorer.exe", @"/select, " + filePath);
+                {
+                    //Generate spreadsheet, but make sure that the RoundID stays -1 if already -1
+                    IO.GenerateSpreadsheet(Program.events[Program.currentevent], genreport.GetRoundID() >= 0 ? genreport.GetRoundID() - 1 : -1, genreport.GetSorting());
+
+                    //Figure out file path based on report data
+                    string filePath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {Program.events[Program.currentevent].name}" + (genreport.GetIsEventReport() ? "" : (" - Round " + genreport.GetRoundID())) +".xls";
+                    if (File.Exists(filePath))
+                    {
+                        System.Diagnostics.Process.Start("explorer.exe", @"/select, " + filePath);
+                    }
+                }
             }
         }
 

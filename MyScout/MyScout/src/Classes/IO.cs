@@ -268,7 +268,7 @@ namespace MyScout
         /// </summary>
         /// <param name="ev">The event to load data from</param>
         /// <param name="sorting">How to sort the generated report; 1:TotalScore, 2:AutoScore, 3:CrossingPower</param>
-        public static void CreateTeamSpreadsheet(Event ev, int sorting)
+        public static void CreateEventSpreadsheet(Event ev, int sorting)
         {
             List<Team> teamList = ev.teams;
 
@@ -286,22 +286,29 @@ namespace MyScout
 
             Workbook workbook = new Workbook();
             Worksheet worksheet = new Worksheet("Scouting Report");
+
+            //PLEASE DON'T CHANGE THE BELOW VALUES I SPENT QUITE A WHILE TWEAKING THEM
+            //  SO THEY ALL FIT ON ONE PAGE HORIZONTALLY WITH DEFAULT PADDING
+            // ~Ethan
+
             worksheet.Cells[0, 0] = new Cell("ID");
-            worksheet.Cells.ColumnWidth[0] = 1500;
+            worksheet.Cells.ColumnWidth[0] = 1250;
 
             worksheet.Cells[0, 1] = new Cell("Name");
-            worksheet.Cells.ColumnWidth[1] = 4000;
+            worksheet.Cells.ColumnWidth[1] = 3700;
 
             worksheet.Cells[0, 2] = new Cell("Score");
             worksheet.Cells.ColumnWidth[2] = 1500;
 
             worksheet.Cells[0, 3] = new Cell("High Goals");
+            worksheet.Cells.ColumnWidth[3] = 2500;
             worksheet.Cells[0, 4] = new Cell("Low Goals");
             worksheet.Cells[0, 5] = new Cell("Def Score");
-            worksheet.Cells.ColumnWidth[3, 5] = 2500;
+            worksheet.Cells.ColumnWidth[4] = 2400;
+            worksheet.Cells.ColumnWidth[5] = 2200;
 
-            worksheet.Cells[0, 6] = new Cell("Defenses:");
-            worksheet.Cells.ColumnWidth[6] = 2700;
+            worksheet.Cells[0, 6] = new Cell("Defs:");
+            worksheet.Cells.ColumnWidth[6] = 1250;
 
             worksheet.Cells[0, 7] = new Cell("PC");
             worksheet.Cells[0, 8] = new Cell("CF");
@@ -336,6 +343,112 @@ namespace MyScout
 
             workbook.Worksheets.Add(worksheet);
             workbook.Save(filepath);
+        }
+        
+        /// <summary>
+        /// Generates a report based on an individual round
+        /// </summary>
+        /// <param name="ev"></param>
+        /// <param name="sorting"></param>
+        public static void CreateRoundSpreadsheet(Event ev, int roundID, int sorting)
+        {
+            int[] rawTeamList = ev.rounds[roundID].teams;
+            Team[] teamList = new Team[6];
+
+            for(int i = 0; i < 6; i++)
+            {
+                teamList[i] = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? null :
+                    Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]];
+            }
+
+            //Sort the team list based on the sorting int
+            List<Team> sortedTeamList = teamList.OrderByDescending(
+                team => (sorting == 1 ? team.avgScore : sorting == 2 ? team.autoDefensesCrossed : team.crossingPowerScore)
+                ).ToList();
+
+            string filepath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {ev.name} - Round {roundID+1}.xls";
+
+            if (!Directory.Exists($"{Program.startuppath}\\Spreadsheets"))
+            {
+                Directory.CreateDirectory($"{Program.startuppath}\\Spreadsheets");
+            }
+
+            Workbook workbook = new Workbook();
+            Worksheet worksheet = new Worksheet("Scouting Report");
+
+            //PLEASE DON'T CHANGE THE BELOW VALUES I SPENT QUITE A WHILE TWEAKING THEM
+            //  SO THEY ALL FIT ON ONE PAGE HORIZONTALLY WITH DEFAULT PADDING
+            // ~Ethan
+
+            worksheet.Cells[0, 0] = new Cell("ID");
+            worksheet.Cells.ColumnWidth[0] = 1250;
+
+            worksheet.Cells[0, 1] = new Cell("Name");
+            worksheet.Cells.ColumnWidth[1] = 3700;
+
+            worksheet.Cells[0, 2] = new Cell("Score");
+            worksheet.Cells.ColumnWidth[2] = 1500;
+
+            worksheet.Cells[0, 3] = new Cell("High Goals");
+            worksheet.Cells.ColumnWidth[3] = 2500;
+            worksheet.Cells[0, 4] = new Cell("Low Goals");
+            worksheet.Cells[0, 5] = new Cell("Def Score");
+            worksheet.Cells.ColumnWidth[4] = 2400;
+            worksheet.Cells.ColumnWidth[5] = 2200;
+
+            worksheet.Cells[0, 6] = new Cell("Defs:");
+            worksheet.Cells.ColumnWidth[6] = 1250;
+
+            worksheet.Cells[0, 7] = new Cell("PC");
+            worksheet.Cells[0, 8] = new Cell("CF");
+            worksheet.Cells[0, 9] = new Cell("M");
+            worksheet.Cells[0, 10] = new Cell("RP");
+            worksheet.Cells[0, 11] = new Cell("DB");
+            worksheet.Cells[0, 12] = new Cell("SP");
+            worksheet.Cells.ColumnWidth[7, 12] = 900;
+
+            worksheet.Cells[0, 13] = new Cell("RW");
+            worksheet.Cells.ColumnWidth[13] = 1000;
+
+            worksheet.Cells[0, 14] = new Cell("RT");
+            worksheet.Cells[0, 15] = new Cell("LB");
+            worksheet.Cells.ColumnWidth[14, 15] = 900;
+
+            for (int i = 1; i < sortedTeamList.Count() + 1; i++)
+            {
+                Team team = sortedTeamList[i - 1];
+                worksheet.Cells[i, 0] = new Cell(team.id.ToString());
+                worksheet.Cells[i, 1] = new Cell(team.name);
+                worksheet.Cells[i, 2] = new Cell(team.avgScore.ToString());
+                worksheet.Cells[i, 3] = new Cell(team.teleHighGoals.ToString());
+                worksheet.Cells[i, 4] = new Cell(team.teleLowGoals.ToString());
+                worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore.ToString());
+
+                for (int j = 0; j < 9; j++)
+                {
+                    if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 6)] = new Cell(" " + ((char)0x221A).ToString());
+                }
+            }
+
+            workbook.Worksheets.Add(worksheet);
+            workbook.Save(filepath);
+        }
+
+        public static void GenerateSpreadsheet(Event ev, int sorting)
+        {
+            GenerateSpreadsheet(ev, -1, sorting);
+        }
+
+        public static void GenerateSpreadsheet(Event ev, int roundID, int sorting)
+        {
+            if(roundID != -1)
+            {
+                CreateRoundSpreadsheet(ev, roundID, sorting);
+            }
+            else
+            {
+                CreateEventSpreadsheet(ev, sorting);
+            }
         }
         #endregion
     }
