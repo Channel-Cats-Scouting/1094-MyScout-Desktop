@@ -17,9 +17,11 @@ namespace MyScout
         {
             string output = "";
 
-            for (int i = 0; i < input.Count; i++)
+            foreach (object obj in input)
             {
-                output += (output.Length > 0 ? ":" : "") + input[i].ToString();
+                string str = obj.ToString();
+                if (str.Contains(':')) { str = str.Replace(":","\\s"); }
+                output += (output.Length > 0 ? ":" : "") + str.ToString();
             }
 
             return output;
@@ -43,7 +45,7 @@ namespace MyScout
                 else if (bool.TryParse(s, out parsedBool))
                     output.Add(parsedBool);
                 else
-                    output.Add(s.ToString());
+                    output.Add(s.ToString().Replace("\\s",":"));
             }
 
             return output;
