@@ -54,7 +54,7 @@ namespace MyScout
 
         private void textBox_TextChanged(object sender, EventArgs e)
         {
-            OkBtn.Enabled = !string.IsNullOrEmpty(textBox1.Text) && !string.IsNullOrEmpty(textBox2.Text) && (Datatoadd == Data.Team || !string.IsNullOrEmpty(textBox3.Text));
+            OkBtn.Enabled = !string.IsNullOrEmpty(textBox1.Text) && (Datatoadd == Data.Team || !string.IsNullOrEmpty(textBox2.Text)) && (Datatoadd == Data.Team || !string.IsNullOrEmpty(textBox3.Text));
         }
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -67,7 +67,7 @@ namespace MyScout
             if (Datatoadd == Data.Event && sender != textBox1) { DBA = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', (char)Keys.Back, ' ', '/', '\\', '-' }; }
             else { DBA = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', (char)Keys.Back }; }
 
-            if (((Datatoadd == Data.Event && sender != textBox1) || (Datatoadd == Data.Team && sender == textBox1)) && (!DBA.Contains(e.KeyChar) || (Datatoadd == Data.Team && sender == textBox1 && textBox1.Text.Length > 3 && e.KeyChar != (char)Keys.Back)))
+            if (((Datatoadd == Data.Event && sender != textBox1) || (Datatoadd == Data.Team && sender == textBox1)) && (!DBA.Contains(e.KeyChar)))
             {
                 //DIE useless chars!!!
                 e.Handled = true;
