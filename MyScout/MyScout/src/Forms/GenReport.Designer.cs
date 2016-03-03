@@ -42,12 +42,13 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.label1.Location = new System.Drawing.Point(20, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 20);
+            this.label1.Size = new System.Drawing.Size(164, 32);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Generate a(n)";
+            this.label1.Text = "Generate a(n):";
             // 
             // reportTypeCB
             // 
@@ -56,9 +57,10 @@
             this.reportTypeCB.Items.AddRange(new object[] {
             "Event Report",
             "Round Report"});
-            this.reportTypeCB.Location = new System.Drawing.Point(128, 10);
+            this.reportTypeCB.Location = new System.Drawing.Point(193, 14);
+            this.reportTypeCB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.reportTypeCB.Name = "reportTypeCB";
-            this.reportTypeCB.Size = new System.Drawing.Size(126, 28);
+            this.reportTypeCB.Size = new System.Drawing.Size(187, 37);
             this.reportTypeCB.TabIndex = 1;
             this.reportTypeCB.Text = "Event Report";
             this.reportTypeCB.SelectedIndexChanged += new System.EventHandler(this.reportTypeCB_SelectedIndexChanged);
@@ -66,9 +68,11 @@
             // totalScoreRB
             // 
             this.totalScoreRB.AutoSize = true;
-            this.totalScoreRB.Location = new System.Drawing.Point(128, 44);
+            this.totalScoreRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.totalScoreRB.Location = new System.Drawing.Point(114, 68);
+            this.totalScoreRB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.totalScoreRB.Name = "totalScoreRB";
-            this.totalScoreRB.Size = new System.Drawing.Size(116, 17);
+            this.totalScoreRB.Size = new System.Drawing.Size(168, 25);
             this.totalScoreRB.TabIndex = 2;
             this.totalScoreRB.TabStop = true;
             this.totalScoreRB.Text = "Sort by Total Score";
@@ -77,9 +81,11 @@
             // crossScoreRB
             // 
             this.crossScoreRB.AutoSize = true;
-            this.crossScoreRB.Location = new System.Drawing.Point(128, 68);
+            this.crossScoreRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.crossScoreRB.Location = new System.Drawing.Point(114, 105);
+            this.crossScoreRB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.crossScoreRB.Name = "crossScoreRB";
-            this.crossScoreRB.Size = new System.Drawing.Size(118, 17);
+            this.crossScoreRB.Size = new System.Drawing.Size(174, 25);
             this.crossScoreRB.TabIndex = 3;
             this.crossScoreRB.TabStop = true;
             this.crossScoreRB.Text = "Sort by Cross Score";
@@ -88,9 +94,11 @@
             // autoScoreRB
             // 
             this.autoScoreRB.AutoSize = true;
-            this.autoScoreRB.Location = new System.Drawing.Point(128, 91);
+            this.autoScoreRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.autoScoreRB.Location = new System.Drawing.Point(114, 140);
+            this.autoScoreRB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.autoScoreRB.Name = "autoScoreRB";
-            this.autoScoreRB.Size = new System.Drawing.Size(114, 17);
+            this.autoScoreRB.Size = new System.Drawing.Size(167, 25);
             this.autoScoreRB.TabIndex = 4;
             this.autoScoreRB.TabStop = true;
             this.autoScoreRB.Text = "Sort by Auto Score";
@@ -98,37 +106,43 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(13, 167);
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(18, 230);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(241, 64);
+            this.button1.Size = new System.Drawing.Size(362, 98);
             this.button1.TabIndex = 5;
-            this.button1.Text = "GENERATE";
+            this.button1.Text = "Generate";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // roundNumUpDown
             // 
             this.roundNumUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundNumUpDown.Location = new System.Drawing.Point(163, 114);
+            this.roundNumUpDown.Location = new System.Drawing.Point(189, 175);
+            this.roundNumUpDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.roundNumUpDown.Name = "roundNumUpDown";
-            this.roundNumUpDown.Size = new System.Drawing.Size(91, 23);
+            this.roundNumUpDown.Size = new System.Drawing.Size(93, 30);
             this.roundNumUpDown.TabIndex = 6;
             // 
             // roundNumLabel
             // 
             this.roundNumLabel.AutoSize = true;
-            this.roundNumLabel.Location = new System.Drawing.Point(108, 118);
+            this.roundNumLabel.Location = new System.Drawing.Point(111, 181);
+            this.roundNumLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.roundNumLabel.Name = "roundNumLabel";
-            this.roundNumLabel.Size = new System.Drawing.Size(49, 13);
+            this.roundNumLabel.Size = new System.Drawing.Size(70, 20);
             this.roundNumLabel.TabIndex = 7;
             this.roundNumLabel.Text = "Round #";
             // 
             // GenReport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.button1;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(266, 243);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(399, 334);
             this.Controls.Add(this.roundNumLabel);
             this.Controls.Add(this.roundNumUpDown);
             this.Controls.Add(this.button1);
@@ -137,7 +151,14 @@
             this.Controls.Add(this.totalScoreRB);
             this.Controls.Add(this.reportTypeCB);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GenReport";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generate Report";
             ((System.ComponentModel.ISupportInitialize)(this.roundNumUpDown)).EndInit();
             this.ResumeLayout(false);

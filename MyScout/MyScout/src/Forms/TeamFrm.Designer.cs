@@ -30,6 +30,7 @@
         {
             this.MainLbl = new System.Windows.Forms.Label();
             this.LblPnl = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.MainPnl = new System.Windows.Forms.Panel();
             this.TeamList = new System.Windows.Forms.ListView();
             this.IDHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,7 +39,6 @@
             this.EditTeamBtn = new System.Windows.Forms.Button();
             this.RemoveTeamBtn = new System.Windows.Forms.Button();
             this.AddTeamBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.LblPnl.SuspendLayout();
             this.MainPnl.SuspendLayout();
             this.BtnPnl.SuspendLayout();
@@ -50,9 +50,10 @@
             this.MainLbl.Font = new System.Drawing.Font("Segoe UI", 22F);
             this.MainLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.MainLbl.Location = new System.Drawing.Point(0, 0);
+            this.MainLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MainLbl.Name = "MainLbl";
-            this.MainLbl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.MainLbl.Size = new System.Drawing.Size(484, 81);
+            this.MainLbl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 31);
+            this.MainLbl.Size = new System.Drawing.Size(726, 125);
             this.MainLbl.TabIndex = 0;
             this.MainLbl.Text = "Choose a Team";
             this.MainLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -63,18 +64,29 @@
             this.LblPnl.Controls.Add(this.MainLbl);
             this.LblPnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.LblPnl.Location = new System.Drawing.Point(0, 0);
+            this.LblPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LblPnl.Name = "LblPnl";
-            this.LblPnl.Size = new System.Drawing.Size(484, 81);
+            this.LblPnl.Size = new System.Drawing.Size(726, 125);
             this.LblPnl.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(15, 86);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(696, 26);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // MainPnl
             // 
             this.MainPnl.Controls.Add(this.TeamList);
             this.MainPnl.Controls.Add(this.BtnPnl);
             this.MainPnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPnl.Location = new System.Drawing.Point(0, 81);
+            this.MainPnl.Location = new System.Drawing.Point(0, 125);
+            this.MainPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MainPnl.Name = "MainPnl";
-            this.MainPnl.Size = new System.Drawing.Size(484, 214);
+            this.MainPnl.Size = new System.Drawing.Size(726, 329);
             this.MainPnl.TabIndex = 2;
             // 
             // TeamList
@@ -85,9 +97,10 @@
             this.TeamList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TeamList.FullRowSelect = true;
             this.TeamList.Location = new System.Drawing.Point(0, 0);
+            this.TeamList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TeamList.MultiSelect = false;
             this.TeamList.Name = "TeamList";
-            this.TeamList.Size = new System.Drawing.Size(484, 162);
+            this.TeamList.Size = new System.Drawing.Size(726, 249);
             this.TeamList.TabIndex = 1;
             this.TeamList.UseCompatibleStateImageBehavior = false;
             this.TeamList.View = System.Windows.Forms.View.Details;
@@ -108,16 +121,19 @@
             this.BtnPnl.Controls.Add(this.RemoveTeamBtn);
             this.BtnPnl.Controls.Add(this.AddTeamBtn);
             this.BtnPnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BtnPnl.Location = new System.Drawing.Point(0, 162);
+            this.BtnPnl.Location = new System.Drawing.Point(0, 249);
+            this.BtnPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BtnPnl.Name = "BtnPnl";
-            this.BtnPnl.Size = new System.Drawing.Size(484, 52);
+            this.BtnPnl.Size = new System.Drawing.Size(726, 80);
             this.BtnPnl.TabIndex = 0;
             // 
             // EditTeamBtn
             // 
-            this.EditTeamBtn.Location = new System.Drawing.Point(167, 3);
+            this.EditTeamBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.EditTeamBtn.Location = new System.Drawing.Point(250, 5);
+            this.EditTeamBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.EditTeamBtn.Name = "EditTeamBtn";
-            this.EditTeamBtn.Size = new System.Drawing.Size(151, 46);
+            this.EditTeamBtn.Size = new System.Drawing.Size(226, 71);
             this.EditTeamBtn.TabIndex = 3;
             this.EditTeamBtn.Text = "&Edit Team";
             this.EditTeamBtn.UseVisualStyleBackColor = true;
@@ -125,9 +141,11 @@
             // 
             // RemoveTeamBtn
             // 
-            this.RemoveTeamBtn.Location = new System.Drawing.Point(3, 3);
+            this.RemoveTeamBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.RemoveTeamBtn.Location = new System.Drawing.Point(4, 5);
+            this.RemoveTeamBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RemoveTeamBtn.Name = "RemoveTeamBtn";
-            this.RemoveTeamBtn.Size = new System.Drawing.Size(151, 46);
+            this.RemoveTeamBtn.Size = new System.Drawing.Size(226, 71);
             this.RemoveTeamBtn.TabIndex = 2;
             this.RemoveTeamBtn.Text = "&Remove Team";
             this.RemoveTeamBtn.UseVisualStyleBackColor = true;
@@ -135,31 +153,26 @@
             // 
             // AddTeamBtn
             // 
-            this.AddTeamBtn.Location = new System.Drawing.Point(333, 3);
+            this.AddTeamBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.AddTeamBtn.Location = new System.Drawing.Point(500, 5);
+            this.AddTeamBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AddTeamBtn.Name = "AddTeamBtn";
-            this.AddTeamBtn.Size = new System.Drawing.Size(151, 46);
+            this.AddTeamBtn.Size = new System.Drawing.Size(226, 71);
             this.AddTeamBtn.TabIndex = 0;
             this.AddTeamBtn.Text = "&Add Team";
             this.AddTeamBtn.UseVisualStyleBackColor = true;
             this.AddTeamBtn.Click += new System.EventHandler(this.AddTeamBtn_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(10, 56);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(465, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // TeamFrm
             // 
             this.AcceptButton = this.AddTeamBtn;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(484, 295);
+            this.ClientSize = new System.Drawing.Size(726, 454);
             this.Controls.Add(this.MainPnl);
             this.Controls.Add(this.LblPnl);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TeamFrm";
