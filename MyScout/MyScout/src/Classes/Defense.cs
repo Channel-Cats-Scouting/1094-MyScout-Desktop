@@ -16,14 +16,24 @@ namespace MyScout
         /// For example, if a team is skilled at crossing a defense, the defense's "skill" variable would be set to "Rating.Good."
         /// </summary>
         public Rating skill;
+
+        #region Autonomous-related Variables
         /// <summary>
-        /// Whether or not the team reached this defense.
+        /// Whether or not the team reached this defense in Autonomous.
         /// </summary>
-        public bool reached = false;
+        public bool AOreached = false;
         /// <summary>
-        /// How many times the team crossed this defense.
+        /// Whether or not the team crossed this defense in Autonomous.
         /// </summary>
-        public int timescrossed = 0;
+        public bool AOcrossed = false;
+        #endregion
+
+        #region Tele-OP-related Variables
+        /// <summary>
+        /// How many times the team crossed this defense in Tele-OP.
+        /// </summary>
+        public int  TOtimescrossed = 0;
+        #endregion
     }
 
     /// <summary>

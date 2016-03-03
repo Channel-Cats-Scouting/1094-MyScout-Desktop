@@ -105,12 +105,15 @@ namespace MyScout
                                 reader.ReadStartElement("Defenses");
                                 for (int i2 = 0; i2 < 6; i2++)
                                 {
-                                    List<object> reachedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("ReachedTokens"));
-                                    List<object> timesCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TimesCrossedTokens"));
+                                    List<object> AOReachedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOReachedTokens"));
+                                    List<object> AOCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOCrossedTokens"));
+                                    List<object> TOCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOCrossedTokens"));
+
                                     for (int i3 = 0; i3 < 9; i3++)
                                     {
-                                        round.defenses[i2, i3].reached = (bool)reachedTokens[i3];
-                                        //round.defenses[i2, i3].timescrossed = (int)timesCrossedTokens[i3];
+                                        round.defenses[i2, i3].AOreached      = (bool)AOReachedTokens[i3];
+                                        round.defenses[i2, i3].AOcrossed      = (bool)AOCrossedTokens[i3];
+                                        round.defenses[i2, i3].TOtimescrossed = (int)TOCrossedTokens[i3];
                                     }
                                 }
                                 reader.ReadEndElement();
@@ -139,7 +142,7 @@ namespace MyScout
         /// </summary>
         public static void SaveAllEvents()
         {
-            if (Directory.Exists(Program.startuppath + "\\Events"))
+            if (Directory.Exists(Program.startuppath + "\\Events") && Directory.GetFiles(Program.startuppath + "\\Events").Length > 0)
             {
                 Directory.Delete(Program.startuppath + "\\Events",true);
             }
@@ -229,27 +232,34 @@ namespace MyScout
 
                         writer.WriteStartElement("Round");
                         writer.WriteStartElement("Teams");
-                        List<object> teams = new List<object>();//Save teams for each round
+
+                        List<object> teams = new List<object>(); //Save teams for each round
+
                         for (int i = 0; i < 6; i++)
                         {
                             teams.Add(round.teams[i]);
                         }
+
                         writer.WriteElementString("TeamTokens", TokenizeStringHandler.CreateTokenizedString(teams));
                         writer.WriteEndElement();
 
                         writer.WriteStartElement("Defenses");
                         for (int i = 0; i < 6; i++)
                         {
-                            List<object> reachedTokens = new List<object>(); //Save defenses information per team
-                            List<object> crossedTokens = new List<object>();
+                            List<object> AOReachedTokens = new List<object>(); //Save defenses information per team
+                            List<object> AOCrossedTokens = new List<object>();
+                            List<object> TOCrossedTokens = new List<object>();
 
                             for (int i2 = 0; i2 < 9; i2++)
                             {
-                                reachedTokens.Add(round.defenses[i, i2].reached);
-                                //crossedTokens.Add(round.defenses[i, i2].timescrossed);
+                                AOReachedTokens.Add(round.defenses[i, i2].AOreached);
+                                AOCrossedTokens.Add(round.defenses[i, i2].AOcrossed);
+                                TOCrossedTokens.Add(round.defenses[i, i2].TOtimescrossed);
                             }
-                            writer.WriteElementString("ReachedTokens", TokenizeStringHandler.CreateTokenizedString(reachedTokens));
-                            writer.WriteElementString("TimesCrossedTokens", TokenizeStringHandler.CreateTokenizedString(crossedTokens));
+
+                            writer.WriteElementString("AOReachedTokens", TokenizeStringHandler.CreateTokenizedString(AOReachedTokens));
+                            writer.WriteElementString("AOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(AOCrossedTokens));
+                            writer.WriteElementString("TOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(TOCrossedTokens));
                         }
                         writer.WriteEndElement();
                         writer.WriteEndElement();

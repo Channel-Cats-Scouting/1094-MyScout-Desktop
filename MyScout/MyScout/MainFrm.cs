@@ -99,16 +99,27 @@ namespace MyScout
 
             if (Program.selectedteam != -1)
             {
-                TeamNameLbl.Text = $"{Program.events[Program.currentevent].teams[Program.selectedteam].name} - {Program.events[Program.currentevent].teams[Program.selectedteam].id.ToString()}";
+                TeamNameLbl.Text = $"{((string.IsNullOrEmpty(Program.events[Program.currentevent].teams[Program.selectedteam].name))? "" : Program.events[Program.currentevent].teams[Program.selectedteam].name + " - ")}{Program.events[Program.currentevent].teams[Program.selectedteam].id.ToString()}";
                 TeamNameLbl.ForeColor = label1.ForeColor = (TeamNameLbl.Text != "Channel Cats - 1094")?SystemColors.HotTrack:Color.Orange;
 
                 foreach (Panel pnl in defensepnls)
                 {
-                    //TODO: Get "Times Crossed" to be a thing again
-                    //TimesCrossed.Text = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex,DefenseCBx.SelectedIndex].timescrossed.ToString();;
-                    (pnl.Controls[3] as RadioButton).Checked = false;
-                    (pnl.Controls[2] as RadioButton).Checked = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, pnl)].reached;
-                    (pnl.Controls[1] as RadioButton).Checked = !(pnl.Controls[2] as RadioButton).Checked;
+                    if (!TeleOpRB.Checked)
+                    {
+                        //Update the Autonomous GUI
+                        Defense defense = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, pnl)];
+                        (pnl.Controls[3] as RadioButton).Checked = defense.AOcrossed;
+                        (pnl.Controls[2] as RadioButton).Checked = defense.AOreached;
+                        (pnl.Controls[1] as RadioButton).Checked = (!defense.AOcrossed && !defense.AOreached);
+                    }
+                    else
+                    {
+                        //Update the Tele-OP GUI
+                        int timescrossed = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, pnl)].TOtimescrossed;
+                        (pnl.Controls[3] as RadioButton).Checked = (timescrossed >= 2);
+                        (pnl.Controls[2] as RadioButton).Checked = (timescrossed == 1);
+                        (pnl.Controls[1] as RadioButton).Checked = (timescrossed == 0);
+                    }
                 }
             }
             else
@@ -116,10 +127,11 @@ namespace MyScout
                 TeamNameLbl.Text = "No Team Selected";
                 TeamNameLbl.ForeColor = label1.ForeColor = SystemColors.HotTrack;
 
+                AutonomousRB.Checked = true;
+                TeleOpRB.Checked = false;
+
                 foreach (Panel pnl in defensepnls)
                 {
-                    //TODO: Get "Times Crossed" to be a thing again
-                    //TimesCrossed.Text = "0";
                     (pnl.Controls[2] as RadioButton).Checked = (pnl.Controls[3] as RadioButton).Checked = false;
                     (pnl.Controls[1] as RadioButton).Checked = true;
                 }
@@ -153,7 +165,6 @@ namespace MyScout
         /// </summary>
         private void MainFrm_Load(object sender, EventArgs e)
         {
-            Console.WriteLine("Load");
             if (!Directory.Exists(Application.StartupPath + "\\Events"))
             {
                 Directory.CreateDirectory(Application.StartupPath + "\\Events");
@@ -233,23 +244,19 @@ namespace MyScout
         {
             IO.SaveEvent(Program.currentevent);
             
-            
-
             //Open report generation dialog
             GenReport genreport = new GenReport();
 
             if(genreport.ShowDialog() == DialogResult.OK)
             {
-                {
-                    //Generate spreadsheet, but make sure that the RoundID stays -1 if already -1
-                    IO.GenerateSpreadsheet(Program.events[Program.currentevent], genreport.GetRoundID() >= 0 ? genreport.GetRoundID() - 1 : -1, genreport.GetSorting());
+                //Generate spreadsheet, but make sure that the RoundID stays -1 if already -1
+                IO.GenerateSpreadsheet(Program.events[Program.currentevent], genreport.GetRoundID() >= 0 ? genreport.GetRoundID() - 1 : -1, genreport.GetSorting());
 
-                    //Figure out file path based on report data
-                    string filePath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {Program.events[Program.currentevent].name}" + (genreport.GetIsEventReport() ? "" : (" - Round " + genreport.GetRoundID())) +".xls";
-                    if (File.Exists(filePath))
-                    {
-                        System.Diagnostics.Process.Start("explorer.exe", @"/select, " + filePath);
-                    }
+                //Figure out file path based on report data
+                string filePath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {Program.events[Program.currentevent].name}" + (genreport.GetIsEventReport() ? "" : (" - Round " + genreport.GetRoundID())) +".xls";
+                if (File.Exists(filePath))
+                {
+                    System.Diagnostics.Process.Start("explorer.exe", @"/select, " + filePath);
                 }
             }
         }
@@ -478,6 +485,7 @@ namespace MyScout
                     p.Refresh();
                 }
             }
+            RefreshControls();
         }
 
         /// <summary>
@@ -490,12 +498,22 @@ namespace MyScout
                 RadioButton rb = sender as RadioButton;
                 Panel containingpnl = (rb != null && rb.Parent != null) ? rb.Parent as Panel : null;
 
+                Console.WriteLine($"{containingpnl.Name} , {(containingpnl.Controls[1] as RadioButton).Checked} , {(containingpnl.Controls[2] as RadioButton).Checked} , {(containingpnl.Controls[3] as RadioButton).Checked}");
+
                 if (containingpnl != null && defensepnls.Contains(containingpnl))
                 {
-                    //TODO: Get "Times Crossed" to be a thing again
-                    //TODO: Documentation
-                    Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, containingpnl)].reached
-                    /*= TimesCrossedLbl.Enabled = TimesCrossed.Enabled*/ = (containingpnl.Controls[2] as RadioButton).Checked;
+                    if (!TeleOpRB.Checked)
+                    {
+                        //TODO: Documentation
+                        Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, containingpnl)].AOcrossed = (containingpnl.Controls[3] as RadioButton).Checked;
+                        Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, containingpnl)].AOreached = (containingpnl.Controls[2] as RadioButton).Checked;
+                    }
+                    else
+                    {
+                        //TODO: Documentation
+                        Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, containingpnl)].TOtimescrossed =
+                        ((containingpnl.Controls[3] as RadioButton).Checked)? 2 : ((containingpnl.Controls[2] as RadioButton).Checked)? 1 : 0;
+                    }
                 }
             }
         }
