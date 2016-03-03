@@ -119,7 +119,7 @@ namespace MyScout
                 for (int i = 0; i < Program.events[Program.currentevent].teams.Count; i++)
                 {
                     Team team = Program.events[Program.currentevent].teams[i];
-                    if (team.name.Contains(textBox1.Text) || team.id.ToString().Contains(textBox1.Text))
+                    if (team.name.ToUpper().Contains(textBox1.Text.ToUpper()) || team.id.ToString().Contains(textBox1.Text))
                     {
                         TeamList.Items.Add(new ListViewItem(new string[] { team.id.ToString(), team.name }) { Tag = i });
                     }
