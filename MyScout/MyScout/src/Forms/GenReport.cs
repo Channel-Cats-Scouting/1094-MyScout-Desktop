@@ -24,11 +24,14 @@ namespace MyScout
 
         private void reportTypeCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(reportTypeCB.SelectedIndex == 0)
+            if (reportTypeCB.SelectedIndex == 0)
             {
                 roundNumLabel.Enabled = roundNumUpDown.Enabled = false;
             }
-            else roundNumLabel.Enabled = roundNumUpDown.Enabled = true;
+            else
+            {
+                roundNumLabel.Enabled = roundNumUpDown.Enabled = true;
+            };
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,9 +50,19 @@ namespace MyScout
             return roundNumUpDown.Enabled ? (int)roundNumUpDown.Value : -1;
         }
 
+        public bool GetIsPrescout()
+        {
+            return reportTypeCB.SelectedIndex == 2;
+        }
+
         public bool GetIsEventReport()
         {
             return reportTypeCB.SelectedIndex == 0 ? true : false;
+        }
+
+        private void allRoundsCB_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -36,6 +36,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.roundNumUpDown = new System.Windows.Forms.NumericUpDown();
             this.roundNumLabel = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.roundNumUpDown)).BeginInit();
             this.SuspendLayout();
             // 
@@ -43,10 +45,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label1.Location = new System.Drawing.Point(20, 14);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(13, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 32);
+            this.label1.Size = new System.Drawing.Size(107, 21);
             this.label1.TabIndex = 0;
             this.label1.Text = "Generate a(n):";
             // 
@@ -56,11 +57,11 @@
             this.reportTypeCB.FormattingEnabled = true;
             this.reportTypeCB.Items.AddRange(new object[] {
             "Event Report",
-            "Round Report"});
-            this.reportTypeCB.Location = new System.Drawing.Point(193, 14);
-            this.reportTypeCB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            "Round Report",
+            "Prescout Report"});
+            this.reportTypeCB.Location = new System.Drawing.Point(129, 9);
             this.reportTypeCB.Name = "reportTypeCB";
-            this.reportTypeCB.Size = new System.Drawing.Size(187, 37);
+            this.reportTypeCB.Size = new System.Drawing.Size(126, 28);
             this.reportTypeCB.TabIndex = 1;
             this.reportTypeCB.Text = "Event Report";
             this.reportTypeCB.SelectedIndexChanged += new System.EventHandler(this.reportTypeCB_SelectedIndexChanged);
@@ -69,10 +70,9 @@
             // 
             this.totalScoreRB.AutoSize = true;
             this.totalScoreRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.totalScoreRB.Location = new System.Drawing.Point(114, 68);
-            this.totalScoreRB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.totalScoreRB.Location = new System.Drawing.Point(76, 44);
             this.totalScoreRB.Name = "totalScoreRB";
-            this.totalScoreRB.Size = new System.Drawing.Size(168, 25);
+            this.totalScoreRB.Size = new System.Drawing.Size(122, 18);
             this.totalScoreRB.TabIndex = 2;
             this.totalScoreRB.TabStop = true;
             this.totalScoreRB.Text = "Sort by Total Score";
@@ -82,10 +82,9 @@
             // 
             this.crossScoreRB.AutoSize = true;
             this.crossScoreRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.crossScoreRB.Location = new System.Drawing.Point(114, 105);
-            this.crossScoreRB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.crossScoreRB.Location = new System.Drawing.Point(76, 68);
             this.crossScoreRB.Name = "crossScoreRB";
-            this.crossScoreRB.Size = new System.Drawing.Size(174, 25);
+            this.crossScoreRB.Size = new System.Drawing.Size(124, 18);
             this.crossScoreRB.TabIndex = 3;
             this.crossScoreRB.TabStop = true;
             this.crossScoreRB.Text = "Sort by Cross Score";
@@ -95,10 +94,9 @@
             // 
             this.autoScoreRB.AutoSize = true;
             this.autoScoreRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.autoScoreRB.Location = new System.Drawing.Point(114, 140);
-            this.autoScoreRB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.autoScoreRB.Location = new System.Drawing.Point(76, 91);
             this.autoScoreRB.Name = "autoScoreRB";
-            this.autoScoreRB.Size = new System.Drawing.Size(167, 25);
+            this.autoScoreRB.Size = new System.Drawing.Size(120, 18);
             this.autoScoreRB.TabIndex = 4;
             this.autoScoreRB.TabStop = true;
             this.autoScoreRB.Text = "Sort by Auto Score";
@@ -108,10 +106,9 @@
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(18, 230);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Location = new System.Drawing.Point(12, 226);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(362, 98);
+            this.button1.Size = new System.Drawing.Size(243, 64);
             this.button1.TabIndex = 5;
             this.button1.Text = "Generate";
             this.button1.UseVisualStyleBackColor = true;
@@ -120,29 +117,45 @@
             // roundNumUpDown
             // 
             this.roundNumUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundNumUpDown.Location = new System.Drawing.Point(189, 175);
-            this.roundNumUpDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.roundNumUpDown.Location = new System.Drawing.Point(76, 115);
             this.roundNumUpDown.Name = "roundNumUpDown";
-            this.roundNumUpDown.Size = new System.Drawing.Size(93, 30);
+            this.roundNumUpDown.Size = new System.Drawing.Size(62, 23);
             this.roundNumUpDown.TabIndex = 6;
             // 
             // roundNumLabel
             // 
             this.roundNumLabel.AutoSize = true;
-            this.roundNumLabel.Location = new System.Drawing.Point(111, 181);
-            this.roundNumLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.roundNumLabel.Location = new System.Drawing.Point(144, 119);
             this.roundNumLabel.Name = "roundNumLabel";
-            this.roundNumLabel.Size = new System.Drawing.Size(70, 20);
+            this.roundNumLabel.Size = new System.Drawing.Size(49, 13);
             this.roundNumLabel.TabIndex = 7;
             this.roundNumLabel.Text = "Round #";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(76, 144);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(89, 20);
+            this.textBox1.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(171, 147);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Team #";
             // 
             // GenReport
             // 
             this.AcceptButton = this.button1;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(399, 334);
+            this.ClientSize = new System.Drawing.Size(266, 302);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.roundNumLabel);
             this.Controls.Add(this.roundNumUpDown);
             this.Controls.Add(this.button1);
@@ -152,7 +165,6 @@
             this.Controls.Add(this.reportTypeCB);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "GenReport";
@@ -176,5 +188,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown roundNumUpDown;
         private System.Windows.Forms.Label roundNumLabel;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
     }
 }

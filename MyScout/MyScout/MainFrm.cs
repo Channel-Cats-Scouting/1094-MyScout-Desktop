@@ -249,15 +249,44 @@ namespace MyScout
 
             if(genreport.ShowDialog() == DialogResult.OK)
             {
-                //Generate spreadsheet, but make sure that the RoundID stays -1 if already -1
-                IO.GenerateSpreadsheet(Program.events[Program.currentevent], genreport.GetRoundID() >= 0 ? genreport.GetRoundID() - 1 : -1, genreport.GetSorting());
-
-                //Figure out file path based on report data
-                string filePath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {Program.events[Program.currentevent].name}" + (genreport.GetIsEventReport() ? "" : (" - Round " + genreport.GetRoundID())) +".xls";
-                if (File.Exists(filePath))
+                if (!genreport.GetIsPrescout())
                 {
-                    System.Diagnostics.Process.Start("explorer.exe", @"/select, " + filePath);
+                    //TODO Get rounds that the team # in GenReport is a part of
+                    //Generate spreadsheet, but make sure that the RoundID stays -1 if already -1
+                    IO.GenerateSpreadsheet(Program.events[Program.currentevent], genreport.GetRoundID() >= 0 ? genreport.GetRoundID() - 1 : -1, genreport.GetSorting());
+
+                    //Figure out file path based on report data
+                    string filePath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {Program.events[Program.currentevent].name}" + (genreport.GetIsEventReport() ? "" : (" - Round " + genreport.GetRoundID())) + ".xls";
+
+                    if (File.Exists(filePath))
+                    {
+                        System.Diagnostics.Process.Start("explorer.exe", @"/select, " + filePath);
+                    }
                 }
+                else
+                {
+                    Thread generatethread = new Thread(new ParameterizedThreadStart(GenerateAllRounds));
+                    generatethread.Start(genreport);
+
+                }
+            }
+        }
+
+        public void GenerateAllRounds(Object genreporttemp)
+        {
+            GenReport genreport = (GenReport)genreporttemp;
+            for (int i = 0; i < Program.events[Program.currentevent].rounds.Count; i++)
+            {
+                //Generate spreadsheet, but make sure that the RoundID stays -1 if already -1
+                IO.GenerateSpreadsheet(Program.events[Program.currentevent], i, genreport.GetSorting());
+            }
+
+            //Figure out file path based on report data
+            string filePath = ($"{Program.startuppath}\\Spreadsheets");
+
+            if (Directory.Exists(filePath))
+            {
+                System.Diagnostics.Process.Start("explorer.exe", filePath);
             }
         }
 

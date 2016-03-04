@@ -284,6 +284,15 @@ namespace MyScout
         {
             List<Team> teamList = ev.teams;
 
+            //Clean the report
+            for (int i = 0; i < teamList.Count; i++)
+            {
+                if (teamList[i] == null)
+                {
+                    teamList[i] = new Team(0000, "null");
+                }
+            }
+
             //Sort the team list based on the sorting int
             List<Team> sortedTeamList = teamList.OrderByDescending(
                 team => (sorting == 1 ? team.avgScore : sorting == 2 ? team.autoDefensesCrossed : team.crossingPowerScore)
@@ -376,6 +385,15 @@ namespace MyScout
             {
                 teamList[i] = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? null :
                     Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]];
+            }
+
+            //Clean the report
+            for(int i = 0; i < teamList.Length; i++)
+            {
+                if(teamList[i] == null)
+                {
+                    teamList[i] = new Team(0000, "null");
+                }
             }
 
             //Sort the team list based on the sorting int
