@@ -392,6 +392,7 @@
             this.TLowGoalNUD.Name = "TLowGoalNUD";
             this.TLowGoalNUD.Size = new System.Drawing.Size(122, 38);
             this.TLowGoalNUD.TabIndex = 26;
+            this.TLowGoalNUD.ValueChanged += new System.EventHandler(this.TLowGoalNUD_ValueChanged);
             // 
             // groupBox1
             // 
@@ -992,6 +993,7 @@
             this.TScaledTowerChkbx.TabIndex = 31;
             this.TScaledTowerChkbx.Text = "Scaled Tower";
             this.TScaledTowerChkbx.UseVisualStyleBackColor = true;
+            this.TScaledTowerChkbx.CheckedChanged += new System.EventHandler(this.TScaledTowerChkbx_CheckedChanged);
             // 
             // AutonomousRB
             // 
@@ -1018,6 +1020,7 @@
             this.TChallengedTowerChkbx.TabIndex = 30;
             this.TChallengedTowerChkbx.Text = "Challenged Tower";
             this.TChallengedTowerChkbx.UseVisualStyleBackColor = true;
+            this.TChallengedTowerChkbx.CheckedChanged += new System.EventHandler(this.TChallengedTowerChkbx_CheckedChanged);
             // 
             // TeleOpRB
             // 
@@ -1061,6 +1064,7 @@
             this.THighGoalNUD.Name = "THighGoalNUD";
             this.THighGoalNUD.Size = new System.Drawing.Size(122, 38);
             this.THighGoalNUD.TabIndex = 28;
+            this.THighGoalNUD.ValueChanged += new System.EventHandler(this.THighGoalNUD_ValueChanged);
             // 
             // TCommentsTxtbx
             // 
@@ -1070,8 +1074,13 @@
             this.TCommentsTxtbx.Location = new System.Drawing.Point(10, 366);
             this.TCommentsTxtbx.Multiline = true;
             this.TCommentsTxtbx.Name = "TCommentsTxtbx";
+<<<<<<< HEAD
             this.TCommentsTxtbx.Size = new System.Drawing.Size(559, 107);
+=======
+            this.TCommentsTxtbx.Size = new System.Drawing.Size(559, 109);
+>>>>>>> 5249103c83d924e75dc4c01af91c478a89133240
             this.TCommentsTxtbx.TabIndex = 22;
+            this.TCommentsTxtbx.TextChanged += new System.EventHandler(this.TCommentsTxtbx_TextChanged);
             // 
             // RDGroupBx
             // 
@@ -1122,6 +1131,7 @@
             this.RDDefenseChkbx.Name = "RDDefenseChkbx";
             this.RDDefenseChkbx.Size = new System.Drawing.Size(135, 21);
             this.RDDefenseChkbx.TabIndex = 31;
+            this.RDDefenseChkbx.SelectedIndexChanged += new System.EventHandler(this.RDDefenseChkbx_SelectedIndexChanged);
             // 
             // RDDied
             // 
@@ -1161,6 +1171,7 @@
             this.RDComments.Name = "RDComments";
             this.RDComments.Size = new System.Drawing.Size(138, 367);
             this.RDComments.TabIndex = 23;
+            this.RDComments.TextChanged += new System.EventHandler(this.RDComments_TextChanged);
             // 
             // HPGroupBx
             // 
@@ -1185,6 +1196,7 @@
             this.HPCommentsTxtbx.Name = "HPCommentsTxtbx";
             this.HPCommentsTxtbx.Size = new System.Drawing.Size(180, 453);
             this.HPCommentsTxtbx.TabIndex = 1;
+            this.HPCommentsTxtbx.TextChanged += new System.EventHandler(this.HPCommentsTxtbx_TextChanged);
             // 
             // AllianceBtnPnl
             // 
@@ -1342,7 +1354,10 @@
             this.Controls.Add(this.EventPnl);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+<<<<<<< HEAD
             this.MaximumSize = new System.Drawing.Size(1108, 628);
+=======
+>>>>>>> 5249103c83d924e75dc4c01af91c478a89133240
             this.MinimumSize = new System.Drawing.Size(1108, 628);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

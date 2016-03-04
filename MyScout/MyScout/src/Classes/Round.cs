@@ -25,6 +25,42 @@ namespace MyScout
         /// TODO: Documentation
         /// </summary>
         public Defense[,] defenses = new Defense[6,9];
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public bool[] scaledtower = new bool[6] { false, false, false, false, false, false };
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public bool[] challengedtower = new bool[6] { false, false, false, false, false, false };
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public int[] highgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public int[] lowgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public string[] comments = new string[6] { "", "", "", "", "", "" };
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public string[] humancomments = new string[6] { "", "", "", "", "", "" };
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public bool[] died = new bool[6] { false, false, false, false, false, false };
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public int[] dieddefense = new int[6] { 0, 0, 0, 0, 0, 0 };
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public string[] diedcomments = new string[6] { "", "", "", "", "", "" };
 
         public Round()
         {

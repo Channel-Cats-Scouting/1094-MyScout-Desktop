@@ -121,6 +121,14 @@ namespace MyScout
                         (pnl.Controls[1] as RadioButton).Checked = (timescrossed == 0);
                     }
                 }
+
+                TCommentsTxtbx.Text = Program.events[Program.currentevent].rounds[Program.currentround].comments[Program.selectedteamroundindex];
+                TLowGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].lowgoalcount[Program.selectedteamroundindex];
+                THighGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].highgoalcount[Program.selectedteamroundindex];
+                TChallengedTowerChkbx.Checked = Program.events[Program.currentevent].rounds[Program.currentround].challengedtower[Program.selectedteamroundindex];
+                TScaledTowerChkbx.Checked = Program.events[Program.currentevent].rounds[Program.currentround].scaledtower[Program.selectedteamroundindex];
+                RDDied.Checked = Program.events[Program.currentevent].rounds[Program.currentround].died[Program.selectedteamroundindex];
+                HPCommentsTxtbx.Text = Program.events[Program.currentevent].rounds[Program.currentround].humancomments[Program.selectedteamroundindex];
             }
             else
             {
@@ -135,6 +143,14 @@ namespace MyScout
                     (pnl.Controls[2] as RadioButton).Checked = (pnl.Controls[3] as RadioButton).Checked = false;
                     (pnl.Controls[1] as RadioButton).Checked = true;
                 }
+
+                TCommentsTxtbx.Text = "";
+                TLowGoalNUD.Value = 0;
+                THighGoalNUD.Value = 0;
+                TChallengedTowerChkbx.Checked = false;
+                TScaledTowerChkbx.Checked = false;
+                RDDied.Checked = false;
+                HPCommentsTxtbx.Text = "";
             }
 
             //TODO: Documentation
@@ -483,6 +499,7 @@ namespace MyScout
         {
             //Enable/disable every control inside the "Died" groupbox
             RDDefenseLbl.Enabled = RDDefenseChkbx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = RDDied.Checked;
+            Program.events[Program.currentevent].rounds[Program.currentround].died[Program.selectedteamroundindex] = RDDied.Checked;
         }
 
         /// <summary>
@@ -547,9 +564,62 @@ namespace MyScout
             }
         }
 
-        #endregion
+        /// <summary>
+        /// Occurs when the text in "TCommentsTxtbx" is changed.
+        /// </summary>
+        private void TCommentsTxtbx_TextChanged(object sender, EventArgs e)
+        {
+            if (Program.events[Program.currentevent].rounds.Count > Program.currentround && Program.selectedteamroundindex != -1)
+            {
+                Program.events[Program.currentevent].rounds[Program.currentround].comments[Program.selectedteamroundindex] = TCommentsTxtbx.Text;
+            }
+        }
+
         #endregion
 
         #endregion
+
+        #endregion
+
+        private void TLowGoalNUD_ValueChanged(object sender, EventArgs e)
+        {
+            Program.events[Program.currentevent].rounds[Program.currentround].lowgoalcount[Program.selectedteamroundindex] = (int)TLowGoalNUD.Value;
+        }
+
+        private void THighGoalNUD_ValueChanged(object sender, EventArgs e)
+        {
+            Program.events[Program.currentevent].rounds[Program.currentround].highgoalcount[Program.selectedteamroundindex] = (int)THighGoalNUD.Value;
+        }
+
+        private void TChallengedTowerChkbx_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.events[Program.currentevent].rounds[Program.currentround].challengedtower[Program.selectedteamroundindex] = TChallengedTowerChkbx.Checked;
+        }
+
+        private void TScaledTowerChkbx_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.events[Program.currentevent].rounds[Program.currentround].scaledtower[Program.selectedteamroundindex] = TScaledTowerChkbx.Checked;
+        }
+
+        private void HPCommentsTxtbx_TextChanged(object sender, EventArgs e)
+        {
+            if (Program.events[Program.currentevent].rounds.Count > Program.currentround && Program.selectedteamroundindex != -1)
+            {
+                Program.events[Program.currentevent].rounds[Program.currentround].humancomments[Program.selectedteamroundindex] = HPCommentsTxtbx.Text;
+            }
+        }
+
+        private void RDComments_TextChanged(object sender, EventArgs e)
+        {
+            if (Program.events[Program.currentevent].rounds.Count > Program.currentround && Program.selectedteamroundindex != -1)
+            {
+                Program.events[Program.currentevent].rounds[Program.currentround].diedcomments[Program.selectedteamroundindex] = RDComments.Text;
+            }
+        }
+
+        private void RDDefenseChkbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Program.events[Program.currentevent].rounds[Program.currentround].dieddefense[Program.selectedteamroundindex] = RDDefenseChkbx.SelectedIndex;
+        }
     }
 }
