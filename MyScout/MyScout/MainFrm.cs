@@ -662,8 +662,15 @@ namespace MyScout
 
         private void preScoutButton_Click(object sender, EventArgs e)
         {
-            PrescoutFrm prescoutform = new PrescoutFrm();
-            prescoutform.Show();
+            if (Program.events.Count > 0)
+            {
+                PrescoutFrm prescoutform = new PrescoutFrm();
+                prescoutform.Show();
+            }
+            else
+            {
+                MessageBox.Show("There are no events to pre-scout!", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+            }
         }
     }
 }

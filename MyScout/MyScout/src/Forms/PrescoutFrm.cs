@@ -21,14 +21,21 @@ namespace MyScout
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TeamFrm teamform = new TeamFrm(panel1);
-            teamform.ShowDialog();
-
-            if(teamform.DialogResult == DialogResult.OK)
+            if (Program.events.Count > 0)
             {
-                selectedTeam = Program.events[Program.currentevent].teams[teamform.GetSelectedTeamIndex()];
-                button1.Text = selectedTeam.id.ToString() + "\n" + selectedTeam.name;
-                LoadDefenses(selectedTeam);
+                TeamFrm teamform = new TeamFrm(panel1);
+                teamform.ShowDialog();
+
+                if (teamform.DialogResult == DialogResult.OK)
+                {
+                    selectedTeam = Program.events[Program.currentevent].teams[teamform.GetSelectedTeamIndex()];
+                    button1.Text = selectedTeam.id.ToString() + "\n" + selectedTeam.name;
+                    LoadStats(selectedTeam);
+                }
+            }
+            else
+            {
+                Close();
             }
         }
 
@@ -40,11 +47,11 @@ namespace MyScout
         private void button2_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            SaveDefenses(selectedTeam);
+            SaveStats(selectedTeam);
             Close();
         }
 
-        public void LoadDefenses(Team team)
+        public void LoadStats(Team team)
         {
             portcullisCheckBox.Checked = team.defensesCrossable[0];
             tippyRampCheckBox.Checked = team.defensesCrossable[1];
@@ -55,9 +62,15 @@ namespace MyScout
             rockWallCheckBox.Checked = team.defensesCrossable[6];
             roughTerrainCheckBox.Checked = team.defensesCrossable[7];
             lowBarCheckBox.Checked = team.defensesCrossable[8];
+
+            canHighGoalCB.Checked = team.canScoreHighGoals;
+            canLowGoalCB.Checked = team.canScoreLowGoals;
+            loadEmbrasureCB.Checked = team.loadsFromEmbrasures;
+            loadBattriceCB.Checked = team.loadsFromBattrice;
+            loadFloorCB.Checked = team.loadsFromFloor;
         }
 
-        public void SaveDefenses(Team team)
+        public void SaveStats(Team team)
         {
             team.defensesCrossable[0] = portcullisCheckBox.Checked;
             team.defensesCrossable[1] = tippyRampCheckBox.Checked;
@@ -68,6 +81,12 @@ namespace MyScout
             team.defensesCrossable[6] = rockWallCheckBox.Checked;
             team.defensesCrossable[7] = roughTerrainCheckBox.Checked;
             team.defensesCrossable[8] = lowBarCheckBox.Checked;
+
+            team.canScoreHighGoals = canHighGoalCB.Checked;
+            team.canScoreLowGoals = canLowGoalCB.Checked;
+            team.loadsFromEmbrasures = loadEmbrasureCB.Checked;
+            team.loadsFromBattrice = loadBattriceCB.Checked;
+            team.loadsFromFloor = loadFloorCB.Checked;
         }
     }
 }

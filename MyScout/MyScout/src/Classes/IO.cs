@@ -59,18 +59,24 @@ namespace MyScout
                                 team.teleDefensesCrossed = Convert.ToInt32(tokens[3]);
                                 team.teleHighGoals = Convert.ToInt32(tokens[4]);
                                 team.teleLowGoals = Convert.ToInt32(tokens[5]);
-                                team.towerScaledAvg = Convert.ToInt32(tokens[6]);
+                                team.towersScaled = Convert.ToInt32(tokens[6]);
 
                                 for (int j = 0; j < 8; j++)
                                 {
                                     team.defensesCrossable[j] = Convert.ToBoolean(tokens[j + 7]);
                                 }
 
-                                team.crossingPowerScore = Convert.ToInt32(tokens[16]);
-                                team.autoDefensesCrossed = Convert.ToInt32(tokens[17]);
-                                team.autoHighGoals = Convert.ToInt32(tokens[18]);
-                                team.autoLowGoals = Convert.ToInt32(tokens[19]);
-                                team.deathCount = Convert.ToInt32(tokens[20]);
+                                team.canScoreHighGoals = Convert.ToBoolean(tokens[15]);
+                                team.canScoreLowGoals = Convert.ToBoolean(tokens[16]);
+                                team.loadsFromEmbrasures = Convert.ToBoolean(tokens[17]);
+                                team.loadsFromBattrice = Convert.ToBoolean(tokens[18]);
+                                team.loadsFromFloor = Convert.ToBoolean(tokens[19]);
+
+                                team.crossingPowerScore = Convert.ToInt32(tokens[20]);
+                                team.autoDefensesCrossed = Convert.ToInt32(tokens[21]);
+                                team.autoHighGoals = Convert.ToInt32(tokens[22]);
+                                team.autoLowGoals = Convert.ToInt32(tokens[23]);
+                                team.deathCount = Convert.ToInt32(tokens[24]);
 
                                 for (int j = 0; j < 8; j++)
                                 {
@@ -194,12 +200,17 @@ namespace MyScout
                         tokens.Add(team.teleDefensesCrossed);
                         tokens.Add(team.teleHighGoals);
                         tokens.Add(team.teleLowGoals);
-                        tokens.Add(team.towerScaledAvg);
+                        tokens.Add(team.towersScaled);
 
                         for (int i = 0; i < 8; i++)
                         {
                             tokens.Add(team.defensesCrossable[i]);
                         }
+                        tokens.Add(team.canScoreHighGoals);
+                        tokens.Add(team.canScoreLowGoals);
+                        tokens.Add(team.loadsFromEmbrasures);
+                        tokens.Add(team.loadsFromBattrice);
+                        tokens.Add(team.loadsFromFloor);
 
                         tokens.Add(team.crossingPowerScore);
                         tokens.Add(team.autoDefensesCrossed);

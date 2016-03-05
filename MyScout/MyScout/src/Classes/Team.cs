@@ -28,17 +28,23 @@ namespace MyScout
         /// </summary>
         public float teleDefensesCrossed = 0;
         /// <summary>
-        /// TODO: Documentation
+        /// High goals scored in tele-op
         /// </summary>
         public float teleHighGoals = 0;
         /// <summary>
-        /// TODO: Documentation
+        /// Low goals scored in tele-op
         /// </summary>
         public float teleLowGoals = 0;
         /// <summary>
-        /// TODO: Documentation
+        /// Towers scaled
         /// </summary>
-        public float towerScaledAvg = 0;
+        public float towersScaled = 0;
+
+        public bool canScoreHighGoals = false;
+        public bool canScoreLowGoals = false;
+        public bool loadsFromEmbrasures = false;
+        public bool loadsFromBattrice = false;
+        public bool loadsFromFloor = false;
 
         /// <summary>
         /// A list of defenses this team can cross.
@@ -54,6 +60,21 @@ namespace MyScout
         /// [8]: Low Bar
         /// </summary>
         public bool[] defensesCrossable = new bool[9];
+
+        /// <summary>
+        /// A list of defenses with the amount of times it has crossed each of them
+        /// Each index references a different defense:
+        /// [0]: Portcullis
+        /// [1]: Cheval de Frise
+        /// [2]: Moat
+        /// [3]: Ramparts
+        /// [4]: Drawbridge
+        /// [5]: Sally Port
+        /// [6]: Rock Wall
+        /// [7]: Rough Terrain
+        /// [8]: Low Bar
+        /// </summary>
+        public int[] defensesCrossed = new int[9];
 
         /// <summary>
         /// A score based on how well the team can cross defenses
@@ -87,6 +108,7 @@ namespace MyScout
         /// [8]: Low Bar
         /// </summary>
         public int[] deathDefenses = new int[9];
+        
         #endregion
 
         /// <summary>
@@ -117,7 +139,7 @@ namespace MyScout
                 teleDefensesCrossed * 5 +
                 teleHighGoals * 5 +
                 teleLowGoals * 2 +
-                towerScaledAvg * 15
+                towersScaled * 15
                 );
 
 
@@ -161,6 +183,17 @@ namespace MyScout
                 }
             }
             return crossingPowerScore;
+        }
+
+        /// <summary>
+        /// Updates defensesCrossable[] with data from defensesCrossed[]
+        /// </summary>
+        public void updateDefenseStats()
+        {
+            for(int i = 0; i < 9; i++)
+            {
+                defensesCrossable[i] = defensesCrossable[i] ? true : defensesCrossed[i] > 0;
+            }
         }
     }
 }
