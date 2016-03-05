@@ -36,9 +36,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.roundNumUpDown = new System.Windows.Forms.NumericUpDown();
             this.roundNumLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.selectTeamPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.roundNumUpDown)).BeginInit();
+            this.selectTeamPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -131,21 +132,24 @@
             this.roundNumLabel.TabIndex = 7;
             this.roundNumLabel.Text = "Round #";
             // 
-            // textBox1
+            // button2
             // 
-            this.textBox1.Location = new System.Drawing.Point(76, 144);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(89, 20);
-            this.textBox1.TabIndex = 9;
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.Location = new System.Drawing.Point(0, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(120, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Select Team";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label2
+            // selectTeamPanel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(171, 147);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Team #";
+            this.selectTeamPanel.Controls.Add(this.button2);
+            this.selectTeamPanel.Location = new System.Drawing.Point(76, 144);
+            this.selectTeamPanel.Name = "selectTeamPanel";
+            this.selectTeamPanel.Size = new System.Drawing.Size(120, 31);
+            this.selectTeamPanel.TabIndex = 12;
             // 
             // GenReport
             // 
@@ -154,8 +158,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(266, 302);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.selectTeamPanel);
             this.Controls.Add(this.roundNumLabel);
             this.Controls.Add(this.roundNumUpDown);
             this.Controls.Add(this.button1);
@@ -173,6 +176,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generate Report";
             ((System.ComponentModel.ISupportInitialize)(this.roundNumUpDown)).EndInit();
+            this.selectTeamPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,7 +192,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown roundNumUpDown;
         private System.Windows.Forms.Label roundNumLabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel selectTeamPanel;
     }
 }

@@ -12,10 +12,20 @@ namespace MyScout
 {
     public partial class TeamFrm : Form
     {
+        Panel panel;
+
         public TeamFrm()
         {
             InitializeComponent();
             RefreshTeamList();
+            panel = Program.mainfrm.AllianceBtnPnl;
+        }
+
+        public TeamFrm(Panel buttonPanel)
+        {
+            InitializeComponent();
+            RefreshTeamList();
+            panel = buttonPanel;
         }
 
         /// <summary>
@@ -87,7 +97,7 @@ namespace MyScout
                 int selectedteam = (string.IsNullOrEmpty(textBox1.Text)) ? TeamList.SelectedIndices[0] : (int)TeamList.SelectedItems[0].Tag;
                 bool IsDuplicate = false;
 
-                foreach (Control control in Program.mainfrm.AllianceBtnPnl.Controls)
+                foreach (Control control in panel.Controls)
                 {
                     //If the control is a button...
                     if (control.GetType() == typeof(Button))
@@ -99,7 +109,11 @@ namespace MyScout
 
                 if (!IsDuplicate || MessageBox.Show($"Team { Program.events[Program.currentevent].teams[selectedteam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                 {
-                    Program.selectedteam = selectedteam;
+                    if (panel == Program.mainfrm.AllianceBtnPnl)
+                    {
+                        Program.selectedteam = selectedteam;
+                    }
+
                     DialogResult = DialogResult.OK;
                     Close();
                 }
@@ -141,6 +155,11 @@ namespace MyScout
                     }
                 }
             }
+        }
+
+        public int GetSelectedTeamIndex()
+        {
+            return (string.IsNullOrEmpty(textBox1.Text)) ? TeamList.SelectedIndices[0] : (int)TeamList.SelectedItems[0].Tag;
         }
     }
 }

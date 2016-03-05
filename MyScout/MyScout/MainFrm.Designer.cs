@@ -1074,11 +1074,7 @@
             this.TCommentsTxtbx.Location = new System.Drawing.Point(10, 366);
             this.TCommentsTxtbx.Multiline = true;
             this.TCommentsTxtbx.Name = "TCommentsTxtbx";
-<<<<<<< HEAD
-            this.TCommentsTxtbx.Size = new System.Drawing.Size(559, 107);
-=======
             this.TCommentsTxtbx.Size = new System.Drawing.Size(559, 109);
->>>>>>> 5249103c83d924e75dc4c01af91c478a89133240
             this.TCommentsTxtbx.TabIndex = 22;
             this.TCommentsTxtbx.TextChanged += new System.EventHandler(this.TCommentsTxtbx_TextChanged);
             // 
@@ -1354,10 +1350,7 @@
             this.Controls.Add(this.EventPnl);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-<<<<<<< HEAD
             this.MaximumSize = new System.Drawing.Size(1108, 628);
-=======
->>>>>>> 5249103c83d924e75dc4c01af91c478a89133240
             this.MinimumSize = new System.Drawing.Size(1108, 628);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

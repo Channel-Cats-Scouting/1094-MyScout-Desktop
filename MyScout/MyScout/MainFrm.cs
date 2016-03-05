@@ -156,7 +156,7 @@ namespace MyScout
             //TODO: Documentation
             for (int index = 0; index < AllianceBtnPnl.Controls.Count; index++)
             {
-                if (AllianceBtnPnl.Controls[index].Name != "BackBtn" && AllianceBtnPnl.Controls[index].Name != "button1")
+                if (AllianceBtnPnl.Controls[index].Name != "BackBtn" && AllianceBtnPnl.Controls[index].Name != "button1" && AllianceBtnPnl.Controls[index].Name != "genProgressBar" && AllianceBtnPnl.Controls[index].Name != "genOutputLabel")
                 {
                     Button btn = AllianceBtnPnl.Controls[index] as Button;
                     int i = index - 2;
@@ -281,20 +281,53 @@ namespace MyScout
                 }
                 else
                 {
-                    Thread generatethread = new Thread(new ParameterizedThreadStart(GenerateAllRounds));
+                    Thread generatethread = new Thread(new ParameterizedThreadStart(GenerateTeamRounds));
                     generatethread.Start(genreport);
-
                 }
             }
         }
 
-        public void GenerateAllRounds(Object genreporttemp)
+        /// <summary>
+        /// Returns a list of internal event ids that contain a certain team
+        /// </summary>
+        /// <param name="team"></param>
+        /// <returns></returns>
+        public List<int> FindTeamInRounds(Team team)
         {
-            GenReport genreport = (GenReport)genreporttemp;
-            for (int i = 0; i < Program.events[Program.currentevent].rounds.Count; i++)
+            List<int> output = new List<int>();
+            Event ev = Program.events[Program.currentevent];
+
+            //For each round in ev
+            for (int i = 0; i < ev.rounds.Count; i++)
             {
-                //Generate spreadsheet, but make sure that the RoundID stays -1 if already -1
-                IO.GenerateSpreadsheet(Program.events[Program.currentevent], i, genreport.GetSorting());
+                Round r = ev.rounds[i];
+                //For each team stored in the round
+                for (int j = 0; j < 6; j++)
+                {
+                    //If the team is the passed team
+                    if(r.teams[j] != -1 && ev.teams[r.teams[j]] == team)
+                    {
+                        output.Add(i);
+                        break;
+                    }
+                }
+            }
+
+            return output;
+        }
+
+        public void GenerateTeamRounds(Object genreporttemp)
+        {
+            Event ev = Program.events[Program.currentevent];
+            GenReport genreport = (GenReport)genreporttemp;
+
+            //Get the rounds
+            List<int> roundsToReport = FindTeamInRounds(Program.events[Program.currentevent].teams[genreport.GetTeamIndex()]);
+
+            //Generate the rounds
+            for (int i = 0; i < roundsToReport.Count; i++)
+            {
+                IO.CreateRoundSpreadsheet(ev, roundsToReport[i], genreport.GetSorting());
             }
 
             //Figure out file path based on report data
@@ -304,6 +337,7 @@ namespace MyScout
             {
                 System.Diagnostics.Process.Start("explorer.exe", filePath);
             }
+            //TODO add loading bar to MainFrm
         }
 
         //Re-name "button5" to "NextRoundBtn" or something similar.

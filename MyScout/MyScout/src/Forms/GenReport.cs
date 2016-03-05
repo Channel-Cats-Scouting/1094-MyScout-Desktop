@@ -12,6 +12,9 @@ namespace MyScout
 {
     public partial class GenReport : Form
     {
+        public int teamid;
+        public int teamindex;
+
         public GenReport()
         {
             InitializeComponent();
@@ -20,6 +23,7 @@ namespace MyScout
             totalScoreRB.Checked = true;
             reportTypeCB.SelectedIndex = 0;
             roundNumLabel.Enabled = roundNumUpDown.Enabled = false;
+            button2.Enabled = false;
         }
 
         private void reportTypeCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -27,11 +31,18 @@ namespace MyScout
             if (reportTypeCB.SelectedIndex == 0)
             {
                 roundNumLabel.Enabled = roundNumUpDown.Enabled = false;
+                button2.Enabled = false;
             }
-            else
+            else if (reportTypeCB.SelectedIndex == 1)
             {
                 roundNumLabel.Enabled = roundNumUpDown.Enabled = true;
-            };
+                button2.Enabled = false;
+            }
+            else if(reportTypeCB.SelectedIndex == 2)
+            {
+                roundNumLabel.Enabled = roundNumUpDown.Enabled = false;
+                button2.Enabled = true;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -60,9 +71,26 @@ namespace MyScout
             return reportTypeCB.SelectedIndex == 0 ? true : false;
         }
 
-        private void allRoundsCB_CheckedChanged(object sender, EventArgs e)
+        public int GetTeamID()
         {
+            return teamid;
+        }
 
+        public int GetTeamIndex()
+        {
+            return teamindex;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TeamFrm teamform = new TeamFrm(selectTeamPanel);
+            teamform.ShowDialog();
+            if(teamform.DialogResult == DialogResult.OK)
+            {
+                button2.Text = "Team: " + Program.events[Program.currentevent].teams[teamform.GetSelectedTeamIndex()].id.ToString();
+                teamid = Program.events[Program.currentevent].teams[teamform.GetSelectedTeamIndex()].id;
+                teamindex = teamform.GetSelectedTeamIndex();
+            }
         }
     }
 }
