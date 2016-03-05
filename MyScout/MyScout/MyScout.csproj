@@ -80,11 +80,17 @@
     <Compile Include="src\Forms\AddDataFrm.Designer.cs">
       <DependentUpon>AddDataFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Forms\GenReport.cs">
+    <Compile Include="src\Forms\GenReportFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Forms\GenReport.Designer.cs">
-      <DependentUpon>GenReport.cs</DependentUpon>
+    <Compile Include="src\Forms\GenReportFrm.Designer.cs">
+      <DependentUpon>GenReportFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\Forms\PrescoutFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Forms\PrescoutFrm.Designer.cs">
+      <DependentUpon>PrescoutFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="src\Forms\TeamFrm.cs">
       <SubType>Form</SubType>
@@ -111,8 +117,11 @@
     <EmbeddedResource Include="src\Forms\AddDataFrm.resx">
       <DependentUpon>AddDataFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Forms\GenReport.resx">
-      <DependentUpon>GenReport.cs</DependentUpon>
+    <EmbeddedResource Include="src\Forms\GenReportFrm.resx">
+      <DependentUpon>GenReportFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Forms\PrescoutFrm.resx">
+      <DependentUpon>PrescoutFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Forms\TeamFrm.resx">
       <DependentUpon>TeamFrm.cs</DependentUpon>

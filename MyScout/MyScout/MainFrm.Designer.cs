@@ -121,6 +121,7 @@
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn2 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn3 = new System.Windows.Forms.Button();
+            this.preScoutButton = new System.Windows.Forms.Button();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -202,6 +203,7 @@
             // 
             // HeaderPnl
             // 
+            this.HeaderPnl.Controls.Add(this.preScoutButton);
             this.HeaderPnl.Controls.Add(this.ChooseAnEventLbl);
             this.HeaderPnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.HeaderPnl.Location = new System.Drawing.Point(0, 0);
@@ -1339,6 +1341,16 @@
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
             this.BlueAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
+            // preScoutButton
+            // 
+            this.preScoutButton.Location = new System.Drawing.Point(855, 4);
+            this.preScoutButton.Name = "preScoutButton";
+            this.preScoutButton.Size = new System.Drawing.Size(233, 59);
+            this.preScoutButton.TabIndex = 1;
+            this.preScoutButton.Text = "Pre-Scout Event";
+            this.preScoutButton.UseVisualStyleBackColor = true;
+            this.preScoutButton.Click += new System.EventHandler(this.preScoutButton_Click);
+            // 
             // MainFrm
             // 
             this.AcceptButton = this.AddEventBtn;
@@ -1489,6 +1501,7 @@
         private System.Windows.Forms.NumericUpDown THighGoalNUD;
         private System.Windows.Forms.TextBox TCommentsTxtbx;
         public System.Windows.Forms.Panel AllianceBtnPnl;
+        private System.Windows.Forms.Button preScoutButton;
     }
 }
 

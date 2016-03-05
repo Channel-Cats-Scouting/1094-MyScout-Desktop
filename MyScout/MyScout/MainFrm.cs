@@ -316,6 +316,10 @@ namespace MyScout
             return output;
         }
 
+        /// <summary>
+        /// A pre-scouting report generation method, built for threading
+        /// </summary>
+        /// <param name="genreporttemp"></param>
         public void GenerateTeamRounds(Object genreporttemp)
         {
             Event ev = Program.events[Program.currentevent];
@@ -654,6 +658,12 @@ namespace MyScout
         private void RDDefenseChkbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             Program.events[Program.currentevent].rounds[Program.currentround].dieddefense[Program.selectedteamroundindex] = RDDefenseChkbx.SelectedIndex;
+        }
+
+        private void preScoutButton_Click(object sender, EventArgs e)
+        {
+            PrescoutFrm prescoutform = new PrescoutFrm();
+            prescoutform.Show();
         }
     }
 }

@@ -363,7 +363,7 @@ namespace MyScout
                 if(team != null)
                     for (int j = 0; j < 9; j++)
                     {
-                        if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 6)] = new Cell(" " + ((char)0x221A).ToString());
+                        if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 7)] = new Cell(" " + ((char)0x221A).ToString());
                     }
             }
 
@@ -466,7 +466,7 @@ namespace MyScout
                 if(team != null)
                     for (int j = 0; j < 9; j++)
                     {
-                        if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 6)] = new Cell(" " + ((char)0x221A).ToString());
+                        if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 7)] = new Cell(" " + ((char)0x221A).ToString());
                     }
             }
 
