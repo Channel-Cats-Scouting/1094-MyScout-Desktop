@@ -287,6 +287,35 @@ namespace MyScout
         }
 
         /// <summary>
+        /// Save pertinent data to Teams and calculate scores as necessary
+        /// </summary>
+        public static void SaveDataToTeams()
+        {
+            //for each team in the event
+            for(int i = 0; i < Program.events[Program.currentevent].teams.Count; i++)
+            {
+                Team team = Program.events[Program.currentevent].teams[i];
+                //for each round in the event
+                foreach (Round r in Program.events[Program.currentevent].rounds)
+                {
+                    //for each team index in the round
+                    for(int j = 0; j < 5; j++)
+                    {
+                        //if the team index is the same as the round's team index
+                        if(r.teams[j] == i)
+                        {
+                            for(int k = 0; k < 8; k++)
+                            {
+                                //TODO: verify that r.defenses[j, k] is the same as team.defensesCrossed[k]
+                                team.defensesCrossed[k] = r.defenses[j, k].TOtimescrossed;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Generate a team spreadsheet in "{Program.startuppath}\Spreadsheets\Scouting Report {ev.name}.xls"
         /// </summary>
         /// <param name="ev">The event to load data from</param>
