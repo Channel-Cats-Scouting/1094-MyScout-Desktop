@@ -122,6 +122,8 @@ namespace MyScout
                     }
                 }
 
+                RDComments.Text = Program.events[Program.currentevent].rounds[Program.currentround].diedcomments[Program.selectedteamroundindex];
+                RDDefenseChkbx.SelectedIndex = Program.events[Program.currentevent].rounds[Program.currentround].dieddefense[Program.selectedteamroundindex];
                 TCommentsTxtbx.Text = Program.events[Program.currentevent].rounds[Program.currentround].comments[Program.selectedteamroundindex];
                 TLowGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].lowgoalcount[Program.selectedteamroundindex];
                 THighGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].highgoalcount[Program.selectedteamroundindex];
@@ -537,7 +539,11 @@ namespace MyScout
         {
             //Enable/disable every control inside the "Died" groupbox
             RDDefenseLbl.Enabled = RDDefenseChkbx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = RDDied.Checked;
-            Program.events[Program.currentevent].rounds[Program.currentround].died[Program.selectedteamroundindex] = RDDied.Checked;
+
+            if (Program.selectedteamroundindex != -1)
+            {
+                Program.events[Program.currentevent].rounds[Program.currentround].died[Program.selectedteamroundindex] = RDDied.Checked;
+            }
         }
 
         /// <summary>
