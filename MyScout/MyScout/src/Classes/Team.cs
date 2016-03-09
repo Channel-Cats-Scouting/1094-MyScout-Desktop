@@ -166,8 +166,11 @@ namespace MyScout
                     switch (i)
                     {
                         case 0: //portcullis
+                            crossingPowerScore += 4;
+                            break;
+
                         case 1: //cheval de frise
-                            crossingPowerScore += 5;
+                            crossingPowerScore += 4;
                             break;
 
                         case 2: //moat
@@ -175,7 +178,7 @@ namespace MyScout
                             break;
 
                         case 4: //drawbridge
-                            crossingPowerScore += 4;
+                            crossingPowerScore += 3;
                             break;
 
                         case 8: //low bar
