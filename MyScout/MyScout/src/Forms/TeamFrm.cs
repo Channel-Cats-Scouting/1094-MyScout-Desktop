@@ -130,6 +130,36 @@ namespace MyScout
                 RemoveTeamBtn.PerformClick();
                 return true;
             }
+            else if (keyData == Keys.Enter)
+            {
+                if (TeamList.SelectedItems.Count > 0)
+                {
+                    int selectedteam = (string.IsNullOrEmpty(textBox1.Text)) ? TeamList.SelectedIndices[0] : (int)TeamList.SelectedItems[0].Tag;
+                    bool IsDuplicate = false;
+
+                    foreach (Control control in panel.Controls)
+                    {
+                        //If the control is a button...
+                        if (control.GetType() == typeof(Button))
+                        {
+                            Button button = control as Button;
+                            if (button != null && button.Tag != null && (int)button.Tag == selectedteam) { IsDuplicate = true; break; }
+                        }
+                    }
+
+                    if (!IsDuplicate || MessageBox.Show($"Team { Program.events[Program.currentevent].teams[selectedteam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                    {
+                        if (panel == Program.mainfrm.AllianceBtnPnl)
+                        {
+                            Program.selectedteam = selectedteam;
+                        }
+
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
+                }
+                return true;
+            }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }

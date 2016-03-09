@@ -31,6 +31,7 @@ namespace MyScout
                     selectedTeam = Program.events[Program.currentevent].teams[teamform.GetSelectedTeamIndex()];
                     button1.Text = selectedTeam.id.ToString() + "\n" + selectedTeam.name;
                     LoadStats(selectedTeam);
+                    button2.Enabled = true;
                 }
             }
             else
