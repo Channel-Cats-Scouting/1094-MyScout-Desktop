@@ -73,21 +73,24 @@ namespace MyScout
 
         public void SaveStats(Team team)
         {
-            team.defensesCrossable[0] = portcullisCheckBox.Checked;
-            team.defensesCrossable[1] = tippyRampCheckBox.Checked;
-            team.defensesCrossable[2] = moatCheckBox.Checked;
-            team.defensesCrossable[3] = rampartCheckBox.Checked;
-            team.defensesCrossable[4] = drawbridgeCheckBox.Checked;
-            team.defensesCrossable[5] = sallyPortCheckBox.Checked;
-            team.defensesCrossable[6] = rockWallCheckBox.Checked;
-            team.defensesCrossable[7] = roughTerrainCheckBox.Checked;
-            team.defensesCrossable[8] = lowBarCheckBox.Checked;
+            if (team != null)
+            {
+                team.defensesCrossable[0] = portcullisCheckBox.Checked;
+                team.defensesCrossable[1] = tippyRampCheckBox.Checked;
+                team.defensesCrossable[2] = moatCheckBox.Checked;
+                team.defensesCrossable[3] = rampartCheckBox.Checked;
+                team.defensesCrossable[4] = drawbridgeCheckBox.Checked;
+                team.defensesCrossable[5] = sallyPortCheckBox.Checked;
+                team.defensesCrossable[6] = rockWallCheckBox.Checked;
+                team.defensesCrossable[7] = roughTerrainCheckBox.Checked;
+                team.defensesCrossable[8] = lowBarCheckBox.Checked;
 
-            team.canScoreHighGoals = canHighGoalCB.Checked;
-            team.canScoreLowGoals = canLowGoalCB.Checked;
-            team.loadsFromEmbrasures = loadEmbrasureCB.Checked;
-            team.loadsFromBattrice = loadBattriceCB.Checked;
-            team.loadsFromFloor = loadFloorCB.Checked;
+                team.canScoreHighGoals = canHighGoalCB.Checked;
+                team.canScoreLowGoals = canLowGoalCB.Checked;
+                team.loadsFromEmbrasures = loadEmbrasureCB.Checked;
+                team.loadsFromBattrice = loadBattriceCB.Checked;
+                team.loadsFromFloor = loadFloorCB.Checked;
+            }
         }
     }
 }

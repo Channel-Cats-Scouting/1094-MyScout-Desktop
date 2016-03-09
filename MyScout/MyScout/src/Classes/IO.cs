@@ -316,7 +316,7 @@ namespace MyScout
         }
 
         /// <summary>
-        /// Generate a team spreadsheet in "{Program.startuppath}\Spreadsheets\Scouting Report {ev.name}.xls"
+        /// Generate a spreadsheet of teams in "{Program.startuppath}\Spreadsheets\Scouting Report {ev.name}.xls"
         /// </summary>
         /// <param name="ev">The event to load data from</param>
         /// <param name="sorting">How to sort the generated report; 1:TotalScore, 2:AutoScore, 3:CrossingPower</param>
@@ -398,12 +398,13 @@ namespace MyScout
                     worksheet.Cells[i, 4] = new Cell(team.teleLowGoals.ToString());
                     worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore.ToString());
                 }
-                else worksheet.Cells[i, 0] = new Cell("null");
+                else worksheet.Cells[i, 0] = new Cell("N/A");
 
                 if(team != null)
                     for (int j = 0; j < 9; j++)
                     {
-                        if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 7)] = new Cell(" " + ((char)0x221A).ToString());
+                        //Fill each defense cell with the number of times it has crossed the defense
+                        worksheet.Cells[i, (j + 7)] = new Cell(team.defensesCrossed[j]);
                     }
             }
 
