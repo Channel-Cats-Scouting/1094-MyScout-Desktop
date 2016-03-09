@@ -11,6 +11,7 @@ namespace MyScout
     public class Team
     {
         #region Variables
+        #region Constants
         /// <summary>
         /// The name of the team (E.G. "Channel Cats").
         /// </summary>
@@ -19,6 +20,8 @@ namespace MyScout
         /// The id of the team (E.G. "1094").
         /// </summary>
         public int id = 0000;
+        #endregion
+        #region Scores
         /// <summary>
         /// The team's total score.
         /// </summary>
@@ -39,27 +42,6 @@ namespace MyScout
         /// Towers scaled
         /// </summary>
         public float towersScaled = 0;
-
-        public bool canScoreHighGoals = false;
-        public bool canScoreLowGoals = false;
-        public bool loadsFromEmbrasures = false;
-        public bool loadsFromBattrice = false;
-        public bool loadsFromFloor = false;
-
-        /// <summary>
-        /// A list of defenses this team can cross.
-        /// Each index references a different defense:
-        /// [0]: Portcullis
-        /// [1]: Cheval de Frise
-        /// [2]: Moat
-        /// [3]: Ramparts
-        /// [4]: Drawbridge
-        /// [5]: Sally Port
-        /// [6]: Rock Wall
-        /// [7]: Rough Terrain
-        /// [8]: Low Bar
-        /// </summary>
-        public bool[] defensesCrossable = new bool[9];
 
         /// <summary>
         /// A list of defenses with the amount of times it has crossed each of them
@@ -88,7 +70,30 @@ namespace MyScout
         public float autoDefensesReached = 0;
         public float autoHighGoals = 0;
         public float autoLowGoals = 0;
+        #endregion
+        #region PreScout
+        public bool canScoreHighGoals = false;
+        public bool canScoreLowGoals = false;
+        public bool loadsFromEmbrasures = false;
+        public bool loadsFromBattrice = false;
+        public bool loadsFromFloor = false;
 
+        /// <summary>
+        /// A list of defenses this team can cross.
+        /// Each index references a different defense:
+        /// [0]: Portcullis
+        /// [1]: Cheval de Frise
+        /// [2]: Moat
+        /// [3]: Ramparts
+        /// [4]: Drawbridge
+        /// [5]: Sally Port
+        /// [6]: Rock Wall
+        /// [7]: Rough Terrain
+        /// [8]: Low Bar
+        /// </summary>
+        public bool[] defensesCrossable = new bool[9];
+        #endregion
+        #region Death
         /// <summary>
         /// Total amount of times the robot stopped working at any moment on the field
         /// </summary>
@@ -108,7 +113,8 @@ namespace MyScout
         /// [8]: Low Bar
         /// </summary>
         public int[] deathDefenses = new int[9];
-        
+
+        #endregion
         #endregion
 
         /// <summary>

@@ -295,6 +295,11 @@ namespace MyScout
             for(int i = 0; i < Program.events[Program.currentevent].teams.Count; i++)
             {
                 Team team = Program.events[Program.currentevent].teams[i];
+                List<int> highGoalsToAvg = new List<int>();
+                List<int> lowGoalsToAvg = new List<int>();
+                List<int> autoHighGoalsToAvg = new List<int>();
+                List<int> autoLowGoalsToAvg = new List<int>();
+
                 //for each round in the event
                 foreach (Round r in Program.events[Program.currentevent].rounds)
                 {
@@ -302,16 +307,74 @@ namespace MyScout
                     for(int j = 0; j < 5; j++)
                     {
                         //if the team index is the same as the round's team index
-                        if(r.teams[j] == i)
+                        if (r.teams[j] == i)
                         {
-                            for(int k = 0; k < 8; k++)
+                            team.defensesCrossed[0] = r.defenses[j, 0].TOtimescrossed;
+                            team.defensesCrossed[1] = r.defenses[j, 1].TOtimescrossed;
+                            team.defensesCrossed[2] = r.defenses[j, 2].TOtimescrossed;
+                            team.defensesCrossed[3] = r.defenses[j, 7].TOtimescrossed;
+                            team.defensesCrossed[4] = r.defenses[j, 8].TOtimescrossed;
+                            team.defensesCrossed[5] = r.defenses[j, 3].TOtimescrossed;
+                            team.defensesCrossed[6] = r.defenses[j, 4].TOtimescrossed;
+                            team.defensesCrossed[7] = r.defenses[j, 5].TOtimescrossed;
+                            team.defensesCrossed[8] = r.defenses[j, 6].TOtimescrossed;
+                            //TODO: rearrange MainFrm to mimic the internal team data List order
+
+                            team.updateDefenseStats();
+
+                            highGoalsToAvg.Add(r.highgoalcount[j]);
+                            lowGoalsToAvg.Add(r.lowgoalcount[j]);
+                            //TODO: add Auto High Goal and Auto Low Goal saves
+
+
+                            //Add to the death count
+                            team.deathCount += r.died[j] ? 1 : 0;
+                            if(r.died[j])
                             {
-                                //TODO: verify that r.defenses[j, k] is the same as team.defensesCrossed[k]
-                                team.defensesCrossed[k] = r.defenses[j, k].TOtimescrossed;
+                                team.deathDefenses[r.dieddefense[j]] += 1;
                             }
+
+                            team.towersScaled += r.scaledtower[j] ? 1 : 0;
+                            
+                            team.updateTeamScores();
                         }
                     }
                 }
+                int highGoalAvg = 0;
+                for(int j = 0; j < highGoalsToAvg.Count; j++)
+                {
+                    highGoalAvg += highGoalsToAvg[j];
+                }
+
+                int lowGoalAvg = 0;
+                for(int j = 0; j < lowGoalsToAvg.Count; j++)
+                {
+                    lowGoalAvg += lowGoalsToAvg[j];
+                }
+
+                int autoHighGoalAvg = 0;
+                for(int j = 0; j < autoHighGoalsToAvg.Count; j++)
+                {
+                    autoHighGoalAvg += autoHighGoalsToAvg[j];
+                }
+
+                int autoLowGoalAvg = 0;
+                for(int j = 0; j < autoLowGoalsToAvg.Count; j++)
+                {
+                    autoLowGoalAvg += autoLowGoalsToAvg[j];
+                }
+
+                if(highGoalsToAvg.Count > 0)
+                    team.teleHighGoals = highGoalAvg / highGoalsToAvg.Count;
+
+                if(lowGoalsToAvg.Count > 0)
+                    team.teleLowGoals = lowGoalAvg / lowGoalsToAvg.Count;
+
+                if(autoHighGoalsToAvg.Count > 0)
+                    team.autoHighGoals = autoHighGoalAvg / autoHighGoalsToAvg.Count;
+
+                if(autoLowGoalsToAvg.Count > 0)
+                    team.autoLowGoals = autoLowGoalAvg / autoLowGoalsToAvg.Count;
             }
         }
 
@@ -322,6 +385,8 @@ namespace MyScout
         /// <param name="sorting">How to sort the generated report; 1:TotalScore, 2:AutoScore, 3:CrossingPower</param>
         public static void CreateEventSpreadsheet(Event ev, int sorting)
         {
+            SaveDataToTeams();
+
             List<Team> teamList = ev.teams;
 
             //Clean the report
@@ -515,11 +580,22 @@ namespace MyScout
             workbook.Save(filepath);
         }
 
+        /// <summary>
+        /// A unified method for printing a spreadsheet, compact edition™
+        /// </summary>
+        /// <param name="ev"></param>
+        /// <param name="sorting"></param>
         public static void GenerateSpreadsheet(Event ev, int sorting)
         {
             GenerateSpreadsheet(ev, -1, sorting);
         }
 
+        /// <summary>
+        /// A unified method for printing a spreadsheet. If roundID is '-1' it prints an event report, otherwise it prints a round report.
+        /// </summary>
+        /// <param name="ev"></param>
+        /// <param name="roundID"></param>
+        /// <param name="sorting"></param>
         public static void GenerateSpreadsheet(Event ev, int roundID, int sorting)
         {
             if(roundID != -1)
