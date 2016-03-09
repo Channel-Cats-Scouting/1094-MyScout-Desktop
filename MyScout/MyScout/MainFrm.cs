@@ -621,22 +621,34 @@ namespace MyScout
 
         private void TLowGoalNUD_ValueChanged(object sender, EventArgs e)
         {
-            Program.events[Program.currentevent].rounds[Program.currentround].lowgoalcount[Program.selectedteamroundindex] = (int)TLowGoalNUD.Value;
+            if (Program.selectedteamroundindex != -1)
+            {
+                Program.events[Program.currentevent].rounds[Program.currentround].lowgoalcount[Program.selectedteamroundindex] = (int)TLowGoalNUD.Value;
+            }
         }
 
         private void THighGoalNUD_ValueChanged(object sender, EventArgs e)
         {
-            Program.events[Program.currentevent].rounds[Program.currentround].highgoalcount[Program.selectedteamroundindex] = (int)THighGoalNUD.Value;
+            if (Program.selectedteamroundindex != -1)
+            {
+                Program.events[Program.currentevent].rounds[Program.currentround].highgoalcount[Program.selectedteamroundindex] = (int)THighGoalNUD.Value;
+            }
         }
 
         private void TChallengedTowerChkbx_CheckedChanged(object sender, EventArgs e)
         {
-            Program.events[Program.currentevent].rounds[Program.currentround].challengedtower[Program.selectedteamroundindex] = TChallengedTowerChkbx.Checked;
+            if (Program.selectedteamroundindex != -1)
+            {
+                Program.events[Program.currentevent].rounds[Program.currentround].challengedtower[Program.selectedteamroundindex] = TChallengedTowerChkbx.Checked;
+            }
         }
 
         private void TScaledTowerChkbx_CheckedChanged(object sender, EventArgs e)
         {
-            Program.events[Program.currentevent].rounds[Program.currentround].scaledtower[Program.selectedteamroundindex] = TScaledTowerChkbx.Checked;
+            if (Program.selectedteamroundindex != -1)
+            {
+                Program.events[Program.currentevent].rounds[Program.currentround].scaledtower[Program.selectedteamroundindex] = TScaledTowerChkbx.Checked;
+            }
         }
 
         private void HPCommentsTxtbx_TextChanged(object sender, EventArgs e)
@@ -657,7 +669,10 @@ namespace MyScout
 
         private void RDDefenseChkbx_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Program.events[Program.currentevent].rounds[Program.currentround].dieddefense[Program.selectedteamroundindex] = RDDefenseChkbx.SelectedIndex;
+            if (Program.selectedteamroundindex != -1)
+            {
+                Program.events[Program.currentevent].rounds[Program.currentround].dieddefense[Program.selectedteamroundindex] = RDDefenseChkbx.SelectedIndex;
+            }
         }
 
         private void preScoutButton_Click(object sender, EventArgs e)
