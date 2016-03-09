@@ -254,6 +254,7 @@ namespace MyScout
                         writer.WriteElementString("TeamTokens", TokenizeStringHandler.CreateTokenizedString(teams));
                         writer.WriteEndElement();
 
+
                         writer.WriteStartElement("Defenses");
                         for (int i = 0; i < 6; i++)
                         {
@@ -272,6 +273,10 @@ namespace MyScout
                             writer.WriteElementString("AOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(AOCrossedTokens));
                             writer.WriteElementString("TOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(TOCrossedTokens));
                         }
+
+                        //TODO: WORK ON THE XML SAVING!!!!!
+                        //writer.WriteElementString("TOScaledTokens", TokenizeStringHandler.CreateTokenizedString(round.scaledtower.ToList()));
+
                         writer.WriteEndElement();
                         writer.WriteEndElement();
                     }
