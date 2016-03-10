@@ -32,16 +32,19 @@ namespace MyScout
             {
                 roundNumLabel.Enabled = roundNumUpDown.Enabled = false;
                 button2.Enabled = false;
+                totalScoreRB.Enabled = autoScoreRB.Enabled = crossScoreRB.Enabled = true;
             }
             else if (reportTypeCB.SelectedIndex == 1)
             {
                 roundNumLabel.Enabled = roundNumUpDown.Enabled = true;
                 button2.Enabled = false;
+                totalScoreRB.Enabled = autoScoreRB.Enabled = crossScoreRB.Enabled = false;
             }
             else if(reportTypeCB.SelectedIndex == 2)
             {
                 roundNumLabel.Enabled = roundNumUpDown.Enabled = false;
                 button2.Enabled = true;
+                totalScoreRB.Enabled = autoScoreRB.Enabled = crossScoreRB.Enabled = false;
             }
         }
 
