@@ -32,6 +32,8 @@ namespace MyScout
                     button1.Text = selectedTeam.id.ToString() + "\n" + selectedTeam.name;
                     LoadStats(selectedTeam);
                     button2.Enabled = true;
+                    button2.Select();
+                    AcceptButton = button2;
                 }
             }
             else

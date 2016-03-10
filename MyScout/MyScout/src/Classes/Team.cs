@@ -124,22 +124,22 @@ namespace MyScout
         /// <param name="name"></param>
         public Team(int id, string name) { this.id = id; this.name = name; }
 
-        public void updateTeamScores()
+        public void UpdateTeamScore()
         {
-            calcCrossingPower();
-            calcAvgScore();
+            CalcCrossingPower();
+            CalcAvgScore();
         }
 
         /// <summary>
         /// Calculate and save the total score based on the point values
         /// for each scoring opportunity. Point values are from the official rules
         /// </summary>
-        public int calcAvgScore()
+        public int CalcAvgScore()
         {
             avgScore = 0;
             avgScore = Convert.ToInt16(
                 autoDefensesReached * 2 +
-                autoDefensesReached * 10 +
+                autoDefensesCrossed * 10 + //TODO: save data to autoDefensesCrossed and autoDefensesReached
                 autoHighGoals * 10 +
                 autoLowGoals * 5 +
                 teleDefensesCrossed * 5 +
@@ -148,6 +148,10 @@ namespace MyScout
                 towersScaled * 15
                 );
 
+            foreach (int times in defensesCrossed)
+            {
+                avgScore += times * 5;
+            }
 
             return avgScore;
         }
@@ -156,7 +160,7 @@ namespace MyScout
         /// Calculate and save the crossing power based on the difficulty
         /// of circumventing defenses.
         /// </summary>
-        public int calcCrossingPower()
+        public int CalcCrossingPower()
         {
             crossingPowerScore = 0;
             for(int i = 0; i < 8; i++)

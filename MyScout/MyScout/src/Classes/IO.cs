@@ -340,29 +340,31 @@ namespace MyScout
                             }
 
                             team.towersScaled += r.scaledtower[j] ? 1 : 0;
-                            
-                            team.updateTeamScores();
                         }
                     }
                 }
+                //Avg high goals
                 int highGoalAvg = 0;
                 for(int j = 0; j < highGoalsToAvg.Count; j++)
                 {
                     highGoalAvg += highGoalsToAvg[j];
                 }
 
+                //Avg low goals
                 int lowGoalAvg = 0;
                 for(int j = 0; j < lowGoalsToAvg.Count; j++)
                 {
                     lowGoalAvg += lowGoalsToAvg[j];
                 }
 
+                //Avg auto high goals
                 int autoHighGoalAvg = 0;
                 for(int j = 0; j < autoHighGoalsToAvg.Count; j++)
                 {
                     autoHighGoalAvg += autoHighGoalsToAvg[j];
                 }
 
+                //Avg auto low goals
                 int autoLowGoalAvg = 0;
                 for(int j = 0; j < autoLowGoalsToAvg.Count; j++)
                 {
@@ -380,6 +382,8 @@ namespace MyScout
 
                 if(autoLowGoalsToAvg.Count > 0)
                     team.autoLowGoals = autoLowGoalAvg / autoLowGoalsToAvg.Count;
+                
+                team.UpdateTeamScore();
             }
         }
 
@@ -405,7 +409,7 @@ namespace MyScout
 
             //Sort the team list based on the sorting int
             List<Team> sortedTeamList = teamList.OrderByDescending(
-                team => (sorting == 1 ? team.avgScore : sorting == 2 ? team.autoDefensesCrossed : team.crossingPowerScore)
+                team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.autoDefensesCrossed : team.crossingPowerScore)
                 ).ToList();
 
             string filepath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {ev.name}.xls";
@@ -507,11 +511,6 @@ namespace MyScout
                 }
             }
 
-            //Sort the team list based on the sorting int
-            List<Team> sortedTeamList = teamList.OrderByDescending(
-                team => (sorting == 1 ? team.avgScore : sorting == 2 ? team.autoDefensesCrossed : team.crossingPowerScore)
-                ).ToList();
-
             string filepath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {ev.name} - Round {roundID+1}.xls";
 
             if (!Directory.Exists($"{Program.startuppath}\\Spreadsheets"))
@@ -522,7 +521,7 @@ namespace MyScout
             Workbook workbook = new Workbook();
             Worksheet worksheet = new Worksheet("Scouting Report");
 
-            //PLEASE DON'T CHANGE THE BELOW VALUES I SPENT QUITE A WHILE TWEAKING THEM
+            //PLEASE DON'T CHANGE THE BELOW VALUES I SPENT QUITE A WHILE TWEAKING THEM (again)
             //  SO THEY ALL FIT ON ONE PAGE HORIZONTALLY WITH DEFAULT PADDING
             // ~Ethan
 
@@ -532,18 +531,18 @@ namespace MyScout
             worksheet.Cells[0, 1] = new Cell("Name");
             worksheet.Cells.ColumnWidth[1] = 3700;
 
-            worksheet.Cells[0, 2] = new Cell("Score");
-            worksheet.Cells.ColumnWidth[2] = 1500;
+            worksheet.Cells[0, 2] = new Cell("High");
+            worksheet.Cells.ColumnWidth[2] = 1100;
 
-            worksheet.Cells[0, 3] = new Cell("High Goals");
-            worksheet.Cells.ColumnWidth[3] = 2500;
-            worksheet.Cells[0, 4] = new Cell("Low Goals");
-            worksheet.Cells[0, 5] = new Cell("Def Score");
-            worksheet.Cells.ColumnWidth[4] = 2400;
-            worksheet.Cells.ColumnWidth[5] = 2200;
+            worksheet.Cells[0, 3] = new Cell("Low");
+            worksheet.Cells.ColumnWidth[3] = 1000;
+            worksheet.Cells[0, 4] = new Cell("FromEmb");
+            worksheet.Cells[0, 5] = new Cell("FromBatt");
+            worksheet.Cells.ColumnWidth[4] = 2250;
+            worksheet.Cells.ColumnWidth[5] = 2300;
 
-            worksheet.Cells[0, 6] = new Cell("Defs:");
-            worksheet.Cells.ColumnWidth[6] = 1250;
+            worksheet.Cells[0, 6] = new Cell("FromFloor");
+            worksheet.Cells.ColumnWidth[6] = 2400;
 
             worksheet.Cells[0, 7] = new Cell("PC");
             worksheet.Cells[0, 8] = new Cell("CF");
@@ -560,17 +559,18 @@ namespace MyScout
             worksheet.Cells[0, 15] = new Cell("LB");
             worksheet.Cells.ColumnWidth[14, 15] = 900;
 
-            for (int i = 1; i < sortedTeamList.Count() + 1; i++)
+            for (int i = 1; i < teamList.Count() + 1; i++)
             {
-                Team team = sortedTeamList[i - 1];
+                Team team = teamList[i - 1];
                 if (team != null)
                 {
                     worksheet.Cells[i, 0] = new Cell(team.id.ToString());
                     worksheet.Cells[i, 1] = new Cell(team.name);
-                    worksheet.Cells[i, 2] = new Cell(team.avgScore.ToString());
-                    worksheet.Cells[i, 3] = new Cell(team.teleHighGoals.ToString());
-                    worksheet.Cells[i, 4] = new Cell(team.teleLowGoals.ToString());
-                    worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore.ToString());
+                    worksheet.Cells[i, 2] = new Cell(team.canScoreHighGoals ? " " + ((char)0x221A).ToString() : "");
+                    worksheet.Cells[i, 3] = new Cell(team.canScoreLowGoals ? " " + ((char)0x221A).ToString() : "");
+                    worksheet.Cells[i, 4] = new Cell(team.loadsFromEmbrasures ? " " + ((char)0x221A).ToString() : "");
+                    worksheet.Cells[i, 5] = new Cell(team.loadsFromBattrice ? " " + ((char)0x221A).ToString() : "");
+                    worksheet.Cells[i, 6] = new Cell(team.loadsFromFloor ? " " + ((char)0x221A).ToString() : "");
                 }
                 else worksheet.Cells[i, 0] = new Cell("null");
 

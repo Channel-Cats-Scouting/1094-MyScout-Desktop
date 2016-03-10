@@ -172,9 +172,14 @@ namespace MyScout
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox1.Text)) RefreshTeamList();
+            if (string.IsNullOrEmpty(textBox1.Text))
+            {
+                RefreshTeamList();
+                AcceptButton = AddTeamBtn;
+            }
             else
             {
+                AcceptButton = SelectTeamButton;
                 TeamList.Items.Clear();
                 for (int i = 0; i < Program.events[Program.currentevent].teams.Count; i++)
                 {
@@ -190,6 +195,11 @@ namespace MyScout
         public int GetSelectedTeamIndex()
         {
             return (string.IsNullOrEmpty(textBox1.Text)) ? TeamList.SelectedIndices[0] : (int)TeamList.SelectedItems[0].Tag;
+        }
+
+        private void SelectTeamButton_Click(object sender, EventArgs e)
+        {
+            TeamList_DoubleClick(sender, e);
         }
     }
 }
