@@ -23,7 +23,7 @@ namespace MyScout
         {
             if (Program.events.Count > 0)
             {
-                TeamFrm teamform = new TeamFrm(panel1);
+                TeamFrm teamform = new TeamFrm(false);
                 teamform.ShowDialog();
 
                 if (teamform.DialogResult == DialogResult.OK)
@@ -51,7 +51,9 @@ namespace MyScout
         {
             DialogResult = DialogResult.OK;
             SaveStats(selectedTeam);
-            Close();
+            button2.Enabled = false;
+            button1.Select();
+            AcceptButton = button1;
         }
 
         public void LoadStats(Team team)
@@ -92,6 +94,19 @@ namespace MyScout
                 team.loadsFromEmbrasures = loadEmbrasureCB.Checked;
                 team.loadsFromBattrice = loadBattriceCB.Checked;
                 team.loadsFromFloor = loadFloorCB.Checked;
+            }
+        }
+
+        /// <summary>
+        /// Occurs when any checkbox in the form is checked/unchecked.
+        /// </summary>
+        private void chkbx_CheckedChanged(object sender, EventArgs e)
+        {
+            if (selectedTeam != null)
+            {
+                button2.Enabled = true;
+                button2.Select();
+                AcceptButton = button2;
             }
         }
     }

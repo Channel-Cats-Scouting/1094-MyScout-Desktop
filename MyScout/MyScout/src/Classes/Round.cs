@@ -36,19 +36,27 @@ namespace MyScout
         /// <summary>
         /// TODO: Documentation
         /// </summary>
-        public int[] highgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
+        public int[] AOhighgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
         /// <summary>
         /// TODO: Documentation
         /// </summary>
-        public int[] lowgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
+        public int[] AOlowgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
         /// <summary>
         /// TODO: Documentation
         /// </summary>
-        public string[] comments = new string[6] { "", "", "", "", "", "" };
+        public int[] TOhighgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
         /// <summary>
         /// TODO: Documentation
         /// </summary>
-        public string[] humancomments = new string[6] { "", "", "", "", "", "" };
+        public int[] TOlowgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public string[] comments = new string[6] { " ", " ", " ", " ", " ", " " };
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
+        public string[] humancomments = new string[6] { " ", " ", " ", " ", " ", " " };
         /// <summary>
         /// TODO: Documentation
         /// </summary>
@@ -60,7 +68,7 @@ namespace MyScout
         /// <summary>
         /// TODO: Documentation
         /// </summary>
-        public string[] diedcomments = new string[6] { "", "", "", "", "", "" };
+        public string[] diedcomments = new string[6] { " ", " ", " ", " ", " ", " " };
 
         public Round()
         {

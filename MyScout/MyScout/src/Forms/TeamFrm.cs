@@ -12,20 +12,13 @@ namespace MyScout
 {
     public partial class TeamFrm : Form
     {
-        Panel panel;
+        bool applytomemory = true;
 
-        public TeamFrm()
+        public TeamFrm(bool applytomemory = true)
         {
             InitializeComponent();
             RefreshTeamList();
-            panel = Program.mainfrm.AllianceBtnPnl;
-        }
-
-        public TeamFrm(Panel buttonPanel)
-        {
-            InitializeComponent();
-            RefreshTeamList();
-            panel = buttonPanel;
+            this.applytomemory = applytomemory;
         }
 
         /// <summary>
@@ -94,26 +87,31 @@ namespace MyScout
         {
             if (TeamList.SelectedItems.Count > 0 || (!string.IsNullOrEmpty(textBox1.Text) && TeamList.Items.Count > 0))
             {
-                int selectedteam = (string.IsNullOrEmpty(textBox1.Text)) ? TeamList.SelectedIndices[0] : (TeamList.SelectedItems.Count > 0) ? (int)TeamList.SelectedItems[0].Tag : (int)TeamList.Items[0].Tag;
-                bool IsDuplicate = false;
+                int selectedteam = GetSelectedTeamIndex();
 
-                foreach (Control control in panel.Controls)
+                if (applytomemory)
                 {
-                    //If the control is a button...
-                    if (control.GetType() == typeof(Button))
+                    bool IsDuplicate = false;
+
+                    foreach (Control control in Program.mainfrm.AllianceBtnPnl.Controls)
                     {
-                        Button button = control as Button;
-                        if (button != null && button.Tag != null && (int)button.Tag == selectedteam) { IsDuplicate = true; break; }
+                        //If the control is a button...
+                        if (control.GetType() == typeof(Button))
+                        {
+                            Button button = control as Button;
+                            if (button != null && button.Tag != null && (int)button.Tag == selectedteam) { IsDuplicate = true; break; }
+                        }
                     }
-                }
 
-                if (!IsDuplicate || MessageBox.Show($"Team { Program.events[Program.currentevent].teams[selectedteam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
-                {
-                    if (panel == Program.mainfrm.AllianceBtnPnl)
+                    if (!IsDuplicate || MessageBox.Show($"Team { Program.events[Program.currentevent].teams[selectedteam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                     {
                         Program.selectedteam = selectedteam;
+                        DialogResult = DialogResult.OK;
+                        Close();
                     }
-
+                }
+                else
+                {
                     DialogResult = DialogResult.OK;
                     Close();
                 }
@@ -137,7 +135,6 @@ namespace MyScout
                     TeamList_DoubleClick(this, new EventArgs());
                     return true;
                 }
-                
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -168,7 +165,7 @@ namespace MyScout
 
         public int GetSelectedTeamIndex()
         {
-            return (string.IsNullOrEmpty(textBox1.Text)) ? TeamList.SelectedIndices[0] : (int)TeamList.SelectedItems[0].Tag;
+            return (string.IsNullOrEmpty(textBox1.Text)) ? TeamList.SelectedIndices[0] : (TeamList.SelectedItems.Count > 0) ? (int)TeamList.SelectedItems[0].Tag : (int)TeamList.Items[0].Tag; ;
         }
 
         private void SelectTeamButton_Click(object sender, EventArgs e)

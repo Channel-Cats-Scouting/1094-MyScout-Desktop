@@ -125,8 +125,18 @@ namespace MyScout
                 RDComments.Text = Program.events[Program.currentevent].rounds[Program.currentround].diedcomments[Program.selectedteamroundindex];
                 RDDefenseChkbx.SelectedIndex = Program.events[Program.currentevent].rounds[Program.currentround].dieddefense[Program.selectedteamroundindex];
                 TCommentsTxtbx.Text = Program.events[Program.currentevent].rounds[Program.currentround].comments[Program.selectedteamroundindex];
-                TLowGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].lowgoalcount[Program.selectedteamroundindex];
-                THighGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].highgoalcount[Program.selectedteamroundindex];
+
+                if (!TeleOpRB.Checked)
+                {
+                    TLowGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].AOlowgoalcount[Program.selectedteamroundindex];
+                    THighGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].AOhighgoalcount[Program.selectedteamroundindex];
+                }
+                else
+                {
+                    TLowGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].TOlowgoalcount[Program.selectedteamroundindex];
+                    THighGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].TOhighgoalcount[Program.selectedteamroundindex];
+                }
+
                 TChallengedTowerChkbx.Checked = Program.events[Program.currentevent].rounds[Program.currentround].challengedtower[Program.selectedteamroundindex];
                 TScaledTowerChkbx.Checked = Program.events[Program.currentevent].rounds[Program.currentround].scaledtower[Program.selectedteamroundindex];
                 RDDied.Checked = Program.events[Program.currentevent].rounds[Program.currentround].died[Program.selectedteamroundindex];
@@ -198,7 +208,7 @@ namespace MyScout
         /// </summary>
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Program.events.Count > 0 && MessageBox.Show("You have unsaved changes! Would you like to save them now?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (Program.events.Count > 0 && MessageBox.Show("You have unsaved changes! Would you like to save them now?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
                 new Thread(new ThreadStart(IO.SaveAllEvents)).Start();
             }
@@ -217,7 +227,7 @@ namespace MyScout
                     RemoveEventBtn.PerformClick();
                     return true;
                 }
-                else if (konamicodeindex > 9) { konamicodeindex = 0; }
+                else if (konamicodeindex > 9) { konamicodeindex = 0; return true; }
                 else if (!konamicodeactivated && keyData == konamicodekeys[konamicodeindex])
                 {
                     if (konamicodeindex < 9)
@@ -241,6 +251,7 @@ namespace MyScout
                             }
                         }
                     }
+                    return true;
                 }
             }
 
@@ -588,8 +599,6 @@ namespace MyScout
                 RadioButton rb = sender as RadioButton;
                 Panel containingpnl = (rb != null && rb.Parent != null) ? rb.Parent as Panel : null;
 
-                Console.WriteLine($"{containingpnl.Name} , {(containingpnl.Controls[1] as RadioButton).Checked} , {(containingpnl.Controls[2] as RadioButton).Checked} , {(containingpnl.Controls[3] as RadioButton).Checked}");
-
                 if (containingpnl != null && defensepnls.Contains(containingpnl))
                 {
                     if (!TeleOpRB.Checked)
@@ -629,7 +638,14 @@ namespace MyScout
         {
             if (Program.selectedteamroundindex != -1)
             {
-                Program.events[Program.currentevent].rounds[Program.currentround].lowgoalcount[Program.selectedteamroundindex] = (int)TLowGoalNUD.Value;
+                if (!TeleOpRB.Checked)
+                {
+                    Program.events[Program.currentevent].rounds[Program.currentround].AOlowgoalcount[Program.selectedteamroundindex] = (int)TLowGoalNUD.Value;
+                }
+                else
+                {
+                    Program.events[Program.currentevent].rounds[Program.currentround].TOlowgoalcount[Program.selectedteamroundindex] = (int)TLowGoalNUD.Value;
+                }
             }
         }
 
@@ -637,7 +653,14 @@ namespace MyScout
         {
             if (Program.selectedteamroundindex != -1)
             {
-                Program.events[Program.currentevent].rounds[Program.currentround].highgoalcount[Program.selectedteamroundindex] = (int)THighGoalNUD.Value;
+                if (!TeleOpRB.Checked)
+                {
+                    Program.events[Program.currentevent].rounds[Program.currentround].AOhighgoalcount[Program.selectedteamroundindex] = (int)THighGoalNUD.Value;
+                }
+                else
+                {
+                    Program.events[Program.currentevent].rounds[Program.currentround].TOhighgoalcount[Program.selectedteamroundindex] = (int)THighGoalNUD.Value;
+                }
             }
         }
 

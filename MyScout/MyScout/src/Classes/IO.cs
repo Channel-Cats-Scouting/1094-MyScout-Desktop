@@ -91,8 +91,8 @@ namespace MyScout
 
                             reader.ReadStartElement("Rounds");
                             Program.events[Program.events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
-                            Round.score[0] = Convert.ToInt32(reader.ReadElementString("AllianceScore1"));
-                            Round.score[1] = Convert.ToInt32(reader.ReadElementString("AllianceScore2"));
+                            List<object> AllianceScores = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AllianceScoreTokens"));
+                            Round.score = new int[2] { Convert.ToInt32(AllianceScores[0]), Convert.ToInt32(AllianceScores[1]) };
 
                             count = Convert.ToInt32(reader.ReadElementString("Count"));
                             for (int i = 0; i < count; i++)
@@ -124,7 +124,20 @@ namespace MyScout
                                 }
                                 reader.ReadEndElement();
 
-                                Program.events[Program.events.Count - 1].rounds.Add(round);
+                                round.scaledtower = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOScaledTokens")).Cast<bool>().ToArray();
+                                round.challengedtower = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOChallengedTokens")).Cast<bool>().ToArray();
+                                round.AOhighgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOHighGoalTokens")).Cast<int>().ToArray();
+                                round.AOlowgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOLowGoalTokens")).Cast<int>().ToArray();
+                                round.TOhighgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOHighGoalTokens")).Cast<int>().ToArray();
+                                round.TOlowgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOLowGoalTokens")).Cast<int>().ToArray();
+
+                                round.comments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("CommentTokens")).Cast<string>().ToArray();
+                                round.humancomments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("HumanCommentTokens")).Cast<string>().ToArray();
+                                round.died = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedTokens")).Cast<bool>().ToArray();
+                                round.dieddefense = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedDefenseTokens")).Cast<int>().ToArray();
+                                round.diedcomments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedCommentTokens")).Cast<string>().ToArray();
+
+                                Program.events[Program.events.Count - 1].rounds.Add(round); //Add the round we just made to the round list.
                                 reader.ReadEndElement();
                             }
 
@@ -139,7 +152,7 @@ namespace MyScout
             {
                 MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-}
+        }
         #endregion
 
         #region scOutput-related functions (pun brought to you by the amazing Ethan™)
@@ -150,7 +163,11 @@ namespace MyScout
         {
             if (Directory.Exists(Program.startuppath + "\\Events") && Directory.GetFiles(Program.startuppath + "\\Events").Length > 0)
             {
-                Directory.Delete(Program.startuppath + "\\Events",true);
+                if (Directory.Exists(Program.startuppath + "\\Events Backup"))
+                {
+                    Directory.Delete(Program.startuppath + "\\Events Backup",true);
+                }
+                Directory.Move(Program.startuppath + "\\Events", Program.startuppath + "\\Events Backup");
             }
             Directory.CreateDirectory(Program.startuppath + "\\Events");
 
@@ -232,15 +249,12 @@ namespace MyScout
 
                     writer.WriteStartElement("Rounds");
                     writer.WriteElementString("Current", (Program.events[eventid].lastviewedround == -1)? (Program.events[eventid].rounds.Count-1).ToString(): Program.events[eventid].lastviewedround.ToString());
-                    writer.WriteElementString("AllianceScore1", Round.score[0].ToString());
-                    writer.WriteElementString("AllianceScore2", Round.score[1].ToString());
+                    writer.WriteElementString("AllianceScoreTokens", TokenizeStringHandler.CreateTokenizedString(new List<object> { Round.score[0], Round.score[1] }));
 
                     writer.WriteElementString("Count", Program.events[eventid].rounds.Count.ToString());
-                    int debugTicker = 0;
+                    
                     foreach (Round round in Program.events[eventid].rounds)
                     {
-                        debugTicker++;
-
                         writer.WriteStartElement("Round");
                         writer.WriteStartElement("Teams");
 
@@ -273,16 +287,25 @@ namespace MyScout
                             writer.WriteElementString("AOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(AOCrossedTokens));
                             writer.WriteElementString("TOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(TOCrossedTokens));
                         }
+                        writer.WriteEndElement(); //Defenses
 
-                        //TODO: WORK ON THE XML SAVING!!!!!
-                        //writer.WriteElementString("TOScaledTokens", TokenizeStringHandler.CreateTokenizedString(round.scaledtower.ToList()));
-
-                        writer.WriteEndElement();
+                        writer.WriteElementString("TOScaledTokens", TokenizeStringHandler.CreateTokenizedString(round.scaledtower.Cast<object>().ToList()));
+                        writer.WriteElementString("TOChallengedTokens", TokenizeStringHandler.CreateTokenizedString(round.challengedtower.Cast<object>().ToList()));
+                        writer.WriteElementString("AOHighGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.AOhighgoalcount.Cast<object>().ToList()));
+                        writer.WriteElementString("AOLowGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.AOlowgoalcount.Cast<object>().ToList()));
+                        writer.WriteElementString("TOHighGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.TOhighgoalcount.Cast<object>().ToList()));
+                        writer.WriteElementString("TOLowGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.TOlowgoalcount.Cast<object>().ToList()));
+                        writer.WriteElementString("CommentTokens", TokenizeStringHandler.CreateTokenizedString(round.comments.Cast<object>().ToList()));
+                        writer.WriteElementString("HumanCommentTokens", TokenizeStringHandler.CreateTokenizedString(round.humancomments.Cast<object>().ToList()));
+                        writer.WriteElementString("DiedTokens", TokenizeStringHandler.CreateTokenizedString(round.died.Cast<object>().ToList()));
+                        writer.WriteElementString("DiedDefenseTokens", TokenizeStringHandler.CreateTokenizedString(round.dieddefense.Cast<object>().ToList()));
+                        writer.WriteElementString("DiedCommentTokens", TokenizeStringHandler.CreateTokenizedString(round.diedcomments.Cast<object>().ToList()));
                         writer.WriteEndElement();
                     }
 
                     writer.WriteEndElement();
                     writer.WriteEndElement();
+
                 }
             }
             catch (Exception ex)
@@ -300,8 +323,8 @@ namespace MyScout
             for(int i = 0; i < Program.events[Program.currentevent].teams.Count; i++)
             {
                 Team team = Program.events[Program.currentevent].teams[i];
-                List<int> highGoalsToAvg = new List<int>();
-                List<int> lowGoalsToAvg = new List<int>();
+                List<int> TOhighGoalsToAvg = new List<int>();
+                List<int> TOlowGoalsToAvg = new List<int>();
                 List<int> autoHighGoalsToAvg = new List<int>();
                 List<int> autoLowGoalsToAvg = new List<int>();
 
@@ -327,10 +350,10 @@ namespace MyScout
 
                             team.updateDefenseStats();
 
-                            highGoalsToAvg.Add(r.highgoalcount[j]);
-                            lowGoalsToAvg.Add(r.lowgoalcount[j]);
-                            //TODO: add Auto High Goal and Auto Low Goal saves
-
+                            TOhighGoalsToAvg.Add(r.TOhighgoalcount[j]);
+                            TOlowGoalsToAvg.Add(r.TOlowgoalcount[j]);
+                            autoHighGoalsToAvg.Add(r.AOhighgoalcount[j]);
+                            autoHighGoalsToAvg.Add(r.AOlowgoalcount[j]);
 
                             //Add to the death count
                             team.deathCount += r.died[j] ? 1 : 0;
@@ -345,16 +368,16 @@ namespace MyScout
                 }
                 //Avg high goals
                 int highGoalAvg = 0;
-                for(int j = 0; j < highGoalsToAvg.Count; j++)
+                for(int j = 0; j < TOhighGoalsToAvg.Count; j++)
                 {
-                    highGoalAvg += highGoalsToAvg[j];
+                    highGoalAvg += TOhighGoalsToAvg[j];
                 }
 
                 //Avg low goals
                 int lowGoalAvg = 0;
-                for(int j = 0; j < lowGoalsToAvg.Count; j++)
+                for(int j = 0; j < TOlowGoalsToAvg.Count; j++)
                 {
-                    lowGoalAvg += lowGoalsToAvg[j];
+                    lowGoalAvg += TOlowGoalsToAvg[j];
                 }
 
                 //Avg auto high goals
@@ -371,11 +394,11 @@ namespace MyScout
                     autoLowGoalAvg += autoLowGoalsToAvg[j];
                 }
 
-                if(highGoalsToAvg.Count > 0)
-                    team.teleHighGoals = highGoalAvg / highGoalsToAvg.Count;
+                if(TOhighGoalsToAvg.Count > 0)
+                    team.teleHighGoals = highGoalAvg / TOhighGoalsToAvg.Count;
 
-                if(lowGoalsToAvg.Count > 0)
-                    team.teleLowGoals = lowGoalAvg / lowGoalsToAvg.Count;
+                if(TOlowGoalsToAvg.Count > 0)
+                    team.teleLowGoals = lowGoalAvg / TOlowGoalsToAvg.Count;
 
                 if(autoHighGoalsToAvg.Count > 0)
                     team.autoHighGoals = autoHighGoalAvg / autoHighGoalsToAvg.Count;
@@ -603,13 +626,20 @@ namespace MyScout
         /// <param name="sorting"></param>
         public static void GenerateSpreadsheet(Event ev, int roundID, int sorting)
         {
-            if(roundID != -1)
+            try
             {
-                CreateRoundSpreadsheet(ev, roundID, sorting);
+                if (roundID != -1)
+                {
+                    CreateRoundSpreadsheet(ev, roundID, sorting);
+                }
+                else
+                {
+                    CreateEventSpreadsheet(ev, sorting);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                CreateEventSpreadsheet(ev, sorting);
+                MessageBox.Show($"The spreadsheet could not be generated. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
         #endregion

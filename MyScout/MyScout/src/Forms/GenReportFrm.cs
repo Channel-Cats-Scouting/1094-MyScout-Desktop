@@ -18,6 +18,7 @@ namespace MyScout
         public GenReport()
         {
             InitializeComponent();
+            roundNumUpDown.Maximum = Program.events[Program.currentevent].rounds.Count;
 
             //Prepare component values
             totalScoreRB.Checked = true;
@@ -61,7 +62,7 @@ namespace MyScout
 
         public int GetRoundID()
         {
-            return roundNumUpDown.Enabled ? (int)roundNumUpDown.Value : -1;
+            return roundNumUpDown.Enabled ? (int)roundNumUpDown.Value-1 : -1;
         }
 
         public bool GetIsPrescout()
@@ -86,7 +87,7 @@ namespace MyScout
 
         private void button2_Click(object sender, EventArgs e)
         {
-            TeamFrm teamform = new TeamFrm(selectTeamPanel);
+            TeamFrm teamform = new TeamFrm(false);
             teamform.ShowDialog();
             if(teamform.DialogResult == DialogResult.OK)
             {
