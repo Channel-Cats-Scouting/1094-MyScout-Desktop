@@ -346,6 +346,15 @@ namespace MyScout
                             team.defensesCrossed[6] = r.defenses[j, 4].TOtimescrossed;
                             team.defensesCrossed[7] = r.defenses[j, 5].TOtimescrossed;
                             team.defensesCrossed[8] = r.defenses[j, 6].TOtimescrossed;
+
+                            for(int k = 0; k < 8; k++)
+                            {
+                                if (r.defenses[j, k].AOcrossed)
+                                    team.autoDefensesCrossed++;
+                                else if (r.defenses[j, k].AOreached)
+                                    team.autoDefensesReached++;
+                            }
+                            
                             //TODO: rearrange MainFrm to mimic the internal team data List order
 
                             team.updateDefenseStats();
@@ -353,7 +362,7 @@ namespace MyScout
                             TOhighGoalsToAvg.Add(r.TOhighgoalcount[j]);
                             TOlowGoalsToAvg.Add(r.TOlowgoalcount[j]);
                             autoHighGoalsToAvg.Add(r.AOhighgoalcount[j]);
-                            autoHighGoalsToAvg.Add(r.AOlowgoalcount[j]);
+                            autoLowGoalsToAvg.Add(r.AOlowgoalcount[j]);
 
                             //Add to the death count
                             team.deathCount += r.died[j] ? 1 : 0;
