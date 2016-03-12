@@ -139,7 +139,7 @@ namespace MyScout
             avgScore = 0;
             avgScore = Convert.ToInt16(
                 autoDefensesReached * 2 +
-                autoDefensesCrossed * 10 + //TODO: save data to autoDefensesCrossed and autoDefensesReached
+                autoDefensesCrossed * 10 +
                 autoHighGoals * 10 +
                 autoLowGoals * 5 +
                 teleDefensesCrossed * 5 +
