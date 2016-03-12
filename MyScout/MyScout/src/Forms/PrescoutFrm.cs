@@ -70,9 +70,26 @@ namespace MyScout
 
             canHighGoalCB.Checked = team.canScoreHighGoals;
             canLowGoalCB.Checked = team.canScoreLowGoals;
-            loadEmbrasureCB.Checked = team.loadsFromEmbrasures;
-            loadBattriceCB.Checked = team.loadsFromBattrice;
+            loadEmbrasureCB.Checked = team.loadsFromHumanPlayerStations;
             loadFloorCB.Checked = team.loadsFromFloor;
+
+            Console.Write(team.prefers);
+
+            switch (team.prefers)
+            {
+                case 0:
+                    radioButton1.Checked = radioButton2.Checked = false;
+                    radioButton3.Checked = true;
+                    break;
+                case 1:
+                    radioButton1.Checked = true;
+                    radioButton2.Checked = radioButton3.Checked = false;
+                    break;
+                case 2:
+                    radioButton1.Checked = radioButton3.Checked = false;
+                    radioButton2.Checked = true;
+                    break;
+            }
         }
 
         public void SaveStats(Team team)
@@ -91,9 +108,9 @@ namespace MyScout
 
                 team.canScoreHighGoals = canHighGoalCB.Checked;
                 team.canScoreLowGoals = canLowGoalCB.Checked;
-                team.loadsFromEmbrasures = loadEmbrasureCB.Checked;
-                team.loadsFromBattrice = loadBattriceCB.Checked;
+                team.loadsFromHumanPlayerStations = loadEmbrasureCB.Checked;
                 team.loadsFromFloor = loadFloorCB.Checked;
+                team.prefers = (radioButton1.Checked)? 1 : (radioButton2.Checked)? 2 : 0;
             }
         }
 

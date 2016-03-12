@@ -68,7 +68,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Classes\IO.cs" />
     <Compile Include="src\Classes\Defense.cs" />
     <Compile Include="src\Classes\Event.cs" />
     <Compile Include="src\Classes\Round.cs" />
@@ -98,6 +97,7 @@
     <Compile Include="src\Forms\TeamFrm.Designer.cs">
       <DependentUpon>TeamFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Classes\IO.cs" />
     <EmbeddedResource Include="Bubble.resx">
       <DependentUpon>Bubble.cs</DependentUpon>
     </EmbeddedResource>

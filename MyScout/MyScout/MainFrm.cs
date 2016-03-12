@@ -708,7 +708,7 @@ namespace MyScout
         {
             if (Program.events.Count > 0)
             {
-                PrescoutFrm prescoutform = new PrescoutFrm();
+                PrescoutFrm prescoutform = new PrescoutFrm ();
                 prescoutform.Show();
             }
             else

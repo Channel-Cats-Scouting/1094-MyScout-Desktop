@@ -61,16 +61,16 @@ namespace MyScout
                                 team.teleLowGoals = Convert.ToInt32(tokens[5]);
                                 team.towersScaled = Convert.ToInt32(tokens[6]);
 
-                                for (int j = 0; j < 8; j++)
+                                for (int j = 0; j < 9; j++)
                                 {
                                     team.defensesCrossable[j] = Convert.ToBoolean(tokens[j + 7]);
                                 }
 
                                 team.canScoreHighGoals = Convert.ToBoolean(tokens[15]);
                                 team.canScoreLowGoals = Convert.ToBoolean(tokens[16]);
-                                team.loadsFromEmbrasures = Convert.ToBoolean(tokens[17]);
-                                team.loadsFromBattrice = Convert.ToBoolean(tokens[18]);
-                                team.loadsFromFloor = Convert.ToBoolean(tokens[19]);
+                                team.loadsFromHumanPlayerStations = Convert.ToBoolean(tokens[17]);
+                                team.loadsFromFloor = Convert.ToBoolean(tokens[18]);
+                                team.prefers = Convert.ToInt32(tokens[19]);
 
                                 team.crossingPowerScore = Convert.ToInt32(tokens[20]);
                                 team.autoDefensesCrossed = Convert.ToInt32(tokens[21]);
@@ -219,15 +219,15 @@ namespace MyScout
                         tokens.Add(team.teleLowGoals);
                         tokens.Add(team.towersScaled);
 
-                        for (int i = 0; i < 8; i++)
+                        for (int i = 0; i < 9; i++)
                         {
                             tokens.Add(team.defensesCrossable[i]);
                         }
                         tokens.Add(team.canScoreHighGoals);
                         tokens.Add(team.canScoreLowGoals);
-                        tokens.Add(team.loadsFromEmbrasures);
-                        tokens.Add(team.loadsFromBattrice);
+                        tokens.Add(team.loadsFromHumanPlayerStations);
                         tokens.Add(team.loadsFromFloor);
+                        tokens.Add(team.prefers);
 
                         tokens.Add(team.crossingPowerScore);
                         tokens.Add(team.autoDefensesCrossed);
@@ -521,8 +521,8 @@ namespace MyScout
 
             for(int i = 0; i < 6; i++)
             {
-                teamList[i] = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? null :
-                    Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]];
+                teamList[i] = (Program.events[Program.currentevent].rounds[roundID].teams[i] == -1) ? null :
+                    Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[roundID].teams[i]];
             }
 
             //Clean the report
@@ -560,11 +560,11 @@ namespace MyScout
             worksheet.Cells[0, 3] = new Cell("Low");
             worksheet.Cells.ColumnWidth[3] = 1000;
             worksheet.Cells[0, 4] = new Cell("FromEmb");
-            worksheet.Cells[0, 5] = new Cell("FromBatt");
+            worksheet.Cells[0, 5] = new Cell("FromFloor");
             worksheet.Cells.ColumnWidth[4] = 2250;
             worksheet.Cells.ColumnWidth[5] = 2300;
 
-            worksheet.Cells[0, 6] = new Cell("FromFloor");
+            worksheet.Cells[0, 6] = new Cell("Prefers");
             worksheet.Cells.ColumnWidth[6] = 2400;
 
             worksheet.Cells[0, 7] = new Cell("PC");
@@ -591,8 +591,8 @@ namespace MyScout
                     worksheet.Cells[i, 1] = new Cell(team.name);
                     worksheet.Cells[i, 2] = new Cell(team.canScoreHighGoals ? " " + ((char)0x221A).ToString() : "");
                     worksheet.Cells[i, 3] = new Cell(team.canScoreLowGoals ? " " + ((char)0x221A).ToString() : "");
-                    worksheet.Cells[i, 4] = new Cell(team.loadsFromEmbrasures ? " " + ((char)0x221A).ToString() : "");
-                    worksheet.Cells[i, 5] = new Cell(team.loadsFromBattrice ? " " + ((char)0x221A).ToString() : "");
+                    worksheet.Cells[i, 4] = new Cell(team.loadsFromHumanPlayerStations ? " " + ((char)0x221A).ToString() : "");
+                    worksheet.Cells[i, 5] = new Cell(team.prefers == 0 ? "None" : team.prefers == 1 ? "Floor" : "HPS");
                     worksheet.Cells[i, 6] = new Cell(team.loadsFromFloor ? " " + ((char)0x221A).ToString() : "");
                 }
                 else worksheet.Cells[i, 0] = new Cell("null");

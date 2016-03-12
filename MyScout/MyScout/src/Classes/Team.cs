@@ -74,9 +74,9 @@ namespace MyScout
         #region PreScout
         public bool canScoreHighGoals = false;
         public bool canScoreLowGoals = false;
-        public bool loadsFromEmbrasures = false;
-        public bool loadsFromBattrice = false;
+        public bool loadsFromHumanPlayerStations = false;
         public bool loadsFromFloor = false;
+        public int prefers = 0;
 
         /// <summary>
         /// A list of defenses this team can cross.

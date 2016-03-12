@@ -11,7 +11,7 @@ namespace MyScout
         /// <summary>
         /// The current version of the application in string form.
         /// </summary>
-        public static string versionstring = "3.4";
+        public static string versionstring = "3.5";
         /// <summary>
         /// The list of events to be used by the application.
         /// </summary>
