@@ -73,13 +73,13 @@ namespace MyScout
                                 team.prefers = Convert.ToInt32(tokens[19]);
 
                                 team.crossingPowerScore = Convert.ToInt32(tokens[20]);
-                                team.autoHighGoals = Convert.ToInt32(tokens[22]);
-                                team.autoLowGoals = Convert.ToInt32(tokens[23]);
-                                team.deathCount = Convert.ToInt32(tokens[24]);
+                                team.autoHighGoals = Convert.ToInt32(tokens[21]);
+                                team.autoLowGoals = Convert.ToInt32(tokens[22]);
+                                team.deathCount = Convert.ToInt32(tokens[23]);
 
                                 for (int j = 0; j < 8; j++)
                                 {
-                                    team.deathDefenses[j] = Convert.ToInt32(tokens[j + 21]);
+                                    team.deathDefenses[j] = Convert.ToInt32(tokens[j + 24]);
                                 }
 
                                 Program.events[Program.events.Count - 1].teams.Add(team);
@@ -229,7 +229,6 @@ namespace MyScout
                         tokens.Add(team.prefers);
 
                         tokens.Add(team.crossingPowerScore);
-                        tokens.Add(team.autoDefensesCrossed);
                         tokens.Add(team.autoDefensesReached);
                         tokens.Add(team.autoHighGoals);
                         tokens.Add(team.autoLowGoals);
@@ -354,11 +353,25 @@ namespace MyScout
                         if (r.teams[j] == i)
                         {
                             iterations++;
-                            for (int k = 0; k < 9; k++)
-                            {
-                                team.defensesCrossed[k] += r.defenses[j, k].TOtimescrossed;
-                                team.autoDefensesCrossed[k] += r.defenses[j, k].AOcrossed ? 1 : 0;
-                            }
+                            team.defensesCrossed[0] += r.defenses[j, 0].TOtimescrossed;
+                            team.defensesCrossed[1] += r.defenses[j, 1].TOtimescrossed;
+                            team.defensesCrossed[2] += r.defenses[j, 2].TOtimescrossed;
+                            team.defensesCrossed[3] += r.defenses[j, 7].TOtimescrossed;
+                            team.defensesCrossed[4] += r.defenses[j, 8].TOtimescrossed;
+                            team.defensesCrossed[5] += r.defenses[j, 3].TOtimescrossed;
+                            team.defensesCrossed[6] += r.defenses[j, 4].TOtimescrossed;
+                            team.defensesCrossed[7] += r.defenses[j, 5].TOtimescrossed;
+                            team.defensesCrossed[8] += r.defenses[j, 6].TOtimescrossed;
+
+                            team.autoDefensesCrossed[0] += r.defenses[j, 0].AOcrossed ? 1 : 0;
+                            team.autoDefensesCrossed[1] += r.defenses[j, 1].AOcrossed ? 1 : 0;
+                            team.autoDefensesCrossed[2] += r.defenses[j, 2].AOcrossed ? 1 : 0;
+                            team.autoDefensesCrossed[3] += r.defenses[j, 7].AOcrossed ? 1 : 0;
+                            team.autoDefensesCrossed[4] += r.defenses[j, 8].AOcrossed ? 1 : 0;
+                            team.autoDefensesCrossed[5] += r.defenses[j, 3].AOcrossed ? 1 : 0;
+                            team.autoDefensesCrossed[6] += r.defenses[j, 4].AOcrossed ? 1 : 0;
+                            team.autoDefensesCrossed[7] += r.defenses[j, 5].AOcrossed ? 1 : 0;
+                            team.autoDefensesCrossed[8] += r.defenses[j, 6].AOcrossed ? 1 : 0;
 
                             //TODO: rearrange MainFrm to mimic the internal team data List order
 
@@ -430,8 +443,8 @@ namespace MyScout
             worksheet.Cells[0, 1] = new Cell("Name");
             worksheet.Cells.ColumnWidth[1] = 3700;
 
-            worksheet.Cells[0, 2] = new Cell("Score");
-            worksheet.Cells.ColumnWidth[2] = 1500;
+            worksheet.Cells[0, 2] = new Cell("Tower");
+            worksheet.Cells.ColumnWidth[2] = 1600;
 
             worksheet.Cells[0, 3] = new Cell("High Goals");
             worksheet.Cells.ColumnWidth[3] = 2500;
@@ -440,7 +453,7 @@ namespace MyScout
             worksheet.Cells.ColumnWidth[4] = 2400;
             worksheet.Cells.ColumnWidth[5] = 2200;
 
-            worksheet.Cells[0, 6] = new Cell("Defs:"); //TELE STUFFS
+            worksheet.Cells[0, 6] = new Cell("Tele:"); //TELE STUFFS
             worksheet.Cells.ColumnWidth[6] = 1250;
 
             worksheet.Cells[0, 7] = new Cell("PC");

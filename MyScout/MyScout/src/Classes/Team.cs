@@ -68,8 +68,8 @@ namespace MyScout
         /// </summary>
         public float[] autoDefensesCrossed = new float[9];
         public float autoDefensesReached = 0;
-        public float autoHighGoals = 0;
-        public float autoLowGoals = 0;
+        public int autoHighGoals = 0;
+        public int autoLowGoals = 0;
         #endregion
         #region PreScout
         public bool canScoreHighGoals = false;
