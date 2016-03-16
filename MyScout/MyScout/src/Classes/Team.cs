@@ -56,7 +56,7 @@ namespace MyScout
         /// [7]: Rough Terrain
         /// [8]: Low Bar
         /// </summary>
-        public float[] defensesCrossed = new float[9];
+        public int[] defensesCrossed = new int[9];
 
         /// <summary>
         /// A score based on how well the team can cross defenses
@@ -66,7 +66,7 @@ namespace MyScout
         /// <summary>
         /// Average defenses crossed per round
         /// </summary>
-        public float autoDefensesCrossed = 0;
+        public float[] autoDefensesCrossed = new float[9];
         public float autoDefensesReached = 0;
         public float autoHighGoals = 0;
         public float autoLowGoals = 0;
@@ -139,7 +139,6 @@ namespace MyScout
             avgScore = 0;
             avgScore = Convert.ToInt16(
                 autoDefensesReached * 2 +
-                autoDefensesCrossed * 10 +
                 autoHighGoals * 10 +
                 autoLowGoals * 5 +
                 teleHighGoals * 5 +
@@ -150,6 +149,10 @@ namespace MyScout
             foreach (int times in defensesCrossed)
             {
                 avgScore += times * 5;
+            }
+            foreach (int times in autoDefensesCrossed)
+            {
+                avgScore += times * 10;
             }
 
             return avgScore;

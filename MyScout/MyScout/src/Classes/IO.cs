@@ -73,7 +73,6 @@ namespace MyScout
                                 team.prefers = Convert.ToInt32(tokens[19]);
 
                                 team.crossingPowerScore = Convert.ToInt32(tokens[20]);
-                                team.autoDefensesCrossed = Convert.ToInt32(tokens[21]);
                                 team.autoHighGoals = Convert.ToInt32(tokens[22]);
                                 team.autoLowGoals = Convert.ToInt32(tokens[23]);
                                 team.deathCount = Convert.ToInt32(tokens[24]);
@@ -328,10 +327,20 @@ namespace MyScout
                 List<int> autoHighGoalsToAvg = new List<int>();
                 List<int> autoLowGoalsToAvg = new List<int>();
 
-                for(int j = 0; j < 8; j++)
+                for(int j = 0; j < 9; j++)
                 {
                     team.defensesCrossed[j] = 0;
+                    team.deathDefenses[j] = 0;
+                    team.autoDefensesCrossed[j] = 0;
                 }
+
+                team.teleHighGoals = 0;
+                team.teleLowGoals = 0;
+                team.autoHighGoals = 0;
+                team.autoLowGoals = 0;
+                team.towersScaled = 0;
+                team.avgScore = 0;
+                team.deathCount = 0;
 
                 int iterations = 0;
 
@@ -345,23 +354,20 @@ namespace MyScout
                         if (r.teams[j] == i)
                         {
                             iterations++;
-                            team.defensesCrossed[0] += r.defenses[j, 0].TOtimescrossed;
-                            team.defensesCrossed[1] += r.defenses[j, 1].TOtimescrossed;
-                            team.defensesCrossed[2] += r.defenses[j, 2].TOtimescrossed;
-                            team.defensesCrossed[3] += r.defenses[j, 3].TOtimescrossed;
-                            team.defensesCrossed[4] += r.defenses[j, 4].TOtimescrossed;
-                            team.defensesCrossed[5] += r.defenses[j, 5].TOtimescrossed;
-                            team.defensesCrossed[6] += r.defenses[j, 6].TOtimescrossed;
-                            team.defensesCrossed[7] += r.defenses[j, 7].TOtimescrossed;
-                            team.defensesCrossed[8] += r.defenses[j, 8].TOtimescrossed;
+                            for (int k = 0; k < 9; k++)
+                            {
+                                team.defensesCrossed[k] += r.defenses[j, k].TOtimescrossed;
+                                team.autoDefensesCrossed[k] += r.defenses[j, k].AOcrossed ? 1 : 0;
+                            }
+
                             //TODO: rearrange MainFrm to mimic the internal team data List order
 
                             team.updateDefenseStats();
 
-                            TOhighGoalsToAvg.Add(r.TOhighgoalcount[j]);
-                            TOlowGoalsToAvg.Add(r.TOlowgoalcount[j]);
-                            autoHighGoalsToAvg.Add(r.AOhighgoalcount[j]);
-                            autoHighGoalsToAvg.Add(r.AOlowgoalcount[j]);
+                            team.teleHighGoals += r.TOhighgoalcount[j];
+                            team.teleLowGoals += r.TOlowgoalcount[j];
+                            team.autoHighGoals += r.AOhighgoalcount[j];
+                            team.autoLowGoals += r.AOlowgoalcount[j];
 
                             //Add to the death count
                             team.deathCount += r.died[j] ? 1 : 0;
@@ -374,57 +380,8 @@ namespace MyScout
                         }
                     }
                 }
-                for(int j = 0; j < 9; j++)
-                {
-                    team.defensesCrossed[j] = team.defensesCrossed[j] / iterations;
-                }
-
-                //Avg high goals
-                float highGoalAvg = 0;
-                for(int j = 0; j < TOhighGoalsToAvg.Count; j++)
-                {
-                    highGoalAvg += TOhighGoalsToAvg[j];
-                }
-
-                //Avg low goals
-                float lowGoalAvg = 0;
-                for(int j = 0; j < TOlowGoalsToAvg.Count; j++)
-                {
-                    lowGoalAvg += TOlowGoalsToAvg[j];
-                }
-
-                //Avg auto high goals
-                float autoHighGoalAvg = 0;
-                for(int j = 0; j < autoHighGoalsToAvg.Count; j++)
-                {
-                    autoHighGoalAvg += autoHighGoalsToAvg[j];
-                }
-
-                //Avg auto low goals
-                float autoLowGoalAvg = 0;
-                for(int j = 0; j < autoLowGoalsToAvg.Count; j++)
-                {
-                    autoLowGoalAvg += autoLowGoalsToAvg[j];
-                }
-
-                if(TOhighGoalsToAvg.Count > 0)
-                    team.teleHighGoals = highGoalAvg / TOhighGoalsToAvg.Count;
-
-                if(TOlowGoalsToAvg.Count > 0)
-                    team.teleLowGoals = lowGoalAvg / TOlowGoalsToAvg.Count;
-
-                if(autoHighGoalsToAvg.Count > 0)
-                    team.autoHighGoals = autoHighGoalAvg / autoHighGoalsToAvg.Count;
-
-                if(autoLowGoalsToAvg.Count > 0)
-                    team.autoLowGoals = autoLowGoalAvg / autoLowGoalsToAvg.Count;
                 
                 team.UpdateTeamScore();
-
-                if(team.id == 1094)
-                {
-                    int t = 0;
-                }
             }
         }
 
@@ -450,7 +407,7 @@ namespace MyScout
 
             //Sort the team list based on the sorting int
             List<Team> sortedTeamList = teamList.OrderByDescending(
-                team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.autoDefensesCrossed : team.crossingPowerScore)
+                team => (sorting == 0 ? team.avgScore : team.crossingPowerScore)
                 ).ToList();
 
             string filepath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {ev.name}.xls";
@@ -483,7 +440,7 @@ namespace MyScout
             worksheet.Cells.ColumnWidth[4] = 2400;
             worksheet.Cells.ColumnWidth[5] = 2200;
 
-            worksheet.Cells[0, 6] = new Cell("Defs:");
+            worksheet.Cells[0, 6] = new Cell("Defs:"); //TELE STUFFS
             worksheet.Cells.ColumnWidth[6] = 1250;
 
             worksheet.Cells[0, 7] = new Cell("PC");
@@ -501,6 +458,24 @@ namespace MyScout
             worksheet.Cells[0, 15] = new Cell("LB");
             worksheet.Cells.ColumnWidth[14, 15] = 900;
 
+            worksheet.Cells[0, 16] = new Cell("Auto:"); //AUTO STUFFS
+            worksheet.Cells.ColumnWidth[16] = 1250;
+
+            worksheet.Cells[0, 17] = new Cell("PC");
+            worksheet.Cells[0, 18] = new Cell("CF");
+            worksheet.Cells[0, 19] = new Cell("M");
+            worksheet.Cells[0, 20] = new Cell("RP");
+            worksheet.Cells[0, 21] = new Cell("DB");
+            worksheet.Cells[0, 22] = new Cell("SP");
+            worksheet.Cells.ColumnWidth[17, 22] = 900;
+
+            worksheet.Cells[0, 23] = new Cell("RW");
+            worksheet.Cells.ColumnWidth[23] = 1000;
+
+            worksheet.Cells[0, 24] = new Cell("RT");
+            worksheet.Cells[0, 25] = new Cell("LB");
+            worksheet.Cells.ColumnWidth[24, 25] = 900;
+
             for (int i = 1; i < sortedTeamList.Count() + 1; i++)
             {
                 Team team = sortedTeamList[i - 1];
@@ -508,9 +483,9 @@ namespace MyScout
                 {
                     worksheet.Cells[i, 0] = new Cell(team.id.ToString());
                     worksheet.Cells[i, 1] = new Cell(team.name);
-                    worksheet.Cells[i, 2] = new Cell(team.avgScore.ToString());
-                    worksheet.Cells[i, 3] = new Cell(Convert.ToInt16(team.teleHighGoals*10));
-                    worksheet.Cells[i, 4] = new Cell(Convert.ToInt16(team.teleLowGoals*10));
+                    worksheet.Cells[i, 2] = new Cell(Convert.ToInt16(team.towersScaled));
+                    worksheet.Cells[i, 3] = new Cell(Convert.ToInt16(team.teleHighGoals));
+                    worksheet.Cells[i, 4] = new Cell(Convert.ToInt16(team.teleLowGoals));
                     worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore.ToString());
                 }
                 else worksheet.Cells[i, 0] = new Cell("N/A");
@@ -519,8 +494,8 @@ namespace MyScout
                     for (int j = 0; j < 9; j++)
                     {
                         //Fill each defense cell with the number of times it has crossed the defense
-                        worksheet.Cells[i, (j + 7)] = new Cell(Convert.ToInt16(team.defensesCrossed[j]*10));
-                        
+                        worksheet.Cells[i, (j + 7)] = new Cell(team.defensesCrossed[j]);
+                        worksheet.Cells[i, (j + 17)] = new Cell(Convert.ToInt16(team.autoDefensesCrossed[j]));
                     }
             }
 

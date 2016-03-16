@@ -28,6 +28,10 @@ namespace MyScout
         /// <summary>
         /// TODO: Documentation
         /// </summary>
+        public Defense[,] autodefenses = new Defense[6, 9];
+        /// <summary>
+        /// TODO: Documentation
+        /// </summary>
         public bool[] scaledtower = new bool[6] { false, false, false, false, false, false };
         /// <summary>
         /// TODO: Documentation
