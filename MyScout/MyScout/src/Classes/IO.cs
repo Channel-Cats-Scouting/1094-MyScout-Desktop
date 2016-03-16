@@ -333,6 +333,7 @@ namespace MyScout
                     team.autoDefensesCrossed[j] = 0;
                 }
 
+                team.autoDefensesReached = 0;
                 team.teleHighGoals = 0;
                 team.teleLowGoals = 0;
                 team.autoHighGoals = 0;
@@ -377,6 +378,11 @@ namespace MyScout
 
                             team.updateDefenseStats();
 
+                            for(int k = 0; k < 9; k++)
+                            {
+                                team.autoDefensesReached += r.defenses[j, k].AOreached ? 1 : 0;
+                            }
+
                             team.teleHighGoals += r.TOhighgoalcount[j];
                             team.teleLowGoals += r.TOlowgoalcount[j];
                             team.autoHighGoals += r.AOhighgoalcount[j];
@@ -420,7 +426,7 @@ namespace MyScout
 
             //Sort the team list based on the sorting int
             List<Team> sortedTeamList = teamList.OrderByDescending(
-                team => (sorting == 0 ? team.avgScore : team.crossingPowerScore)
+                team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.teleHighGoals : team.crossingPowerScore)
                 ).ToList();
 
             string filepath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {ev.name}.xls";
@@ -449,9 +455,9 @@ namespace MyScout
             worksheet.Cells[0, 3] = new Cell("High Goals");
             worksheet.Cells.ColumnWidth[3] = 2500;
             worksheet.Cells[0, 4] = new Cell("Low Goals");
-            worksheet.Cells[0, 5] = new Cell("Def Score");
             worksheet.Cells.ColumnWidth[4] = 2400;
-            worksheet.Cells.ColumnWidth[5] = 2200;
+            worksheet.Cells[0, 5] = new Cell("Reached");
+            worksheet.Cells.ColumnWidth[5] = 2300;
 
             worksheet.Cells[0, 6] = new Cell("Tele:"); //TELE STUFFS
             worksheet.Cells.ColumnWidth[6] = 1250;
@@ -499,7 +505,7 @@ namespace MyScout
                     worksheet.Cells[i, 2] = new Cell(Convert.ToInt16(team.towersScaled));
                     worksheet.Cells[i, 3] = new Cell(Convert.ToInt16(team.teleHighGoals));
                     worksheet.Cells[i, 4] = new Cell(Convert.ToInt16(team.teleLowGoals));
-                    worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore.ToString());
+                    worksheet.Cells[i, 5] = new Cell(Convert.ToInt16(team.autoDefensesReached));
                 }
                 else worksheet.Cells[i, 0] = new Cell("N/A");
 
