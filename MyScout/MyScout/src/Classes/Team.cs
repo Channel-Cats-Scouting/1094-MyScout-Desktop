@@ -56,7 +56,7 @@ namespace MyScout
         /// [7]: Rough Terrain
         /// [8]: Low Bar
         /// </summary>
-        public int[] defensesCrossed = new int[9];
+        public float[] defensesCrossed = new float[9];
 
         /// <summary>
         /// A score based on how well the team can cross defenses
@@ -142,7 +142,6 @@ namespace MyScout
                 autoDefensesCrossed * 10 +
                 autoHighGoals * 10 +
                 autoLowGoals * 5 +
-                teleDefensesCrossed * 5 +
                 teleHighGoals * 5 +
                 teleLowGoals * 2 +
                 towersScaled * 15

@@ -328,6 +328,13 @@ namespace MyScout
                 List<int> autoHighGoalsToAvg = new List<int>();
                 List<int> autoLowGoalsToAvg = new List<int>();
 
+                for(int j = 0; j < 8; j++)
+                {
+                    team.defensesCrossed[j] = 0;
+                }
+
+                int iterations = 0;
+
                 //for each round in the event
                 foreach (Round r in Program.events[Program.currentevent].rounds)
                 {
@@ -337,24 +344,16 @@ namespace MyScout
                         //if the team index is the same as the round's team index
                         if (r.teams[j] == i)
                         {
-                            team.defensesCrossed[0] = r.defenses[j, 0].TOtimescrossed;
-                            team.defensesCrossed[1] = r.defenses[j, 1].TOtimescrossed;
-                            team.defensesCrossed[2] = r.defenses[j, 2].TOtimescrossed;
-                            team.defensesCrossed[3] = r.defenses[j, 7].TOtimescrossed;
-                            team.defensesCrossed[4] = r.defenses[j, 8].TOtimescrossed;
-                            team.defensesCrossed[5] = r.defenses[j, 3].TOtimescrossed;
-                            team.defensesCrossed[6] = r.defenses[j, 4].TOtimescrossed;
-                            team.defensesCrossed[7] = r.defenses[j, 5].TOtimescrossed;
-                            team.defensesCrossed[8] = r.defenses[j, 6].TOtimescrossed;
-
-                            for(int k = 0; k < 8; k++)
-                            {
-                                if (r.defenses[j, k].AOcrossed)
-                                    team.autoDefensesCrossed++;
-                                else if (r.defenses[j, k].AOreached)
-                                    team.autoDefensesReached++;
-                            }
-                            
+                            iterations++;
+                            team.defensesCrossed[0] += r.defenses[j, 0].TOtimescrossed;
+                            team.defensesCrossed[1] += r.defenses[j, 1].TOtimescrossed;
+                            team.defensesCrossed[2] += r.defenses[j, 2].TOtimescrossed;
+                            team.defensesCrossed[3] += r.defenses[j, 3].TOtimescrossed;
+                            team.defensesCrossed[4] += r.defenses[j, 4].TOtimescrossed;
+                            team.defensesCrossed[5] += r.defenses[j, 5].TOtimescrossed;
+                            team.defensesCrossed[6] += r.defenses[j, 6].TOtimescrossed;
+                            team.defensesCrossed[7] += r.defenses[j, 7].TOtimescrossed;
+                            team.defensesCrossed[8] += r.defenses[j, 8].TOtimescrossed;
                             //TODO: rearrange MainFrm to mimic the internal team data List order
 
                             team.updateDefenseStats();
@@ -362,7 +361,7 @@ namespace MyScout
                             TOhighGoalsToAvg.Add(r.TOhighgoalcount[j]);
                             TOlowGoalsToAvg.Add(r.TOlowgoalcount[j]);
                             autoHighGoalsToAvg.Add(r.AOhighgoalcount[j]);
-                            autoLowGoalsToAvg.Add(r.AOlowgoalcount[j]);
+                            autoHighGoalsToAvg.Add(r.AOlowgoalcount[j]);
 
                             //Add to the death count
                             team.deathCount += r.died[j] ? 1 : 0;
@@ -375,29 +374,34 @@ namespace MyScout
                         }
                     }
                 }
+                for(int j = 0; j < 9; j++)
+                {
+                    team.defensesCrossed[j] = team.defensesCrossed[j] / iterations;
+                }
+
                 //Avg high goals
-                int highGoalAvg = 0;
+                float highGoalAvg = 0;
                 for(int j = 0; j < TOhighGoalsToAvg.Count; j++)
                 {
                     highGoalAvg += TOhighGoalsToAvg[j];
                 }
 
                 //Avg low goals
-                int lowGoalAvg = 0;
+                float lowGoalAvg = 0;
                 for(int j = 0; j < TOlowGoalsToAvg.Count; j++)
                 {
                     lowGoalAvg += TOlowGoalsToAvg[j];
                 }
 
                 //Avg auto high goals
-                int autoHighGoalAvg = 0;
+                float autoHighGoalAvg = 0;
                 for(int j = 0; j < autoHighGoalsToAvg.Count; j++)
                 {
                     autoHighGoalAvg += autoHighGoalsToAvg[j];
                 }
 
                 //Avg auto low goals
-                int autoLowGoalAvg = 0;
+                float autoLowGoalAvg = 0;
                 for(int j = 0; j < autoLowGoalsToAvg.Count; j++)
                 {
                     autoLowGoalAvg += autoLowGoalsToAvg[j];
@@ -416,6 +420,11 @@ namespace MyScout
                     team.autoLowGoals = autoLowGoalAvg / autoLowGoalsToAvg.Count;
                 
                 team.UpdateTeamScore();
+
+                if(team.id == 1094)
+                {
+                    int t = 0;
+                }
             }
         }
 
@@ -500,8 +509,8 @@ namespace MyScout
                     worksheet.Cells[i, 0] = new Cell(team.id.ToString());
                     worksheet.Cells[i, 1] = new Cell(team.name);
                     worksheet.Cells[i, 2] = new Cell(team.avgScore.ToString());
-                    worksheet.Cells[i, 3] = new Cell(team.teleHighGoals.ToString());
-                    worksheet.Cells[i, 4] = new Cell(team.teleLowGoals.ToString());
+                    worksheet.Cells[i, 3] = new Cell(Convert.ToInt16(team.teleHighGoals*10));
+                    worksheet.Cells[i, 4] = new Cell(Convert.ToInt16(team.teleLowGoals*10));
                     worksheet.Cells[i, 5] = new Cell(team.crossingPowerScore.ToString());
                 }
                 else worksheet.Cells[i, 0] = new Cell("N/A");
@@ -510,7 +519,8 @@ namespace MyScout
                     for (int j = 0; j < 9; j++)
                     {
                         //Fill each defense cell with the number of times it has crossed the defense
-                        worksheet.Cells[i, (j + 7)] = new Cell(team.defensesCrossed[j]);
+                        worksheet.Cells[i, (j + 7)] = new Cell(Convert.ToInt16(team.defensesCrossed[j]*10));
+                        
                     }
             }
 
