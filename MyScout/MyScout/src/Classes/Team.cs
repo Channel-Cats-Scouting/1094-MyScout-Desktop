@@ -59,6 +59,21 @@ namespace MyScout
         public int[] defensesCrossed = new int[9];
 
         /// <summary>
+        /// A list of defenses the team has crossed at least once.
+        /// Each index references a different defense:
+        /// [0]: Portcullis
+        /// [1]: Cheval de Frise
+        /// [2]: Moat
+        /// [3]: Ramparts
+        /// [4]: Drawbridge
+        /// [5]: Sally Port
+        /// [6]: Rock Wall
+        /// [7]: Rough Terrain
+        /// [8]: Low Bar
+        /// </summary>
+        public bool[] smartDefensesCrossable = new bool[9];
+
+        /// <summary>
         /// A score based on how well the team can cross defenses
         /// </summary>
         public int crossingPowerScore = 0;

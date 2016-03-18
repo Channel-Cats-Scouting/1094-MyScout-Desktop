@@ -189,6 +189,8 @@ namespace MyScout
                     File.Delete(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml");
                 }
 
+                SaveDataToTeams();
+
                 using (XmlTextWriter writer = new XmlTextWriter(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
                 {
                     writer.Formatting = Formatting.Indented;
@@ -353,7 +355,10 @@ namespace MyScout
                         //if the team index is the same as the round's team index
                         if (r.teams[j] == i)
                         {
+                            //For averaging, currently unused
                             iterations++;
+
+                            //Add to the DefensesCrossed total
                             team.defensesCrossed[0] += r.defenses[j, 0].TOtimescrossed;
                             team.defensesCrossed[1] += r.defenses[j, 1].TOtimescrossed;
                             team.defensesCrossed[2] += r.defenses[j, 2].TOtimescrossed;
@@ -364,6 +369,7 @@ namespace MyScout
                             team.defensesCrossed[7] += r.defenses[j, 5].TOtimescrossed;
                             team.defensesCrossed[8] += r.defenses[j, 6].TOtimescrossed;
 
+                            //Add to the DefensesCrossed total
                             team.autoDefensesCrossed[0] += r.defenses[j, 0].AOcrossed ? 1 : 0;
                             team.autoDefensesCrossed[1] += r.defenses[j, 1].AOcrossed ? 1 : 0;
                             team.autoDefensesCrossed[2] += r.defenses[j, 2].AOcrossed ? 1 : 0;
@@ -374,7 +380,14 @@ namespace MyScout
                             team.autoDefensesCrossed[7] += r.defenses[j, 5].AOcrossed ? 1 : 0;
                             team.autoDefensesCrossed[8] += r.defenses[j, 6].AOcrossed ? 1 : 0;
 
-                            //TODO: rearrange MainFrm to mimic the internal team data List order
+                            //TODO: rearrange MainFrm to mimic the internal team data List order because it's a pain to type out all this code
+
+                            //Add to the team's smart defense ability list, requested by Yishai
+                            for (int k = 0; k < 9; k++)
+                            {
+                                team.smartDefensesCrossable[k] = team.defensesCrossed[k] > 0;
+                            }
+
 
                             team.updateDefenseStats();
 
@@ -449,51 +462,43 @@ namespace MyScout
             worksheet.Cells[0, 1] = new Cell("Name");
             worksheet.Cells.ColumnWidth[1] = 3700;
 
-            worksheet.Cells[0, 2] = new Cell("Tower");
+            worksheet.Cells[0, 2] = new Cell("Scaled");
             worksheet.Cells.ColumnWidth[2] = 1600;
 
             worksheet.Cells[0, 3] = new Cell("High Goals");
             worksheet.Cells.ColumnWidth[3] = 2500;
             worksheet.Cells[0, 4] = new Cell("Low Goals");
             worksheet.Cells.ColumnWidth[4] = 2400;
-            worksheet.Cells[0, 5] = new Cell("Reached");
-            worksheet.Cells.ColumnWidth[5] = 2300;
 
-            worksheet.Cells[0, 6] = new Cell("Tele:"); //TELE STUFFS
-            worksheet.Cells.ColumnWidth[6] = 1250;
+            worksheet.Cells[0, 5] = new Cell("Tele:"); //TELE STUFFS
+            worksheet.Cells.ColumnWidth[5] = 1250;
 
-            worksheet.Cells[0, 7] = new Cell("PC");
-            worksheet.Cells[0, 8] = new Cell("CF");
-            worksheet.Cells[0, 9] = new Cell("M");
-            worksheet.Cells[0, 10] = new Cell("RP");
-            worksheet.Cells[0, 11] = new Cell("DB");
-            worksheet.Cells[0, 12] = new Cell("SP");
-            worksheet.Cells.ColumnWidth[7, 12] = 900;
+            worksheet.Cells[0, 6] = new Cell("PC");
+            worksheet.Cells[0, 7] = new Cell("CF");
+            worksheet.Cells[0, 8] = new Cell("M");
+            worksheet.Cells[0, 9] = new Cell("RP");
+            worksheet.Cells[0, 10] = new Cell("DB");
+            worksheet.Cells[0, 11] = new Cell("SP");
+            worksheet.Cells.ColumnWidth[6, 11] = 900;
 
-            worksheet.Cells[0, 13] = new Cell("RW");
-            worksheet.Cells.ColumnWidth[13] = 1000;
+            worksheet.Cells[0, 12] = new Cell("RW");
+            worksheet.Cells.ColumnWidth[12] = 1000;
 
-            worksheet.Cells[0, 14] = new Cell("RT");
-            worksheet.Cells[0, 15] = new Cell("LB");
-            worksheet.Cells.ColumnWidth[14, 15] = 900;
+            worksheet.Cells[0, 13] = new Cell("RT");
+            worksheet.Cells[0, 14] = new Cell("LB");
+            worksheet.Cells.ColumnWidth[13, 14] = 900;
 
-            worksheet.Cells[0, 16] = new Cell("Auto:"); //AUTO STUFFS
-            worksheet.Cells.ColumnWidth[16] = 1250;
+            worksheet.Cells[0, 15] = new Cell("Auto:"); //AUTO STUFFS
+            worksheet.Cells.ColumnWidth[15] = 1250;
 
-            worksheet.Cells[0, 17] = new Cell("PC");
-            worksheet.Cells[0, 18] = new Cell("CF");
-            worksheet.Cells[0, 19] = new Cell("M");
-            worksheet.Cells[0, 20] = new Cell("RP");
-            worksheet.Cells[0, 21] = new Cell("DB");
-            worksheet.Cells[0, 22] = new Cell("SP");
-            worksheet.Cells.ColumnWidth[17, 22] = 900;
+            worksheet.Cells[0, 16] = new Cell("Crossed");
+            worksheet.Cells.ColumnWidth[16] = 2100;
 
-            worksheet.Cells[0, 23] = new Cell("RW");
-            worksheet.Cells.ColumnWidth[23] = 1000;
+            worksheet.Cells[0, 17] = new Cell("High Goals");
+            worksheet.Cells.ColumnWidth[17] = 2500;
+            worksheet.Cells[0, 18] = new Cell("Low Goals");
+            worksheet.Cells.ColumnWidth[18] = 2400;
 
-            worksheet.Cells[0, 24] = new Cell("RT");
-            worksheet.Cells[0, 25] = new Cell("LB");
-            worksheet.Cells.ColumnWidth[24, 25] = 900;
 
             for (int i = 1; i < sortedTeamList.Count() + 1; i++)
             {
@@ -505,7 +510,6 @@ namespace MyScout
                     worksheet.Cells[i, 2] = new Cell(Convert.ToInt16(team.towersScaled));
                     worksheet.Cells[i, 3] = new Cell(Convert.ToInt16(team.teleHighGoals));
                     worksheet.Cells[i, 4] = new Cell(Convert.ToInt16(team.teleLowGoals));
-                    worksheet.Cells[i, 5] = new Cell(Convert.ToInt16(team.autoDefensesReached));
                 }
                 else worksheet.Cells[i, 0] = new Cell("N/A");
 
@@ -513,9 +517,19 @@ namespace MyScout
                     for (int j = 0; j < 9; j++)
                     {
                         //Fill each defense cell with the number of times it has crossed the defense
-                        worksheet.Cells[i, (j + 7)] = new Cell(team.defensesCrossed[j]);
-                        worksheet.Cells[i, (j + 17)] = new Cell(Convert.ToInt16(team.autoDefensesCrossed[j]));
+                        worksheet.Cells[i, (j + 6)] = new Cell(team.defensesCrossed[j]);
                     }
+                int autoCrossedTotal = 0;
+                if(team != null)
+                    for(int j = 0; j< 9; j++)
+                    {
+                        autoCrossedTotal += (int)team.autoDefensesCrossed[j];
+                    }
+                worksheet.Cells[i, 16] = new Cell(autoCrossedTotal);
+
+                worksheet.Cells[i, 17] = new Cell(Convert.ToInt16(team.autoHighGoals));
+                worksheet.Cells[i, 18] = new Cell(Convert.ToInt16(team.autoLowGoals));
+
             }
 
             workbook.Worksheets.Add(worksheet);
@@ -529,6 +543,8 @@ namespace MyScout
         /// <param name="sorting"></param>
         public static void CreateRoundSpreadsheet(Event ev, int roundID, int sorting)
         {
+            SaveDataToTeams();
+
             int[] rawTeamList = ev.rounds[roundID].teams;
             Team[] teamList = new Team[6];
 
@@ -572,28 +588,49 @@ namespace MyScout
 
             worksheet.Cells[0, 3] = new Cell("Low");
             worksheet.Cells.ColumnWidth[3] = 1000;
-            worksheet.Cells[0, 4] = new Cell("FromEmb");
-            worksheet.Cells[0, 5] = new Cell("FromFloor");
-            worksheet.Cells.ColumnWidth[4] = 2250;
-            worksheet.Cells.ColumnWidth[5] = 2300;
+            worksheet.Cells[0, 4] = new Cell("Emb?");
+            worksheet.Cells[0, 5] = new Cell("Floor?");
+            worksheet.Cells.ColumnWidth[4] = 1450;
+            worksheet.Cells.ColumnWidth[5] = 1600;
 
             worksheet.Cells[0, 6] = new Cell("Prefers");
-            worksheet.Cells.ColumnWidth[6] = 2400;
+            worksheet.Cells.ColumnWidth[6] = 1700;
 
-            worksheet.Cells[0, 7] = new Cell("PC");
-            worksheet.Cells[0, 8] = new Cell("CF");
-            worksheet.Cells[0, 9] = new Cell("M");
-            worksheet.Cells[0, 10] = new Cell("RP");
-            worksheet.Cells[0, 11] = new Cell("DB");
-            worksheet.Cells[0, 12] = new Cell("SP");
-            worksheet.Cells.ColumnWidth[7, 12] = 900;
+            worksheet.Cells[0, 7] = new Cell("PrSct:"); //Prescout
+            worksheet.Cells.ColumnWidth[7] = 1600;
 
-            worksheet.Cells[0, 13] = new Cell("RW");
-            worksheet.Cells.ColumnWidth[13] = 1000;
+            worksheet.Cells[0, 8] = new Cell("PC");
+            worksheet.Cells[0, 9] = new Cell("CF");
+            worksheet.Cells[0, 10] = new Cell("M");
+            worksheet.Cells[0, 11] = new Cell("RP");
+            worksheet.Cells[0, 12] = new Cell("DB");
+            worksheet.Cells[0, 13] = new Cell("SP");
+            worksheet.Cells.ColumnWidth[8, 13] = 900;
 
-            worksheet.Cells[0, 14] = new Cell("RT");
-            worksheet.Cells[0, 15] = new Cell("LB");
-            worksheet.Cells.ColumnWidth[14, 15] = 900;
+            worksheet.Cells[0, 14] = new Cell("RW");
+            worksheet.Cells.ColumnWidth[14] = 1000;
+
+            worksheet.Cells[0, 15] = new Cell("RT");
+            worksheet.Cells[0, 16] = new Cell("LB");
+            worksheet.Cells.ColumnWidth[15, 16] = 900;
+
+            worksheet.Cells[0, 17] = new Cell("Smart:"); //Smart
+            worksheet.Cells.ColumnWidth[17] = 1600;
+
+            worksheet.Cells[0, 18] = new Cell("PC");
+            worksheet.Cells[0, 19] = new Cell("CF");
+            worksheet.Cells[0, 20] = new Cell("M");
+            worksheet.Cells[0, 21] = new Cell("RP");
+            worksheet.Cells[0, 22] = new Cell("DB");
+            worksheet.Cells[0, 23] = new Cell("SP");
+            worksheet.Cells.ColumnWidth[18, 23] = 900;
+
+            worksheet.Cells[0, 24] = new Cell("RW");
+            worksheet.Cells.ColumnWidth[24] = 1000;
+
+            worksheet.Cells[0, 25] = new Cell("RT");
+            worksheet.Cells[0, 26] = new Cell("LB");
+            worksheet.Cells.ColumnWidth[25, 26] = 900;
 
             for (int i = 1; i < teamList.Count() + 1; i++)
             {
@@ -605,15 +642,16 @@ namespace MyScout
                     worksheet.Cells[i, 2] = new Cell(team.canScoreHighGoals ? " " + ((char)0x221A).ToString() : "");
                     worksheet.Cells[i, 3] = new Cell(team.canScoreLowGoals ? " " + ((char)0x221A).ToString() : "");
                     worksheet.Cells[i, 4] = new Cell(team.loadsFromHumanPlayerStations ? " " + ((char)0x221A).ToString() : "");
-                    worksheet.Cells[i, 5] = new Cell(team.prefers == 0 ? "None" : team.prefers == 1 ? "Floor" : "HPS");
-                    worksheet.Cells[i, 6] = new Cell(team.loadsFromFloor ? " " + ((char)0x221A).ToString() : "");
+                    worksheet.Cells[i, 5] = new Cell(team.loadsFromFloor ? " " + ((char)0x221A).ToString() : "");
+                    worksheet.Cells[i, 6] = new Cell(team.prefers == 0 ? "None" : team.prefers == 1 ? "Floor" : "HPS");
                 }
-                else worksheet.Cells[i, 0] = new Cell("null");
+                else worksheet.Cells[i, 0] = new Cell("N/A");
 
                 if(team != null)
                     for (int j = 0; j < 9; j++)
                     {
-                        if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 7)] = new Cell(" " + ((char)0x221A).ToString());
+                        if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 8)] = new Cell(" " + ((char)0x221A).ToString());
+                        if (team.smartDefensesCrossable[j]) worksheet.Cells[i, (j + 18)] = new Cell(" " + ((char)0x221A).ToString());
                     }
             }
 
