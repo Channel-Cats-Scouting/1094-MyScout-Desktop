@@ -42,6 +42,10 @@ namespace MyScout
         /// Towers scaled
         /// </summary>
         public float towersScaled = 0;
+        /// <summary>
+        /// Towers challenged
+        /// </summary>
+        public int towersChallenged = 0;
 
         /// <summary>
         /// A list of defenses with the amount of times it has crossed each of them
