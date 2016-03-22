@@ -13,6 +13,10 @@ namespace MyScout
         /// </summary>
         public static string versionstring = "3.5";
         /// <summary>
+        /// Whether or not the program has saved all it's data.
+        /// </summary>
+        private static bool Saved = true;
+        /// <summary>
         /// The list of events to be used by the application.
         /// </summary>
         public static List<Event> events = new List<Event>();
@@ -40,6 +44,20 @@ namespace MyScout
         /// A publicly-accessable instance of the main form.
         /// </summary>
         public static MainFrm mainfrm;
+
+        public static bool saved
+        {
+            get
+            {
+                return Saved;
+            }
+
+            set
+            {
+                Saved = value;
+                mainfrm.UpdateTitle();
+            }
+        }
 
         /// <summary>
         /// The main entry point for the application.

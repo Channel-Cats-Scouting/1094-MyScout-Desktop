@@ -51,6 +51,7 @@ namespace MyScout
         {
             DialogResult = DialogResult.OK;
             SaveStats(selectedTeam);
+            Program.saved = false;
             button2.Enabled = false;
             button1.Select();
             AcceptButton = button1;

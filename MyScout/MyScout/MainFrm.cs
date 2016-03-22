@@ -185,6 +185,11 @@ namespace MyScout
             button5.Text = (Program.currentround < Program.events[Program.currentevent].rounds.Count - 1) ? "->" : "+";
         }
 
+        public void UpdateTitle()
+        {
+            Program.mainfrm.Text = ((TeamPnl.Visible) ? Program.events[Program.currentevent].name + " - MyScout 2016" : "MyScout 2016") + ((Program.saved) ? "" : "*");
+        }
+
         #endregion
 
         #region GUI Events
@@ -208,7 +213,7 @@ namespace MyScout
         /// </summary>
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Program.events.Count > 0 && MessageBox.Show("You have unsaved changes! Would you like to save them now?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            if (Program.events.Count > 0 && ((!Program.saved && MessageBox.Show("You have unsaved changes! Would you like to save them now?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)) || (Program.saved))
             {
                 new Thread(new ThreadStart(IO.SaveAllEvents)).Start();
             }
@@ -264,7 +269,7 @@ namespace MyScout
         private void BackBtn_Click(object sender, EventArgs e)
         {
             TeamPnl.Visible = false;
-            Text = "MyScout 2016";
+            UpdateTitle();
             RefreshControls();
         }
 
@@ -363,6 +368,7 @@ namespace MyScout
             if (Program.currentround < Program.events[Program.currentevent].rounds.Count - 1)
             {
                 Program.currentround++;
+                Program.saved = false;
             }
             else
             {
@@ -459,7 +465,7 @@ namespace MyScout
                 MainPnl.Enabled = false;
                 TeamPnl.Visible = true;
 
-                Text = Program.events[Program.currentevent].name + " - MyScout 2016";
+                UpdateTitle();
                 RefreshControls();
             }
         }
@@ -614,6 +620,7 @@ namespace MyScout
                         ((containingpnl.Controls[3] as RadioButton).Checked)? 2 : ((containingpnl.Controls[2] as RadioButton).Checked)? 1 : 0;
                     }
                 }
+                Program.saved = false;
             }
         }
 
@@ -646,6 +653,7 @@ namespace MyScout
                 {
                     Program.events[Program.currentevent].rounds[Program.currentround].TOlowgoalcount[Program.selectedteamroundindex] = (int)TLowGoalNUD.Value;
                 }
+                Program.saved = false;
             }
         }
 
@@ -661,6 +669,7 @@ namespace MyScout
                 {
                     Program.events[Program.currentevent].rounds[Program.currentround].TOhighgoalcount[Program.selectedteamroundindex] = (int)THighGoalNUD.Value;
                 }
+                Program.saved = false;
             }
         }
 
@@ -669,6 +678,7 @@ namespace MyScout
             if (Program.selectedteamroundindex != -1)
             {
                 Program.events[Program.currentevent].rounds[Program.currentround].challengedtower[Program.selectedteamroundindex] = TChallengedTowerChkbx.Checked;
+                Program.saved = false;
             }
         }
 
@@ -677,6 +687,7 @@ namespace MyScout
             if (Program.selectedteamroundindex != -1)
             {
                 Program.events[Program.currentevent].rounds[Program.currentround].scaledtower[Program.selectedteamroundindex] = TScaledTowerChkbx.Checked;
+                Program.saved = false;
             }
         }
 
@@ -685,6 +696,7 @@ namespace MyScout
             if (Program.events[Program.currentevent].rounds.Count > Program.currentround && Program.selectedteamroundindex != -1)
             {
                 Program.events[Program.currentevent].rounds[Program.currentround].humancomments[Program.selectedteamroundindex] = HPCommentsTxtbx.Text;
+                Program.saved = false;
             }
         }
 
@@ -693,6 +705,7 @@ namespace MyScout
             if (Program.events[Program.currentevent].rounds.Count > Program.currentround && Program.selectedteamroundindex != -1)
             {
                 Program.events[Program.currentevent].rounds[Program.currentround].diedcomments[Program.selectedteamroundindex] = RDComments.Text;
+                Program.saved = false;
             }
         }
 
@@ -701,6 +714,7 @@ namespace MyScout
             if (Program.selectedteamroundindex != -1)
             {
                 Program.events[Program.currentevent].rounds[Program.currentround].dieddefense[Program.selectedteamroundindex] = RDDefenseChkbx.SelectedIndex;
+                Program.saved = false;
             }
         }
 
@@ -708,13 +722,19 @@ namespace MyScout
         {
             if (Program.events.Count > 0)
             {
-                PrescoutFrm prescoutform = new PrescoutFrm ();
+                PrescoutFrm prescoutform = new PrescoutFrm();
                 prescoutform.Show();
             }
             else
             {
                 MessageBox.Show("There are no events to pre-scout!", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            IO.SaveEvent(Program.currentevent);
+            Program.saved = true;
         }
     }
 }
