@@ -17,72 +17,15 @@ namespace MyScout
         /// are part of the blue alliance.
         /// </summary>
         public int[] teams = new int[6] { -1, -1, -1, -1, -1, -1 };
-        /// <summary>
-        /// The alliances' current scores.
-        /// </summary>
-        public static int[] score = new int[2] { 0, 0 };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public Defense[,] defenses = new Defense[6,9];
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public Defense[,] autodefenses = new Defense[6, 9];
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public bool[] scaledtower = new bool[6] { false, false, false, false, false, false };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public bool[] challengedtower = new bool[6] { false, false, false, false, false, false };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public int[] AOhighgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public int[] AOlowgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public int[] TOhighgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public int[] TOlowgoalcount = new int[6] { 0, 0, 0, 0, 0, 0 };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public string[] comments = new string[6] { " ", " ", " ", " ", " ", " " };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public string[] humancomments = new string[6] { " ", " ", " ", " ", " ", " " };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public bool[] died = new bool[6] { false, false, false, false, false, false };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public int[] dieddefense = new int[6] { 0, 0, 0, 0, 0, 0 };
-        /// <summary>
-        /// TODO: Documentation
-        /// </summary>
-        public string[] diedcomments = new string[6] { " ", " ", " ", " ", " ", " " };
+
+        public List<DataPoint>[] dataset;
 
         public Round()
         {
-            //TODO: Documentation
-            for (int i = 0; i < 6; i++)
+            dataset = new List<DataPoint>[6];
+            for(int i = 0; i < 6; i++)
             {
-                for (int i2 = 0; i2 < 9; i2++)
-                {
-                    defenses[i, i2] = new Defense();
-                }
+                dataset[i] = Program.dataset[1];
             }
         }
     }

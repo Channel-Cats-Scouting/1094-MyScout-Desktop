@@ -10,7 +10,7 @@ namespace MyScout
     /// An object representation of a bit of data to be stored/loaded from Event#.xml
     /// (NYI)
     /// </summary>
-    class DataPoint
+    public class DataPoint
     {
         #region vars
         /// <summary>
@@ -31,19 +31,53 @@ namespace MyScout
         private int type;
         #endregion
         #region data types
-        public static readonly int BOOLEAN = 0;
-        public static readonly int INT16 = 1;
+        public static readonly int BOOL = 0;
+        public static readonly int INT = 1;
         public static readonly int STRING = 2;
         public static readonly int BOOL_LIST = 3;
         public static readonly int INT_LIST = 4;
         public static readonly int STR_LIST = 5;
-        public static readonly int ARRAY = 6;
+        public static readonly int BOOL_2D = 6;
+        public static readonly int INT_2D = 7;
+        public static readonly int STR_2D = 8;
         #endregion
 
-        public DataPoint(int datatype, object datavalue)
+        public DataPoint(string name, int datatype)
         {
             type = datatype;
-            value = datavalue;
+            publicName = name;
+
+            switch(type)
+            {
+                case 0:
+                    value = false;
+                    break;
+                case 1:
+                    value = 0;
+                    break;
+                case 2:
+                    value = "";
+                    break;
+                case 3:
+                    value = new List<bool>();
+                    break;
+                case 4:
+                    value = new List<int>();
+                    break;
+                case 5:
+                    value = new List<string>();
+                    break;
+                case 6:
+                    value = new List<List<bool>>();
+                    break;
+                case 7:
+                    value = new List<List<int>>();
+                    break;
+                case 8:
+                    value = new List<List<string>>();
+                    break;
+            }
+
         }
 
         public int GetDataType()

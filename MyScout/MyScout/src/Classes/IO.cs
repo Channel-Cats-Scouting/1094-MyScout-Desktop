@@ -91,7 +91,7 @@ namespace MyScout
                             reader.ReadStartElement("Rounds");
                             Program.events[Program.events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
                             List<object> AllianceScores = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AllianceScoreTokens"));
-                            Round.score = new int[2] { Convert.ToInt32(AllianceScores[0]), Convert.ToInt32(AllianceScores[1]) };
+                            //Round.score = new int[2] { Convert.ToInt32(AllianceScores[0]), Convert.ToInt32(AllianceScores[1]) };
 
                             count = Convert.ToInt32(reader.ReadElementString("Count"));
                             for (int i = 0; i < count; i++)
@@ -107,34 +107,44 @@ namespace MyScout
                                 }
                                 reader.ReadEndElement();
 
-                                reader.ReadStartElement("Defenses");
-                                for (int i2 = 0; i2 < 6; i2++)
+                                reader.ReadStartElement("DataSets");
+                                for(int j = 0; j < 6; j++)
                                 {
-                                    List<object> AOReachedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOReachedTokens"));
-                                    List<object> AOCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOCrossedTokens"));
-                                    List<object> TOCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOCrossedTokens"));
-
-                                    for (int i3 = 0; i3 < 9; i3++)
+                                    List<object> datatokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
+                                    for(int k = 0; k < Program.dataset.Count; k++)
                                     {
-                                        round.defenses[i2, i3].AOreached      = (bool)AOReachedTokens[i3];
-                                        round.defenses[i2, i3].AOcrossed      = (bool)AOCrossedTokens[i3];
-                                        round.defenses[i2, i3].TOtimescrossed = (int)TOCrossedTokens[i3];
+                                        round.dataset[j][k].value = datatokens[k];
                                     }
                                 }
-                                reader.ReadEndElement();
 
-                                round.scaledtower = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOScaledTokens")).Cast<bool>().ToArray();
-                                round.challengedtower = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOChallengedTokens")).Cast<bool>().ToArray();
-                                round.AOhighgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOHighGoalTokens")).Cast<int>().ToArray();
-                                round.AOlowgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOLowGoalTokens")).Cast<int>().ToArray();
-                                round.TOhighgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOHighGoalTokens")).Cast<int>().ToArray();
-                                round.TOlowgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOLowGoalTokens")).Cast<int>().ToArray();
+                                //reader.ReadStartElement("Defenses");
+                                //for (int i2 = 0; i2 < 6; i2++)
+                                //{
+                                //    List<object> AOReachedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOReachedTokens"));
+                                //    List<object> AOCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOCrossedTokens"));
+                                //    List<object> TOCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOCrossedTokens"));
 
-                                round.comments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("CommentTokens")).Cast<string>().ToArray();
-                                round.humancomments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("HumanCommentTokens")).Cast<string>().ToArray();
-                                round.died = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedTokens")).Cast<bool>().ToArray();
-                                round.dieddefense = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedDefenseTokens")).Cast<int>().ToArray();
-                                round.diedcomments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedCommentTokens")).Cast<string>().ToArray();
+                                //    for (int i3 = 0; i3 < 9; i3++)
+                                //    {
+                                //        round.defenses[i2, i3].AOreached      = (bool)AOReachedTokens[i3];
+                                //        round.defenses[i2, i3].AOcrossed      = (bool)AOCrossedTokens[i3];
+                                //        round.defenses[i2, i3].TOtimescrossed = (int)TOCrossedTokens[i3];
+                                //    }
+                                //}
+                                //reader.ReadEndElement();
+
+                                //round.scaledtower = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOScaledTokens")).Cast<bool>().ToArray();
+                                //round.challengedtower = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOChallengedTokens")).Cast<bool>().ToArray();
+                                //round.AOhighgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOHighGoalTokens")).Cast<int>().ToArray();
+                                //round.AOlowgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOLowGoalTokens")).Cast<int>().ToArray();
+                                //round.TOhighgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOHighGoalTokens")).Cast<int>().ToArray();
+                                //round.TOlowgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOLowGoalTokens")).Cast<int>().ToArray();
+
+                                //round.comments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("CommentTokens")).Cast<string>().ToArray();
+                                //round.humancomments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("HumanCommentTokens")).Cast<string>().ToArray();
+                                //round.died = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedTokens")).Cast<bool>().ToArray();
+                                //round.dieddefense = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedDefenseTokens")).Cast<int>().ToArray();
+                                //round.diedcomments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedCommentTokens")).Cast<string>().ToArray();
 
                                 Program.events[Program.events.Count - 1].rounds.Add(round); //Add the round we just made to the round list.
                                 reader.ReadEndElement();
@@ -249,7 +259,7 @@ namespace MyScout
 
                     writer.WriteStartElement("Rounds");
                     writer.WriteElementString("Current", (Program.events[eventid].lastviewedround == -1)? (Program.events[eventid].rounds.Count-1).ToString(): Program.events[eventid].lastviewedround.ToString());
-                    writer.WriteElementString("AllianceScoreTokens", TokenizeStringHandler.CreateTokenizedString(new List<object> { Round.score[0], Round.score[1] }));
+                    //writer.WriteElementString("AllianceScoreTokens", TokenizeStringHandler.CreateTokenizedString(new List<object> { Round.score[0], Round.score[1] }));
 
                     writer.WriteElementString("Count", Program.events[eventid].rounds.Count.ToString());
                     
@@ -268,39 +278,51 @@ namespace MyScout
                         writer.WriteElementString("TeamTokens", TokenizeStringHandler.CreateTokenizedString(teams));
                         writer.WriteEndElement();
 
-
-                        writer.WriteStartElement("Defenses");
-                        for (int i = 0; i < 6; i++)
+                        writer.WriteStartElement("DataSets");
+                        for(int i = 0; i < 6; i++) //For each list of datapoints
                         {
-                            List<object> AOReachedTokens = new List<object>(); //Save defenses information per team
-                            List<object> AOCrossedTokens = new List<object>();
-                            List<object> TOCrossedTokens = new List<object>();
-
-                            for (int i2 = 0; i2 < 9; i2++)
+                            List<object> tokens = new List<object>();
+                            for (int j = 0; j < Program.dataset.Count; j++) //For each datapoint
                             {
-                                AOReachedTokens.Add(round.defenses[i, i2].AOreached);
-                                AOCrossedTokens.Add(round.defenses[i, i2].AOcrossed);
-                                TOCrossedTokens.Add(round.defenses[i, i2].TOtimescrossed);
+                                tokens.Add(round.dataset[i][j].value); //Add the datapoint to the tokens list
                             }
-
-                            writer.WriteElementString("AOReachedTokens", TokenizeStringHandler.CreateTokenizedString(AOReachedTokens));
-                            writer.WriteElementString("AOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(AOCrossedTokens));
-                            writer.WriteElementString("TOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(TOCrossedTokens));
+                            writer.WriteElementString("DataPoints" + i.ToString(), TokenizeStringHandler.CreateTokenizedString(tokens));
                         }
-                        writer.WriteEndElement(); //Defenses
-
-                        writer.WriteElementString("TOScaledTokens", TokenizeStringHandler.CreateTokenizedString(round.scaledtower.Cast<object>().ToList()));
-                        writer.WriteElementString("TOChallengedTokens", TokenizeStringHandler.CreateTokenizedString(round.challengedtower.Cast<object>().ToList()));
-                        writer.WriteElementString("AOHighGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.AOhighgoalcount.Cast<object>().ToList()));
-                        writer.WriteElementString("AOLowGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.AOlowgoalcount.Cast<object>().ToList()));
-                        writer.WriteElementString("TOHighGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.TOhighgoalcount.Cast<object>().ToList()));
-                        writer.WriteElementString("TOLowGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.TOlowgoalcount.Cast<object>().ToList()));
-                        writer.WriteElementString("CommentTokens", TokenizeStringHandler.CreateTokenizedString(round.comments.Cast<object>().ToList()));
-                        writer.WriteElementString("HumanCommentTokens", TokenizeStringHandler.CreateTokenizedString(round.humancomments.Cast<object>().ToList()));
-                        writer.WriteElementString("DiedTokens", TokenizeStringHandler.CreateTokenizedString(round.died.Cast<object>().ToList()));
-                        writer.WriteElementString("DiedDefenseTokens", TokenizeStringHandler.CreateTokenizedString(round.dieddefense.Cast<object>().ToList()));
-                        writer.WriteElementString("DiedCommentTokens", TokenizeStringHandler.CreateTokenizedString(round.diedcomments.Cast<object>().ToList()));
                         writer.WriteEndElement();
+
+
+                        //writer.WriteStartElement("Defenses");
+                        //for (int i = 0; i < 6; i++)
+                        //{
+                        //    List<object> AOReachedTokens = new List<object>(); //Save defenses information per team
+                        //    List<object> AOCrossedTokens = new List<object>();
+                        //    List<object> TOCrossedTokens = new List<object>();
+
+                        //    for (int i2 = 0; i2 < 9; i2++)
+                        //    {
+                        //        AOReachedTokens.Add(round.defenses[i, i2].AOreached);
+                        //        AOCrossedTokens.Add(round.defenses[i, i2].AOcrossed);
+                        //        TOCrossedTokens.Add(round.defenses[i, i2].TOtimescrossed);
+                        //    }
+
+                        //    writer.WriteElementString("AOReachedTokens", TokenizeStringHandler.CreateTokenizedString(AOReachedTokens));
+                        //    writer.WriteElementString("AOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(AOCrossedTokens));
+                        //    writer.WriteElementString("TOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(TOCrossedTokens));
+                        //}
+                        //writer.WriteEndElement(); //Defenses
+
+                        //writer.WriteElementString("TOScaledTokens", TokenizeStringHandler.CreateTokenizedString(round.scaledtower.Cast<object>().ToList()));
+                        //writer.WriteElementString("TOChallengedTokens", TokenizeStringHandler.CreateTokenizedString(round.challengedtower.Cast<object>().ToList()));
+                        //writer.WriteElementString("AOHighGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.AOhighgoalcount.Cast<object>().ToList()));
+                        //writer.WriteElementString("AOLowGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.AOlowgoalcount.Cast<object>().ToList()));
+                        //writer.WriteElementString("TOHighGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.TOhighgoalcount.Cast<object>().ToList()));
+                        //writer.WriteElementString("TOLowGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.TOlowgoalcount.Cast<object>().ToList()));
+                        //writer.WriteElementString("CommentTokens", TokenizeStringHandler.CreateTokenizedString(round.comments.Cast<object>().ToList()));
+                        //writer.WriteElementString("HumanCommentTokens", TokenizeStringHandler.CreateTokenizedString(round.humancomments.Cast<object>().ToList()));
+                        //writer.WriteElementString("DiedTokens", TokenizeStringHandler.CreateTokenizedString(round.died.Cast<object>().ToList()));
+                        //writer.WriteElementString("DiedDefenseTokens", TokenizeStringHandler.CreateTokenizedString(round.dieddefense.Cast<object>().ToList()));
+                        //writer.WriteElementString("DiedCommentTokens", TokenizeStringHandler.CreateTokenizedString(round.diedcomments.Cast<object>().ToList()));
+                        //writer.WriteEndElement();
                     }
 
                     writer.WriteEndElement();
