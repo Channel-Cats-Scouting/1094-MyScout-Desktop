@@ -21,7 +21,7 @@ namespace MyScout
         /// <summary>
         /// The actual data this datapoint contains
         /// </summary>
-        public object value;
+        private object value;
         /// <summary>
         /// The type of data this datapoint contains
         /// </summary>
@@ -77,14 +77,75 @@ namespace MyScout
 
         }
 
+        /// <summary>
+        /// Gets the data type
+        /// </summary>
+        /// <returns></returns>
         public int GetDataType()
         {
             return type;
         }
 
+        /// <summary>
+        /// Sets the data type
+        /// </summary>
+        /// <param name="input"></param>
+        public void SetDataType(int input)
+        {
+            type = input;
+        }
+
+        /// <summary>
+        /// Gets the internal name
+        /// </summary>
+        public string GetIN()
+        {
+            return internalName;
+        }
+
+        /// <summary>
+        /// Sets the internal name
+        /// </summary>
+        /// <param name="input"></param>
+        public void SetIN(string input)
+        {
+            internalName = input;
+        }
+
+        /// <summary>
+        /// Gets the public name
+        /// </summary>
+        /// <returns></returns>
         public string GetName()
         {
             return publicName;
+        }
+
+        /// <summary>
+        /// Sets the public name
+        /// </summary>
+        /// <param name="input"></param>
+        public void SetName(string input)
+        {
+            publicName = input;
+        }
+
+        /// <summary>
+        /// Gets the DataPoint value
+        /// </summary>
+        /// <returns></returns>
+        public object GetValue()
+        {
+            return value;
+        }
+
+        /// <summary>
+        /// Sets the DataPoint value
+        /// </summary>
+        /// <param name="input"></param>
+        public void SetValue(object input)
+        {
+            value = input;
         }
     }
 }
