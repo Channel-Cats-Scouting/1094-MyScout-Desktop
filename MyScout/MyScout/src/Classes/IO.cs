@@ -112,7 +112,7 @@ namespace MyScout
                                     List<object> datatokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
                                     for(int k = 0; k < Program.dataset.Count; k++)
                                     {
-                                        round.dataset[j][k].value = datatokens[k];
+                                        round.dataset[j][k].SetValue(datatokens[k]);
                                     }
                                 }
 
@@ -283,7 +283,7 @@ namespace MyScout
                             List<object> tokens = new List<object>();
                             for (int j = 0; j < Program.dataset.Count; j++) //For each datapoint
                             {
-                                tokens.Add(round.dataset[i][j].value); //Add the datapoint to the tokens list
+                                tokens.Add(round.dataset[i][j].GetValue()); //Add the datapoint to the tokens list
                             }
                             writer.WriteElementString("DataPoints" + i.ToString(), TokenizeStringHandler.CreateTokenizedString(tokens));
                         }
