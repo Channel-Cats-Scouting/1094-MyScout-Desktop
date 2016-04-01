@@ -11,141 +11,87 @@ namespace MyScout
     {
         #region vars
         /// <summary>
-        /// The internal name id of the datapoint
+        /// The internal name id of the datapoint.
         /// </summary>
         private string internalName;
         /// <summary>
-        /// The public, shown name of the datapoint
+        /// The public, shown name of the datapoint.
         /// </summary>
-        private string publicName;
+        public string publicName = "";
         /// <summary>
-        /// The actual data this datapoint contains
+        /// The actual data this datapoint contains.
         /// </summary>
-        private object value;
+        public object value = null;
         /// <summary>
-        /// The type of data this datapoint contains
+        /// The type of data this datapoint contains.
         /// </summary>
-        private int type;
-        #endregion
-        #region data types
-        public static readonly int BOOL = 0;
-        public static readonly int INT = 1;
-        public static readonly int STRING = 2;
-        public static readonly int BOOL_LIST = 3;
-        public static readonly int INT_LIST = 4;
-        public static readonly int STR_LIST = 5;
-        public static readonly int BOOL_2D = 6;
-        public static readonly int INT_2D = 7;
-        public static readonly int STR_2D = 8;
-        #endregion
-
-        public DataPoint(string name, int datatype)
+        public Type type
         {
-            type = datatype;
-            publicName = name;
-
-            switch(type)
+            get
             {
-                case 0:
-                    value = false;
-                    break;
-                case 1:
-                    value = 0;
-                    break;
-                case 2:
-                    value = "";
-                    break;
-                case 3:
-                    value = new List<bool>();
-                    break;
-                case 4:
-                    value = new List<int>();
-                    break;
-                case 5:
-                    value = new List<string>();
-                    break;
-                case 6:
-                    value = new List<List<bool>>();
-                    break;
-                case 7:
-                    value = new List<List<int>>();
-                    break;
-                case 8:
-                    value = new List<List<string>>();
-                    break;
+                return value.GetType();
             }
+        }
+        private readonly Type Type;
+        #endregion
 
+        #region Default Types
+        /// <summary>
+        /// A dictonary of common variable types, as well as the default values to assign to them. <para/>
+        /// To get, for example, the default boolean value, you'd use "defaultvalues[typeof(bool)]"
+        /// </summary>
+        private readonly Dictionary<Type, object> defaultvalues = new Dictionary<Type, object>
+        {
+            { typeof(bool), false },
+            { typeof(int), 0 },
+            { typeof(string), ""},
+            { typeof(List<bool>), new List<bool>() },
+            { typeof(List<int>), new List<int>() },
+            { typeof(List<string>), new List<string>() },
+            { typeof(List<List<bool>>), new List<List<bool>>() },
+            { typeof(List<List<int>>), new List<List<int>>() },
+            { typeof(List<List<string>>), new List<List<string>>() }
+        };
+        #endregion
+
+        /// <summary>
+        /// A piece of data used by the software that should be written/read upon opening/closing of the application.
+        /// </summary>
+        /// <param name="name">The name of the data being stored. Used to help keep things "neat."</param>
+        /// <param name="value">*Optional* The actual data being stored.</param>
+        public DataPoint(string name, object value = null)
+        {
+            publicName = name;
+            if (value != null) { this.value = value; }
         }
 
         /// <summary>
-        /// Gets the data type
+        /// A piece of data used by the software that should be written/read upon opening/closing of the application.
         /// </summary>
-        /// <returns></returns>
-        public int GetDataType()
+        /// <param name="name">The name of the data being stored. Used to help keep things "neat."</param>
+        /// <param name="type">The type of data being stored.</param>
+        public DataPoint(string name, Type type)
+        {
+            publicName = name;
+            value = defaultvalues[type];
+        }
+
+        /// <summary>
+        /// Retrieves the type of the given piece of data.
+        /// </summary>
+        /// <returns>The type of the given piece of data.</returns>
+        public Type GetDataType()
         {
             return type;
         }
 
         /// <summary>
-        /// Sets the data type
+        /// Retrieves the name of the given piece of data.
         /// </summary>
-        /// <param name="input"></param>
-        public void SetDataType(int input)
-        {
-            type = input;
-        }
-
-        /// <summary>
-        /// Gets the internal name
-        /// </summary>
-        public string GetIN()
-        {
-            return internalName;
-        }
-
-        /// <summary>
-        /// Sets the internal name
-        /// </summary>
-        /// <param name="input"></param>
-        public void SetIN(string input)
-        {
-            internalName = input;
-        }
-
-        /// <summary>
-        /// Gets the public name
-        /// </summary>
-        /// <returns></returns>
+        /// <returns>The name of the given piece of data.</returns>
         public string GetName()
         {
             return publicName;
-        }
-
-        /// <summary>
-        /// Sets the public name
-        /// </summary>
-        /// <param name="input"></param>
-        public void SetName(string input)
-        {
-            publicName = input;
-        }
-
-        /// <summary>
-        /// Gets the DataPoint value
-        /// </summary>
-        /// <returns></returns>
-        public object GetValue()
-        {
-            return value;
-        }
-
-        /// <summary>
-        /// Sets the DataPoint value
-        /// </summary>
-        /// <param name="input"></param>
-        public void SetValue(object input)
-        {
-            value = input;
         }
     }
 }
