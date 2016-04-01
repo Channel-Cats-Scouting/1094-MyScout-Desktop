@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MyScout
 {
@@ -18,119 +19,124 @@ namespace MyScout
         /// </summary>
         public int id = 0000;
         #endregion
-        #region Scores
-        /// <summary>
-        /// The team's total score.
-        /// </summary>
-        public int avgScore = 0;
-        /// <summary>
-        /// The team's total count of defenses crossed.
-        /// </summary>
-        public float teleDefensesCrossed = 0;
-        /// <summary>
-        /// High goals scored in tele-op
-        /// </summary>
-        public float teleHighGoals = 0;
-        /// <summary>
-        /// Low goals scored in tele-op
-        /// </summary>
-        public float teleLowGoals = 0;
-        /// <summary>
-        /// Towers scaled
-        /// </summary>
-        public float towersScaled = 0;
-        /// <summary>
-        /// Towers challenged
-        /// </summary>
-        public int towersChallenged = 0;
 
-        /// <summary>
-        /// A list of defenses with the amount of times it has crossed each of them
-        /// Each index references a different defense:
-        /// [0]: Portcullis
-        /// [1]: Cheval de Frise
-        /// [2]: Moat
-        /// [3]: Ramparts
-        /// [4]: Drawbridge
-        /// [5]: Sally Port
-        /// [6]: Rock Wall
-        /// [7]: Rough Terrain
-        /// [8]: Low Bar
-        /// </summary>
-        public int[] defensesCrossed = new int[9];
+        public List<DataPoint> dataset;
+        public List<DataPoint> scoreDataset;
 
-        /// <summary>
-        /// A list of defenses the team has crossed at least once.
-        /// Each index references a different defense:
-        /// [0]: Portcullis
-        /// [1]: Cheval de Frise
-        /// [2]: Moat
-        /// [3]: Ramparts
-        /// [4]: Drawbridge
-        /// [5]: Sally Port
-        /// [6]: Rock Wall
-        /// [7]: Rough Terrain
-        /// [8]: Low Bar
-        /// </summary>
-        public bool[] smartDefensesCrossable = new bool[9];
 
-        /// <summary>
-        /// A score based on how well the team can cross defenses
-        /// </summary>
-        public int crossingPowerScore = 0;
+        //#region Scores
+        ///// <summary>
+        ///// The team's total score.
+        ///// </summary>
+        //public int avgScore = 0;
+        ///// <summary>
+        ///// The team's total count of defenses crossed.
+        ///// </summary>
+        //public float teleDefensesCrossed = 0;
+        ///// <summary>
+        ///// High goals scored in tele-op
+        ///// </summary>
+        //public float teleHighGoals = 0;
+        ///// <summary>
+        ///// Low goals scored in tele-op
+        ///// </summary>
+        //public float teleLowGoals = 0;
+        ///// <summary>
+        ///// Towers scaled
+        ///// </summary>
+        //public float towersScaled = 0;
+        ///// <summary>
+        ///// Towers challenged
+        ///// </summary>
+        //public int towersChallenged = 0;
 
-        /// <summary>
-        /// Average defenses crossed per round
-        /// </summary>
-        public float[] autoDefensesCrossed = new float[9];
-        public float autoDefensesReached = 0;
-        public int autoHighGoals = 0;
-        public int autoLowGoals = 0;
-        #endregion
-        #region PreScout
-        public bool canScoreHighGoals = false;
-        public bool canScoreLowGoals = false;
-        public bool loadsFromHumanPlayerStations = false;
-        public bool loadsFromFloor = false;
-        public int prefers = 0;
+        ///// <summary>
+        ///// A list of defenses with the amount of times it has crossed each of them
+        ///// Each index references a different defense:
+        ///// [0]: Portcullis
+        ///// [1]: Cheval de Frise
+        ///// [2]: Moat
+        ///// [3]: Ramparts
+        ///// [4]: Drawbridge
+        ///// [5]: Sally Port
+        ///// [6]: Rock Wall
+        ///// [7]: Rough Terrain
+        ///// [8]: Low Bar
+        ///// </summary>
+        //public int[] defensesCrossed = new int[9];
 
-        /// <summary>
-        /// A list of defenses this team can cross.
-        /// Each index references a different defense:
-        /// [0]: Portcullis
-        /// [1]: Cheval de Frise
-        /// [2]: Moat
-        /// [3]: Ramparts
-        /// [4]: Drawbridge
-        /// [5]: Sally Port
-        /// [6]: Rock Wall
-        /// [7]: Rough Terrain
-        /// [8]: Low Bar
-        /// </summary>
-        public bool[] defensesCrossable = new bool[9];
-        #endregion
-        #region Death
-        /// <summary>
-        /// Total amount of times the robot stopped working at any moment on the field
-        /// </summary>
-        public int deathCount = 0;
+        ///// <summary>
+        ///// A list of defenses the team has crossed at least once.
+        ///// Each index references a different defense:
+        ///// [0]: Portcullis
+        ///// [1]: Cheval de Frise
+        ///// [2]: Moat
+        ///// [3]: Ramparts
+        ///// [4]: Drawbridge
+        ///// [5]: Sally Port
+        ///// [6]: Rock Wall
+        ///// [7]: Rough Terrain
+        ///// [8]: Low Bar
+        ///// </summary>
+        //public bool[] smartDefensesCrossable = new bool[9];
 
-        /// <summary>
-        /// A list of defenses with the amount of times it failed on each.
-        /// Each index references a different defense:
-        /// [0]: Portcullis
-        /// [1]: Cheval de Frise
-        /// [2]: Moat
-        /// [3]: Ramparts
-        /// [4]: Drawbridge
-        /// [5]: Sally Port
-        /// [6]: Rock Wall
-        /// [7]: Rough Terrain
-        /// [8]: Low Bar
-        /// </summary>
-        public int[] deathDefenses = new int[9];
+        ///// <summary>
+        ///// A score based on how well the team can cross defenses
+        ///// </summary>
+        //public int crossingPowerScore = 0;
 
-        #endregion
+        ///// <summary>
+        ///// Average defenses crossed per round
+        ///// </summary>
+        //public float[] autoDefensesCrossed = new float[9];
+        //public float autoDefensesReached = 0;
+        //public int autoHighGoals = 0;
+        //public int autoLowGoals = 0;
+        //#endregion
+        //#region PreScout
+        //public bool canScoreHighGoals = false;
+        //public bool canScoreLowGoals = false;
+        //public bool loadsFromHumanPlayerStations = false;
+        //public bool loadsFromFloor = false;
+        //public int prefers = 0;
+
+        ///// <summary>
+        ///// A list of defenses this team can cross.
+        ///// Each index references a different defense:
+        ///// [0]: Portcullis
+        ///// [1]: Cheval de Frise
+        ///// [2]: Moat
+        ///// [3]: Ramparts
+        ///// [4]: Drawbridge
+        ///// [5]: Sally Port
+        ///// [6]: Rock Wall
+        ///// [7]: Rough Terrain
+        ///// [8]: Low Bar
+        ///// </summary>
+        //public bool[] defensesCrossable = new bool[9];
+        //#endregion
+        //#region Death
+        ///// <summary>
+        ///// Total amount of times the robot stopped working at any moment on the field
+        ///// </summary>
+        //public int deathCount = 0;
+
+        ///// <summary>
+        ///// A list of defenses with the amount of times it failed on each.
+        ///// Each index references a different defense:
+        ///// [0]: Portcullis
+        ///// [1]: Cheval de Frise
+        ///// [2]: Moat
+        ///// [3]: Ramparts
+        ///// [4]: Drawbridge
+        ///// [5]: Sally Port
+        ///// [6]: Rock Wall
+        ///// [7]: Rough Terrain
+        ///// [8]: Low Bar
+        ///// </summary>
+        //public int[] deathDefenses = new int[9];
+
+        //#endregion
         #endregion
 
         /// <summary>
@@ -144,6 +150,8 @@ namespace MyScout
         {
             CalcCrossingPower();
             CalcAvgScore();
+            dataset = Program.dataset[0];
+            scoreDataset = Program.dataset[1];
         }
 
         /// <summary>
