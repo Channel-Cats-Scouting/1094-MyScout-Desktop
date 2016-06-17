@@ -30,16 +30,13 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.reportTypeCB = new System.Windows.Forms.ComboBox();
-            this.totalScoreRB = new System.Windows.Forms.RadioButton();
-            this.crossScoreRB = new System.Windows.Forms.RadioButton();
-            this.autoScoreRB = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
-            this.roundNumUpDown = new System.Windows.Forms.NumericUpDown();
-            this.roundNumLabel = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.selectTeamPanel = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.roundNumUpDown)).BeginInit();
-            this.selectTeamPanel.SuspendLayout();
+            this.outListBox = new System.Windows.Forms.ListBox();
+            this.dataListBox = new System.Windows.Forms.ListBox();
+            this.addButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -68,100 +65,78 @@
             this.reportTypeCB.Text = "Event Report";
             this.reportTypeCB.SelectedIndexChanged += new System.EventHandler(this.reportTypeCB_SelectedIndexChanged);
             // 
-            // totalScoreRB
-            // 
-            this.totalScoreRB.AutoSize = true;
-            this.totalScoreRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.totalScoreRB.Location = new System.Drawing.Point(76, 44);
-            this.totalScoreRB.Name = "totalScoreRB";
-            this.totalScoreRB.Size = new System.Drawing.Size(122, 18);
-            this.totalScoreRB.TabIndex = 2;
-            this.totalScoreRB.TabStop = true;
-            this.totalScoreRB.Text = "Sort by Total Score";
-            this.totalScoreRB.UseVisualStyleBackColor = true;
-            // 
-            // crossScoreRB
-            // 
-            this.crossScoreRB.AutoSize = true;
-            this.crossScoreRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.crossScoreRB.Location = new System.Drawing.Point(76, 68);
-            this.crossScoreRB.Name = "crossScoreRB";
-            this.crossScoreRB.Size = new System.Drawing.Size(119, 18);
-            this.crossScoreRB.TabIndex = 3;
-            this.crossScoreRB.TabStop = true;
-            this.crossScoreRB.Text = "Sort by High Goals";
-            this.crossScoreRB.UseVisualStyleBackColor = true;
-            // 
-            // autoScoreRB
-            // 
-            this.autoScoreRB.AutoSize = true;
-            this.autoScoreRB.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.autoScoreRB.Location = new System.Drawing.Point(76, 91);
-            this.autoScoreRB.Name = "autoScoreRB";
-            this.autoScoreRB.Size = new System.Drawing.Size(115, 18);
-            this.autoScoreRB.TabIndex = 4;
-            this.autoScoreRB.TabStop = true;
-            this.autoScoreRB.Text = "Sort by Def Score";
-            this.autoScoreRB.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 226);
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(542, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(243, 64);
+            this.button1.Size = new System.Drawing.Size(81, 30);
             this.button1.TabIndex = 5;
             this.button1.Text = "Generate";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // roundNumUpDown
+            // button3
             // 
-            this.roundNumUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundNumUpDown.Location = new System.Drawing.Point(125, 115);
-            this.roundNumUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.roundNumUpDown.Name = "roundNumUpDown";
-            this.roundNumUpDown.Size = new System.Drawing.Size(62, 23);
-            this.roundNumUpDown.TabIndex = 6;
-            this.roundNumUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // roundNumLabel
-            // 
-            this.roundNumLabel.AutoSize = true;
-            this.roundNumLabel.Location = new System.Drawing.Point(73, 119);
-            this.roundNumLabel.Name = "roundNumLabel";
-            this.roundNumLabel.Size = new System.Drawing.Size(49, 13);
-            this.roundNumLabel.TabIndex = 7;
-            this.roundNumLabel.Text = "Round #";
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(261, 9);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(114, 30);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Save Profile";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(0, 3);
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(381, 9);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Select Team";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Size = new System.Drawing.Size(103, 30);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Load Profile";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_2);
             // 
-            // selectTeamPanel
+            // outListBox
             // 
-            this.selectTeamPanel.Controls.Add(this.button2);
-            this.selectTeamPanel.Location = new System.Drawing.Point(76, 144);
-            this.selectTeamPanel.Name = "selectTeamPanel";
-            this.selectTeamPanel.Size = new System.Drawing.Size(120, 31);
-            this.selectTeamPanel.TabIndex = 12;
+            this.outListBox.FormattingEnabled = true;
+            this.outListBox.Location = new System.Drawing.Point(13, 46);
+            this.outListBox.Name = "outListBox";
+            this.outListBox.Size = new System.Drawing.Size(242, 355);
+            this.outListBox.TabIndex = 9;
+            // 
+            // dataListBox
+            // 
+            this.dataListBox.FormattingEnabled = true;
+            this.dataListBox.Location = new System.Drawing.Point(381, 46);
+            this.dataListBox.Name = "dataListBox";
+            this.dataListBox.Size = new System.Drawing.Size(242, 355);
+            this.dataListBox.TabIndex = 10;
+            this.dataListBox.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            // 
+            // addButton
+            // 
+            this.addButton.Location = new System.Drawing.Point(261, 190);
+            this.addButton.Name = "addButton";
+            this.addButton.Size = new System.Drawing.Size(113, 23);
+            this.addButton.TabIndex = 11;
+            this.addButton.Text = "<------------";
+            this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // removeButton
+            // 
+            this.removeButton.Location = new System.Drawing.Point(261, 219);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(113, 23);
+            this.removeButton.TabIndex = 12;
+            this.removeButton.Text = "------------>";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
             // GenReport
             // 
@@ -169,14 +144,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(266, 302);
-            this.Controls.Add(this.selectTeamPanel);
-            this.Controls.Add(this.roundNumLabel);
-            this.Controls.Add(this.roundNumUpDown);
+            this.ClientSize = new System.Drawing.Size(635, 419);
+            this.Controls.Add(this.removeButton);
+            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.dataListBox);
+            this.Controls.Add(this.outListBox);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.autoScoreRB);
-            this.Controls.Add(this.crossScoreRB);
-            this.Controls.Add(this.totalScoreRB);
             this.Controls.Add(this.reportTypeCB);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -187,8 +162,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generate Report";
-            ((System.ComponentModel.ISupportInitialize)(this.roundNumUpDown)).EndInit();
-            this.selectTeamPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,13 +171,12 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox reportTypeCB;
-        private System.Windows.Forms.RadioButton totalScoreRB;
-        private System.Windows.Forms.RadioButton crossScoreRB;
-        private System.Windows.Forms.RadioButton autoScoreRB;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.NumericUpDown roundNumUpDown;
-        private System.Windows.Forms.Label roundNumLabel;
+        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel selectTeamPanel;
+        private System.Windows.Forms.ListBox outListBox;
+        private System.Windows.Forms.ListBox dataListBox;
+        private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Button removeButton;
     }
 }

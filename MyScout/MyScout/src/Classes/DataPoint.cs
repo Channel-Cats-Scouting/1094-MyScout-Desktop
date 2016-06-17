@@ -16,12 +16,16 @@ namespace MyScout
         private string internalName;
         /// <summary>
         /// The public, shown name of the datapoint.
-        /// </summary>
-        public string publicName = "";
+        /// </summary>e
+        private string publicName = "";
         /// <summary>
         /// The actual data this datapoint contains.
         /// </summary>
-        public object value = null;
+        private object value = null;
+        /// <summary>
+        /// The amount of points this datapoint is worth
+        /// </summary>
+        private float pointValue = 0;
         /// <summary>
         /// The type of data this datapoint contains.
         /// </summary>
@@ -92,6 +96,84 @@ namespace MyScout
         public string GetName()
         {
             return publicName;
+        }
+
+        /// <summary>
+        /// Sets the name of the datapoint
+        /// </summary>
+        /// <param name="str"></param>
+        public void SetName(string str)
+        {
+            publicName = str;
+        }
+
+        /// <summary>
+        /// Retrieves the value of the datapoint
+        /// </summary>
+        /// <returns>value</returns>
+        public object GetValue()
+        {
+            return value;
+        }
+
+        /// <summary>
+        /// Sets the value of the datapoint
+        /// </summary>
+        /// <param name="val"></param>
+        public void SetValue(object val)
+        {
+            value = val;
+        }
+
+        /// <summary>
+        /// Increments 'value'. Returns false if 'value' is not an int or a float. Takes an argument for how much to incrememt by.
+        /// </summary>
+        /// <returns></returns>
+        public bool IncrementValue(int increment = 0)
+        {
+            bool success = true;
+            if (increment == 0)
+            {
+                if (value.GetType() == typeof(int) || value.GetType() == typeof(float))
+                    value = (int)value + 1;
+                else success = false;
+            }
+            else value = (int)value + increment;
+            return success;
+        }
+
+        /// <summary>
+        /// Resets the value to null
+        /// </summary>
+        public void ResetValue()
+        {
+            value = null;
+        }
+
+        /// <summary>
+        /// Sets the value to an int, used for counting purposes
+        /// </summary>
+        public void SetValueToInt()
+        {
+            value = defaultvalues[typeof(int)];
+        }
+
+        /// <summary>
+        /// Retrieves the point value of the datapoint
+        /// </summary>
+        /// <returns></returns>
+        public float GetPointValue()
+        {
+            return pointValue;
+        }
+
+        /// <summary>
+        /// Sets the point value of the datapoint
+        /// </summary>
+        /// <param name="pointvalue"></param>
+        public void SetPointValue(float pointvalue)
+        {
+            pointValue = pointvalue;
         }
     }
 }

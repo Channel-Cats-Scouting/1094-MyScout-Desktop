@@ -23,12 +23,12 @@ namespace MyScout
         public List<DataPoint> dataset;
         public List<DataPoint> scoreDataset;
 
+        /// <summary>
+        /// The team's total score.
+        /// </summary>
+        public int avgScore = 0;
 
         //#region Scores
-        ///// <summary>
-        ///// The team's total score.
-        ///// </summary>
-        //public int avgScore = 0;
         ///// <summary>
         ///// The team's total count of defenses crossed.
         ///// </summary>
@@ -148,8 +148,8 @@ namespace MyScout
 
         public void UpdateTeamScore()
         {
-            CalcCrossingPower();
-            CalcAvgScore();
+            //CalcCrossingPower();
+            //CalcAvgScore();
             dataset = Program.dataset[0];
             scoreDataset = Program.dataset[1];
         }
@@ -158,81 +158,81 @@ namespace MyScout
         /// Calculate and save the total score based on the point values
         /// for each scoring opportunity. Point values are from the official rules
         /// </summary>
-        public int CalcAvgScore()
-        {
-            avgScore = 0;
-            avgScore = Convert.ToInt16(
-                autoDefensesReached * 2 +
-                autoHighGoals * 10 +
-                autoLowGoals * 5 +
-                teleHighGoals * 5 +
-                teleLowGoals * 2 +
-                towersScaled * 15
-                );
+        //public int CalcAvgScore()
+        //{
+        //    avgScore = 0;
+        //    avgScore = Convert.ToInt16(
+        //        autoDefensesReached * 2 +
+        //        autoHighGoals * 10 +
+        //        autoLowGoals * 5 +
+        //        teleHighGoals * 5 +
+        //        teleLowGoals * 2 +
+        //        towersScaled * 15
+        //        );
 
-            foreach (int times in defensesCrossed)
-            {
-                avgScore += times * 5;
-            }
-            foreach (int times in autoDefensesCrossed)
-            {
-                avgScore += times * 10;
-            }
+        //    foreach (int times in defensesCrossed)
+        //    {
+        //        avgScore += times * 5;
+        //    }
+        //    foreach (int times in autoDefensesCrossed)
+        //    {
+        //        avgScore += times * 10;
+        //    }
 
-            return avgScore;
-        }
+        //    return avgScore;
+        //}
 
         /// <summary>
         /// Calculate and save the crossing power based on the difficulty
         /// of circumventing defenses.
         /// </summary>
-        public int CalcCrossingPower()
-        {
-            crossingPowerScore = 0;
-            for(int i = 0; i < 8; i++)
-            {
-                if (defensesCrossable[i])
-                {
-                    switch (i)
-                    {
-                        case 0: //portcullis
-                            crossingPowerScore += 4;
-                            break;
+        //public int CalcCrossingPower()
+        //{
+        //    crossingPowerScore = 0;
+        //    for(int i = 0; i < 8; i++)
+        //    {
+        //        if (defensesCrossable[i])
+        //        {
+        //            switch (i)
+        //            {
+        //                case 0: //portcullis
+        //                    crossingPowerScore += 4;
+        //                    break;
 
-                        case 1: //cheval de frise
-                            crossingPowerScore += 4;
-                            break;
+        //                case 1: //cheval de frise
+        //                    crossingPowerScore += 4;
+        //                    break;
 
-                        case 2: //moat
-                            crossingPowerScore += 3;
-                            break;
+        //                case 2: //moat
+        //                    crossingPowerScore += 3;
+        //                    break;
 
-                        case 4: //drawbridge
-                            crossingPowerScore += 3;
-                            break;
+        //                case 4: //drawbridge
+        //                    crossingPowerScore += 3;
+        //                    break;
 
-                        case 8: //low bar
-                            crossingPowerScore += 1;
-                            break;
+        //                case 8: //low bar
+        //                    crossingPowerScore += 1;
+        //                    break;
 
-                        default:
-                            crossingPowerScore += 2;
-                            break;
-                    }
-                }
-            }
-            return crossingPowerScore;
-        }
+        //                default:
+        //                    crossingPowerScore += 2;
+        //                    break;
+        //            }
+        //        }
+        //    }
+        //    return crossingPowerScore;
+        //}
 
         /// <summary>
         /// Updates defensesCrossable[] with data from defensesCrossed[]
         /// </summary>
-        public void updateDefenseStats()
-        {
-            for(int i = 0; i < 9; i++)
-            {
-                defensesCrossable[i] = defensesCrossable[i] ? true : defensesCrossed[i] > 0;
-            }
-        }
+        //public void updateDefenseStats()
+        //{
+        //    for(int i = 0; i < 9; i++)
+        //    {
+        //        defensesCrossable[i] = defensesCrossable[i] ? true : defensesCrossed[i] > 0;
+        //    }
+        //}
     }
 }

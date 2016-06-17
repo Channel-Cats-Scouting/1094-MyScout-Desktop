@@ -85,6 +85,8 @@ namespace MyScout
             #region DataSet Initialization
             //Pre/Team-related Scouting
             dataset = new List<List<DataPoint>>();
+            dataset.Add(new List<DataPoint>());
+            dataset.Add(new List<DataPoint>());
             dataset[0].Add(new DataPoint("Name", typeof(string)));              //The team's name.
             dataset[0].Add(new DataPoint("ID", typeof(int)));                   //The team's ID (I.E. 1094)
             dataset[0].Add(new DataPoint("Score", typeof(int)));                //The team's score.

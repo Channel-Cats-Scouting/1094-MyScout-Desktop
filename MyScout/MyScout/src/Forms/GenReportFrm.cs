@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace MyScout
@@ -8,54 +9,79 @@ namespace MyScout
         public int teamid;
         public int teamindex;
 
+        /// <summary>
+        /// A list of indexed Strings, containing all data point names in order
+        /// </summary>
+        public List<StringEntry> datalist = new List<StringEntry>();
+        public List<string> dataStrings = new List<string>();
+        public List<string> outStrings = new List<string>();
+
+        /// <summary>
+        /// A list of indices of each data point. The index of each int is the index of a corresponding String in dataStrings. 
+        /// The value of each int is the index of a corresponding StringEntry in datalist.
+        /// </summary>
+        public List<int> dataIndices = new List<int>();
+
+
+        /// <summary>
+        /// A list of indices of each data point. The index of each int is the index of a corresponding String in outStrings. 
+        /// The value of each int is the index of a corresponding StringEntry in datalist.
+        /// </summary>
+        public List<int> outIndices = new List<int>();
+
         public GenReport()
         {
             InitializeComponent();
-            roundNumUpDown.Maximum = Program.events[Program.currentevent].rounds.Count;
-
-            //Prepare component values
-            totalScoreRB.Checked = true;
-            reportTypeCB.SelectedIndex = 0;
-            roundNumLabel.Enabled = roundNumUpDown.Enabled = false;
+            for(int i = 0; i < 2; i++)
+                for(int j = 0; j < Program.dataset[i].Count; j++)
+                {
+                    datalist.Add(new StringEntry(Program.dataset[i][j].GetName(), j + (i > 0 ? Program.dataset[0].Count : 0)));
+                }
             button2.Enabled = false;
+            SyncStrings();
+        }
+
+        /// <summary>
+        /// Reassigns strings based on selected StringEntry objects
+        /// </summary>
+        public void SyncStrings()
+        {
+            dataStrings = new List<string>();
+            outStrings = new List<string>();
+
+            for (int i = 0; i < datalist.Count; i++)
+            {
+                //If the StringEntry is not selected
+                if(!datalist[i].getIsSelected())
+                {
+                    //Add the string to the dataListBox representative list and remember its index
+                    dataStrings.Add(datalist[i].str);
+                    dataIndices.Add(datalist[i].index);
+                }
+                else
+                {
+                    //Add the string to the outListBox representative list and remember its index
+                    outStrings.Add(datalist[i].str);
+                    outIndices.Add(datalist[i].index);
+                }
+            }
+
+            dataListBox.Items.Clear();
+            outListBox.Items.Clear();
+
+            dataListBox.Items.AddRange(dataStrings.ToArray());
+            outListBox.Items.AddRange(outStrings.ToArray());
         }
 
         private void reportTypeCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (reportTypeCB.SelectedIndex == 0)
-            {
-                roundNumLabel.Enabled = roundNumUpDown.Enabled = false;
-                button2.Enabled = false;
-                totalScoreRB.Enabled = autoScoreRB.Enabled = crossScoreRB.Enabled = true;
-            }
-            else if (reportTypeCB.SelectedIndex == 1)
-            {
-                roundNumLabel.Enabled = roundNumUpDown.Enabled = true;
-                button2.Enabled = false;
-                totalScoreRB.Enabled = autoScoreRB.Enabled = crossScoreRB.Enabled = false;
-            }
-            else if(reportTypeCB.SelectedIndex == 2)
-            {
-                roundNumLabel.Enabled = roundNumUpDown.Enabled = false;
-                button2.Enabled = true;
-                totalScoreRB.Enabled = autoScoreRB.Enabled = crossScoreRB.Enabled = false;
-            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             Close();
-        }
-
-        public int GetSorting()
-        {
-            return totalScoreRB.Checked ? 0 : autoScoreRB.Checked ? 1 : crossScoreRB.Checked ? 2 : -1;
-        }
-
-        public int GetRoundID()
-        {
-            return roundNumUpDown.Enabled ? (int)roundNumUpDown.Value-1 : -1;
         }
 
         public bool GetIsPrescout()
@@ -87,6 +113,54 @@ namespace MyScout
                 button2.Text = "Team: " + Program.events[Program.currentevent].teams[teamform.GetSelectedTeamIndex()].id.ToString();
                 teamid = Program.events[Program.currentevent].teams[teamform.GetSelectedTeamIndex()].id;
                 teamindex = teamform.GetSelectedTeamIndex();
+            }
+        }
+
+        private void totalScoreRB_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void autoScoreRB_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            if(dataListBox.SelectedIndex != -1)
+            {
+                datalist[dataIndices[dataListBox.SelectedIndex]].setIsSelected(true);
+                SyncStrings();
+            }
+        }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            if(outListBox.SelectedIndex != -1)
+            {
+                datalist[outIndices[outListBox.SelectedIndex]].setIsSelected(false);
+                SyncStrings();
             }
         }
     }

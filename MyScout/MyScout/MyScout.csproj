@@ -71,6 +71,7 @@
     <Compile Include="src\Classes\DataPoint.cs" />
     <Compile Include="src\Classes\Defense.cs" />
     <Compile Include="src\Classes\Event.cs" />
+    <Compile Include="src\Classes\IndexedString.cs" />
     <Compile Include="src\Classes\Round.cs" />
     <Compile Include="src\Classes\Team.cs" />
     <Compile Include="src\Classes\TokenizeStringHandler.cs" />

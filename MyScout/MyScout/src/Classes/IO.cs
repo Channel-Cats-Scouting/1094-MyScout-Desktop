@@ -54,32 +54,31 @@ namespace MyScout
                                 reader.ReadStartElement("Team");
                                 List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
                                 Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString());
-                                team.avgScore = Convert.ToInt32(tokens[2]);
-                                team.teleDefensesCrossed = Convert.ToInt32(tokens[3]);
-                                team.teleHighGoals = Convert.ToInt32(tokens[4]);
-                                team.teleLowGoals = Convert.ToInt32(tokens[5]);
-                                team.towersScaled = Convert.ToInt32(tokens[6]);
-
-                                for (int j = 0; j < 9; j++)
+                                for(int j = 0; j < tokens.Count; j++)
                                 {
-                                    team.defensesCrossable[j] = Convert.ToBoolean(tokens[j + 7]);
+                                    team.dataset[j].SetValue(tokens[j + 2]);
                                 }
 
-                                team.canScoreHighGoals = Convert.ToBoolean(tokens[15]);
-                                team.canScoreLowGoals = Convert.ToBoolean(tokens[16]);
-                                team.loadsFromHumanPlayerStations = Convert.ToBoolean(tokens[17]);
-                                team.loadsFromFloor = Convert.ToBoolean(tokens[18]);
-                                team.prefers = Convert.ToInt32(tokens[19]);
+                                //for (int j = 0; j < 9; j++)
+                                //{
+                                //    team.defensesCrossable[j] = Convert.ToBoolean(tokens[j + 7]);
+                                //}
 
-                                team.crossingPowerScore = Convert.ToInt32(tokens[20]);
-                                team.autoHighGoals = Convert.ToInt32(tokens[21]);
-                                team.autoLowGoals = Convert.ToInt32(tokens[22]);
-                                team.deathCount = Convert.ToInt32(tokens[23]);
+                                //team.canScoreHighGoals = Convert.ToBoolean(tokens[15]);
+                                //team.canScoreLowGoals = Convert.ToBoolean(tokens[16]);
+                                //team.loadsFromHumanPlayerStations = Convert.ToBoolean(tokens[17]);
+                                //team.loadsFromFloor = Convert.ToBoolean(tokens[18]);
+                                //team.prefers = Convert.ToInt32(tokens[19]);
 
-                                for (int j = 0; j < 8; j++)
-                                {
-                                    team.deathDefenses[j] = Convert.ToInt32(tokens[j + 24]);
-                                }
+                                //team.crossingPowerScore = Convert.ToInt32(tokens[20]);
+                                //team.autoHighGoals = Convert.ToInt32(tokens[21]);
+                                //team.autoLowGoals = Convert.ToInt32(tokens[22]);
+                                //team.deathCount = Convert.ToInt32(tokens[23]);
+
+                                //for (int j = 0; j < 8; j++)
+                                //{
+                                //    team.deathDefenses[j] = Convert.ToInt32(tokens[j + 24]);
+                                //}
 
                                 Program.events[Program.events.Count - 1].teams.Add(team);
                                 reader.ReadEndElement();
@@ -223,32 +222,36 @@ namespace MyScout
 
                         tokens.Add(team.id);
                         tokens.Add(team.name);
-                        tokens.Add(team.avgScore);
-                        tokens.Add(team.teleDefensesCrossed);
-                        tokens.Add(team.teleHighGoals);
-                        tokens.Add(team.teleLowGoals);
-                        tokens.Add(team.towersScaled);
-
-                        for (int i = 0; i < 9; i++)
+                        for(int i = 2; i < team.dataset.Count; i++)
                         {
-                            tokens.Add(team.defensesCrossable[i]);
+                            tokens.Add(team.dataset[i]);
                         }
-                        tokens.Add(team.canScoreHighGoals);
-                        tokens.Add(team.canScoreLowGoals);
-                        tokens.Add(team.loadsFromHumanPlayerStations);
-                        tokens.Add(team.loadsFromFloor);
-                        tokens.Add(team.prefers);
 
-                        tokens.Add(team.crossingPowerScore);
-                        tokens.Add(team.autoDefensesReached);
-                        tokens.Add(team.autoHighGoals);
-                        tokens.Add(team.autoLowGoals);
-                        tokens.Add(team.deathCount);
+                        //tokens.Add(team.teleDefensesCrossed);
+                        //tokens.Add(team.teleHighGoals);
+                        //tokens.Add(team.teleLowGoals);
+                        //tokens.Add(team.towersScaled);
 
-                        for (int i = 0; i < 8; i++)
-                        {
-                            tokens.Add(team.deathDefenses[i]);
-                        }
+                        //for (int i = 0; i < 9; i++)
+                        //{
+                        //    tokens.Add(team.defensesCrossable[i]);
+                        //}
+                        //tokens.Add(team.canScoreHighGoals);
+                        //tokens.Add(team.canScoreLowGoals);
+                        //tokens.Add(team.loadsFromHumanPlayerStations);
+                        //tokens.Add(team.loadsFromFloor);
+                        //tokens.Add(team.prefers);
+
+                        //tokens.Add(team.crossingPowerScore);
+                        //tokens.Add(team.autoDefensesReached);
+                        //tokens.Add(team.autoHighGoals);
+                        //tokens.Add(team.autoLowGoals);
+                        //tokens.Add(team.deathCount);
+
+                        //for (int i = 0; i < 8; i++)
+                        //{
+                        //    tokens.Add(team.deathDefenses[i]);
+                        //}
 
                         writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
                         writer.WriteEndElement();
@@ -351,21 +354,8 @@ namespace MyScout
 
                 for(int j = 0; j < 9; j++)
                 {
-                    team.defensesCrossed[j] = 0;
-                    team.deathDefenses[j] = 0;
-                    team.autoDefensesCrossed[j] = 0;
+                    team.scoreDataset[j].SetValueToInt();
                 }
-
-                team.autoDefensesReached = 0;
-                team.teleHighGoals = 0;
-                team.teleLowGoals = 0;
-                team.autoHighGoals = 0;
-                team.autoLowGoals = 0;
-                team.towersScaled = 0;
-                team.avgScore = 0;
-                team.deathCount = 0;
-                team.towersChallenged = 0;
-                team.towersScaled = 0;
 
                 int iterations = 0;
 
@@ -381,58 +371,66 @@ namespace MyScout
                             //For averaging, currently unused
                             iterations++;
 
-                            //Add to the DefensesCrossed total
-                            team.defensesCrossed[0] += r.defenses[j, 0].TOtimescrossed;
-                            team.defensesCrossed[1] += r.defenses[j, 1].TOtimescrossed;
-                            team.defensesCrossed[2] += r.defenses[j, 2].TOtimescrossed;
-                            team.defensesCrossed[3] += r.defenses[j, 7].TOtimescrossed;
-                            team.defensesCrossed[4] += r.defenses[j, 8].TOtimescrossed;
-                            team.defensesCrossed[5] += r.defenses[j, 3].TOtimescrossed;
-                            team.defensesCrossed[6] += r.defenses[j, 4].TOtimescrossed;
-                            team.defensesCrossed[7] += r.defenses[j, 5].TOtimescrossed;
-                            team.defensesCrossed[8] += r.defenses[j, 6].TOtimescrossed;
-
-                            //Add to the DefensesCrossed total
-                            team.autoDefensesCrossed[0] += r.defenses[j, 0].AOcrossed ? 1 : 0;
-                            team.autoDefensesCrossed[1] += r.defenses[j, 1].AOcrossed ? 1 : 0;
-                            team.autoDefensesCrossed[2] += r.defenses[j, 2].AOcrossed ? 1 : 0;
-                            team.autoDefensesCrossed[3] += r.defenses[j, 7].AOcrossed ? 1 : 0;
-                            team.autoDefensesCrossed[4] += r.defenses[j, 8].AOcrossed ? 1 : 0;
-                            team.autoDefensesCrossed[5] += r.defenses[j, 3].AOcrossed ? 1 : 0;
-                            team.autoDefensesCrossed[6] += r.defenses[j, 4].AOcrossed ? 1 : 0;
-                            team.autoDefensesCrossed[7] += r.defenses[j, 5].AOcrossed ? 1 : 0;
-                            team.autoDefensesCrossed[8] += r.defenses[j, 6].AOcrossed ? 1 : 0;
-
-                            //TODO: rearrange MainFrm to mimic the internal team data List order because it's a pain to type out all this code
-
-                            //Add to the team's smart defense ability list, requested by Yishai
-                            for (int k = 0; k < 9; k++)
+                            for(int k = 0; k < team.dataset.Count; k++)
                             {
-                                team.smartDefensesCrossable[k] = team.defensesCrossed[k] > 0;
+                                if (r.dataset[i][k].type == typeof(bool))
+                                    team.scoreDataset[k].IncrementValue();
+                                else if (r.dataset[i][k].type == typeof(int))
+                                    team.scoreDataset[k].IncrementValue((int)r.dataset[i][k].GetValue());
                             }
 
+                            ////Add to the DefensesCrossed total
+                            //team.defensesCrossed[0] += r.defenses[j, 0].TOtimescrossed;
+                            //team.defensesCrossed[1] += r.defenses[j, 1].TOtimescrossed;
+                            //team.defensesCrossed[2] += r.defenses[j, 2].TOtimescrossed;
+                            //team.defensesCrossed[3] += r.defenses[j, 7].TOtimescrossed;
+                            //team.defensesCrossed[4] += r.defenses[j, 8].TOtimescrossed;
+                            //team.defensesCrossed[5] += r.defenses[j, 3].TOtimescrossed;
+                            //team.defensesCrossed[6] += r.defenses[j, 4].TOtimescrossed;
+                            //team.defensesCrossed[7] += r.defenses[j, 5].TOtimescrossed;
+                            //team.defensesCrossed[8] += r.defenses[j, 6].TOtimescrossed;
 
-                            team.updateDefenseStats();
+                            ////Add to the DefensesCrossed total
+                            //team.autoDefensesCrossed[0] += r.defenses[j, 0].AOcrossed ? 1 : 0;
+                            //team.autoDefensesCrossed[1] += r.defenses[j, 1].AOcrossed ? 1 : 0;
+                            //team.autoDefensesCrossed[2] += r.defenses[j, 2].AOcrossed ? 1 : 0;
+                            //team.autoDefensesCrossed[3] += r.defenses[j, 7].AOcrossed ? 1 : 0;
+                            //team.autoDefensesCrossed[4] += r.defenses[j, 8].AOcrossed ? 1 : 0;
+                            //team.autoDefensesCrossed[5] += r.defenses[j, 3].AOcrossed ? 1 : 0;
+                            //team.autoDefensesCrossed[6] += r.defenses[j, 4].AOcrossed ? 1 : 0;
+                            //team.autoDefensesCrossed[7] += r.defenses[j, 5].AOcrossed ? 1 : 0;
+                            //team.autoDefensesCrossed[8] += r.defenses[j, 6].AOcrossed ? 1 : 0;
 
-                            for(int k = 0; k < 9; k++)
-                            {
-                                team.autoDefensesReached += r.defenses[j, k].AOreached ? 1 : 0;
-                            }
+                            ////TODO: rearrange MainFrm to mimic the internal team data List order because it's a pain to type out all this code
 
-                            team.teleHighGoals += r.TOhighgoalcount[j];
-                            team.teleLowGoals += r.TOlowgoalcount[j];
-                            team.autoHighGoals += r.AOhighgoalcount[j];
-                            team.autoLowGoals += r.AOlowgoalcount[j];
+                            ////Add to the team's smart defense ability list, requested by Yishai
+                            //for (int k = 0; k < 9; k++)
+                            //{
+                            //    team.smartDefensesCrossable[k] = team.defensesCrossed[k] > 0;
+                            //}
 
-                            //Add to the death count
-                            team.deathCount += r.died[j] ? 1 : 0;
-                            if(r.died[j])
-                            {
-                                team.deathDefenses[r.dieddefense[j]] += 1;
-                            }
 
-                            team.towersScaled += r.scaledtower[j] ? 1 : 0;
-                            team.towersChallenged += r.challengedtower[j] ? 1 : 0;
+                            //team.updateDefenseStats();
+
+                            //for(int k = 0; k < 9; k++)
+                            //{
+                            //    team.autoDefensesReached += r.defenses[j, k].AOreached ? 1 : 0;
+                            //}
+
+                            //team.teleHighGoals += r.TOhighgoalcount[j];
+                            //team.teleLowGoals += r.TOlowgoalcount[j];
+                            //team.autoHighGoals += r.AOhighgoalcount[j];
+                            //team.autoLowGoals += r.AOlowgoalcount[j];
+
+                            ////Add to the death count
+                            //team.deathCount += r.died[j] ? 1 : 0;
+                            //if(r.died[j])
+                            //{
+                            //    team.deathDefenses[r.dieddefense[j]] += 1;
+                            //}
+
+                            //team.towersScaled += r.scaledtower[j] ? 1 : 0;
+                            //team.towersChallenged += r.challengedtower[j] ? 1 : 0;
                         }
                     }
                 }
@@ -451,7 +449,7 @@ namespace MyScout
             SaveDataToTeams();
 
             List<Team> teamList = ev.teams;
-
+            
             //Clean the report
             for (int i = 0; i < teamList.Count; i++)
             {
@@ -462,9 +460,9 @@ namespace MyScout
             }
 
             //Sort the team list based on the sorting int
-            List<Team> sortedTeamList = teamList.OrderByDescending(
-                team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.teleHighGoals : team.crossingPowerScore)
-                ).ToList();
+            List<Team> sortedTeamList = teamList;
+                //team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.teleHighGoals : team.crossingPowerScore)
+                //).ToList();
 
             string filepath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {ev.name}.xls";
 
@@ -534,10 +532,10 @@ namespace MyScout
                 {
                     worksheet.Cells[i, 0] = new Cell(team.id.ToString());
                     worksheet.Cells[i, 1] = new Cell(team.name);
-                    worksheet.Cells[i, 2] = new Cell(Convert.ToInt16(team.towersScaled));
-                    worksheet.Cells[i, 3] = new Cell(Convert.ToInt16(team.towersChallenged));
-                    worksheet.Cells[i, 4] = new Cell(Convert.ToInt16(team.teleHighGoals));
-                    worksheet.Cells[i, 5] = new Cell(Convert.ToInt16(team.teleLowGoals));
+                    //worksheet.Cells[i, 2] = new Cell(Convert.ToInt16(team.towersScaled));
+                    //worksheet.Cells[i, 3] = new Cell(Convert.ToInt16(team.towersChallenged));
+                    //worksheet.Cells[i, 4] = new Cell(Convert.ToInt16(team.teleHighGoals));
+                    //worksheet.Cells[i, 5] = new Cell(Convert.ToInt16(team.teleLowGoals));
                 }
                 else worksheet.Cells[i, 0] = new Cell("N/A");
 
@@ -545,18 +543,18 @@ namespace MyScout
                     for (int j = 0; j < 9; j++)
                     {
                         //Fill each defense cell with the number of times it has crossed the defense
-                        worksheet.Cells[i, (j + 7)] = new Cell(team.defensesCrossed[j]);
+                        //worksheet.Cells[i, (j + 7)] = new Cell(team.defensesCrossed[j]);
                     }
                 int autoCrossedTotal = 0;
                 if(team != null)
                     for(int j = 0; j< 9; j++)
                     {
-                        autoCrossedTotal += (int)team.autoDefensesCrossed[j];
+                        //autoCrossedTotal += (int)team.autoDefensesCrossed[j];
                     }
                 worksheet.Cells[i, 17] = new Cell(autoCrossedTotal);
 
-                worksheet.Cells[i, 18] = new Cell(Convert.ToInt16(team.autoHighGoals));
-                worksheet.Cells[i, 19] = new Cell(Convert.ToInt16(team.autoLowGoals));
+                //worksheet.Cells[i, 18] = new Cell(Convert.ToInt16(team.autoHighGoals));
+                //worksheet.Cells[i, 19] = new Cell(Convert.ToInt16(team.autoLowGoals));
 
             }
 
@@ -667,19 +665,19 @@ namespace MyScout
                 {
                     worksheet.Cells[i, 0] = new Cell(team.id.ToString());
                     worksheet.Cells[i, 1] = new Cell(team.name);
-                    worksheet.Cells[i, 2] = new Cell(team.canScoreHighGoals ? " " + ((char)0x221A).ToString() : "");
-                    worksheet.Cells[i, 3] = new Cell(team.canScoreLowGoals ? " " + ((char)0x221A).ToString() : "");
-                    worksheet.Cells[i, 4] = new Cell(team.loadsFromHumanPlayerStations ? " " + ((char)0x221A).ToString() : "");
-                    worksheet.Cells[i, 5] = new Cell(team.loadsFromFloor ? " " + ((char)0x221A).ToString() : "");
-                    worksheet.Cells[i, 6] = new Cell(team.prefers == 0 ? "None" : team.prefers == 1 ? "Floor" : "HPS");
+                    //worksheet.Cells[i, 2] = new Cell(team.canScoreHighGoals ? " " + ((char)0x221A).ToString() : "");
+                    //worksheet.Cells[i, 3] = new Cell(team.canScoreLowGoals ? " " + ((char)0x221A).ToString() : "");
+                    //worksheet.Cells[i, 4] = new Cell(team.loadsFromHumanPlayerStations ? " " + ((char)0x221A).ToString() : "");
+                    //worksheet.Cells[i, 5] = new Cell(team.loadsFromFloor ? " " + ((char)0x221A).ToString() : "");
+                    //worksheet.Cells[i, 6] = new Cell(team.prefers == 0 ? "None" : team.prefers == 1 ? "Floor" : "HPS");
                 }
                 else worksheet.Cells[i, 0] = new Cell("N/A");
 
                 if(team != null)
                     for (int j = 0; j < 9; j++)
                     {
-                        if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 8)] = new Cell(" " + ((char)0x221A).ToString());
-                        if (team.smartDefensesCrossable[j]) worksheet.Cells[i, (j + 18)] = new Cell(" " + ((char)0x221A).ToString());
+                        //if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 8)] = new Cell(" " + ((char)0x221A).ToString());
+                        //if (team.smartDefensesCrossable[j]) worksheet.Cells[i, (j + 18)] = new Cell(" " + ((char)0x221A).ToString());
                     }
             }
 
