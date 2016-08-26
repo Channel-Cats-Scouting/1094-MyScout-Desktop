@@ -32,9 +32,16 @@ namespace MyScout
         public GenReport()
         {
             InitializeComponent();
+            //For each type of scouting (pre/round)
             for(int i = 0; i < 2; i++)
+                //For each data point in said type of scouting
                 for(int j = 0; j < Program.dataset[i].Count; j++)
                 {
+                    /*
+                    * Add a new StringEntry with the data point's name and a generated index.
+                    * Prescouting indices are the same, but round scouting indices are added to the end, 
+                    * so they are a sequential list of indices.
+                    */
                     datalist.Add(new StringEntry(Program.dataset[i][j].GetName(), j + (i > 0 ? Program.dataset[0].Count : 0)));
                 }
             button2.Enabled = false;
@@ -42,7 +49,7 @@ namespace MyScout
         }
 
         /// <summary>
-        /// Reassigns strings based on selected StringEntry objects
+        /// Reassigns strings based on 'Selected' StringEntry objects
         /// </summary>
         public void SyncStrings()
         {
@@ -71,6 +78,24 @@ namespace MyScout
 
             dataListBox.Items.AddRange(dataStrings.ToArray());
             outListBox.Items.AddRange(outStrings.ToArray());
+        }
+
+        /// <summary>
+        /// Gets the index for a given string. Returns -1 if no string found.
+        /// </summary>
+        /// <param name="regex"></param>
+        /// <returns></returns>
+        private int findStringIndex(string regex)
+        {
+            int index = -1;
+            foreach(StringEntry stren in datalist)
+            {
+                if(stren.str == regex)
+                {
+                    index = stren.index;
+                }
+            }
+            return index;
         }
 
         private void reportTypeCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -150,18 +175,23 @@ namespace MyScout
         {
             if(dataListBox.SelectedIndex != -1)
             {
-                datalist[dataIndices[dataListBox.SelectedIndex]].setIsSelected(true);
+                datalist[findStringIndex((string)dataListBox.SelectedItem)].setIsSelected(true);
                 SyncStrings();
             }
         }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            if(outListBox.SelectedIndex != -1)
+            if (outListBox.SelectedIndex != -1)
             {
-                datalist[outIndices[outListBox.SelectedIndex]].setIsSelected(false);
+                datalist[findStringIndex((string)dataListBox.SelectedItem)].setIsSelected(false);
                 SyncStrings();
             }
+        }
+
+        private void GenReport_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
