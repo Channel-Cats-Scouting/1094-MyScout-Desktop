@@ -292,7 +292,7 @@ namespace MyScout
                         }
                         writer.WriteEndElement();
 
-
+                        #region deprecated_code
                         //writer.WriteStartElement("Defenses");
                         //for (int i = 0; i < 6; i++)
                         //{
@@ -325,6 +325,7 @@ namespace MyScout
                         //writer.WriteElementString("DiedDefenseTokens", TokenizeStringHandler.CreateTokenizedString(round.dieddefense.Cast<object>().ToList()));
                         //writer.WriteElementString("DiedCommentTokens", TokenizeStringHandler.CreateTokenizedString(round.diedcomments.Cast<object>().ToList()));
                         //writer.WriteEndElement();
+                        #endregion
                     }
 
                     writer.WriteEndElement();
@@ -371,14 +372,21 @@ namespace MyScout
                             //For averaging, currently unused
                             iterations++;
 
+                            //For each item in the team's dataset
                             for(int k = 0; k < team.dataset.Count; k++)
                             {
-                                if (r.dataset[i][k].type == typeof(bool))
-                                    team.scoreDataset[k].IncrementValue();
-                                else if (r.dataset[i][k].type == typeof(int))
-                                    team.scoreDataset[k].IncrementValue((int)r.dataset[i][k].GetValue());
+
+                                if (r.dataset[i][k].type == typeof(bool)) //If the data is a boolean type
+                                {
+                                    team.scoreDataset[k].IncrementValue(); //...increment the corresponding count
+                                }
+                                else if (r.dataset[i][k].type == typeof(int)) //If the data is an int type
+                                {
+                                    team.scoreDataset[k].IncrementValue((int)r.dataset[i][k].GetValue()); //...add the int to the corresponding count
+                                }
                             }
 
+                            #region deprecated_code
                             ////Add to the DefensesCrossed total
                             //team.defensesCrossed[0] += r.defenses[j, 0].TOtimescrossed;
                             //team.defensesCrossed[1] += r.defenses[j, 1].TOtimescrossed;
@@ -431,6 +439,7 @@ namespace MyScout
 
                             //team.towersScaled += r.scaledtower[j] ? 1 : 0;
                             //team.towersChallenged += r.challengedtower[j] ? 1 : 0;
+                            #endregion
                         }
                     }
                 }

@@ -17,7 +17,7 @@ namespace MyScout
         /// </summary>
         public int[] teams = new int[6] { -1, -1, -1, -1, -1, -1 };
         /// <summary>
-        /// TODO: Documentation
+        /// An array of lists of datapoints, with one list for each team.
         /// </summary>
         public List<DataPoint>[] dataset;
         #endregion
@@ -27,9 +27,9 @@ namespace MyScout
             //Make 6 lists of datapoints within the existing dataset variable - one for each team in the round.
             dataset = new List<DataPoint>[6];
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 6; i++) //For each team in the round
             {
-                dataset[i] = Program.dataset[1];
+                dataset[i] = Program.dataset[1]; //Assign it a copy of the dataset
             }
         }
     }

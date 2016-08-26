@@ -144,7 +144,12 @@ namespace MyScout
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name"></param>
-        public Team(int id, string name) { this.id = id; this.name = name; }
+        public Team(int id, string name)
+        {
+            this.id = id;
+            this.name = name;
+            UpdateTeamScore();
+        }
 
         public void UpdateTeamScore()
         {
