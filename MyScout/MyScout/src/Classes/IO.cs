@@ -444,7 +444,7 @@ namespace MyScout
                     }
                 }
                 
-                team.UpdateTeamScore();
+                team.InitData();
             }
         }
 

@@ -40,7 +40,7 @@ namespace MyScout
         #region Scouting-related
         /// <summary>
         /// The data model to be referenced for saving/loading.
-        /// 0 is pre/team scouting, 1 is round scouting
+        /// 0 is pre/team scouting, 1 is round scouting, and 2 is score-compiling
         /// </summary>
         public static List<List<DataPoint>> dataset;
         /// <summary>
@@ -98,19 +98,30 @@ namespace MyScout
             dataset[0].Add(new DataPoint("Prefers", typeof(int)));              //Whether the team prefers the human player station (2), floor (1), or none (0).
 
             //Round Scouting
-            dataset[1].Add(new DataPoint("TDefenses", typeof(List<int>)));     //Defense-related data collected during the Tele-Op period.
-            dataset[1].Add(new DataPoint("ADefenses", typeof(List<int>)));     //Defense-related data collected during the Autonomous period.
-            dataset[1].Add(new DataPoint("ScaledTower", typeof(bool)));        //Whether or not the robot scaled the tower.
-            dataset[1].Add(new DataPoint("OnBatters", typeof(bool)));          //Whether or not the robot challenged the tower.
-            dataset[1].Add(new DataPoint("AHighGoal", typeof(bool)));          //Whether or not the robot got a score in the high goal in Autonomous.
-            dataset[1].Add(new DataPoint("ALowGoal", typeof(bool)));           //Whether or not the robot got a score in the low goal in Autonomous.
-            dataset[1].Add(new DataPoint("THighGoals", typeof(int)));          //How many times the robot got a score in the high goal in Tele-Op.
-            dataset[1].Add(new DataPoint("TLowGoals", typeof(int)));           //How many times the robot got a score in the low goal in Tele-Op.
-            dataset[1].Add(new DataPoint("Comments", typeof(string)));         //Comments related to the match that don't fit in other categories.
-            dataset[1].Add(new DataPoint("HComments", typeof(string)));        //Comments related to the performance of the human player.
-            dataset[1].Add(new DataPoint("Died", typeof(bool)));               //Whether or not the robot died.
-            dataset[1].Add(new DataPoint("DiedDefense", typeof(int)));         //The index of the defense the robot died on.
-            dataset[1].Add(new DataPoint("DComments", typeof(string)));        //Comments related to how the robot died.
+            dataset[1].Add(new DataPoint("TDefenses", typeof(List<int>)));      //Defense-related data collected during the Tele-Op period.
+            dataset[1].Add(new DataPoint("ADefenses", typeof(List<int>)));      //Defense-related data collected during the Autonomous period.
+            dataset[1].Add(new DataPoint("ScaledTower", typeof(bool)));         //Whether or not the robot scaled the tower.
+            dataset[1].Add(new DataPoint("OnBatters", typeof(bool)));           //Whether or not the robot challenged the tower.
+            dataset[1].Add(new DataPoint("AHighGoal", typeof(bool)));           //Whether or not the robot got a score in the high goal in Autonomous.
+            dataset[1].Add(new DataPoint("ALowGoal", typeof(bool)));            //Whether or not the robot got a score in the low goal in Autonomous.
+            dataset[1].Add(new DataPoint("THighGoals", typeof(int)));           //How many times the robot got a score in the high goal in Tele-Op.
+            dataset[1].Add(new DataPoint("TLowGoals", typeof(int)));            //How many times the robot got a score in the low goal in Tele-Op.
+            dataset[1].Add(new DataPoint("Comments", typeof(string)));          //Comments related to the match that don't fit in other categories.
+            dataset[1].Add(new DataPoint("HComments", typeof(string)));         //Comments related to the performance of the human player.
+            dataset[1].Add(new DataPoint("Died", typeof(bool)));                //Whether or not the robot died.
+            dataset[1].Add(new DataPoint("DiedDefense", typeof(int)));          //The index of the defense the robot died on.
+            dataset[1].Add(new DataPoint("DComments", typeof(string)));         //Comments related to how the robot died.
+
+            //Score compiling
+            dataset[2].Add(new DataPoint("TDefTotals", typeof(List<int>)));     //Defense-related totals, with counts for amounts of defense crossings during Tele-Op
+            dataset[2].Add(new DataPoint("ADefTotals", typeof(List<int>)));     //Defense-related totals, with counts for amounts of defense crossings during Automode
+            dataset[2].Add(new DataPoint("ScaledTotal", typeof(int)));          //The amount of times the robot scaled the tower
+            dataset[2].Add(new DataPoint("OnBattTotal", typeof(int)));          //The amount of times the robot challenged the tower
+            dataset[2].Add(new DataPoint("AHighTotal", typeof(int)));           //The amount of times the robot got a score in the high goal in Autonomous
+            dataset[2].Add(new DataPoint("ALowTotal", typeof(int)));            //The amount of times the robot got a score in the low goal in Autonomous
+            dataset[2].Add(new DataPoint("THighTotal", typeof(int)));           //The amount of times the robot got a score in the high goal in Tele-Op
+            dataset[2].Add(new DataPoint("TLowGoals", typeof(int)));            //The amount of times the robot got a score in the low goal in Tele-Op
+            dataset[2].Add(new DataPoint("DiedTotal", typeof(int)));            //The amount of times the robot died
             #endregion
 
             //Begin the GUI side of the application
