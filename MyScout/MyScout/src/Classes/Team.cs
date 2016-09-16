@@ -19,7 +19,6 @@ namespace MyScout
         /// </summary>
         public int id = 0000;
         #endregion
-
         private List<DataPoint> dataset;
         private List<DataPoint> scoreDataset;
 
@@ -27,13 +26,20 @@ namespace MyScout
         /// The team's total score.
         /// </summary>
         public int avgScore = 0;
-
+        ///<summary>
+        /// Returns team data and pre-scout info
+        /// </summary>
+        /// <returns></returns>
         public List<DataPoint> GetTeamSpecificDataset()
         {
             return dataset;
         }
 
-        public List<DataPoint> GetCompiledTeamDataset()
+        /// <summary>
+        /// Returns team data compiled into counts
+        /// </summary>
+        /// <returns></returns>
+        public List<DataPoint> GetCompiledScoreDataset()
         {
             return scoreDataset;
         }

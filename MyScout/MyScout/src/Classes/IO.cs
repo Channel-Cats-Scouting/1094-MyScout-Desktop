@@ -12,6 +12,7 @@ namespace MyScout
     public static class IO
     {
         #region Input-related functions
+
         /// <summary>
         /// Loads all events from the program's event folder.
         /// </summary>
@@ -56,7 +57,7 @@ namespace MyScout
                                 Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString());
                                 for(int j = 0; j < tokens.Count; j++)
                                 {
-                                    team.dataset[j].SetValue(tokens[j + 2]);
+                                    team.GetTeamSpecificDataset()[j].SetValue(tokens[j + 2]);
                                 }
 
                                 //for (int j = 0; j < 9; j++)
@@ -222,9 +223,9 @@ namespace MyScout
 
                         tokens.Add(team.id);
                         tokens.Add(team.name);
-                        for(int i = 2; i < team.dataset.Count; i++)
+                        for(int i = 2; i < team.GetTeamSpecificDataset().Count; i++)
                         {
-                            tokens.Add(team.dataset[i]);
+                            tokens.Add(team.GetTeamSpecificDataset()[i]);
                         }
 
                         //tokens.Add(team.teleDefensesCrossed);
@@ -355,7 +356,7 @@ namespace MyScout
 
                 for(int j = 0; j < 9; j++)
                 {
-                    team.scoreDataset[j].SetValueToInt();
+                    team.GetCompiledScoreDataset()[j].SetValueToInt();
                 }
 
                 int iterations = 0;
@@ -369,20 +370,18 @@ namespace MyScout
                         //if the team index is the same as the round's team index
                         if (r.teams[j] == i)
                         {
-                            //For averaging, currently unused
-                            iterations++;
 
                             //For each item in the team's dataset
-                            for(int k = 0; k < team.dataset.Count; k++)
+                            for(int k = 0; k < team.GetTeamSpecificDataset().Count; k++)
                             {
 
                                 if (r.dataset[i][k].type == typeof(bool)) //If the data is a boolean type
                                 {
-                                    team.scoreDataset[k].IncrementValue(); //...increment the corresponding count
+                                    team.GetCompiledScoreDataset()[k].IncrementValue(); //...increment the corresponding count
                                 }
                                 else if (r.dataset[i][k].type == typeof(int)) //If the data is an int type
                                 {
-                                    team.scoreDataset[k].IncrementValue((int)r.dataset[i][k].GetValue()); //...add the int to the corresponding count
+                                    team.GetCompiledScoreDataset()[k].IncrementValue((int)r.dataset[i][k].GetValue()); //...add the int to the corresponding count
                                 }
                             }
 
