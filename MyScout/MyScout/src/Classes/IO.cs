@@ -54,32 +54,13 @@ namespace MyScout
                             {
                                 reader.ReadStartElement("Team");
                                 List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
-                                Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString());
+
+                                //The first two tokens are team id and name
+                                Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString()); 
                                 for(int j = 0; j < tokens.Count; j++)
                                 {
                                     team.GetTeamSpecificDataset()[j].SetValue(tokens[j + 2]);
                                 }
-
-                                //for (int j = 0; j < 9; j++)
-                                //{
-                                //    team.defensesCrossable[j] = Convert.ToBoolean(tokens[j + 7]);
-                                //}
-
-                                //team.canScoreHighGoals = Convert.ToBoolean(tokens[15]);
-                                //team.canScoreLowGoals = Convert.ToBoolean(tokens[16]);
-                                //team.loadsFromHumanPlayerStations = Convert.ToBoolean(tokens[17]);
-                                //team.loadsFromFloor = Convert.ToBoolean(tokens[18]);
-                                //team.prefers = Convert.ToInt32(tokens[19]);
-
-                                //team.crossingPowerScore = Convert.ToInt32(tokens[20]);
-                                //team.autoHighGoals = Convert.ToInt32(tokens[21]);
-                                //team.autoLowGoals = Convert.ToInt32(tokens[22]);
-                                //team.deathCount = Convert.ToInt32(tokens[23]);
-
-                                //for (int j = 0; j < 8; j++)
-                                //{
-                                //    team.deathDefenses[j] = Convert.ToInt32(tokens[j + 24]);
-                                //}
 
                                 Program.events[Program.events.Count - 1].teams.Add(team);
                                 reader.ReadEndElement();
@@ -225,35 +206,10 @@ namespace MyScout
                         tokens.Add(team.name);
                         for(int i = 2; i < team.GetTeamSpecificDataset().Count; i++)
                         {
-                            tokens.Add(team.GetTeamSpecificDataset()[i]);
+                            tokens.Add(team.GetTeamSpecificDataset()[i].GetValue()); //Write team specific data to tokens
                         }
 
-                        //tokens.Add(team.teleDefensesCrossed);
-                        //tokens.Add(team.teleHighGoals);
-                        //tokens.Add(team.teleLowGoals);
-                        //tokens.Add(team.towersScaled);
-
-                        //for (int i = 0; i < 9; i++)
-                        //{
-                        //    tokens.Add(team.defensesCrossable[i]);
-                        //}
-                        //tokens.Add(team.canScoreHighGoals);
-                        //tokens.Add(team.canScoreLowGoals);
-                        //tokens.Add(team.loadsFromHumanPlayerStations);
-                        //tokens.Add(team.loadsFromFloor);
-                        //tokens.Add(team.prefers);
-
-                        //tokens.Add(team.crossingPowerScore);
-                        //tokens.Add(team.autoDefensesReached);
-                        //tokens.Add(team.autoHighGoals);
-                        //tokens.Add(team.autoLowGoals);
-                        //tokens.Add(team.deathCount);
-
-                        //for (int i = 0; i < 8; i++)
-                        //{
-                        //    tokens.Add(team.deathDefenses[i]);
-                        //}
-
+                        //Write team specific data to xml
                         writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
                         writer.WriteEndElement();
                     }
@@ -275,7 +231,7 @@ namespace MyScout
 
                         for (int i = 0; i < 6; i++)
                         {
-                            teams.Add(round.teams[i]);
+                            teams.Add(round.teams[i]); //Write teams to xml
                         }
 
                         writer.WriteElementString("TeamTokens", TokenizeStringHandler.CreateTokenizedString(teams));
@@ -285,48 +241,13 @@ namespace MyScout
                         for(int i = 0; i < 6; i++) //For each list of datapoints
                         {
                             List<object> tokens = new List<object>();
-                            for (int j = 0; j < Program.dataset.Count; j++) //For each datapoint
+                            for (int j = 0; j < Program.dataset[1].Count(); j++) //For each datapoint
                             {
                                 tokens.Add(round.dataset[i][j].GetValue()); //Add the datapoint to the tokens list
                             }
                             writer.WriteElementString("DataPoints" + i.ToString(), TokenizeStringHandler.CreateTokenizedString(tokens));
                         }
                         writer.WriteEndElement();
-
-                        #region deprecated_code
-                        //writer.WriteStartElement("Defenses");
-                        //for (int i = 0; i < 6; i++)
-                        //{
-                        //    List<object> AOReachedTokens = new List<object>(); //Save defenses information per team
-                        //    List<object> AOCrossedTokens = new List<object>();
-                        //    List<object> TOCrossedTokens = new List<object>();
-
-                        //    for (int i2 = 0; i2 < 9; i2++)
-                        //    {
-                        //        AOReachedTokens.Add(round.defenses[i, i2].AOreached);
-                        //        AOCrossedTokens.Add(round.defenses[i, i2].AOcrossed);
-                        //        TOCrossedTokens.Add(round.defenses[i, i2].TOtimescrossed);
-                        //    }
-
-                        //    writer.WriteElementString("AOReachedTokens", TokenizeStringHandler.CreateTokenizedString(AOReachedTokens));
-                        //    writer.WriteElementString("AOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(AOCrossedTokens));
-                        //    writer.WriteElementString("TOCrossedTokens", TokenizeStringHandler.CreateTokenizedString(TOCrossedTokens));
-                        //}
-                        //writer.WriteEndElement(); //Defenses
-
-                        //writer.WriteElementString("TOScaledTokens", TokenizeStringHandler.CreateTokenizedString(round.scaledtower.Cast<object>().ToList()));
-                        //writer.WriteElementString("TOChallengedTokens", TokenizeStringHandler.CreateTokenizedString(round.challengedtower.Cast<object>().ToList()));
-                        //writer.WriteElementString("AOHighGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.AOhighgoalcount.Cast<object>().ToList()));
-                        //writer.WriteElementString("AOLowGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.AOlowgoalcount.Cast<object>().ToList()));
-                        //writer.WriteElementString("TOHighGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.TOhighgoalcount.Cast<object>().ToList()));
-                        //writer.WriteElementString("TOLowGoalTokens", TokenizeStringHandler.CreateTokenizedString(round.TOlowgoalcount.Cast<object>().ToList()));
-                        //writer.WriteElementString("CommentTokens", TokenizeStringHandler.CreateTokenizedString(round.comments.Cast<object>().ToList()));
-                        //writer.WriteElementString("HumanCommentTokens", TokenizeStringHandler.CreateTokenizedString(round.humancomments.Cast<object>().ToList()));
-                        //writer.WriteElementString("DiedTokens", TokenizeStringHandler.CreateTokenizedString(round.died.Cast<object>().ToList()));
-                        //writer.WriteElementString("DiedDefenseTokens", TokenizeStringHandler.CreateTokenizedString(round.dieddefense.Cast<object>().ToList()));
-                        //writer.WriteElementString("DiedCommentTokens", TokenizeStringHandler.CreateTokenizedString(round.diedcomments.Cast<object>().ToList()));
-                        //writer.WriteEndElement();
-                        #endregion
                     }
 
                     writer.WriteEndElement();

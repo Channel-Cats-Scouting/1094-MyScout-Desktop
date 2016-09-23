@@ -16,9 +16,21 @@ namespace MyScout
 
             foreach (object obj in input)
             {
-                string str = obj.ToString();
-                if (str.Contains(':')) { str = str.Replace(":","\\s"); }
-                output += (output.Length > 0 ? ":" : "") + str.ToString();
+                if (obj is List<int>)
+                {
+                    string str = "";
+                    List<int> objlist = (List<int>)obj;
+                    //TODO: finish implementing List<int> tokenizing
+                }
+                else
+                {
+                    string str = obj.ToString();
+                    if (str.Contains(':'))
+                    {
+                        str = str.Replace(":", "\\s");
+                    }
+                    output += (output.Length > 0 ? ":" : "") + str.ToString();
+                }
             }
 
             return output;

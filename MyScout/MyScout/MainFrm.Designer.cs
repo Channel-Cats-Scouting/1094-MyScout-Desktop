@@ -43,6 +43,7 @@
             this.preScoutButton = new System.Windows.Forms.Button();
             this.TeamPnl = new System.Windows.Forms.Panel();
             this.TeamNamePnl = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -122,7 +123,6 @@
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn2 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -266,7 +266,7 @@
             // 
             this.preScoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.preScoutButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.preScoutButton.Location = new System.Drawing.Point(704, 14);
+            this.preScoutButton.Location = new System.Drawing.Point(702, 14);
             this.preScoutButton.Name = "preScoutButton";
             this.preScoutButton.Size = new System.Drawing.Size(233, 59);
             this.preScoutButton.TabIndex = 1;
@@ -288,7 +288,8 @@
             // 
             // TeamNamePnl
             // 
-            this.TeamNamePnl.BackColor = System.Drawing.Color.White;
+            this.TeamNamePnl.BackColor = System.Drawing.Color.Transparent;
+            this.TeamNamePnl.BackgroundImage = global::MyScout.Properties.Resources.bg;
             this.TeamNamePnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TeamNamePnl.Controls.Add(this.button2);
             this.TeamNamePnl.Controls.Add(this.button6);
@@ -302,12 +303,23 @@
             this.TeamNamePnl.Size = new System.Drawing.Size(947, 90);
             this.TeamNamePnl.TabIndex = 3;
             // 
+            // button2
+            // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.button2.Location = new System.Drawing.Point(5, 14);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(233, 59);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "&Save Event";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // button6
             // 
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button6.Cursor = System.Windows.Forms.Cursors.Default;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button6.Location = new System.Drawing.Point(302, 45);
+            this.button6.Location = new System.Drawing.Point(301, 44);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(42, 40);
             this.button6.TabIndex = 3;
@@ -319,7 +331,7 @@
             // 
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button5.Location = new System.Drawing.Point(598, 44);
+            this.button5.Location = new System.Drawing.Point(597, 43);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(42, 40);
             this.button5.TabIndex = 2;
@@ -330,9 +342,11 @@
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(372, 61);
+            this.label1.Location = new System.Drawing.Point(371, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(198, 23);
             this.label1.TabIndex = 1;
@@ -342,7 +356,8 @@
             // TeamNameLbl
             // 
             this.TeamNameLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.TeamNameLbl.Font = new System.Drawing.Font("Segoe UI", 22F);
+            this.TeamNameLbl.BackColor = System.Drawing.Color.Transparent;
+            this.TeamNameLbl.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
             this.TeamNameLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.TeamNameLbl.Location = new System.Drawing.Point(160, 0);
             this.TeamNameLbl.Name = "TeamNameLbl";
@@ -383,7 +398,7 @@
             this.TGroupBx.Controls.Add(this.TCommentsTxtbx);
             this.TGroupBx.Location = new System.Drawing.Point(9, 96);
             this.TGroupBx.Name = "TGroupBx";
-            this.TGroupBx.Size = new System.Drawing.Size(586, 482);
+            this.TGroupBx.Size = new System.Drawing.Size(588, 484);
             this.TGroupBx.TabIndex = 5;
             this.TGroupBx.TabStop = false;
             this.TGroupBx.Text = "                                                 ";
@@ -393,7 +408,7 @@
             this.TLowGoalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TLowGoalLbl.AutoSize = true;
             this.TLowGoalLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.TLowGoalLbl.Location = new System.Drawing.Point(421, 265);
+            this.TLowGoalLbl.Location = new System.Drawing.Point(425, 265);
             this.TLowGoalLbl.Name = "TLowGoalLbl";
             this.TLowGoalLbl.Size = new System.Drawing.Size(128, 31);
             this.TLowGoalLbl.TabIndex = 27;
@@ -404,7 +419,7 @@
             // 
             this.TLowGoalNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.TLowGoalNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.TLowGoalNUD.Location = new System.Drawing.Point(426, 298);
+            this.TLowGoalNUD.Location = new System.Drawing.Point(430, 298);
             this.TLowGoalNUD.Name = "TLowGoalNUD";
             this.TLowGoalNUD.Size = new System.Drawing.Size(122, 38);
             this.TLowGoalNUD.TabIndex = 26;
@@ -423,7 +438,7 @@
             this.groupBox1.Controls.Add(this.panel8);
             this.groupBox1.Controls.Add(this.panel9);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 17);
+            this.groupBox1.Location = new System.Drawing.Point(14, 19);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(366, 315);
             this.groupBox1.TabIndex = 34;
@@ -1003,7 +1018,7 @@
             this.TScaledTowerChkbx.Enabled = false;
             this.TScaledTowerChkbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.TScaledTowerChkbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TScaledTowerChkbx.Location = new System.Drawing.Point(393, 27);
+            this.TScaledTowerChkbx.Location = new System.Drawing.Point(397, 27);
             this.TScaledTowerChkbx.Name = "TScaledTowerChkbx";
             this.TScaledTowerChkbx.Size = new System.Drawing.Size(148, 27);
             this.TScaledTowerChkbx.TabIndex = 31;
@@ -1030,7 +1045,7 @@
             this.TChallengedTowerChkbx.Enabled = false;
             this.TChallengedTowerChkbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.TChallengedTowerChkbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(393, 53);
+            this.TChallengedTowerChkbx.Location = new System.Drawing.Point(397, 53);
             this.TChallengedTowerChkbx.Name = "TChallengedTowerChkbx";
             this.TChallengedTowerChkbx.Size = new System.Drawing.Size(188, 27);
             this.TChallengedTowerChkbx.TabIndex = 30;
@@ -1056,7 +1071,7 @@
             this.THighGoalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.THighGoalLbl.AutoSize = true;
             this.THighGoalLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.THighGoalLbl.Location = new System.Drawing.Point(421, 143);
+            this.THighGoalLbl.Location = new System.Drawing.Point(425, 143);
             this.THighGoalLbl.Name = "THighGoalLbl";
             this.THighGoalLbl.Size = new System.Drawing.Size(134, 31);
             this.THighGoalLbl.TabIndex = 29;
@@ -1066,7 +1081,7 @@
             // 
             this.TCommentsLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.TCommentsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TCommentsLbl.Location = new System.Drawing.Point(5, 334);
+            this.TCommentsLbl.Location = new System.Drawing.Point(5, 338);
             this.TCommentsLbl.Name = "TCommentsLbl";
             this.TCommentsLbl.Size = new System.Drawing.Size(149, 30);
             this.TCommentsLbl.TabIndex = 23;
@@ -1076,7 +1091,7 @@
             // 
             this.THighGoalNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.THighGoalNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.THighGoalNUD.Location = new System.Drawing.Point(426, 176);
+            this.THighGoalNUD.Location = new System.Drawing.Point(430, 176);
             this.THighGoalNUD.Name = "THighGoalNUD";
             this.THighGoalNUD.Size = new System.Drawing.Size(122, 38);
             this.THighGoalNUD.TabIndex = 28;
@@ -1087,10 +1102,10 @@
             this.TCommentsTxtbx.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TCommentsTxtbx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TCommentsTxtbx.Location = new System.Drawing.Point(10, 367);
+            this.TCommentsTxtbx.Location = new System.Drawing.Point(10, 371);
             this.TCommentsTxtbx.Multiline = true;
             this.TCommentsTxtbx.Name = "TCommentsTxtbx";
-            this.TCommentsTxtbx.Size = new System.Drawing.Size(569, 109);
+            this.TCommentsTxtbx.Size = new System.Drawing.Size(573, 109);
             this.TCommentsTxtbx.TabIndex = 22;
             this.TCommentsTxtbx.TextChanged += new System.EventHandler(this.TCommentsTxtbx_TextChanged);
             // 
@@ -1104,9 +1119,9 @@
             this.RDGroupBx.Controls.Add(this.RDCommentsLbl);
             this.RDGroupBx.Controls.Add(this.RDComments);
             this.RDGroupBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RDGroupBx.Location = new System.Drawing.Point(795, 96);
+            this.RDGroupBx.Location = new System.Drawing.Point(797, 96);
             this.RDGroupBx.Name = "RDGroupBx";
-            this.RDGroupBx.Size = new System.Drawing.Size(145, 482);
+            this.RDGroupBx.Size = new System.Drawing.Size(145, 484);
             this.RDGroupBx.TabIndex = 6;
             this.RDGroupBx.TabStop = false;
             this.RDGroupBx.Text = "     ";
@@ -1181,7 +1196,7 @@
             this.RDComments.Location = new System.Drawing.Point(3, 108);
             this.RDComments.Multiline = true;
             this.RDComments.Name = "RDComments";
-            this.RDComments.Size = new System.Drawing.Size(138, 368);
+            this.RDComments.Size = new System.Drawing.Size(138, 372);
             this.RDComments.TabIndex = 23;
             this.RDComments.TextChanged += new System.EventHandler(this.RDComments_TextChanged);
             // 
@@ -1191,9 +1206,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.HPGroupBx.Controls.Add(this.HPCommentsTxtbx);
             this.HPGroupBx.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HPGroupBx.Location = new System.Drawing.Point(599, 92);
+            this.HPGroupBx.Location = new System.Drawing.Point(601, 92);
             this.HPGroupBx.Name = "HPGroupBx";
-            this.HPGroupBx.Size = new System.Drawing.Size(192, 486);
+            this.HPGroupBx.Size = new System.Drawing.Size(192, 488);
             this.HPGroupBx.TabIndex = 7;
             this.HPGroupBx.TabStop = false;
             this.HPGroupBx.Text = "Human Player";
@@ -1206,12 +1221,14 @@
             this.HPCommentsTxtbx.Location = new System.Drawing.Point(6, 26);
             this.HPCommentsTxtbx.Multiline = true;
             this.HPCommentsTxtbx.Name = "HPCommentsTxtbx";
-            this.HPCommentsTxtbx.Size = new System.Drawing.Size(180, 454);
+            this.HPCommentsTxtbx.Size = new System.Drawing.Size(180, 458);
             this.HPCommentsTxtbx.TabIndex = 1;
             this.HPCommentsTxtbx.TextChanged += new System.EventHandler(this.HPCommentsTxtbx_TextChanged);
             // 
             // AllianceBtnPnl
             // 
+            this.AllianceBtnPnl.BackColor = System.Drawing.Color.Transparent;
+            this.AllianceBtnPnl.BackgroundImage = global::MyScout.Properties.Resources.bg;
             this.AllianceBtnPnl.Controls.Add(this.button1);
             this.AllianceBtnPnl.Controls.Add(this.BackBtn);
             this.AllianceBtnPnl.Controls.Add(this.RedAllianceBtn1);
@@ -1355,23 +1372,13 @@
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
             this.BlueAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
-            // button2
-            // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(5, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(233, 59);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "&Save Event";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // MainFrm
             // 
             this.AcceptButton = this.AddEventBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = global::MyScout.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(1102, 590);
             this.Controls.Add(this.TeamPnl);
             this.Controls.Add(this.EventPnl);

@@ -88,8 +88,7 @@ namespace MyScout
             dataset.Add(new List<DataPoint>());
             dataset.Add(new List<DataPoint>());
             dataset.Add(new List<DataPoint>());
-            dataset[0].Add(new DataPoint("Name", typeof(string)));              //The team's name.
-            dataset[0].Add(new DataPoint("ID", typeof(int)));                   //The team's ID (I.E. 1094)
+            
             dataset[0].Add(new DataPoint("Score", typeof(int)));                //The team's score.
             dataset[0].Add(new DataPoint("CanCross", typeof(List<bool>)));      //A list of values defining whether or not the team claims they can cross a defense for each of the 9 defenses.
             dataset[0].Add(new DataPoint("CanHighGoal", typeof(bool)));         //Whether or not the team claims they can shoot boulders into the high goal.

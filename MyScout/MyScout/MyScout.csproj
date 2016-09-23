@@ -145,6 +145,8 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\Marble.jpg" />
+    <None Include="Resources\bg.png" />
     <None Include="Resources\4268223207_e8802fa3e1_b[1].jpg" />
     <None Include="Resources\IMG_0572.JPG" />
     <None Include="Resources\backbtn.png" />
