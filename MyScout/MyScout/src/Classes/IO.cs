@@ -204,9 +204,10 @@ namespace MyScout
 
                         tokens.Add(team.id);
                         tokens.Add(team.name);
-                        for(int i = 2; i < team.GetTeamSpecificDataset().Count; i++)
+                        for(int i = 0; i < team.GetTeamSpecificDataset().Count; i++)
                         {
-                            tokens.Add(team.GetTeamSpecificDataset()[i].GetValue()); //Write team specific data to tokens
+                            List<DataPoint> datatokens = team.GetTeamSpecificDataset();
+                            tokens.Add(datatokens[i].GetValue()); //Write team specific data to tokens
                         }
 
                         //Write team specific data to xml
