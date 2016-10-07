@@ -7,7 +7,11 @@ namespace MyScout
     static class TokenizeStringHandler
     {
         /// <summary>
-        /// Converts a list of objects into a single comma-separated string
+        /// Converts a list of objects into a single comma-separated string.
+        /// Everything has toString() called on it, but
+        /// Lists become ls(type){item|item}
+        /// 
+        /// types are int = i, bool = b
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -21,7 +25,7 @@ namespace MyScout
                 {
                     string str = "";
                     List<int> objlist = (List<int>)obj;
-                    str += "ls(int){";
+                    str += "ls(i){";
                     foreach (int e in objlist)
                     {
                         str += e.ToString();
@@ -34,7 +38,7 @@ namespace MyScout
                 {
                     string str = "";
                     List<bool> objlist = (List<bool>)obj;
-                    str += "ls(bool){";
+                    str += "ls(b){";
                     foreach (bool e in objlist)
                     {
                         str += e.ToString();
@@ -85,25 +89,27 @@ namespace MyScout
                 else if (s.StartsWith("ls")) //if there's a list
                 {
                     string clean = s.Replace("ls","");
-                    if (clean.StartsWith("(int)"))
+                    if (clean.StartsWith("(i)"))
                     {
                         List<int> outlist = new List<int>();
 
-                        clean = clean.Replace("(int){", "").Replace("}", "");
+                        clean = clean.Replace("(i){", "").Replace("}", "");
                         foreach(string str in clean.Split('|'))
                         {
-                            outlist.Add(int.Parse(str));
+                            if (clean != "") //If there's actually something to parse
+                                outlist.Add(int.Parse(str));
                         }
                         output.Add(outlist);
                     }
-                    else if (clean.StartsWith("(bool)"))
+                    else if (clean.StartsWith("(b)"))
                     {
                         List<bool> outlist = new List<bool>();
 
-                        clean = clean.Replace("(bool){", "").Replace("}", "");
+                        clean = clean.Replace("(b){", "").Replace("}", "");
                         foreach (string str in clean.Split('|'))
                         {
-                            outlist.Add(bool.Parse(str));
+                            if(clean != "") //If there's actually something to parse
+                                outlist.Add(bool.Parse(str));
                         }
                         output.Add(outlist);
                     }

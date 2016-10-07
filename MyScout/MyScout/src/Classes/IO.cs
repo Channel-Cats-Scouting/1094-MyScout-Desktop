@@ -32,8 +32,9 @@ namespace MyScout
         /// <param name="eventid">The ID of the XML file to load.</param>
         public static void LoadEvent(int eventid)
         {
-            try
-            {
+            //TODO: undo try commenting
+            //try
+            //{
                 if (File.Exists(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
                 {
                     using (XmlReader reader = XmlReader.Create(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
@@ -57,9 +58,9 @@ namespace MyScout
 
                                 //The first two tokens are team id and name
                                 Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString()); 
-                                for(int j = 0; j < tokens.Count; j++)
+                                for(int j = 2; j < tokens.Count; j++)
                                 {
-                                    team.GetTeamSpecificDataset()[j].SetValue(tokens[j + 2]);
+                                    team.GetTeamSpecificDataset()[j - 2].SetValue(tokens[j]);
                                 }
 
                                 Program.events[Program.events.Count - 1].teams.Add(team);
@@ -70,7 +71,7 @@ namespace MyScout
 
                             reader.ReadStartElement("Rounds");
                             Program.events[Program.events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
-                            List<object> AllianceScores = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AllianceScoreTokens"));
+                            //List<object> AllianceScores = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AllianceScoreTokens"));
                             //Round.score = new int[2] { Convert.ToInt32(AllianceScores[0]), Convert.ToInt32(AllianceScores[1]) };
 
                             count = Convert.ToInt32(reader.ReadElementString("Count"));
@@ -136,11 +137,11 @@ namespace MyScout
                         reader.ReadEndElement();
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
         #endregion
 
