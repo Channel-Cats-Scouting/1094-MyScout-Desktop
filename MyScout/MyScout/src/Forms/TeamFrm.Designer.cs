@@ -47,14 +47,15 @@
             // 
             // MainLbl
             // 
+            this.MainLbl.BackColor = System.Drawing.Color.Transparent;
             this.MainLbl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainLbl.Font = new System.Drawing.Font("Segoe UI", 22F);
             this.MainLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.MainLbl.Image = global::MyScout.Properties.Resources.bg;
             this.MainLbl.Location = new System.Drawing.Point(0, 0);
-            this.MainLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MainLbl.Name = "MainLbl";
-            this.MainLbl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 31);
-            this.MainLbl.Size = new System.Drawing.Size(726, 125);
+            this.MainLbl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
+            this.MainLbl.Size = new System.Drawing.Size(484, 81);
             this.MainLbl.TabIndex = 0;
             this.MainLbl.Text = "Choose a Team";
             this.MainLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -65,17 +66,15 @@
             this.LblPnl.Controls.Add(this.MainLbl);
             this.LblPnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.LblPnl.Location = new System.Drawing.Point(0, 0);
-            this.LblPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LblPnl.Name = "LblPnl";
-            this.LblPnl.Size = new System.Drawing.Size(726, 125);
+            this.LblPnl.Size = new System.Drawing.Size(484, 81);
             this.LblPnl.TabIndex = 1;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 86);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox1.Location = new System.Drawing.Point(10, 56);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(696, 26);
+            this.textBox1.Size = new System.Drawing.Size(465, 20);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -84,10 +83,9 @@
             this.MainPnl.Controls.Add(this.TeamList);
             this.MainPnl.Controls.Add(this.BtnPnl);
             this.MainPnl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPnl.Location = new System.Drawing.Point(0, 125);
-            this.MainPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MainPnl.Location = new System.Drawing.Point(0, 81);
             this.MainPnl.Name = "MainPnl";
-            this.MainPnl.Size = new System.Drawing.Size(726, 329);
+            this.MainPnl.Size = new System.Drawing.Size(484, 214);
             this.MainPnl.TabIndex = 2;
             // 
             // TeamList
@@ -98,10 +96,9 @@
             this.TeamList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TeamList.FullRowSelect = true;
             this.TeamList.Location = new System.Drawing.Point(0, 0);
-            this.TeamList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TeamList.MultiSelect = false;
             this.TeamList.Name = "TeamList";
-            this.TeamList.Size = new System.Drawing.Size(726, 249);
+            this.TeamList.Size = new System.Drawing.Size(484, 162);
             this.TeamList.TabIndex = 1;
             this.TeamList.UseCompatibleStateImageBehavior = false;
             this.TeamList.View = System.Windows.Forms.View.Details;
@@ -118,23 +115,23 @@
             // 
             // BtnPnl
             // 
+            this.BtnPnl.BackColor = System.Drawing.Color.Transparent;
+            this.BtnPnl.BackgroundImage = global::MyScout.Properties.Resources.bg;
             this.BtnPnl.Controls.Add(this.SelectTeamButton);
             this.BtnPnl.Controls.Add(this.EditTeamBtn);
             this.BtnPnl.Controls.Add(this.RemoveTeamBtn);
             this.BtnPnl.Controls.Add(this.AddTeamBtn);
             this.BtnPnl.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.BtnPnl.Location = new System.Drawing.Point(0, 249);
-            this.BtnPnl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BtnPnl.Location = new System.Drawing.Point(0, 162);
             this.BtnPnl.Name = "BtnPnl";
-            this.BtnPnl.Size = new System.Drawing.Size(726, 80);
+            this.BtnPnl.Size = new System.Drawing.Size(484, 52);
             this.BtnPnl.TabIndex = 0;
             // 
             // SelectTeamButton
             // 
-            this.SelectTeamButton.Location = new System.Drawing.Point(368, 5);
-            this.SelectTeamButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SelectTeamButton.Location = new System.Drawing.Point(245, 3);
             this.SelectTeamButton.Name = "SelectTeamButton";
-            this.SelectTeamButton.Size = new System.Drawing.Size(170, 71);
+            this.SelectTeamButton.Size = new System.Drawing.Size(113, 46);
             this.SelectTeamButton.TabIndex = 4;
             this.SelectTeamButton.Text = "&Select Team";
             this.SelectTeamButton.UseVisualStyleBackColor = true;
@@ -143,10 +140,9 @@
             // EditTeamBtn
             // 
             this.EditTeamBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.EditTeamBtn.Location = new System.Drawing.Point(186, 5);
-            this.EditTeamBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EditTeamBtn.Location = new System.Drawing.Point(124, 3);
             this.EditTeamBtn.Name = "EditTeamBtn";
-            this.EditTeamBtn.Size = new System.Drawing.Size(170, 71);
+            this.EditTeamBtn.Size = new System.Drawing.Size(113, 46);
             this.EditTeamBtn.TabIndex = 3;
             this.EditTeamBtn.Text = "&Edit Team";
             this.EditTeamBtn.UseVisualStyleBackColor = true;
@@ -155,10 +151,9 @@
             // RemoveTeamBtn
             // 
             this.RemoveTeamBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.RemoveTeamBtn.Location = new System.Drawing.Point(4, 5);
-            this.RemoveTeamBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoveTeamBtn.Location = new System.Drawing.Point(3, 3);
             this.RemoveTeamBtn.Name = "RemoveTeamBtn";
-            this.RemoveTeamBtn.Size = new System.Drawing.Size(170, 71);
+            this.RemoveTeamBtn.Size = new System.Drawing.Size(113, 46);
             this.RemoveTeamBtn.TabIndex = 2;
             this.RemoveTeamBtn.Text = "&Remove Team";
             this.RemoveTeamBtn.UseVisualStyleBackColor = true;
@@ -167,10 +162,9 @@
             // AddTeamBtn
             // 
             this.AddTeamBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.AddTeamBtn.Location = new System.Drawing.Point(550, 5);
-            this.AddTeamBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AddTeamBtn.Location = new System.Drawing.Point(367, 3);
             this.AddTeamBtn.Name = "AddTeamBtn";
-            this.AddTeamBtn.Size = new System.Drawing.Size(170, 71);
+            this.AddTeamBtn.Size = new System.Drawing.Size(113, 46);
             this.AddTeamBtn.TabIndex = 0;
             this.AddTeamBtn.Text = "&Add Team";
             this.AddTeamBtn.UseVisualStyleBackColor = true;
@@ -179,13 +173,13 @@
             // TeamFrm
             // 
             this.AcceptButton = this.AddTeamBtn;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(726, 454);
+            this.BackgroundImage = global::MyScout.Properties.Resources.bg;
+            this.ClientSize = new System.Drawing.Size(484, 295);
             this.Controls.Add(this.MainPnl);
             this.Controls.Add(this.LblPnl);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TeamFrm";

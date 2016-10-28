@@ -33,8 +33,8 @@ namespace MyScout
         public static void LoadEvent(int eventid)
         {
             //TODO: undo try commenting
-            //try
-            //{
+            try
+            {
                 if (File.Exists(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
                 {
                     using (XmlReader reader = XmlReader.Create(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
@@ -137,11 +137,11 @@ namespace MyScout
                         reader.ReadEndElement();
                     }
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 

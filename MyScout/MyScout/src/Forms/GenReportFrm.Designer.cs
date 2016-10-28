@@ -144,6 +144,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = global::MyScout.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(635, 419);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addButton);
