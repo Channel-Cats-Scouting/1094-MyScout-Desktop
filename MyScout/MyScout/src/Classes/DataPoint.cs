@@ -23,19 +23,17 @@ namespace MyScout
         /// </summary>
         private object value = null;
         /// <summary>
+        /// The script for compiling a score datapoint.
+        /// </summary>
+        private string script = "";
+        /// <summary>
         /// The amount of points this datapoint is worth
         /// </summary>
         private float pointValue = 0;
         /// <summary>
         /// The type of data this datapoint contains.
         /// </summary>
-        public Type type
-        {
-            get
-            {
-                return value.GetType();
-            }
-        }
+        public Type datatype = null;
         private readonly Type Type;
         #endregion
 
@@ -78,6 +76,7 @@ namespace MyScout
         {
             publicName = name;
             value = defaultvalues[type];
+            datatype = type;
         }
 
         /// <summary>
@@ -86,7 +85,7 @@ namespace MyScout
         /// <returns>The type of the given piece of data.</returns>
         public Type GetDataType()
         {
-            return type;
+            return datatype;
         }
 
         /// <summary>
@@ -174,6 +173,24 @@ namespace MyScout
         public void SetPointValue(float pointvalue)
         {
             pointValue = pointvalue;
+        }
+
+        /// <summary>
+        /// Gets the script for compiling score. Only used for compiling datapoints.
+        /// </summary>
+        /// <returns></returns>
+        public string GetScript()
+        {
+            return script;
+        }
+
+        /// <summary>
+        /// Sets the script for compiling score. Only used for compiling datapoints.
+        /// </summary>
+        /// <returns></returns>
+        public void SetScript(string s)
+        {
+            script = s;
         }
     }
 }

@@ -45,6 +45,8 @@ namespace MyScout
         {
             InitializeComponent();
             defensepnls = new Panel[9] { panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9 };
+            EventList.Enabled = AddEventBtn.Enabled = RemoveEventBtn.Enabled = EditEventBtn.Enabled = false;
+            MngGamesBtn.Select();
         }
 
         #region GUI-related functions
@@ -82,7 +84,7 @@ namespace MyScout
             EventList.Items.Clear();
             foreach (Event e in Program.events)
             {
-                EventList.Items.Add(new ListViewItem(new string[] { e.name, e.begindate, e.enddate }));
+                EventList.Items.Add(new ListViewItem(new string[] { e.name, e.datasetname, e.begindate, e.enddate }));
             }
         }
 
@@ -171,8 +173,18 @@ namespace MyScout
 
                     if (Program.selectedteam != -1 && Program.selectedteamroundindex == i) { btn.FlatAppearance.BorderSize = 1; MainPnl.Visible = true; }
                     else { btn.FlatAppearance.BorderSize = 0; }
-                    btn.Tag = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? null : (object)Program.events[Program.currentevent].rounds[Program.currentround].teams[i];
-                    btn.Text = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? "----" : Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]].id.ToString();
+
+                    //TODO rounds is sometimes 0 when it should be larger. This is just basically circumvented. Fix this later.
+                    try
+                    {
+                        btn.Tag = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? null : (object)Program.events[Program.currentevent].rounds[Program.currentround].teams[i];
+                        btn.Text = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? "----" : Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]].id.ToString();
+                    }
+                    catch
+                    {
+                        btn.Tag = null;
+                        btn.Text = "----";
+                    }
                 }
             }
 
@@ -201,6 +213,15 @@ namespace MyScout
             else
             {
                 new Thread(new ThreadStart(IO.LoadAllEvents)).Start();
+            }
+
+            if (!Directory.Exists(Application.StartupPath + "\\Datasets"))
+            {
+                Directory.CreateDirectory(Application.StartupPath + "\\Datasets");
+            }
+            else
+            {
+                new Thread(new ThreadStart(IO.LoadDefaultDataset)).Start();
             }
         }
 
@@ -402,7 +423,7 @@ namespace MyScout
 
             if (adddataFrm.ShowDialog() == DialogResult.OK)
             {
-                Program.events.Add(new Event(adddataFrm.textBox1.Text, adddataFrm.textBox2.Text, adddataFrm.textBox3.Text));
+                Program.events.Add(new Event(adddataFrm.textBox1.Text, adddataFrm.textBox2.Text, adddataFrm.textBox3.Text, Program.datasetName));
                 RefreshEventList();
             }
         }
@@ -731,6 +752,21 @@ namespace MyScout
         {
             IO.SaveEvent(Program.currentevent);
             Program.saved = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            GameSelectFrm gameSelectFrm = new GameSelectFrm();
+            if(gameSelectFrm.ShowDialog() == DialogResult.OK)
+            {
+                EventList.Enabled = AddEventBtn.Enabled = RemoveEventBtn.Enabled = EditEventBtn.Enabled = true;
+                GameDataWarning.Enabled = GameDataWarning.Visible = false;
+                GameNameLbl.Text = "Game:\r\n" + Program.datasetName;
+
+                //Reload all the events
+                Program.events.Clear();
+                IO.LoadAllEvents();
+            }
         }
     }
 }

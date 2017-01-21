@@ -1,0 +1,40 @@
+<gamedata>
+	<version>3.5</version>
+	<name>2017 FIRST SteamWorks</name>
+	<desc>A more general take, not always specific, since it's hard to count fuel.</desc>
+	<dataset>
+		<teamamnt>4</teamamnt>
+		<teamdata>
+			<datapoint>Score:int</datapoint>
+			<datapoint>CanLowGoal:bool</datapoint>
+			<datapoint>CanHighGoal:bool</datapoint>
+			<datapoint>MaxCarried:int</datapoint>
+		</teamdata>
+		<roundamnt>9</roundamnt>
+		<rounddata>
+			<datapoint>AutoLowGoals:int</datapoint>
+			<datapoint>AutoHighGoals:int</datapoint>
+			<datapoint>AutoGears:int</datapoint>
+			<datapoint>LowGoals:int</datapoint>
+			<datapoint>HighGoalAccuracy:int</datapoint>
+			<datapoint>HighGoalsCountable:bool</datapoint>
+			<datapoint>HighGoals:int</datapoint>
+			<datapoint>GearsDelivered:int</datapoint>
+			<datapoint>RopeClimbed:bool</datapoint>
+		</rounddata>
+		<compamnt>4</compamnt>
+		<compdata>
+			<datapoint>TotalLowGoals:int</datapoint>
+			<datapoint>AvgAccuracy:int</datapoint>
+			<datapoint>TotalGears:int</datapoint>
+			<datapoint>RopesClimbed:int</datapoint>
+		</compdata>
+		<execamnt>4</execamnt>
+		<exec>
+			<func>[total]{LowGoals}</func>
+			<func>[avg]{HighGoalAccuracy}</func>
+			<func>[total]{GearsDelivered}</func>
+			<func>[total]{RopeClimbed}</func>
+		</exec>
+	</dataset>
+</gamedata>

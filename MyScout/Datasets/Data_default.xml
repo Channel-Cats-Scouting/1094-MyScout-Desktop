@@ -1,0 +1,19 @@
+<gamedata>
+	<version>3.5</version>
+	<name>Default 2017</name>
+	<desc>A bare-bones default data template. Not recommended for playing</desc>
+	<dataset>
+		<teamamnt>0</teamamnt>
+		<teamdata>
+		</teamdata>
+		<roundamnt>0</roundamnt>
+		<rounddata>
+		</rounddata>
+		<compamnt>0</compamnt>
+		<compdata>
+		</compdata>
+		<execamnt>0</execamnt>
+		<exec>
+		</exec>
+	</dataset>
+</gamedata>

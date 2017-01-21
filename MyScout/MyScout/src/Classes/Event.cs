@@ -20,6 +20,10 @@ namespace MyScout
         /// The date the event ends on (E.G. March 12th).
         /// </summary>
         public string enddate   = $"{DateTime.Now.Month.ToString()}/{DateTime.Now.Day.ToString()}/{DateTime.Now.Year.ToString()}";
+        /// <summary>
+        /// The name of the dataset/game that the event was created with.
+        /// </summary>
+        public string datasetname = "";
 
         /// <summary>
         /// The teams attending the event.
@@ -34,6 +38,6 @@ namespace MyScout
         /// </summary>
         public int lastviewedround = -1;
 
-        public Event(string name, string begindate, string enddate) { this.name = name; this.begindate = begindate; this.enddate = enddate; }
+        public Event(string name, string begindate, string enddate, string datasetname) { this.name = name; this.begindate = begindate; this.enddate = enddate; this.datasetname = datasetname; }
     }
 }

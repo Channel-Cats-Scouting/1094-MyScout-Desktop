@@ -4,14 +4,12 @@ using System.Linq;
 
 namespace MyScout
 {
-    static class TokenizeStringHandler
+    static class Tokenizer
     {
         /// <summary>
         /// Converts a list of objects into a single comma-separated string.
         /// Everything has toString() called on it, but
         /// Lists become ls(type){item|item}
-        /// 
-        /// types are int = i, bool = b
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -25,7 +23,7 @@ namespace MyScout
                 {
                     string str = "";
                     List<int> objlist = (List<int>)obj;
-                    str += "ls(i){";
+                    str += "ls(int){";
                     foreach (int e in objlist)
                     {
                         str += e.ToString();
@@ -38,7 +36,7 @@ namespace MyScout
                 {
                     string str = "";
                     List<bool> objlist = (List<bool>)obj;
-                    str += "ls(b){";
+                    str += "ls(bool){";
                     foreach (bool e in objlist)
                     {
                         str += e.ToString();
@@ -89,11 +87,11 @@ namespace MyScout
                 else if (s.StartsWith("ls")) //if there's a list
                 {
                     string clean = s.Replace("ls","");
-                    if (clean.StartsWith("(i)"))
+                    if (clean.StartsWith("(int)"))
                     {
                         List<int> outlist = new List<int>();
 
-                        clean = clean.Replace("(i){", "").Replace("}", "");
+                        clean = clean.Replace("(int){", "").Replace("}", "");
                         foreach(string str in clean.Split('|'))
                         {
                             if (clean != "") //If there's actually something to parse
@@ -101,11 +99,11 @@ namespace MyScout
                         }
                         output.Add(outlist);
                     }
-                    else if (clean.StartsWith("(b)"))
+                    else if (clean.StartsWith("(bool)"))
                     {
                         List<bool> outlist = new List<bool>();
 
-                        clean = clean.Replace("(b){", "").Replace("}", "");
+                        clean = clean.Replace("(bool){", "").Replace("}", "");
                         foreach (string str in clean.Split('|'))
                         {
                             if(clean != "") //If there's actually something to parse
@@ -153,6 +151,49 @@ namespace MyScout
                 output = false;
             }
             return output;
+        }
+
+        public static Type getTypeFromString(string typestring)
+        {
+            Type output = typeof(int);
+            switch(typestring)
+            {
+                case "int":
+                    output = typeof(int);
+                    break;
+                case "float":
+                    output = typeof(float);
+                    break;
+                case "bool":
+                    output = typeof(bool);
+                    break;
+                case "string":
+                    output = typeof(string);
+                    break;
+            }
+            return output;
+        }
+
+        public static string getStringFromType(Type T)
+        {
+            Type output = typeof(int);
+            if(T.Equals(typeof(int)))
+            {
+                return "int";
+            }
+            else if(T.Equals(typeof(float)))
+            {
+                return "float";
+            }
+            else if(T.Equals(typeof(bool)))
+            {
+                return "bool";
+            }
+            else if(T.Equals(typeof(string)))
+            {
+                return "string";
+            }
+            return "";
         }
     }
 }

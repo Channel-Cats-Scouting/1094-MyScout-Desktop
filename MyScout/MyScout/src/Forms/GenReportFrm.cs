@@ -105,6 +105,7 @@ namespace MyScout
 
         private void button1_Click(object sender, EventArgs e)
         {
+            IO.SaveDataToTeams();
             DialogResult = DialogResult.OK;
             Close();
         }

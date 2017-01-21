@@ -13,6 +13,7 @@ namespace MyScout
         /// The current version of the application in string form.
         /// </summary>
         public static string versionstring = "3.5";
+        public static string datasetName = "";
         /// <summary>
         /// The path the program was started from.
         /// </summary>
@@ -40,7 +41,7 @@ namespace MyScout
         #region Scouting-related
         /// <summary>
         /// The data model to be referenced for saving/loading.
-        /// 0 is pre/team scouting, 1 is round scouting, and 2 is score-compiling
+        /// 0 is pre/team scouting, 1 is round scouting, and 2 is score-compiling variables. 3 is functions for totalling up team data into the score-compiling variables.
         /// </summary>
         public static List<List<DataPoint>> dataset;
         /// <summary>
@@ -83,12 +84,13 @@ namespace MyScout
             Application.SetCompatibleTextRenderingDefault(false);
 
             #region DataSet Initialization
-            //Pre/Team-related Scouting
+
             dataset = new List<List<DataPoint>>();
             dataset.Add(new List<DataPoint>());
             dataset.Add(new List<DataPoint>());
             dataset.Add(new List<DataPoint>());
-            
+
+            //Pre/Team-related Scouting
             dataset[0].Add(new DataPoint("Score", typeof(int)));                //The team's score.
             dataset[0].Add(new DataPoint("CanCross", typeof(List<bool>)));      //A list of values defining whether or not the team claims they can cross a defense for each of the 9 defenses.
             dataset[0].Add(new DataPoint("CanHighGoal", typeof(bool)));         //Whether or not the team claims they can shoot boulders into the high goal.

@@ -74,7 +74,8 @@
     <Compile Include="src\Classes\IndexedString.cs" />
     <Compile Include="src\Classes\Round.cs" />
     <Compile Include="src\Classes\Team.cs" />
-    <Compile Include="src\Classes\TokenizeStringHandler.cs" />
+    <Compile Include="src\Classes\Tokenizer.cs" />
+    <Compile Include="src\Classes\TotalsUtil.cs" />
     <Compile Include="src\Forms\AddDataFrm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<gamedata>
+    <version>3.5</version>
+    <name>2016 Game</name>
+    <desc>##DON'T LOAD THIS## A test of the dataset output. Check it out, this text is really long, haha. Please wrap this correctly...</desc>
+    <dataset>
+        <teamamnt>7</teamamnt>
+        <teamdata>
+            <datapoint>Score:System.Int32:int</datapoint>
+            <datapoint>CanCross:System.Collections.Generic.List`1[System.Boolean]:</datapoint>
+            <datapoint>CanHighGoal:System.Boolean:bool</datapoint>
+            <datapoint>CanLowGoal:System.Boolean:bool</datapoint>
+            <datapoint>FromFloor:System.Boolean:bool</datapoint>
+            <datapoint>FromHuman:System.Boolean:bool</datapoint>
+            <datapoint>Prefers:System.Int32:int</datapoint>
+        </teamdata>
+        <roundamnt>13</roundamnt>
+        <roundamnt>
+            <datapoint>TDefenses:</datapoint>
+            <datapoint>ADefenses:</datapoint>
+            <datapoint>ScaledTower:bool</datapoint>
+            <datapoint>OnBatters:bool</datapoint>
+            <datapoint>AHighGoal:bool</datapoint>
+            <datapoint>ALowGoal:bool</datapoint>
+            <datapoint>THighGoals:int</datapoint>
+            <datapoint>TLowGoals:int</datapoint>
+            <datapoint>Comments:</datapoint>
+            <datapoint>HComments:</datapoint>
+            <datapoint>Died:bool</datapoint>
+            <datapoint>DiedDefense:int</datapoint>
+            <datapoint>DComments:</datapoint>
+        </roundamnt>
+        <compamnt>9</compamnt>
+        <compamnt>
+            <datapoint>TDefTotals:</datapoint>
+            <datapoint>ADefTotals:</datapoint>
+            <datapoint>ScaledTotal:int</datapoint>
+            <datapoint>OnBattTotal:int</datapoint>
+            <datapoint>AHighTotal:int</datapoint>
+            <datapoint>ALowTotal:int</datapoint>
+            <datapoint>THighTotal:int</datapoint>
+            <datapoint>TLowGoals:int</datapoint>
+            <datapoint>DiedTotal:int</datapoint>
+        </compamnt>
+    </dataset>
+</gamedata>

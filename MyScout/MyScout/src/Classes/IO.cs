@@ -41,10 +41,19 @@ namespace MyScout
                     {
                         reader.ReadStartElement("Event");
                         string fileversionstring = reader.ReadElementString("Version");
+                        string filedataset = reader.ReadElementString("DataSet");
 
-                        if (fileversionstring == Program.versionstring || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+                        if(filedataset != Program.datasetName)
                         {
-                            Program.events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate")));
+                            return;
+                        }
+
+                        if (fileversionstring == Program.versionstring || 
+                            filedataset == Program.datasetName || 
+                            (filedataset != Program.datasetName && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) || 
+                            ((Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)))
+                        {
+                            Program.events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate"), filedataset));
                             Program.events[Program.events.Count - 1].rounds.Clear();
 
                             reader.ReadStartElement("Teams");
@@ -54,7 +63,7 @@ namespace MyScout
                             for (int i = 0; i < count; i++)
                             {
                                 reader.ReadStartElement("Team");
-                                List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
+                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
 
                                 //The first two tokens are team id and name
                                 Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString()); 
@@ -81,7 +90,7 @@ namespace MyScout
                                 Round round = new Round();
 
                                 reader.ReadStartElement("Teams"); //Load the teams for each round
-                                List<object> tokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
+                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
                                 for (int i2 = 0; i2 < 6; i2++)
                                 {
                                     round.teams[i2] = Convert.ToInt32(tokens[i2]);
@@ -91,7 +100,7 @@ namespace MyScout
                                 reader.ReadStartElement("DataSets");
                                 for(int j = 0; j < 6; j++)
                                 {
-                                    List<object> datatokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
+                                    List<object> datatokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
                                     for(int k = 0; k < Program.dataset.Count; k++)
                                     {
                                         round.dataset[j][k].SetValue(datatokens[k]);
@@ -137,11 +146,203 @@ namespace MyScout
                         reader.ReadEndElement();
                     }
                 }
-            }
+        }
             catch (Exception ex)
             {
                 MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        /// <summary>
+        /// Loads the default dataset
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <returns></returns>
+        public static void LoadDefaultDataset()
+        {
+            //TODO: undo try commenting
+            try
+            {
+                List<DataPoint> teamDataSet = new List<DataPoint>();
+                List<DataPoint> roundDataSet = new List<DataPoint>();
+                List<DataPoint> compDataSet = new List<DataPoint>();
+                List<DataPoint> execDataSet = new List<DataPoint>();
+                if (File.Exists(Application.StartupPath + "\\Datasets\\Data_default.xml"))
+                {
+                    using (XmlReader reader = XmlReader.Create(Application.StartupPath + "\\Datasets\\Data_default.xml"))
+                    {
+                        reader.ReadStartElement("gamedata");
+                        string fileversionstring = reader.ReadElementString("version");
+                        string name = reader.ReadElementString("name");
+                        string desc = reader.ReadElementString("desc");
+
+                        if (fileversionstring == Program.versionstring || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"The Dataset file {Application.StartupPath + "\\Datasets\\data_default.xml"} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+                        {
+                            reader.ReadStartElement("dataset");
+
+                            int teamAmnt = Convert.ToInt16(reader.ReadElementString("teamamnt"));
+                            reader.ReadStartElement("teamdata");
+                            for (int i = 0; i < teamAmnt; i++)
+                            {
+                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
+                                teamDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
+                            }
+                            reader.ReadEndElement();
+
+                            int roundAmnt = Convert.ToInt16(reader.ReadElementString("roundamnt"));
+                            reader.ReadStartElement("rounddata");
+                            for (int i = 0; i < roundAmnt; i++)
+                            {
+                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
+                                roundDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
+                            }
+                            reader.ReadEndElement();
+
+                            int compAmnt = Convert.ToInt16(reader.ReadElementString("compamnt"));
+                            reader.ReadStartElement("compdata");
+                            for (int i = 0; i < roundAmnt; i++)
+                            {
+                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
+                                compDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
+                            }
+                            reader.ReadEndElement();
+
+                            int execAmnt = Convert.ToInt16(reader.ReadElementString("execamnt"));
+                            reader.ReadStartElement("exec");
+                            for (int i = 0; i < execAmnt; i++)
+                            {
+                                reader.ReadElementString("func");
+                                execDataSet.Add(new DataPoint("exec" + i, typeof(string)));
+                            }
+                            reader.ReadEndElement();
+                            reader.ReadEndElement();
+                        }
+                        else { return; }
+                        reader.ReadEndElement();
+                    }
+                }
+
+                List<List<DataPoint>> newDataset = new List<List<DataPoint>>();
+                newDataset.Add(teamDataSet);
+                newDataset.Add(roundDataSet);
+                newDataset.Add(compDataSet);
+
+                Program.dataset = newDataset;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"File{Application.StartupPath + "\\Datasets\\Data_default.xml"} could not be loaded.\nMake sure to supply a default file with the name 'Data_default.xml' in {Application.StartupPath + "\\Datasets"}\n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return;
+        }
+
+        /// <summary>
+        /// Loats a Dataset xml file into the Program memory
+        /// </summary>
+        /// <param name="eventid"></param>
+        public static List<List<DataPoint>> LoadDatasetFromPath(string filepath)
+        {
+            //TODO: undo try commenting
+            try
+            {
+                List<DataPoint> teamDataSet = new List<DataPoint>();
+                List<DataPoint> roundDataSet = new List<DataPoint>();
+                List<DataPoint> compDataSet = new List<DataPoint>();
+                if (File.Exists(filepath))
+                {
+                    using (XmlReader reader = XmlReader.Create(filepath))
+                    {
+                        reader.ReadStartElement("gamedata");
+                        string fileversionstring = reader.ReadElementString("version");
+                        string name = reader.ReadElementString("name");
+                        string desc = reader.ReadElementString("desc");
+
+                        if (fileversionstring == Program.versionstring || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"The Dataset file {filepath} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+                        {
+                            reader.ReadStartElement("dataset");
+
+                            int teamAmnt = Convert.ToInt16(reader.ReadElementString("teamamnt"));
+                            reader.ReadStartElement("teamdata");
+                            for (int i = 0; i < teamAmnt; i++)
+                            {
+                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
+                                teamDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
+                            }
+                            reader.ReadEndElement();
+
+                            int roundAmnt = Convert.ToInt16(reader.ReadElementString("roundamnt"));
+                            reader.ReadStartElement("rounddata");
+                            for (int i = 0; i < roundAmnt; i++)
+                            {
+                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
+                                roundDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
+                            }
+                            reader.ReadEndElement();
+
+                            int compAmnt = Convert.ToInt16(reader.ReadElementString("compamnt"));
+                            reader.ReadStartElement("compdata");
+                            for (int i = 0; i < compAmnt; i++)
+                            {
+                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
+                                compDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
+                            }
+                            reader.ReadEndElement();
+
+                            int execAmnt = Convert.ToInt16(reader.ReadElementString("execamnt"));
+                            reader.ReadStartElement("exec");
+                            for(int i = 0; i < execAmnt; i++)
+                            {
+                                compDataSet[i].SetScript(reader.ReadElementString("func"));
+                            }
+                            reader.ReadEndElement();
+                            reader.ReadEndElement();
+                        }
+                        else { return null; }
+                        reader.ReadEndElement();
+                    }
+                }
+
+                List<List<DataPoint>> newDataset = new List<List<DataPoint>>();
+                newDataset.Add(teamDataSet);
+                newDataset.Add(roundDataSet);
+                newDataset.Add(compDataSet);
+
+                return newDataset;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"File {filepath} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Returns a string[] containing the name [0] and description [1] of the data file. Converts \n to line break
+        /// </summary>
+        /// <param name="fileid"></param>
+        /// <returns></returns>
+        public static string[] GetNameAndDescFromDataset(string filepath)
+        {
+            string[] output = new string[2];
+            if (File.Exists(filepath))
+            {
+                using (XmlReader reader = XmlReader.Create(filepath))
+                {
+                    reader.ReadStartElement("gamedata");
+                    string fileversionstring = reader.ReadElementString("version");
+                    string name = reader.ReadElementString("name");
+                    string desc = reader.ReadElementString("desc");
+
+                    output[0] = name;
+                    output[1] = desc;
+                }
+            }
+
+            return output;
         }
         #endregion
 
@@ -173,8 +374,8 @@ namespace MyScout
         /// <param name="eventid">The event to save as an XML file.</param>
         public static void SaveEvent(int eventid)
         {
-            try
-            {
+            //try
+            //{
                 if (File.Exists(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
                 {
                     File.Delete(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml");
@@ -190,6 +391,7 @@ namespace MyScout
                     writer.WriteStartDocument();
                     writer.WriteStartElement("Event");
                     writer.WriteElementString("Version", Program.versionstring);
+                    writer.WriteElementString("DataSet", Program.datasetName);
                     writer.WriteElementString("Name", Program.events[eventid].name);
                     writer.WriteElementString("BeginDate", Program.events[eventid].begindate);
                     writer.WriteElementString("EndDate", Program.events[eventid].enddate);
@@ -208,11 +410,12 @@ namespace MyScout
                         for(int i = 0; i < team.GetTeamSpecificDataset().Count; i++)
                         {
                             List<DataPoint> datatokens = team.GetTeamSpecificDataset();
-                            tokens.Add(datatokens[i].GetValue()); //Write team specific data to tokens
+                            var token = Convert.ChangeType(datatokens[i].GetValue(), datatokens[i].GetDataType());
+                            tokens.Add(token); //Write team specific data to tokens
                         }
 
                         //Write team specific data to xml
-                        writer.WriteElementString("TeamInfoTokens", TokenizeStringHandler.CreateTokenizedString(tokens));
+                        writer.WriteElementString("TeamInfoTokens", Tokenizer.CreateTokenizedString(tokens));
                         writer.WriteEndElement();
                     }
 
@@ -236,7 +439,7 @@ namespace MyScout
                             teams.Add(round.teams[i]); //Write teams to xml
                         }
 
-                        writer.WriteElementString("TeamTokens", TokenizeStringHandler.CreateTokenizedString(teams));
+                        writer.WriteElementString("TeamTokens", Tokenizer.CreateTokenizedString(teams));
                         writer.WriteEndElement();
 
                         writer.WriteStartElement("DataSets");
@@ -247,19 +450,76 @@ namespace MyScout
                             {
                                 tokens.Add(round.dataset[i][j].GetValue()); //Add the datapoint to the tokens list
                             }
-                            writer.WriteElementString("DataPoints" + i.ToString(), TokenizeStringHandler.CreateTokenizedString(tokens));
+                            writer.WriteElementString("DataPoints" + i.ToString(), Tokenizer.CreateTokenizedString(tokens));
                         }
                         writer.WriteEndElement();
+                        writer.WriteEndElement();
                     }
-
-                    writer.WriteEndElement();
+                    
                     writer.WriteEndElement();
 
                 }
-            }
-            catch (Exception ex)
+            //}
+            //catch (exception ex)
+            //{
+            //    messagebox.show($"event #{eventid.tostring()} could not be saved. \n\n{ex.message}", "myscout 2016", messageboxbuttons.ok, messageboxicon.error);
+            //}
+        }
+
+        public static void SaveDatasetTemplate(string fileid, string name, string description, List<List<DataPoint>> datasetIn)
+        {
+            if (File.Exists(Program.startuppath + "\\Datasets\\Data_" + fileid + ".xml"))
             {
-                MessageBox.Show($"Event #{eventid.ToString()} could not be saved. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                File.Delete(Program.startuppath + "\\Datasets\\Data_" + fileid + ".xml");
+            }
+            using (XmlTextWriter writer = new XmlTextWriter(Program.startuppath + "\\Datasets\\Data_" + fileid + ".xml", Encoding.ASCII))
+            {
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 4;
+
+                writer.WriteStartDocument();
+                writer.WriteStartElement("gamedata");
+                writer.WriteElementString("version", Program.versionstring);
+                writer.WriteElementString("name", name);
+                writer.WriteElementString("desc", description);
+
+                writer.WriteStartElement("dataset");
+
+                writer.WriteElementString("teamamnt", datasetIn[0].Count.ToString());
+                writer.WriteStartElement("teamdata");
+                for (int i = 0; i < datasetIn[0].Count; i++)
+                {
+                    List<object> tokens = new List<object>();
+                    tokens.Add(datasetIn[0][i].GetName());
+                    tokens.Add(datasetIn[0][i].GetDataType());
+                    tokens.Add(Tokenizer.getStringFromType(datasetIn[0][i].GetDataType()));
+                    writer.WriteElementString("datapoint", Tokenizer.CreateTokenizedString(tokens));
+                }
+                writer.WriteEndElement();
+
+                writer.WriteElementString("roundamnt", datasetIn[1].Count.ToString());
+                writer.WriteStartElement("roundamnt");
+                for (int i = 0; i < datasetIn[1].Count; i++)
+                {
+                    List<object> tokens = new List<object>();
+                    tokens.Add(datasetIn[1][i].GetName());
+                    tokens.Add(Tokenizer.getStringFromType(datasetIn[1][i].GetDataType()));
+                    writer.WriteElementString("datapoint", Tokenizer.CreateTokenizedString(tokens));
+                }
+                writer.WriteEndElement();
+
+                writer.WriteElementString("compamnt", datasetIn[2].Count.ToString());
+                writer.WriteStartElement("compamnt");
+                for (int i = 0; i < datasetIn[2].Count; i++)
+                {
+                    List<object> tokens = new List<object>();
+                    tokens.Add(datasetIn[2][i].GetName());
+                    tokens.Add(Tokenizer.getStringFromType(datasetIn[2][i].GetDataType()));
+                    writer.WriteElementString("datapoint", Tokenizer.CreateTokenizedString(tokens));
+                }
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.WriteEndElement();
             }
         }
 
@@ -271,102 +531,10 @@ namespace MyScout
             //for each team in the event
             for(int i = 0; i < Program.events[Program.currentevent].teams.Count; i++)
             {
-                Team team = Program.events[Program.currentevent].teams[i];
-                List<int> TOhighGoalsToAvg = new List<int>();
-                List<int> TOlowGoalsToAvg = new List<int>();
-                List<int> autoHighGoalsToAvg = new List<int>();
-                List<int> autoLowGoalsToAvg = new List<int>();
-
-                for(int j = 0; j < 9; j++)
+                for(int j = 0; j < Program.dataset[2].Count; j++)
                 {
-                    team.GetCompiledScoreDataset()[j].SetValueToInt();
+                    TotalsUtil.execFunction(i, j);
                 }
-
-                int iterations = 0;
-
-                //for each round in the event
-                foreach (Round r in Program.events[Program.currentevent].rounds)
-                {
-                    //for each team index in the round
-                    for(int j = 0; j < 5; j++)
-                    {
-                        //if the team index is the same as the round's team index
-                        if (r.teams[j] == i)
-                        {
-
-                            //For each item in the team's dataset
-                            for(int k = 0; k < team.GetTeamSpecificDataset().Count; k++)
-                            {
-
-                                if (r.dataset[i][k].type == typeof(bool)) //If the data is a boolean type
-                                {
-                                    team.GetCompiledScoreDataset()[k].IncrementValue(); //...increment the corresponding count
-                                }
-                                else if (r.dataset[i][k].type == typeof(int)) //If the data is an int type
-                                {
-                                    team.GetCompiledScoreDataset()[k].IncrementValue((int)r.dataset[i][k].GetValue()); //...add the int to the corresponding count
-                                }
-                            }
-
-                            #region deprecated_code
-                            ////Add to the DefensesCrossed total
-                            //team.defensesCrossed[0] += r.defenses[j, 0].TOtimescrossed;
-                            //team.defensesCrossed[1] += r.defenses[j, 1].TOtimescrossed;
-                            //team.defensesCrossed[2] += r.defenses[j, 2].TOtimescrossed;
-                            //team.defensesCrossed[3] += r.defenses[j, 7].TOtimescrossed;
-                            //team.defensesCrossed[4] += r.defenses[j, 8].TOtimescrossed;
-                            //team.defensesCrossed[5] += r.defenses[j, 3].TOtimescrossed;
-                            //team.defensesCrossed[6] += r.defenses[j, 4].TOtimescrossed;
-                            //team.defensesCrossed[7] += r.defenses[j, 5].TOtimescrossed;
-                            //team.defensesCrossed[8] += r.defenses[j, 6].TOtimescrossed;
-
-                            ////Add to the DefensesCrossed total
-                            //team.autoDefensesCrossed[0] += r.defenses[j, 0].AOcrossed ? 1 : 0;
-                            //team.autoDefensesCrossed[1] += r.defenses[j, 1].AOcrossed ? 1 : 0;
-                            //team.autoDefensesCrossed[2] += r.defenses[j, 2].AOcrossed ? 1 : 0;
-                            //team.autoDefensesCrossed[3] += r.defenses[j, 7].AOcrossed ? 1 : 0;
-                            //team.autoDefensesCrossed[4] += r.defenses[j, 8].AOcrossed ? 1 : 0;
-                            //team.autoDefensesCrossed[5] += r.defenses[j, 3].AOcrossed ? 1 : 0;
-                            //team.autoDefensesCrossed[6] += r.defenses[j, 4].AOcrossed ? 1 : 0;
-                            //team.autoDefensesCrossed[7] += r.defenses[j, 5].AOcrossed ? 1 : 0;
-                            //team.autoDefensesCrossed[8] += r.defenses[j, 6].AOcrossed ? 1 : 0;
-
-                            ////TODO: rearrange MainFrm to mimic the internal team data List order because it's a pain to type out all this code
-
-                            ////Add to the team's smart defense ability list, requested by Yishai
-                            //for (int k = 0; k < 9; k++)
-                            //{
-                            //    team.smartDefensesCrossable[k] = team.defensesCrossed[k] > 0;
-                            //}
-
-
-                            //team.updateDefenseStats();
-
-                            //for(int k = 0; k < 9; k++)
-                            //{
-                            //    team.autoDefensesReached += r.defenses[j, k].AOreached ? 1 : 0;
-                            //}
-
-                            //team.teleHighGoals += r.TOhighgoalcount[j];
-                            //team.teleLowGoals += r.TOlowgoalcount[j];
-                            //team.autoHighGoals += r.AOhighgoalcount[j];
-                            //team.autoLowGoals += r.AOlowgoalcount[j];
-
-                            ////Add to the death count
-                            //team.deathCount += r.died[j] ? 1 : 0;
-                            //if(r.died[j])
-                            //{
-                            //    team.deathDefenses[r.dieddefense[j]] += 1;
-                            //}
-
-                            //team.towersScaled += r.scaledtower[j] ? 1 : 0;
-                            //team.towersChallenged += r.challengedtower[j] ? 1 : 0;
-                            #endregion
-                        }
-                    }
-                }
-                
-                team.InitData();
             }
         }
 

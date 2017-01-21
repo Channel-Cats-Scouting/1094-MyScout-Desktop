@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<Event>
+    <Version>3.5</Version>
+    <DataSet>2017 FIRST SteamWorks</DataSet>
+    <Name>Test</Name>
+    <BeginDate>1/20/2017</BeginDate>
+    <EndDate>1/20/2017</EndDate>
+    <Teams>
+        <Count>0</Count>
+    </Teams>
+    <Rounds>
+        <Current>0</Current>
+        <Count>1</Count>
+        <Round>
+            <Teams>
+                <TeamTokens>-1:-1:-1:-1:-1:-1</TeamTokens>
+            </Teams>
+            <DataSets>
+                <DataPoints0>0:0:0:0:0:False:0:0:False</DataPoints0>
+                <DataPoints1>0:0:0:0:0:False:0:0:False</DataPoints1>
+                <DataPoints2>0:0:0:0:0:False:0:0:False</DataPoints2>
+                <DataPoints3>0:0:0:0:0:False:0:0:False</DataPoints3>
+                <DataPoints4>0:0:0:0:0:False:0:0:False</DataPoints4>
+                <DataPoints5>0:0:0:0:0:False:0:0:False</DataPoints5>
+            </DataSets>
+        </Round>
+    </Rounds>
+</Event>
