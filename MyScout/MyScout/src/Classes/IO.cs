@@ -18,7 +18,11 @@ namespace MyScout
         /// </summary>
         public static void LoadAllEvents()
         {
-            string[] files = Directory.GetFiles(Program.startuppath + "\\Events");
+            if(!Directory.Exists(Program.startuppath + "\\Events\\" + Program.datasetName))
+            {
+                Directory.CreateDirectory(Program.startuppath + "\\Events\\" + Program.datasetName);
+            }
+            string[] files = Directory.GetFiles(Program.startuppath + "\\Events\\" + Program.datasetName);
             for (int i = 0; i < files.Length; i++)
             {
                 LoadEvent(i);
@@ -35,9 +39,9 @@ namespace MyScout
             //TODO: undo try commenting
             try
             {
-                if (File.Exists(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+                if (File.Exists(Program.startuppath + "\\Events\\" + Program.datasetName + "\\Event" + eventid.ToString() + ".xml"))
                 {
-                    using (XmlReader reader = XmlReader.Create(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+                    using (XmlReader reader = XmlReader.Create(Program.startuppath + "\\Events\\" + Program.datasetName + "\\Event" + eventid.ToString() + ".xml"))
                     {
                         reader.ReadStartElement("Event");
                         string fileversionstring = reader.ReadElementString("Version");
@@ -48,11 +52,6 @@ namespace MyScout
                             return;
                         }
 
-                        if (fileversionstring == Program.versionstring || 
-                            filedataset == Program.datasetName || 
-                            (filedataset != Program.datasetName && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) || 
-                            ((Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)))
-                        {
                             Program.events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate"), filedataset));
                             Program.events[Program.events.Count - 1].rounds.Clear();
 
@@ -80,69 +79,35 @@ namespace MyScout
 
                             reader.ReadStartElement("Rounds");
                             Program.events[Program.events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
-                            //List<object> AllianceScores = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AllianceScoreTokens"));
-                            //Round.score = new int[2] { Convert.ToInt32(AllianceScores[0]), Convert.ToInt32(AllianceScores[1]) };
 
                             count = Convert.ToInt32(reader.ReadElementString("Count"));
-                            for (int i = 0; i < count; i++)
+                        for (int i = 0; i < count; i++)
+                        {
+                            reader.ReadStartElement("Round");
+                            Round round = new Round();
+
+                            reader.ReadStartElement("Teams"); //Load the teams for each round
+                            List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
+                            for (int i2 = 0; i2 < 6; i2++)
                             {
-                                reader.ReadStartElement("Round");
-                                Round round = new Round();
-
-                                reader.ReadStartElement("Teams"); //Load the teams for each round
-                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
-                                for (int i2 = 0; i2 < 6; i2++)
-                                {
-                                    round.teams[i2] = Convert.ToInt32(tokens[i2]);
-                                }
-                                reader.ReadEndElement();
-
-                                reader.ReadStartElement("DataSets");
-                                for(int j = 0; j < 6; j++)
-                                {
-                                    List<object> datatokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
-                                    for(int k = 0; k < Program.dataset.Count; k++)
-                                    {
-                                        round.dataset[j][k].SetValue(datatokens[k]);
-                                    }
-                                }
-
-                                //reader.ReadStartElement("Defenses");
-                                //for (int i2 = 0; i2 < 6; i2++)
-                                //{
-                                //    List<object> AOReachedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOReachedTokens"));
-                                //    List<object> AOCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOCrossedTokens"));
-                                //    List<object> TOCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOCrossedTokens"));
-
-                                //    for (int i3 = 0; i3 < 9; i3++)
-                                //    {
-                                //        round.defenses[i2, i3].AOreached      = (bool)AOReachedTokens[i3];
-                                //        round.defenses[i2, i3].AOcrossed      = (bool)AOCrossedTokens[i3];
-                                //        round.defenses[i2, i3].TOtimescrossed = (int)TOCrossedTokens[i3];
-                                //    }
-                                //}
-                                //reader.ReadEndElement();
-
-                                //round.scaledtower = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOScaledTokens")).Cast<bool>().ToArray();
-                                //round.challengedtower = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOChallengedTokens")).Cast<bool>().ToArray();
-                                //round.AOhighgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOHighGoalTokens")).Cast<int>().ToArray();
-                                //round.AOlowgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOLowGoalTokens")).Cast<int>().ToArray();
-                                //round.TOhighgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOHighGoalTokens")).Cast<int>().ToArray();
-                                //round.TOlowgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOLowGoalTokens")).Cast<int>().ToArray();
-
-                                //round.comments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("CommentTokens")).Cast<string>().ToArray();
-                                //round.humancomments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("HumanCommentTokens")).Cast<string>().ToArray();
-                                //round.died = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedTokens")).Cast<bool>().ToArray();
-                                //round.dieddefense = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedDefenseTokens")).Cast<int>().ToArray();
-                                //round.diedcomments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedCommentTokens")).Cast<string>().ToArray();
-
-                                Program.events[Program.events.Count - 1].rounds.Add(round); //Add the round we just made to the round list.
-                                reader.ReadEndElement();
+                                round.teams[i2] = Convert.ToInt32(tokens[i2]);
                             }
+                            reader.ReadEndElement();
 
+                            reader.ReadStartElement("DataSets");
+                            for (int j = 0; j < 6; j++)
+                            {
+                                List<object> datatokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
+                                for (int k = 0; k < Program.dataset[1].Count; k++)
+                                {
+                                    round.dataset[j][k].SetValue(datatokens[k]);
+                                }
+                            }
+                            reader.ReadEndElement();
+
+                            Program.events[Program.events.Count - 1].rounds.Add(round); //Add the round we just made to the round list.
                             reader.ReadEndElement();
                         }
-                        else { return; }
                         reader.ReadEndElement();
                     }
                 }
@@ -352,15 +317,15 @@ namespace MyScout
         /// </summary>
         public static void SaveAllEvents()
         {
-            if (Directory.Exists(Program.startuppath + "\\Events") && Directory.GetFiles(Program.startuppath + "\\Events").Length > 0)
+            if (Directory.Exists(Program.startuppath + "\\Events\\" + Program.datasetName) && Directory.GetFiles(Program.startuppath + "\\Events\\" + Program.datasetName).Length > 0)
             {
-                if (Directory.Exists(Program.startuppath + "\\Events Backup"))
+                if (Directory.Exists(Program.startuppath + "\\Events Backup\\" + Program.datasetName))
                 {
-                    Directory.Delete(Program.startuppath + "\\Events Backup",true);
+                    Directory.Delete(Program.startuppath + "\\Events Backup\\" + Program.datasetName, true);
                 }
-                Directory.Move(Program.startuppath + "\\Events", Program.startuppath + "\\Events Backup");
+                Directory.Move(Program.startuppath + "\\Events\\" + Program.datasetName, Program.startuppath + "\\Events Backup\\" + Program.datasetName);
             }
-            Directory.CreateDirectory(Program.startuppath + "\\Events");
+            Directory.CreateDirectory(Program.startuppath + "\\Events\\" + Program.datasetName);
 
             for (int i = 0; i < Program.events.Count; i++)
             {
@@ -376,14 +341,14 @@ namespace MyScout
         {
             //try
             //{
-                if (File.Exists(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+                if (File.Exists(Program.startuppath + "\\Events\\" + Program.datasetName + "\\Event" + eventid.ToString() + ".xml"))
                 {
-                    File.Delete(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml");
+                    File.Delete(Program.startuppath + "\\Events\\" + Program.datasetName + "\\Event" + eventid.ToString() + ".xml");
                 }
 
                 SaveDataToTeams();
 
-                using (XmlTextWriter writer = new XmlTextWriter(Program.startuppath + "\\Events\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
+                using (XmlTextWriter writer = new XmlTextWriter(Program.startuppath + "\\Events\\" + Program.datasetName + "\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
                 {
                     writer.Formatting = Formatting.Indented;
                     writer.Indentation = 4;
