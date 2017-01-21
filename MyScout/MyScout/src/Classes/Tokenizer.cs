@@ -86,13 +86,13 @@ namespace MyScout
                     output.Add(parsedBool);
                 else if (s.StartsWith("ls")) //if there's a list
                 {
-                    string clean = s.Replace("ls","");
+                    string clean = s.Replace("ls", "");
                     if (clean.StartsWith("(int)"))
                     {
                         List<int> outlist = new List<int>();
 
                         clean = clean.Replace("(int){", "").Replace("}", "");
-                        foreach(string str in clean.Split('|'))
+                        foreach (string str in clean.Split('|'))
                         {
                             if (clean != "") //If there's actually something to parse
                                 outlist.Add(int.Parse(str));
@@ -106,7 +106,7 @@ namespace MyScout
                         clean = clean.Replace("(bool){", "").Replace("}", "");
                         foreach (string str in clean.Split('|'))
                         {
-                            if(clean != "") //If there's actually something to parse
+                            if (clean != "") //If there's actually something to parse
                                 outlist.Add(bool.Parse(str));
                         }
                         output.Add(outlist);
@@ -114,9 +114,9 @@ namespace MyScout
                 }
                 else
                     output.Add(s.ToString()
-                        .Replace("\\s",":")
-                        .Replace("\\l","{")
-                        .Replace("\\r","}")
+                        .Replace("\\s", ":")
+                        .Replace("\\l", "{")
+                        .Replace("\\r", "}")
                         );
             }
 
@@ -156,7 +156,7 @@ namespace MyScout
         public static Type getTypeFromString(string typestring)
         {
             Type output = typeof(int);
-            switch(typestring)
+            switch (typestring)
             {
                 case "int":
                     output = typeof(int);
@@ -177,19 +177,19 @@ namespace MyScout
         public static string getStringFromType(Type T)
         {
             Type output = typeof(int);
-            if(T.Equals(typeof(int)))
+            if (T.Equals(typeof(int)))
             {
                 return "int";
             }
-            else if(T.Equals(typeof(float)))
+            else if (T.Equals(typeof(float)))
             {
                 return "float";
             }
-            else if(T.Equals(typeof(bool)))
+            else if (T.Equals(typeof(bool)))
             {
                 return "bool";
             }
-            else if(T.Equals(typeof(string)))
+            else if (T.Equals(typeof(string)))
             {
                 return "string";
             }
