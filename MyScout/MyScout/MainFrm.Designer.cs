@@ -33,9 +33,12 @@
             this.EventPnl = new System.Windows.Forms.Panel();
             this.EventList = new System.Windows.Forms.ListView();
             this.NameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.GameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BeginDateHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.EndDateHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.HeaderPnl = new System.Windows.Forms.Panel();
+            this.GameNameLbl = new System.Windows.Forms.Label();
+            this.GameDataWarning = new System.Windows.Forms.Label();
             this.MngGamesBtn = new System.Windows.Forms.Button();
             this.EventBtnPnl = new System.Windows.Forms.Panel();
             this.RemoveEventBtn = new System.Windows.Forms.Button();
@@ -124,9 +127,6 @@
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn2 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn3 = new System.Windows.Forms.Button();
-            this.GameDataWarning = new System.Windows.Forms.Label();
-            this.GameNameLbl = new System.Windows.Forms.Label();
-            this.GameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -197,6 +197,11 @@
             this.NameHeader.Text = "Name";
             this.NameHeader.Width = 290;
             // 
+            // GameHeader
+            // 
+            this.GameHeader.Text = "Game";
+            this.GameHeader.Width = 125;
+            // 
             // BeginDateHeader
             // 
             this.BeginDateHeader.Text = "Begin Date";
@@ -219,8 +224,29 @@
             this.HeaderPnl.Size = new System.Drawing.Size(1102, 69);
             this.HeaderPnl.TabIndex = 3;
             // 
+            // GameNameLbl
+            // 
+            this.GameNameLbl.AutoSize = true;
+            this.GameNameLbl.Location = new System.Drawing.Point(253, 9);
+            this.GameNameLbl.MaximumSize = new System.Drawing.Size(125, 0);
+            this.GameNameLbl.Name = "GameNameLbl";
+            this.GameNameLbl.Size = new System.Drawing.Size(0, 13);
+            this.GameNameLbl.TabIndex = 3;
+            // 
+            // GameDataWarning
+            // 
+            this.GameDataWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GameDataWarning.ForeColor = System.Drawing.Color.Red;
+            this.GameDataWarning.Location = new System.Drawing.Point(377, 9);
+            this.GameDataWarning.Name = "GameDataWarning";
+            this.GameDataWarning.Size = new System.Drawing.Size(346, 57);
+            this.GameDataWarning.TabIndex = 2;
+            this.GameDataWarning.Text = "No Game Data :(";
+            this.GameDataWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MngGamesBtn
             // 
+            this.MngGamesBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.MngGamesBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MngGamesBtn.Location = new System.Drawing.Point(5, 4);
             this.MngGamesBtn.Name = "MngGamesBtn";
@@ -1390,31 +1416,6 @@
             this.BlueAllianceBtn3.Text = "----";
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
             this.BlueAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
-            // 
-            // GameDataWarning
-            // 
-            this.GameDataWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GameDataWarning.ForeColor = System.Drawing.Color.Red;
-            this.GameDataWarning.Location = new System.Drawing.Point(377, 9);
-            this.GameDataWarning.Name = "GameDataWarning";
-            this.GameDataWarning.Size = new System.Drawing.Size(346, 57);
-            this.GameDataWarning.TabIndex = 2;
-            this.GameDataWarning.Text = "No Game Data :(";
-            this.GameDataWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // GameNameLbl
-            // 
-            this.GameNameLbl.AutoSize = true;
-            this.GameNameLbl.Location = new System.Drawing.Point(253, 9);
-            this.GameNameLbl.MaximumSize = new System.Drawing.Size(125, 0);
-            this.GameNameLbl.Name = "GameNameLbl";
-            this.GameNameLbl.Size = new System.Drawing.Size(0, 13);
-            this.GameNameLbl.TabIndex = 3;
-            // 
-            // GameHeader
-            // 
-            this.GameHeader.Text = "Game";
-            this.GameHeader.Width = 125;
             // 
             // MainFrm
             // 
