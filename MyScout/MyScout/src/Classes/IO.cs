@@ -364,12 +364,11 @@ namespace MyScout
             if (File.Exists(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml"))
             {
                 File.Delete(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml");
-
-                if (File.Exists(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml"))
-                {
-                    File.Delete(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml");
-
-                }
+            }
+            else if (File.Exists(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+            {
+                File.Delete(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml");
+            }
 
                 SaveDataToTeams();
 
@@ -451,7 +450,6 @@ namespace MyScout
 
                 }
             }
-        }
 
         public static void SaveDatasetTemplate(string fileid, string name, string description, List<List<DataPoint>> datasetIn)
         {
