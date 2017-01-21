@@ -19,11 +19,11 @@ namespace MyScout
             InitializeComponent();
 
             //Get all the raw paths
-            filepaths = Directory.GetFiles(Program.startuppath + "\\Datasets");
+            filepaths = Directory.GetFiles(Program.StartupPath + "\\Datasets");
             for(int i = 0; i < filepaths.Length; i++)
             {
                 //Add cleaned-up items to the box
-                gameListBox.Items.Add(filepaths[i].Replace((Program.startuppath + "\\Datasets\\"), ""));
+                gameListBox.Items.Add(filepaths[i].Replace((Program.StartupPath + "\\Datasets\\"), ""));
             }
             gameListBox.SelectedIndex = 0;
             fullDescLabel.MaximumSize = new Size(200, 0);
@@ -55,8 +55,8 @@ namespace MyScout
             List<List<DataPoint>> newDataset = IO.LoadDatasetFromPath(filepaths[gameListBox.SelectedIndex]);
             if (newDataset != null)
             {
-                Program.dataset = newDataset;
-                Program.datasetName = IO.GetNameAndDescFromDataset(filepaths[gameListBox.SelectedIndex])[0];
+                Program.DataSet = newDataset;
+                Program.DataSetName = IO.GetNameAndDescFromDataset(filepaths[gameListBox.SelectedIndex])[0];
                 DialogResult = DialogResult.OK;
             }
             else

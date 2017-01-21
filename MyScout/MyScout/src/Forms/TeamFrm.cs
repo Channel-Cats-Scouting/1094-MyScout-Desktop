@@ -21,7 +21,7 @@ namespace MyScout
         private void RefreshTeamList()
         {
             TeamList.Items.Clear();
-            foreach (Team t in Program.events[Program.currentevent].teams)
+            foreach (Team t in Program.Events[Program.CurrentEventIndex].teams)
             {
                 TeamList.Items.Add(new ListViewItem(new string[] { t.id.ToString(), t.name }));
             }
@@ -36,7 +36,7 @@ namespace MyScout
             AddDataFrm adddata = new AddDataFrm(AddDataFrm.Data.Team);
             if (adddata.ShowDialog() == DialogResult.OK)
             {
-                Program.events[Program.currentevent].teams.Add(new Team(Convert.ToInt32(adddata.textBox1.Text),adddata.textBox2.Text));
+                Program.Events[Program.CurrentEventIndex].teams.Add(new Team(Convert.ToInt32(adddata.textBox1.Text),adddata.textBox2.Text));
                 RefreshTeamList();
             }
         }
@@ -49,13 +49,13 @@ namespace MyScout
             if (TeamList.SelectedIndices.Count > 0)
             {
                 AddDataFrm adddata = new AddDataFrm(AddDataFrm.Data.Team);
-                adddata.textBox1.Text = Program.events[Program.currentevent].teams[TeamList.SelectedIndices[0]].id.ToString();
-                adddata.textBox2.Text = Program.events[Program.currentevent].teams[TeamList.SelectedIndices[0]].name;
+                adddata.textBox1.Text = Program.Events[Program.CurrentEventIndex].teams[TeamList.SelectedIndices[0]].id.ToString();
+                adddata.textBox2.Text = Program.Events[Program.CurrentEventIndex].teams[TeamList.SelectedIndices[0]].name;
 
                 if (adddata.ShowDialog() == DialogResult.OK)
                 {
-                    Program.events[Program.currentevent].teams[TeamList.SelectedIndices[0]].id = Convert.ToInt32(adddata.textBox1.Text);
-                    Program.events[Program.currentevent].teams[TeamList.SelectedIndices[0]].name = adddata.textBox2.Text;
+                    Program.Events[Program.CurrentEventIndex].teams[TeamList.SelectedIndices[0]].id = Convert.ToInt32(adddata.textBox1.Text);
+                    Program.Events[Program.CurrentEventIndex].teams[TeamList.SelectedIndices[0]].name = adddata.textBox2.Text;
                     RefreshTeamList();
                 }
             }
@@ -68,7 +68,7 @@ namespace MyScout
         {
             if (TeamList.SelectedItems.Count > 0 && MessageBox.Show("Are you SURE you want to remove the selected team?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
-                Program.events[Program.currentevent].teams.RemoveAt(TeamList.SelectedIndices[0]);
+                Program.Events[Program.CurrentEventIndex].teams.RemoveAt(TeamList.SelectedIndices[0]);
                 RefreshTeamList();
             }
         }
@@ -86,7 +86,7 @@ namespace MyScout
                 {
                     bool IsDuplicate = false;
 
-                    foreach (Control control in Program.mainfrm.AllianceBtnPnl.Controls)
+                    foreach (Control control in Program.MainFrm.AllianceBtnPnl.Controls)
                     {
                         //If the control is a button...
                         if (control.GetType() == typeof(Button))
@@ -96,9 +96,9 @@ namespace MyScout
                         }
                     }
 
-                    if (!IsDuplicate || MessageBox.Show($"Team { Program.events[Program.currentevent].teams[selectedteam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                    if (!IsDuplicate || MessageBox.Show($"Team { Program.Events[Program.CurrentEventIndex].teams[selectedteam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                     {
-                        Program.selectedteam = selectedteam;
+                        Program.SelectedTeamIndex = selectedteam;
                         DialogResult = DialogResult.OK;
                         Close();
                     }
@@ -145,9 +145,9 @@ namespace MyScout
             {
                 AcceptButton = SelectTeamButton;
                 TeamList.Items.Clear();
-                for (int i = 0; i < Program.events[Program.currentevent].teams.Count; i++)
+                for (int i = 0; i < Program.Events[Program.CurrentEventIndex].teams.Count; i++)
                 {
-                    Team team = Program.events[Program.currentevent].teams[i];
+                    Team team = Program.Events[Program.CurrentEventIndex].teams[i];
                     if (team.name.ToUpper().Contains(textBox1.Text.ToUpper()) || team.id.ToString().Contains(textBox1.Text))
                     {
                         TeamList.Items.Add(new ListViewItem(new string[] { team.id.ToString(), team.name }) { Tag = i });

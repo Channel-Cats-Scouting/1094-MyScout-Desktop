@@ -18,16 +18,20 @@ namespace MyScout
         /// </summary>
         public static void LoadAllEvents()
         {
+<<<<<<< HEAD
             if(!Directory.Exists(Program.startuppath + "\\Events\\" + Program.datasetName))
             {
                 Directory.CreateDirectory(Program.startuppath + "\\Events\\" + Program.datasetName);
             }
             string[] files = Directory.GetFiles(Program.startuppath + "\\Events\\" + Program.datasetName);
+=======
+            string[] files = Directory.GetFiles(Program.StartupPath + "\\Events");
+>>>>>>> origin/2016_DataPoint
             for (int i = 0; i < files.Length; i++)
             {
                 LoadEvent(i);
             }
-            Program.mainfrm.Invoke(new Action(() => { Program.mainfrm.RefreshEventList(); }));
+            Program.MainFrm.Invoke(new Action(() => { Program.MainFrm.RefreshEventList(); }));
         }
 
         /// <summary>
@@ -39,21 +43,37 @@ namespace MyScout
             //TODO: undo try commenting
             try
             {
+<<<<<<< HEAD
                 if (File.Exists(Program.startuppath + "\\Events\\" + Program.datasetName + "\\Event" + eventid.ToString() + ".xml"))
                 {
                     using (XmlReader reader = XmlReader.Create(Program.startuppath + "\\Events\\" + Program.datasetName + "\\Event" + eventid.ToString() + ".xml"))
+=======
+                if (File.Exists(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+                {
+                    using (XmlReader reader = XmlReader.Create(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+>>>>>>> origin/2016_DataPoint
                     {
                         reader.ReadStartElement("Event");
                         string fileversionstring = reader.ReadElementString("Version");
                         string filedataset = reader.ReadElementString("DataSet");
 
-                        if(filedataset != Program.datasetName)
+                        if(filedataset != Program.DataSetName)
                         {
                             return;
                         }
 
+<<<<<<< HEAD
                             Program.events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate"), filedataset));
                             Program.events[Program.events.Count - 1].rounds.Clear();
+=======
+                        if (fileversionstring == Program.VersionString || 
+                            filedataset == Program.DataSetName || 
+                            (filedataset != Program.DataSetName && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) || 
+                            ((Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.VersionString) && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)))
+                        {
+                            Program.Events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate"), filedataset));
+                            Program.Events[Program.Events.Count - 1].rounds.Clear();
+>>>>>>> origin/2016_DataPoint
 
                             reader.ReadStartElement("Teams");
                             int count = Convert.ToInt32(reader.ReadElementString("Count"));
@@ -71,14 +91,20 @@ namespace MyScout
                                     team.GetTeamSpecificDataset()[j - 2].SetValue(tokens[j]);
                                 }
 
-                                Program.events[Program.events.Count - 1].teams.Add(team);
+                                Program.Events[Program.Events.Count - 1].teams.Add(team);
                                 reader.ReadEndElement();
                             }
 
                             reader.ReadEndElement();
 
                             reader.ReadStartElement("Rounds");
+<<<<<<< HEAD
                             Program.events[Program.events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
+=======
+                            Program.Events[Program.Events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
+                            //List<object> AllianceScores = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AllianceScoreTokens"));
+                            //Round.score = new int[2] { Convert.ToInt32(AllianceScores[0]), Convert.ToInt32(AllianceScores[1]) };
+>>>>>>> origin/2016_DataPoint
 
                             count = Convert.ToInt32(reader.ReadElementString("Count"));
                         for (int i = 0; i < count; i++)
@@ -100,8 +126,49 @@ namespace MyScout
                                 List<object> datatokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
                                 for (int k = 0; k < Program.dataset[1].Count; k++)
                                 {
+<<<<<<< HEAD
                                     round.dataset[j][k].SetValue(datatokens[k]);
                                 }
+=======
+                                    List<object> datatokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
+                                    for(int k = 0; k < Program.DataSet.Count; k++)
+                                    {
+                                        round.dataset[j][k].SetValue(datatokens[k]);
+                                    }
+                                }
+
+                                //reader.ReadStartElement("Defenses");
+                                //for (int i2 = 0; i2 < 6; i2++)
+                                //{
+                                //    List<object> AOReachedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOReachedTokens"));
+                                //    List<object> AOCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOCrossedTokens"));
+                                //    List<object> TOCrossedTokens = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOCrossedTokens"));
+
+                                //    for (int i3 = 0; i3 < 9; i3++)
+                                //    {
+                                //        round.defenses[i2, i3].AOreached      = (bool)AOReachedTokens[i3];
+                                //        round.defenses[i2, i3].AOcrossed      = (bool)AOCrossedTokens[i3];
+                                //        round.defenses[i2, i3].TOtimescrossed = (int)TOCrossedTokens[i3];
+                                //    }
+                                //}
+                                //reader.ReadEndElement();
+
+                                //round.scaledtower = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOScaledTokens")).Cast<bool>().ToArray();
+                                //round.challengedtower = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOChallengedTokens")).Cast<bool>().ToArray();
+                                //round.AOhighgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOHighGoalTokens")).Cast<int>().ToArray();
+                                //round.AOlowgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AOLowGoalTokens")).Cast<int>().ToArray();
+                                //round.TOhighgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOHighGoalTokens")).Cast<int>().ToArray();
+                                //round.TOlowgoalcount = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("TOLowGoalTokens")).Cast<int>().ToArray();
+
+                                //round.comments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("CommentTokens")).Cast<string>().ToArray();
+                                //round.humancomments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("HumanCommentTokens")).Cast<string>().ToArray();
+                                //round.died = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedTokens")).Cast<bool>().ToArray();
+                                //round.dieddefense = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedDefenseTokens")).Cast<int>().ToArray();
+                                //round.diedcomments = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("DiedCommentTokens")).Cast<string>().ToArray();
+
+                                Program.Events[Program.Events.Count - 1].rounds.Add(round); //Add the round we just made to the round list.
+                                reader.ReadEndElement();
+>>>>>>> origin/2016_DataPoint
                             }
                             reader.ReadEndElement();
 
@@ -141,7 +208,7 @@ namespace MyScout
                         string name = reader.ReadElementString("name");
                         string desc = reader.ReadElementString("desc");
 
-                        if (fileversionstring == Program.versionstring || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"The Dataset file {Application.StartupPath + "\\Datasets\\data_default.xml"} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+                        if (fileversionstring == Program.VersionString || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.VersionString) && MessageBox.Show($"The Dataset file {Application.StartupPath + "\\Datasets\\data_default.xml"} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
                         {
                             reader.ReadStartElement("dataset");
 
@@ -192,7 +259,7 @@ namespace MyScout
                 newDataset.Add(roundDataSet);
                 newDataset.Add(compDataSet);
 
-                Program.dataset = newDataset;
+                Program.DataSet = newDataset;
 
             }
             catch (Exception ex)
@@ -224,7 +291,7 @@ namespace MyScout
                         string name = reader.ReadElementString("name");
                         string desc = reader.ReadElementString("desc");
 
-                        if (fileversionstring == Program.versionstring || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.versionstring) && MessageBox.Show($"The Dataset file {filepath} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+                        if (fileversionstring == Program.VersionString || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.VersionString) && MessageBox.Show($"The Dataset file {filepath} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
                         {
                             reader.ReadStartElement("dataset");
 
@@ -317,6 +384,7 @@ namespace MyScout
         /// </summary>
         public static void SaveAllEvents()
         {
+<<<<<<< HEAD
             if (Directory.Exists(Program.startuppath + "\\Events\\" + Program.datasetName) && Directory.GetFiles(Program.startuppath + "\\Events\\" + Program.datasetName).Length > 0)
             {
                 if (Directory.Exists(Program.startuppath + "\\Events Backup\\" + Program.datasetName))
@@ -326,8 +394,19 @@ namespace MyScout
                 Directory.Move(Program.startuppath + "\\Events\\" + Program.datasetName, Program.startuppath + "\\Events Backup\\" + Program.datasetName);
             }
             Directory.CreateDirectory(Program.startuppath + "\\Events\\" + Program.datasetName);
+=======
+            if (Directory.Exists(Program.StartupPath + "\\Events") && Directory.GetFiles(Program.StartupPath + "\\Events").Length > 0)
+            {
+                if (Directory.Exists(Program.StartupPath + "\\Events Backup"))
+                {
+                    Directory.Delete(Program.StartupPath + "\\Events Backup",true);
+                }
+                Directory.Move(Program.StartupPath + "\\Events", Program.StartupPath + "\\Events Backup");
+            }
+            Directory.CreateDirectory(Program.StartupPath + "\\Events");
+>>>>>>> origin/2016_DataPoint
 
-            for (int i = 0; i < Program.events.Count; i++)
+            for (int i = 0; i < Program.Events.Count; i++)
             {
                 SaveEvent(i);
             }
@@ -341,31 +420,41 @@ namespace MyScout
         {
             //try
             //{
+<<<<<<< HEAD
                 if (File.Exists(Program.startuppath + "\\Events\\" + Program.datasetName + "\\Event" + eventid.ToString() + ".xml"))
                 {
                     File.Delete(Program.startuppath + "\\Events\\" + Program.datasetName + "\\Event" + eventid.ToString() + ".xml");
+=======
+                if (File.Exists(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml"))
+                {
+                    File.Delete(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml");
+>>>>>>> origin/2016_DataPoint
                 }
 
                 SaveDataToTeams();
 
+<<<<<<< HEAD
                 using (XmlTextWriter writer = new XmlTextWriter(Program.startuppath + "\\Events\\" + Program.datasetName + "\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
+=======
+                using (XmlTextWriter writer = new XmlTextWriter(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
+>>>>>>> origin/2016_DataPoint
                 {
                     writer.Formatting = Formatting.Indented;
                     writer.Indentation = 4;
 
                     writer.WriteStartDocument();
                     writer.WriteStartElement("Event");
-                    writer.WriteElementString("Version", Program.versionstring);
-                    writer.WriteElementString("DataSet", Program.datasetName);
-                    writer.WriteElementString("Name", Program.events[eventid].name);
-                    writer.WriteElementString("BeginDate", Program.events[eventid].begindate);
-                    writer.WriteElementString("EndDate", Program.events[eventid].enddate);
+                    writer.WriteElementString("Version", Program.VersionString);
+                    writer.WriteElementString("DataSet", Program.DataSetName);
+                    writer.WriteElementString("Name", Program.Events[eventid].name);
+                    writer.WriteElementString("BeginDate", Program.Events[eventid].begindate);
+                    writer.WriteElementString("EndDate", Program.Events[eventid].enddate);
 
                     writer.WriteStartElement("Teams");
-                    writer.WriteElementString("Count", Program.events[eventid].teams.Count.ToString());
+                    writer.WriteElementString("Count", Program.Events[eventid].teams.Count.ToString());
 
                     //Convert team information to a tokenized int string
-                    foreach (Team team in Program.events[eventid].teams)
+                    foreach (Team team in Program.Events[eventid].teams)
                     {
                         writer.WriteStartElement("Team");
                         List<object> tokens = new List<object>();
@@ -387,12 +476,12 @@ namespace MyScout
                     writer.WriteEndElement();
 
                     writer.WriteStartElement("Rounds");
-                    writer.WriteElementString("Current", (Program.events[eventid].lastviewedround == -1)? (Program.events[eventid].rounds.Count-1).ToString(): Program.events[eventid].lastviewedround.ToString());
+                    writer.WriteElementString("Current", (Program.Events[eventid].lastviewedround == -1)? (Program.Events[eventid].rounds.Count-1).ToString(): Program.Events[eventid].lastviewedround.ToString());
                     //writer.WriteElementString("AllianceScoreTokens", TokenizeStringHandler.CreateTokenizedString(new List<object> { Round.score[0], Round.score[1] }));
 
-                    writer.WriteElementString("Count", Program.events[eventid].rounds.Count.ToString());
+                    writer.WriteElementString("Count", Program.Events[eventid].rounds.Count.ToString());
                     
-                    foreach (Round round in Program.events[eventid].rounds)
+                    foreach (Round round in Program.Events[eventid].rounds)
                     {
                         writer.WriteStartElement("Round");
                         writer.WriteStartElement("Teams");
@@ -411,7 +500,7 @@ namespace MyScout
                         for(int i = 0; i < 6; i++) //For each list of datapoints
                         {
                             List<object> tokens = new List<object>();
-                            for (int j = 0; j < Program.dataset[1].Count(); j++) //For each datapoint
+                            for (int j = 0; j < Program.DataSet[1].Count(); j++) //For each datapoint
                             {
                                 tokens.Add(round.dataset[i][j].GetValue()); //Add the datapoint to the tokens list
                             }
@@ -433,18 +522,18 @@ namespace MyScout
 
         public static void SaveDatasetTemplate(string fileid, string name, string description, List<List<DataPoint>> datasetIn)
         {
-            if (File.Exists(Program.startuppath + "\\Datasets\\Data_" + fileid + ".xml"))
+            if (File.Exists(Program.StartupPath + "\\Datasets\\Data_" + fileid + ".xml"))
             {
-                File.Delete(Program.startuppath + "\\Datasets\\Data_" + fileid + ".xml");
+                File.Delete(Program.StartupPath + "\\Datasets\\Data_" + fileid + ".xml");
             }
-            using (XmlTextWriter writer = new XmlTextWriter(Program.startuppath + "\\Datasets\\Data_" + fileid + ".xml", Encoding.ASCII))
+            using (XmlTextWriter writer = new XmlTextWriter(Program.StartupPath + "\\Datasets\\Data_" + fileid + ".xml", Encoding.ASCII))
             {
                 writer.Formatting = Formatting.Indented;
                 writer.Indentation = 4;
 
                 writer.WriteStartDocument();
                 writer.WriteStartElement("gamedata");
-                writer.WriteElementString("version", Program.versionstring);
+                writer.WriteElementString("version", Program.VersionString);
                 writer.WriteElementString("name", name);
                 writer.WriteElementString("desc", description);
 
@@ -494,9 +583,9 @@ namespace MyScout
         public static void SaveDataToTeams()
         {
             //for each team in the event
-            for(int i = 0; i < Program.events[Program.currentevent].teams.Count; i++)
+            for(int i = 0; i < Program.Events[Program.CurrentEventIndex].teams.Count; i++)
             {
-                for(int j = 0; j < Program.dataset[2].Count; j++)
+                for(int j = 0; j < Program.DataSet[2].Count; j++)
                 {
                     TotalsUtil.execFunction(i, j);
                 }
@@ -528,11 +617,11 @@ namespace MyScout
                 //team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.teleHighGoals : team.crossingPowerScore)
                 //).ToList();
 
-            string filepath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {ev.name}.xls";
+            string filepath = $"{Program.StartupPath}\\Spreadsheets\\Scouting Report {ev.name}.xls";
 
-            if (!Directory.Exists($"{Program.startuppath}\\Spreadsheets"))
+            if (!Directory.Exists($"{Program.StartupPath}\\Spreadsheets"))
             {
-                Directory.CreateDirectory($"{Program.startuppath}\\Spreadsheets");
+                Directory.CreateDirectory($"{Program.StartupPath}\\Spreadsheets");
             }
 
             Workbook workbook = new Workbook();
@@ -640,8 +729,8 @@ namespace MyScout
 
             for(int i = 0; i < 6; i++)
             {
-                teamList[i] = (Program.events[Program.currentevent].rounds[roundID].teams[i] == -1) ? null :
-                    Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[roundID].teams[i]];
+                teamList[i] = (Program.Events[Program.CurrentEventIndex].rounds[roundID].teams[i] == -1) ? null :
+                    Program.Events[Program.CurrentEventIndex].teams[Program.Events[Program.CurrentEventIndex].rounds[roundID].teams[i]];
             }
 
             //Clean the report
@@ -653,11 +742,11 @@ namespace MyScout
                 }
             }
 
-            string filepath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {ev.name} - Round {roundID+1}.xls";
+            string filepath = $"{Program.StartupPath}\\Spreadsheets\\Scouting Report {ev.name} - Round {roundID+1}.xls";
 
-            if (!Directory.Exists($"{Program.startuppath}\\Spreadsheets"))
+            if (!Directory.Exists($"{Program.StartupPath}\\Spreadsheets"))
             {
-                Directory.CreateDirectory($"{Program.startuppath}\\Spreadsheets");
+                Directory.CreateDirectory($"{Program.StartupPath}\\Spreadsheets");
             }
 
             Workbook workbook = new Workbook();

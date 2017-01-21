@@ -20,8 +20,8 @@ namespace MyScout
         public static dynamic execFunction(int teamIndex, int compIndex)
         {
             List<Round> teamRounds = getRoundsFromTeamIndex(teamIndex);
-            Type dataType = Program.dataset[2][compIndex].GetDataType();
-            string funcScript = Program.dataset[2][compIndex].GetScript();
+            Type dataType = Program.DataSet[2][compIndex].GetDataType();
+            string funcScript = Program.DataSet[2][compIndex].GetScript();
             int charcount = funcScript.Length;
             char[] scriptchars = funcScript.ToCharArray();
 
@@ -94,9 +94,9 @@ namespace MyScout
         public static List<Round> getRoundsFromTeamIndex(int index)
         {
             List<Round> rounds = new List<Round>();
-            Team team = Program.events[Program.currentevent].teams[index];
+            Team team = Program.Events[Program.CurrentEventIndex].teams[index];
             //for each round in the event
-            foreach (Round r in Program.events[Program.currentevent].rounds)
+            foreach (Round r in Program.Events[Program.CurrentEventIndex].rounds)
             {
                 //for each team index in the round
                 for (int j = 0; j < 5; j++)
