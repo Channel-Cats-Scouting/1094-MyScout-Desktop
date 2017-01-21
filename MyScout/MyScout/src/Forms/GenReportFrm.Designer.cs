@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.reportTypeCB = new System.Windows.Forms.ComboBox();
             this.GenBtn = new System.Windows.Forms.Button();
@@ -39,11 +40,17 @@
             this.MoveDownBtn = new System.Windows.Forms.Button();
             this.AddBtn = new System.Windows.Forms.Button();
             this.RemoveBtn = new System.Windows.Forms.Button();
+            this.AddAllBtn = new System.Windows.Forms.Button();
+            this.RemoveAllBtn = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.clearDuplicatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.label1.Location = new System.Drawing.Point(13, 9);
             this.label1.Name = "label1";
@@ -89,7 +96,6 @@
             this.button3.TabIndex = 7;
             this.button3.Text = "Save Profile";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -101,10 +107,10 @@
             this.button2.TabIndex = 8;
             this.button2.Text = "Load Profile";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_2);
             // 
             // outListBox
             // 
+            this.outListBox.ContextMenuStrip = this.contextMenuStrip1;
             this.outListBox.FormattingEnabled = true;
             this.outListBox.Location = new System.Drawing.Point(13, 46);
             this.outListBox.Name = "outListBox";
@@ -118,8 +124,7 @@
             this.dataListBox.Name = "dataListBox";
             this.dataListBox.Size = new System.Drawing.Size(221, 355);
             this.dataListBox.TabIndex = 10;
-            this.dataListBox.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
-            this.dataListBox.Enter += new System.EventHandler(this.dataListBox_Enter);
+            this.dataListBox.SelectedIndexChanged += new System.EventHandler(this.dataListBox_SelectedIndexChanged);
             this.dataListBox.Leave += new System.EventHandler(this.dataListBox_Leave);
             // 
             // MoveUpBtn
@@ -130,6 +135,7 @@
             this.MoveUpBtn.Size = new System.Drawing.Size(32, 32);
             this.MoveUpBtn.TabIndex = 11;
             this.MoveUpBtn.UseVisualStyleBackColor = true;
+            this.MoveUpBtn.Click += new System.EventHandler(this.MoveUpBtn_Click);
             // 
             // MoveDownBtn
             // 
@@ -139,6 +145,7 @@
             this.MoveDownBtn.Size = new System.Drawing.Size(32, 32);
             this.MoveDownBtn.TabIndex = 12;
             this.MoveDownBtn.UseVisualStyleBackColor = true;
+            this.MoveDownBtn.Click += new System.EventHandler(this.MoveDownBtn_Click);
             // 
             // AddBtn
             // 
@@ -158,6 +165,41 @@
             this.RemoveBtn.TabIndex = 14;
             this.RemoveBtn.Text = "Remove -->";
             this.RemoveBtn.UseVisualStyleBackColor = true;
+            this.RemoveBtn.Click += new System.EventHandler(this.RemoveBtn_Click);
+            // 
+            // AddAllBtn
+            // 
+            this.AddAllBtn.Location = new System.Drawing.Point(321, 375);
+            this.AddAllBtn.Name = "AddAllBtn";
+            this.AddAllBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddAllBtn.TabIndex = 15;
+            this.AddAllBtn.Text = "Add All";
+            this.AddAllBtn.UseVisualStyleBackColor = true;
+            this.AddAllBtn.Click += new System.EventHandler(this.AddAllBtn_Click);
+            // 
+            // RemoveAllBtn
+            // 
+            this.RemoveAllBtn.Location = new System.Drawing.Point(240, 375);
+            this.RemoveAllBtn.Name = "RemoveAllBtn";
+            this.RemoveAllBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveAllBtn.TabIndex = 16;
+            this.RemoveAllBtn.Text = "Clear All";
+            this.RemoveAllBtn.UseVisualStyleBackColor = true;
+            this.RemoveAllBtn.Click += new System.EventHandler(this.RemoveAllBtn_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearDuplicatesToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(160, 48);
+            // 
+            // clearDuplicatesToolStripMenuItem
+            // 
+            this.clearDuplicatesToolStripMenuItem.Name = "clearDuplicatesToolStripMenuItem";
+            this.clearDuplicatesToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.clearDuplicatesToolStripMenuItem.Text = "Clear Duplicates";
+            this.clearDuplicatesToolStripMenuItem.Click += new System.EventHandler(this.clearDuplicatesToolStripMenuItem_Click);
             // 
             // GenReportFrm
             // 
@@ -167,6 +209,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::MyScout.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(635, 419);
+            this.Controls.Add(this.RemoveAllBtn);
+            this.Controls.Add(this.AddAllBtn);
             this.Controls.Add(this.RemoveBtn);
             this.Controls.Add(this.AddBtn);
             this.Controls.Add(this.MoveDownBtn);
@@ -187,6 +231,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generate Report";
             this.Load += new System.EventHandler(this.GenReport_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -205,5 +250,9 @@
         private System.Windows.Forms.Button MoveDownBtn;
         private System.Windows.Forms.Button AddBtn;
         private System.Windows.Forms.Button RemoveBtn;
+        private System.Windows.Forms.Button AddAllBtn;
+        private System.Windows.Forms.Button RemoveAllBtn;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem clearDuplicatesToolStripMenuItem;
     }
 }

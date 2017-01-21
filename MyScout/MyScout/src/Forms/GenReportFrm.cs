@@ -62,34 +62,9 @@ namespace MyScout
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void dataListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void addButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void removeButton_Click(object sender, EventArgs e)
-        {
-
+            AddBtn.Select();
         }
 
         private void GenReport_Load(object sender, EventArgs e)
@@ -99,11 +74,6 @@ namespace MyScout
             {
                 dataListBox.Items.Add(Program.DataSet[2][i].GetName());
             }
-        }
-
-        private void dataListBox_Enter(object sender, EventArgs e)
-        {
-            AddBtn.Select();
         }
 
         private void dataListBox_Leave(object sender, EventArgs e)
@@ -118,7 +88,65 @@ namespace MyScout
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            outListBox.Items.Add(dataListBox.SelectedItem);
+            if (dataListBox.SelectedIndex != -1)
+            {
+                outListBox.Items.Add(dataListBox.SelectedItem);
+            }
+        }
+
+        private void MoveUpBtn_Click(object sender, EventArgs e)
+        {
+            if (outListBox.SelectedIndex > 0)
+            {
+                object backup = outListBox.Items[outListBox.SelectedIndex - 1];
+                outListBox.Items[outListBox.SelectedIndex - 1] = outListBox.SelectedItem;
+                outListBox.Items[outListBox.SelectedIndex] = backup;
+                outListBox.SelectedIndex--;
+            }
+        }
+
+        private void MoveDownBtn_Click(object sender, EventArgs e)
+        {
+            if (outListBox.SelectedIndex != outListBox.Items.Count - 1)
+            {
+                object backup = outListBox.Items[outListBox.SelectedIndex + 1];
+                outListBox.Items[outListBox.SelectedIndex + 1] = outListBox.SelectedItem;
+                outListBox.Items[outListBox.SelectedIndex] = backup;
+                outListBox.SelectedIndex++;
+            }
+        }
+
+        private void RemoveBtn_Click(object sender, EventArgs e)
+        {
+            if(outListBox.SelectedIndex != -1)
+            {
+                outListBox.Items.RemoveAt(outListBox.SelectedIndex);
+            }
+        }
+
+        private void AddAllBtn_Click(object sender, EventArgs e)
+        {
+            outListBox.Items.AddRange(dataListBox.Items);
+        }
+
+        private void RemoveAllBtn_Click(object sender, EventArgs e)
+        {
+            outListBox.Items.Clear();
+        }
+
+        private void clearDuplicatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < outListBox.Items.Count-1; i++)
+            {
+                for(int i2 = 0; i2 < outListBox.Items.Count-1; i2++)
+                {
+                    if(i != i2 && (string)outListBox.Items[i] == (string)outListBox.Items[i2])
+                    {
+                        outListBox.Items.RemoveAt(i2);
+                        i2--;
+                    }
+                }
+            }
         }
     }
 }
