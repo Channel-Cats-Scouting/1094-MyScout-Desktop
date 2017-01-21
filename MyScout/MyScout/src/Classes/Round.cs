@@ -29,7 +29,7 @@ namespace MyScout
 
             for (int i = 0; i < 6; i++) //For each team in the round
             {
-                dataset[i] = Program.dataset[1]; //Assign it a copy of the dataset
+                dataset[i] = Program.DataSet[1]; //Assign it a copy of the dataset
             }
         }
     }

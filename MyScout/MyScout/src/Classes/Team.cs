@@ -62,8 +62,8 @@ namespace MyScout
         {
             //CalcCrossingPower();
             //CalcAvgScore();
-            dataset = Program.dataset[0];
-            scoreDataset = Program.dataset[2];
+            dataset = Program.DataSet[0];
+            scoreDataset = Program.DataSet[2];
         }
 
         /// <summary>

@@ -82,7 +82,7 @@ namespace MyScout
         public void RefreshEventList()
         {
             EventList.Items.Clear();
-            foreach (Event e in Program.events)
+            foreach (Event e in Program.Events)
             {
                 EventList.Items.Add(new ListViewItem(new string[] { e.name, e.datasetname, e.begindate, e.enddate }));
             }
@@ -95,9 +95,9 @@ namespace MyScout
         {
             EventList.Enabled = AddEventBtn.Enabled = RemoveEventBtn.Enabled = EditEventBtn.Enabled = !TeamPnl.Visible;
 
-            if (Program.selectedteam != -1)
+            if (Program.SelectedTeamIndex != -1)
             {
-                TeamNameLbl.Text = $"{((string.IsNullOrEmpty(Program.events[Program.currentevent].teams[Program.selectedteam].name))? "" : Program.events[Program.currentevent].teams[Program.selectedteam].name + " - ")}{Program.events[Program.currentevent].teams[Program.selectedteam].id.ToString()}";
+                TeamNameLbl.Text = $"{((string.IsNullOrEmpty(Program.Events[Program.CurrentEventIndex].teams[Program.SelectedTeamIndex].name))? "" : Program.Events[Program.CurrentEventIndex].teams[Program.SelectedTeamIndex].name + " - ")}{Program.Events[Program.CurrentEventIndex].teams[Program.SelectedTeamIndex].id.ToString()}";
                 TeamNameLbl.ForeColor = label1.ForeColor = (TeamNameLbl.Text != "Channel Cats - 1094")?SystemColors.HotTrack:Color.Orange;
 
                 //foreach (Panel pnl in defensepnls)
@@ -171,14 +171,14 @@ namespace MyScout
                     Button btn = AllianceBtnPnl.Controls[index] as Button;
                     int i = index - 2;
 
-                    if (Program.selectedteam != -1 && Program.selectedteamroundindex == i) { btn.FlatAppearance.BorderSize = 1; MainPnl.Visible = true; }
+                    if (Program.SelectedTeamIndex != -1 && Program.CurrentTeamIndex == i) { btn.FlatAppearance.BorderSize = 1; MainPnl.Visible = true; }
                     else { btn.FlatAppearance.BorderSize = 0; }
 
                     //TODO rounds is sometimes 0 when it should be larger. This is just basically circumvented. Fix this later.
                     try
                     {
-                        btn.Tag = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? null : (object)Program.events[Program.currentevent].rounds[Program.currentround].teams[i];
-                        btn.Text = (Program.events[Program.currentevent].rounds[Program.currentround].teams[i] == -1) ? "----" : Program.events[Program.currentevent].teams[Program.events[Program.currentevent].rounds[Program.currentround].teams[i]].id.ToString();
+                        btn.Tag = (Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[i] == -1) ? null : (object)Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[i];
+                        btn.Text = (Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[i] == -1) ? "----" : Program.Events[Program.CurrentEventIndex].teams[Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[i]].id.ToString();
                     }
                     catch
                     {
@@ -188,14 +188,14 @@ namespace MyScout
                 }
             }
 
-            label1.Text = $"Round {Program.currentround + 1} of {Program.events[Program.currentevent].rounds.Count}";
-            button6.Enabled = Program.currentround != 0;
-            button5.Text = (Program.currentround < Program.events[Program.currentevent].rounds.Count - 1) ? "->" : "+";
+            label1.Text = $"Round {Program.CurrentRoundIndex + 1} of {Program.Events[Program.CurrentEventIndex].rounds.Count}";
+            button6.Enabled = Program.CurrentRoundIndex != 0;
+            button5.Text = (Program.CurrentRoundIndex < Program.Events[Program.CurrentEventIndex].rounds.Count - 1) ? "->" : "+";
         }
 
         public void UpdateTitle()
         {
-            Program.mainfrm.Text = ((TeamPnl.Visible) ? Program.events[Program.currentevent].name + " - MyScout 2016" : "MyScout 2016") + ((Program.saved) ? "" : "*");
+            Program.MainFrm.Text = ((TeamPnl.Visible) ? Program.Events[Program.CurrentEventIndex].name + " - MyScout 2016" : "MyScout 2016") + ((Program.Saved) ? "" : "*");
         }
 
         #endregion
@@ -230,7 +230,7 @@ namespace MyScout
         /// </summary>
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Program.events.Count > 0 && ((!Program.saved && MessageBox.Show("You have unsaved changes! Would you like to save them now?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)) || (Program.saved))
+            if (Program.Events.Count > 0 && ((!Program.Saved && MessageBox.Show("You have unsaved changes! Would you like to save them now?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)) || (Program.Saved))
             {
                 new Thread(new ThreadStart(IO.SaveAllEvents)).Start();
             }
@@ -293,7 +293,7 @@ namespace MyScout
         //TODO: Re-name "button1" to "OpenReportFolderBtn" or something similar.
         private void button1_Click(object sender, EventArgs e)
         {
-            IO.SaveEvent(Program.currentevent);
+            IO.SaveEvent(Program.CurrentEventIndex);
             
             //Open report generation dialog
             GenReport genreport = new GenReport();
@@ -330,7 +330,7 @@ namespace MyScout
         public List<int> FindTeamInRounds(Team team)
         {
             List<int> output = new List<int>();
-            Event ev = Program.events[Program.currentevent];
+            Event ev = Program.Events[Program.CurrentEventIndex];
 
             //For each round in ev
             for (int i = 0; i < ev.rounds.Count; i++)
@@ -357,11 +357,11 @@ namespace MyScout
         /// <param name="genreporttemp"></param>
         public void GenerateTeamRounds(Object genreporttemp)
         {
-            Event ev = Program.events[Program.currentevent];
+            Event ev = Program.Events[Program.CurrentEventIndex];
             GenReport genreport = (GenReport)genreporttemp;
 
             //Get the rounds
-            List<int> roundsToReport = FindTeamInRounds(Program.events[Program.currentevent].teams[genreport.GetTeamIndex()]);
+            List<int> roundsToReport = FindTeamInRounds(Program.Events[Program.CurrentEventIndex].teams[genreport.GetTeamIndex()]);
 
             //Generate the rounds
             for (int i = 0; i < roundsToReport.Count; i++)
@@ -370,7 +370,7 @@ namespace MyScout
             }
 
             //Figure out file path based on report data
-            string filePath = ($"{Program.startuppath}\\Spreadsheets");
+            string filePath = ($"{Program.StartupPath}\\Spreadsheets");
 
             if (Directory.Exists(filePath))
             {
@@ -382,34 +382,34 @@ namespace MyScout
         //Re-name "button5" to "NextRoundBtn" or something similar.
         private void button5_Click(object sender, EventArgs e)
         {
-            if (Program.currentround < Program.events[Program.currentevent].rounds.Count - 1)
+            if (Program.CurrentRoundIndex < Program.Events[Program.CurrentEventIndex].rounds.Count - 1)
             {
-                Program.currentround++;
-                Program.saved = false;
+                Program.CurrentRoundIndex++;
+                Program.Saved = false;
             }
             else
             {
-                Program.events[Program.currentevent].rounds.Add(new Round());
-                Program.currentround = Program.events[Program.currentevent].rounds.Count - 1;
+                Program.Events[Program.CurrentEventIndex].rounds.Add(new Round());
+                Program.CurrentRoundIndex = Program.Events[Program.CurrentEventIndex].rounds.Count - 1;
             }
 
             MainPnl.Enabled = false;
-            Program.selectedteam = Program.selectedteamroundindex = -1;
-            Program.events[Program.currentevent].lastviewedround = Program.currentround;
+            Program.SelectedTeamIndex = Program.CurrentTeamIndex = -1;
+            Program.Events[Program.CurrentEventIndex].lastviewedround = Program.CurrentRoundIndex;
             RefreshControls();
         }
 
         //TODO: Re-name "button6" to "PrevRoundBtn" or something similar.
         private void button6_Click(object sender, EventArgs e)
         {
-            if (Program.currentround > 0)
+            if (Program.CurrentRoundIndex > 0)
             {
-                Program.currentround--;
+                Program.CurrentRoundIndex--;
             }
 
             MainPnl.Enabled = false;
-            Program.selectedteam = Program.selectedteamroundindex = -1;
-            Program.events[Program.currentevent].lastviewedround = Program.currentround;
+            Program.SelectedTeamIndex = Program.CurrentTeamIndex = -1;
+            Program.Events[Program.CurrentEventIndex].lastviewedround = Program.CurrentRoundIndex;
             RefreshControls();
         }
 
@@ -423,7 +423,7 @@ namespace MyScout
 
             if (adddataFrm.ShowDialog() == DialogResult.OK)
             {
-                Program.events.Add(new Event(adddataFrm.textBox1.Text, adddataFrm.textBox2.Text, adddataFrm.textBox3.Text, Program.datasetName));
+                Program.Events.Add(new Event(adddataFrm.textBox1.Text, adddataFrm.textBox2.Text, adddataFrm.textBox3.Text, Program.DataSetName));
                 RefreshEventList();
             }
         }
@@ -433,14 +433,14 @@ namespace MyScout
         /// </summary>
         private void RemoveEventBtn_Click(object sender, EventArgs e)
         {
-            if (EventList.SelectedItems.Count > 0 && MessageBox.Show($"Are you SURE you want to permanently delete event \"{Program.events[EventList.SelectedIndices[0]].name}\"?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (EventList.SelectedItems.Count > 0 && MessageBox.Show($"Are you SURE you want to permanently delete event \"{Program.Events[EventList.SelectedIndices[0]].name}\"?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 if (File.Exists(Application.StartupPath + "\\Events\\Event" + EventList.SelectedIndices[0].ToString() + ".xml"))
                 {
                     File.Delete(Application.StartupPath + "\\Events\\Event" + EventList.SelectedIndices[0].ToString() + ".xml");
                 }
 
-                Program.events.RemoveAt(EventList.SelectedIndices[0]);
+                Program.Events.RemoveAt(EventList.SelectedIndices[0]);
                 RefreshEventList();
             }
         }
@@ -453,16 +453,16 @@ namespace MyScout
             if (EventList.SelectedItems.Count > 0)
             {
                 AddDataFrm adddataFrm = new AddDataFrm(AddDataFrm.Data.Event);
-                adddataFrm.textBox1.Text = Program.events[EventList.SelectedIndices[0]].name;
-                adddataFrm.textBox2.Text = Program.events[EventList.SelectedIndices[0]].begindate;
-                adddataFrm.textBox3.Text = Program.events[EventList.SelectedIndices[0]].enddate;
+                adddataFrm.textBox1.Text = Program.Events[EventList.SelectedIndices[0]].name;
+                adddataFrm.textBox2.Text = Program.Events[EventList.SelectedIndices[0]].begindate;
+                adddataFrm.textBox3.Text = Program.Events[EventList.SelectedIndices[0]].enddate;
                 adddataFrm.Text = "Edit Event";
 
                 if (adddataFrm.ShowDialog() == DialogResult.OK)
                 {
-                    Program.events[EventList.SelectedIndices[0]].name = adddataFrm.textBox1.Text;
-                    Program.events[EventList.SelectedIndices[0]].begindate = adddataFrm.textBox2.Text;
-                    Program.events[EventList.SelectedIndices[0]].enddate = adddataFrm.textBox3.Text;
+                    Program.Events[EventList.SelectedIndices[0]].name = adddataFrm.textBox1.Text;
+                    Program.Events[EventList.SelectedIndices[0]].begindate = adddataFrm.textBox2.Text;
+                    Program.Events[EventList.SelectedIndices[0]].enddate = adddataFrm.textBox3.Text;
                     RefreshEventList();
                 }
             }
@@ -475,9 +475,9 @@ namespace MyScout
         {
             if (EventList.SelectedIndices.Count > 0)
             {
-                Program.currentevent = EventList.SelectedIndices[0];
-                Program.selectedteam = Program.selectedteamroundindex = -1;
-                Program.currentround = (Program.events[Program.currentevent].lastviewedround == -1)? Program.events[Program.currentevent].rounds.Count - 1 : Program.events[Program.currentevent].lastviewedround;
+                Program.CurrentEventIndex = EventList.SelectedIndices[0];
+                Program.SelectedTeamIndex = Program.CurrentTeamIndex = -1;
+                Program.CurrentRoundIndex = (Program.Events[Program.CurrentEventIndex].lastviewedround == -1)? Program.Events[Program.CurrentEventIndex].rounds.Count - 1 : Program.Events[Program.CurrentEventIndex].lastviewedround;
 
                 MainPnl.Enabled = false;
                 TeamPnl.Visible = true;
@@ -502,13 +502,13 @@ namespace MyScout
                 TeamFrm tf = new TeamFrm();
                 if (tf.ShowDialog() == DialogResult.OK)
                 {
-                    Team selectedteam = Program.events[Program.currentevent].teams[Program.selectedteam];
-                    Program.events[Program.currentevent].rounds[Program.currentround].teams[GetTeamBtnID(btn)] = Program.selectedteam;
+                    Team selectedteam = Program.Events[Program.CurrentEventIndex].teams[Program.SelectedTeamIndex];
+                    Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[GetTeamBtnID(btn)] = Program.SelectedTeamIndex;
 
                     btn.Text = selectedteam.id.ToString();
-                    btn.Tag = Program.selectedteam;
+                    btn.Tag = Program.SelectedTeamIndex;
 
-                    Program.selectedteamroundindex = GetTeamBtnID(btn);
+                    Program.CurrentTeamIndex = GetTeamBtnID(btn);
                     foreach (Control control in AllianceBtnPnl.Controls)
                     {
                         //If the control is a button...
@@ -525,10 +525,10 @@ namespace MyScout
             }
             else
             {
-                if (Program.selectedteamroundindex != GetTeamBtnID(btn))
+                if (Program.CurrentTeamIndex != GetTeamBtnID(btn))
                 {
-                    Program.selectedteam = (int)btn.Tag;
-                    Program.selectedteamroundindex = GetTeamBtnID(btn);
+                    Program.SelectedTeamIndex = (int)btn.Tag;
+                    Program.CurrentTeamIndex = GetTeamBtnID(btn);
 
                     foreach (Control control in AllianceBtnPnl.Controls)
                     {
@@ -545,8 +545,8 @@ namespace MyScout
                 }
                 else if (MessageBox.Show("This team is already selected! Do you want to remove it from it's slot?", "MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    Program.events[Program.currentevent].rounds[Program.currentround].teams[Program.selectedteamroundindex] = -1;
-                    Program.selectedteam = Program.selectedteamroundindex = -1;
+                    Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[Program.CurrentTeamIndex] = -1;
+                    Program.SelectedTeamIndex = Program.CurrentTeamIndex = -1;
                     btn.Tag = null; btn.Text = "----";
 
                     foreach (Control control in AllianceBtnPnl.Controls)
@@ -574,7 +574,7 @@ namespace MyScout
             //Enable/disable every control inside the "Died" groupbox
             RDDefenseLbl.Enabled = RDDefenseChkbx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = RDDied.Checked;
 
-            if (Program.selectedteamroundindex != -1)
+            if (Program.CurrentTeamIndex != -1)
             {
                 //Program.events[Program.currentevent].rounds[Program.currentround].died[Program.selectedteamroundindex] = RDDied.Checked;
             }
@@ -617,7 +617,7 @@ namespace MyScout
         /// </summary>
         private void DefenseRB_CheckedChanged(object sender, EventArgs e)
         {
-            if (Program.selectedteam != -1 && Program.selectedteamroundindex != -1)
+            if (Program.SelectedTeamIndex != -1 && Program.CurrentTeamIndex != -1)
             {
                 RadioButton rb = sender as RadioButton;
                 Panel containingpnl = (rb != null && rb.Parent != null) ? rb.Parent as Panel : null;
@@ -637,7 +637,7 @@ namespace MyScout
                     //    ((containingpnl.Controls[3] as RadioButton).Checked)? 2 : ((containingpnl.Controls[2] as RadioButton).Checked)? 1 : 0;
                     //}
                 }
-                Program.saved = false;
+                Program.Saved = false;
             }
         }
 
@@ -646,7 +646,7 @@ namespace MyScout
         /// </summary>
         private void TCommentsTxtbx_TextChanged(object sender, EventArgs e)
         {
-            if (Program.events[Program.currentevent].rounds.Count > Program.currentround && Program.selectedteamroundindex != -1)
+            if (Program.Events[Program.CurrentEventIndex].rounds.Count > Program.CurrentRoundIndex && Program.CurrentTeamIndex != -1)
             {
                 //Program.events[Program.currentevent].rounds[Program.currentround].comments[Program.selectedteamroundindex] = TCommentsTxtbx.Text;
             }
@@ -660,7 +660,7 @@ namespace MyScout
 
         private void TLowGoalNUD_ValueChanged(object sender, EventArgs e)
         {
-            if (Program.selectedteamroundindex != -1)
+            if (Program.CurrentTeamIndex != -1)
             {
                 //if (!TeleOpRB.Checked)
                 //{
@@ -670,13 +670,13 @@ namespace MyScout
                 //{
                 //    Program.events[Program.currentevent].rounds[Program.currentround].TOlowgoalcount[Program.selectedteamroundindex] = (int)TLowGoalNUD.Value;
                 //}
-                Program.saved = false;
+                Program.Saved = false;
             }
         }
 
         private void THighGoalNUD_ValueChanged(object sender, EventArgs e)
         {
-            if (Program.selectedteamroundindex != -1)
+            if (Program.CurrentTeamIndex != -1)
             {
                 //if (!TeleOpRB.Checked)
                 //{
@@ -686,7 +686,7 @@ namespace MyScout
                 //{
                 //    Program.events[Program.currentevent].rounds[Program.currentround].TOhighgoalcount[Program.selectedteamroundindex] = (int)THighGoalNUD.Value;
                 //}
-                Program.saved = false;
+                Program.Saved = false;
             }
         }
 
@@ -737,7 +737,7 @@ namespace MyScout
 
         private void preScoutButton_Click(object sender, EventArgs e)
         {
-            if (Program.events.Count > 0)
+            if (Program.Events.Count > 0)
             {
                 PrescoutFrm prescoutform = new PrescoutFrm();
                 prescoutform.Show();
@@ -750,8 +750,8 @@ namespace MyScout
 
         private void button2_Click(object sender, EventArgs e)
         {
-            IO.SaveEvent(Program.currentevent);
-            Program.saved = true;
+            IO.SaveEvent(Program.CurrentEventIndex);
+            Program.Saved = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -761,10 +761,10 @@ namespace MyScout
             {
                 EventList.Enabled = AddEventBtn.Enabled = RemoveEventBtn.Enabled = EditEventBtn.Enabled = true;
                 GameDataWarning.Enabled = GameDataWarning.Visible = false;
-                GameNameLbl.Text = "Game:\r\n" + Program.datasetName;
+                GameNameLbl.Text = "Game:\r\n" + Program.DataSetName;
 
                 //Reload all the events
-                Program.events.Clear();
+                Program.Events.Clear();
                 IO.LoadAllEvents();
             }
         }

@@ -14,14 +14,14 @@ namespace MyScout
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Program.events.Count > 0)
+            if (Program.Events.Count > 0)
             {
                 TeamFrm teamform = new TeamFrm(false);
                 teamform.ShowDialog();
 
                 if (teamform.DialogResult == DialogResult.OK)
                 {
-                    selectedTeam = Program.events[Program.currentevent].teams[teamform.GetSelectedTeamIndex()];
+                    selectedTeam = Program.Events[Program.CurrentEventIndex].teams[teamform.GetSelectedTeamIndex()];
                     button1.Text = selectedTeam.id.ToString() + "\n" + selectedTeam.name;
                     LoadStats(selectedTeam);
                     button2.Enabled = true;
@@ -44,7 +44,7 @@ namespace MyScout
         {
             DialogResult = DialogResult.OK;
             SaveStats(selectedTeam);
-            Program.saved = false;
+            Program.Saved = false;
             button2.Enabled = false;
             button1.Select();
             AcceptButton = button1;

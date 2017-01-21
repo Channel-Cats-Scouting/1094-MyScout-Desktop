@@ -35,14 +35,14 @@ namespace MyScout
             //For each type of scouting (pre/round)
             for(int i = 0; i < 2; i++)
                 //For each data point in said type of scouting
-                for(int j = 0; j < Program.dataset[i].Count; j++)
+                for(int j = 0; j < Program.DataSet[i].Count; j++)
                 {
                     /*
                     * Add a new StringEntry with the data point's name and a generated index.
                     * Prescouting indices are the same, but round scouting indices are added to the end, 
                     * so they are a sequential list of indices.
                     */
-                    datalist.Add(new StringEntry(Program.dataset[i][j].GetName(), j + (i > 0 ? Program.dataset[0].Count : 0)));
+                    datalist.Add(new StringEntry(Program.DataSet[i][j].GetName(), j + (i > 0 ? Program.DataSet[0].Count : 0)));
                 }
             button2.Enabled = false;
             SyncStrings();
@@ -136,8 +136,8 @@ namespace MyScout
             teamform.ShowDialog();
             if(teamform.DialogResult == DialogResult.OK)
             {
-                button2.Text = "Team: " + Program.events[Program.currentevent].teams[teamform.GetSelectedTeamIndex()].id.ToString();
-                teamid = Program.events[Program.currentevent].teams[teamform.GetSelectedTeamIndex()].id;
+                button2.Text = "Team: " + Program.Events[Program.CurrentEventIndex].teams[teamform.GetSelectedTeamIndex()].id.ToString();
+                teamid = Program.Events[Program.CurrentEventIndex].teams[teamform.GetSelectedTeamIndex()].id;
                 teamindex = teamform.GetSelectedTeamIndex();
             }
         }
