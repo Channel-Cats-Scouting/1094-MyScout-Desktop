@@ -15,21 +15,21 @@ namespace MyScout
         /// 
         /// "-1" means no team has been assigned to that slot.
         /// </summary>
-        public int[] teams = new int[6] { -1, -1, -1, -1, -1, -1 };
+        public int[] Teams = new int[6] { -1, -1, -1, -1, -1, -1 };
         /// <summary>
         /// An array of lists of datapoints, with one list for each team.
         /// </summary>
-        public List<DataPoint>[] dataset;
+        public List<DataPoint>[] DataSet;
         #endregion
 
         public Round()
         {
             //Make 6 lists of datapoints within the existing dataset variable - one for each team in the round.
-            dataset = new List<DataPoint>[6];
+            DataSet = new List<DataPoint>[6];
 
-            for (int i = 0; i < 6; i++) //For each team in the round
+            for (int i = 0; i < 6; ++i) //For each team in the round
             {
-                dataset[i] = Program.DataSet[1]; //Assign it a copy of the dataset
+                DataSet[i] = Program.DataSet[1]; //Assign it a copy of the dataset
             }
         }
     }

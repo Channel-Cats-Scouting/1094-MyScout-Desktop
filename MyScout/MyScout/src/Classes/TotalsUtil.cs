@@ -102,7 +102,7 @@ namespace MyScout
                 for (int j = 0; j < 5; j++)
                 {
                     //if the team index is the same as the round's team index
-                    if (r.teams[j] == index)
+                    if (r.Teams[j] == index)
                     {
                         rounds.Add(r);
                     }
@@ -121,11 +121,11 @@ namespace MyScout
         /// <returns></returns>
         public static DataPoint getRoundDataPointByName(Round round, int teamIndex, string dataPointName)
         {
-            for(int i = 0; i < round.dataset[teamIndex].Count; i++)
+            for(int i = 0; i < round.DataSet[teamIndex].Count; i++)
             {
-                if(round.dataset[teamIndex][i].GetName() == dataPointName)
+                if(round.DataSet[teamIndex][i].GetName() == dataPointName)
                 {
-                    return round.dataset[teamIndex][i];
+                    return round.DataSet[teamIndex][i];
                 }
             }
             return null;

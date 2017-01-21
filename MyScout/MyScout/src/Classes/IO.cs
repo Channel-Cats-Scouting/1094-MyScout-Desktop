@@ -90,7 +90,7 @@ namespace MyScout
                             List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
                             for (int i2 = 0; i2 < 6; i2++)
                             {
-                                round.teams[i2] = Convert.ToInt32(tokens[i2]);
+                                round.Teams[i2] = Convert.ToInt32(tokens[i2]);
                             }
                             reader.ReadEndElement();
 
@@ -101,7 +101,7 @@ namespace MyScout
                                 for (int k = 0; k < Program.DataSet[1].Count; k++)
                                 {
 
-                                    round.dataset[j][k].SetValue(datatokens[k]);
+                                    round.DataSet[j][k].SetValue(datatokens[k]);
                                 }
 
                             }
@@ -427,7 +427,7 @@ namespace MyScout
 
                         for (int i = 0; i < 6; ++i)
                         {
-                            teams.Add(round.teams[i]); //Write teams to xml
+                            teams.Add(round.Teams[i]); //Write teams to xml
                         }
 
                         writer.WriteElementString("TeamTokens", Tokenizer.CreateTokenizedString(teams));
@@ -439,7 +439,7 @@ namespace MyScout
                             List<object> tokens = new List<object>();
                             for (int j = 0; j < Program.DataSet[1].Count(); j++) //For each datapoint
                             {
-                                tokens.Add(round.dataset[i][j].GetValue()); //Add the datapoint to the tokens list
+                                tokens.Add(round.DataSet[i][j].GetValue()); //Add the datapoint to the tokens list
                             }
                             writer.WriteElementString("DataPoints" + i.ToString(), Tokenizer.CreateTokenizedString(tokens));
                         }
@@ -657,13 +657,13 @@ namespace MyScout
         {
             SaveDataToTeams();
 
-            int[] rawTeamList = ev.rounds[roundID].teams;
+            int[] rawTeamList = ev.rounds[roundID].Teams;
             Team[] teamList = new Team[6];
 
             for (int i = 0; i < 6; ++i)
             {
-                teamList[i] = (Program.Events[Program.CurrentEventIndex].rounds[roundID].teams[i] == -1) ? null :
-                    Program.Events[Program.CurrentEventIndex].teams[Program.Events[Program.CurrentEventIndex].rounds[roundID].teams[i]];
+                teamList[i] = (Program.Events[Program.CurrentEventIndex].rounds[roundID].Teams[i] == -1) ? null :
+                    Program.Events[Program.CurrentEventIndex].teams[Program.Events[Program.CurrentEventIndex].rounds[roundID].Teams[i]];
             }
 
             //Clean the report

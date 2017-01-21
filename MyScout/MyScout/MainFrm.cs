@@ -177,8 +177,8 @@ namespace MyScout
                     //TODO rounds is sometimes 0 when it should be larger. This is just basically circumvented. Fix this later.
                     try
                     {
-                        btn.Tag = (Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[i] == -1) ? null : (object)Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[i];
-                        btn.Text = (Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[i] == -1) ? "----" : Program.Events[Program.CurrentEventIndex].teams[Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[i]].id.ToString();
+                        btn.Tag = (Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].Teams[i] == -1) ? null : (object)Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].Teams[i];
+                        btn.Text = (Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].Teams[i] == -1) ? "----" : Program.Events[Program.CurrentEventIndex].teams[Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].Teams[i]].id.ToString();
                     }
                     catch
                     {
@@ -340,7 +340,7 @@ namespace MyScout
                 for (int j = 0; j < 6; j++)
                 {
                     //If the team is the passed team
-                    if(r.teams[j] != -1 && ev.teams[r.teams[j]] == team)
+                    if(r.Teams[j] != -1 && ev.teams[r.Teams[j]] == team)
                     {
                         output.Add(i);
                         break;
@@ -503,7 +503,7 @@ namespace MyScout
                 if (tf.ShowDialog() == DialogResult.OK)
                 {
                     Team selectedteam = Program.Events[Program.CurrentEventIndex].teams[Program.CurrentTeamIndex];
-                    Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[GetTeamBtnID(btn)] = Program.CurrentTeamIndex;
+                    Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].Teams[GetTeamBtnID(btn)] = Program.CurrentTeamIndex;
 
                     btn.Text = selectedteam.id.ToString();
                     btn.Tag = Program.CurrentTeamIndex;
@@ -545,7 +545,7 @@ namespace MyScout
                 }
                 else if (MessageBox.Show("This team is already selected! Do you want to remove it from it's slot?", "MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[Program.SelectedTeamRoundIndex] = -1;
+                    Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].Teams[Program.SelectedTeamRoundIndex] = -1;
                     Program.CurrentTeamIndex = Program.SelectedTeamRoundIndex = -1;
                     btn.Tag = null; btn.Text = "----";
 
