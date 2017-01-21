@@ -296,7 +296,7 @@ namespace MyScout
             IO.SaveEvent(Program.CurrentEventIndex);
             
             //Open report generation dialog
-            GenReport genreport = new GenReport();
+            GenReportFrm genreport = new GenReportFrm();
 
             if(genreport.ShowDialog() == DialogResult.OK)
             {
@@ -358,10 +358,10 @@ namespace MyScout
         public void GenerateTeamRounds(Object genreporttemp)
         {
             Event ev = Program.Events[Program.CurrentEventIndex];
-            GenReport genreport = (GenReport)genreporttemp;
+            GenReportFrm genreportfrm = (GenReportFrm)genreporttemp;
 
             //Get the rounds
-            List<int> roundsToReport = FindTeamInRounds(Program.Events[Program.CurrentEventIndex].teams[genreport.GetTeamIndex()]);
+            List<int> roundsToReport = FindTeamInRounds(Program.Events[Program.CurrentEventIndex].teams[genreportfrm.GetSelectedTeam()]);
 
             //Generate the rounds
             for (int i = 0; i < roundsToReport.Count; i++)

@@ -1,6 +1,6 @@
 ﻿namespace MyScout
 {
-    partial class GenReport
+    partial class GenReportFrm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,15 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.reportTypeCB = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.GenBtn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.outListBox = new System.Windows.Forms.ListBox();
             this.dataListBox = new System.Windows.Forms.ListBox();
-            this.addButton = new System.Windows.Forms.Button();
-            this.removeButton = new System.Windows.Forms.Button();
+            this.MoveUpBtn = new System.Windows.Forms.Button();
+            this.MoveDownBtn = new System.Windows.Forms.Button();
+            this.AddBtn = new System.Windows.Forms.Button();
+            this.RemoveBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -65,17 +67,17 @@
             this.reportTypeCB.Text = "Event Report";
             this.reportTypeCB.SelectedIndexChanged += new System.EventHandler(this.reportTypeCB_SelectedIndexChanged);
             // 
-            // button1
+            // GenBtn
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(542, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 30);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Generate";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.GenBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.GenBtn.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GenBtn.Location = new System.Drawing.Point(542, 7);
+            this.GenBtn.Name = "GenBtn";
+            this.GenBtn.Size = new System.Drawing.Size(81, 30);
+            this.GenBtn.TabIndex = 5;
+            this.GenBtn.Text = "Generate";
+            this.GenBtn.UseVisualStyleBackColor = true;
+            this.GenBtn.Click += new System.EventHandler(this.GenBtn_Click);
             // 
             // button3
             // 
@@ -106,59 +108,80 @@
             this.outListBox.FormattingEnabled = true;
             this.outListBox.Location = new System.Drawing.Point(13, 46);
             this.outListBox.Name = "outListBox";
-            this.outListBox.Size = new System.Drawing.Size(242, 355);
+            this.outListBox.Size = new System.Drawing.Size(221, 355);
             this.outListBox.TabIndex = 9;
             // 
             // dataListBox
             // 
             this.dataListBox.FormattingEnabled = true;
-            this.dataListBox.Location = new System.Drawing.Point(381, 46);
+            this.dataListBox.Location = new System.Drawing.Point(402, 43);
             this.dataListBox.Name = "dataListBox";
-            this.dataListBox.Size = new System.Drawing.Size(242, 355);
+            this.dataListBox.Size = new System.Drawing.Size(221, 355);
             this.dataListBox.TabIndex = 10;
             this.dataListBox.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            this.dataListBox.Enter += new System.EventHandler(this.dataListBox_Enter);
+            this.dataListBox.Leave += new System.EventHandler(this.dataListBox_Leave);
             // 
-            // addButton
+            // MoveUpBtn
             // 
-            this.addButton.Location = new System.Drawing.Point(261, 190);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(113, 23);
-            this.addButton.TabIndex = 11;
-            this.addButton.Text = "<------------";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            this.MoveUpBtn.Image = global::MyScout.Properties.Resources.uparrow1;
+            this.MoveUpBtn.Location = new System.Drawing.Point(240, 151);
+            this.MoveUpBtn.Name = "MoveUpBtn";
+            this.MoveUpBtn.Size = new System.Drawing.Size(32, 32);
+            this.MoveUpBtn.TabIndex = 11;
+            this.MoveUpBtn.UseVisualStyleBackColor = true;
             // 
-            // removeButton
+            // MoveDownBtn
             // 
-            this.removeButton.Location = new System.Drawing.Point(261, 219);
-            this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(113, 23);
-            this.removeButton.TabIndex = 12;
-            this.removeButton.Text = "------------>";
-            this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
+            this.MoveDownBtn.Image = global::MyScout.Properties.Resources.downarrow;
+            this.MoveDownBtn.Location = new System.Drawing.Point(240, 219);
+            this.MoveDownBtn.Name = "MoveDownBtn";
+            this.MoveDownBtn.Size = new System.Drawing.Size(32, 32);
+            this.MoveDownBtn.TabIndex = 12;
+            this.MoveDownBtn.UseVisualStyleBackColor = true;
             // 
-            // GenReport
+            // AddBtn
             // 
-            this.AcceptButton = this.button1;
+            this.AddBtn.Location = new System.Drawing.Point(321, 190);
+            this.AddBtn.Name = "AddBtn";
+            this.AddBtn.Size = new System.Drawing.Size(75, 23);
+            this.AddBtn.TabIndex = 13;
+            this.AddBtn.Text = "<-- Add";
+            this.AddBtn.UseVisualStyleBackColor = true;
+            this.AddBtn.Click += new System.EventHandler(this.AddBtn_Click);
+            // 
+            // RemoveBtn
+            // 
+            this.RemoveBtn.Location = new System.Drawing.Point(240, 190);
+            this.RemoveBtn.Name = "RemoveBtn";
+            this.RemoveBtn.Size = new System.Drawing.Size(75, 23);
+            this.RemoveBtn.TabIndex = 14;
+            this.RemoveBtn.Text = "Remove -->";
+            this.RemoveBtn.UseVisualStyleBackColor = true;
+            // 
+            // GenReportFrm
+            // 
+            this.AcceptButton = this.GenBtn;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::MyScout.Properties.Resources.bg;
             this.ClientSize = new System.Drawing.Size(635, 419);
-            this.Controls.Add(this.removeButton);
-            this.Controls.Add(this.addButton);
+            this.Controls.Add(this.RemoveBtn);
+            this.Controls.Add(this.AddBtn);
+            this.Controls.Add(this.MoveDownBtn);
+            this.Controls.Add(this.MoveUpBtn);
             this.Controls.Add(this.dataListBox);
             this.Controls.Add(this.outListBox);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.GenBtn);
             this.Controls.Add(this.reportTypeCB);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "GenReport";
+            this.Name = "GenReportFrm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -173,12 +196,14 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox reportTypeCB;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button GenBtn;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox outListBox;
         private System.Windows.Forms.ListBox dataListBox;
-        private System.Windows.Forms.Button addButton;
-        private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.Button MoveUpBtn;
+        private System.Windows.Forms.Button MoveDownBtn;
+        private System.Windows.Forms.Button AddBtn;
+        private System.Windows.Forms.Button RemoveBtn;
     }
 }
