@@ -18,13 +18,13 @@ namespace MyScout
         /// </summary>
         public static void LoadAllEvents()
         {
-            if (!Directory.Exists(Program.StartupPath + "\\Events\\" + Program.DataSetName))
+            if (!Directory.Exists(Path.Combine(Program.StartupPath, "Events", Program.DataSetName)))
             {
-                Directory.CreateDirectory(Program.StartupPath + "\\Events\\" + Program.DataSetName);
+                Directory.CreateDirectory(Path.Combine(Program.StartupPath, "Events", Program.DataSetName));
             }
-            string[] files = Directory.GetFiles(Program.StartupPath + "\\Events\\" + Program.DataSetName);
+            string[] files = Directory.GetFiles(Path.Combine(Program.StartupPath, "Events", Program.DataSetName));
 
-            for (int i = 0; i < files.Length; i++)
+            for (int i = 0; i < files.Length; ++i)
             {
                 LoadEvent(i);
             }
@@ -40,20 +40,17 @@ namespace MyScout
             //TODO: undo try commenting
             try
             {
-
-                if (File.Exists(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml"))
+                string fileName = Path.Combine(Program.StartupPath, "Events", Program.DataSetName, "Event" + eventid + ".xml");
+                if (File.Exists(fileName))
                 {
-                    using (XmlReader reader = XmlReader.Create(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml"))
+                    using (XmlReader reader = XmlReader.Create(fileName))
                     {
                         reader.ReadStartElement("Event");
                         string fileversionstring = reader.ReadElementString("Version");
                         string filedataset = reader.ReadElementString("DataSet");
 
                         if (filedataset != Program.DataSetName)
-                        {
                             return;
-                        }
-
 
                         Program.Events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate"), filedataset));
                         Program.Events[Program.Events.Count - 1].rounds.Clear();
@@ -62,14 +59,14 @@ namespace MyScout
                         int count = Convert.ToInt32(reader.ReadElementString("Count"));
 
                         //Load Team Info
-                        for (int i = 0; i < count; i++)
+                        for (int i = 0; i < count; ++i)
                         {
                             reader.ReadStartElement("Team");
                             List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
 
                             //The first two tokens are team id and name
                             Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString());
-                            for (int j = 2; j < tokens.Count; j++)
+                            for (int j = 2; j < tokens.Count; ++j)
                             {
                                 team.GetTeamSpecificDataset()[j - 2].SetValue(tokens[j]);
                             }
@@ -79,13 +76,12 @@ namespace MyScout
                         }
 
                         reader.ReadEndElement();
-
                         reader.ReadStartElement("Rounds");
 
                         Program.Events[Program.Events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
 
                         count = Convert.ToInt32(reader.ReadElementString("Count"));
-                        for (int i = 0; i < count; i++)
+                        for (int i = 0; i < count; ++i)
                         {
                             reader.ReadStartElement("Round");
                             Round round = new Round();
@@ -120,7 +116,8 @@ namespace MyScout
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}",
+                    "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -138,9 +135,11 @@ namespace MyScout
                 List<DataPoint> roundDataSet = new List<DataPoint>();
                 List<DataPoint> compDataSet = new List<DataPoint>();
                 List<DataPoint> execDataSet = new List<DataPoint>();
-                if (File.Exists(Application.StartupPath + "\\Datasets\\Data_default.xml"))
+                string filePath = Path.Combine(Application.StartupPath, "Datasets", "Data_default.xml");
+                
+                if (File.Exists(filePath))
                 {
-                    using (XmlReader reader = XmlReader.Create(Application.StartupPath + "\\Datasets\\Data_default.xml"))
+                    using (XmlReader reader = XmlReader.Create(filePath))
                     {
                         reader.ReadStartElement("gamedata");
                         string fileversionstring = reader.ReadElementString("version");
@@ -153,7 +152,7 @@ namespace MyScout
 
                             int teamAmnt = Convert.ToInt16(reader.ReadElementString("teamamnt"));
                             reader.ReadStartElement("teamdata");
-                            for (int i = 0; i < teamAmnt; i++)
+                            for (int i = 0; i < teamAmnt; ++i)
                             {
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
                                 teamDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
@@ -162,7 +161,7 @@ namespace MyScout
 
                             int roundAmnt = Convert.ToInt16(reader.ReadElementString("roundamnt"));
                             reader.ReadStartElement("rounddata");
-                            for (int i = 0; i < roundAmnt; i++)
+                            for (int i = 0; i < roundAmnt; ++i)
                             {
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
                                 roundDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
@@ -171,7 +170,7 @@ namespace MyScout
 
                             int compAmnt = Convert.ToInt16(reader.ReadElementString("compamnt"));
                             reader.ReadStartElement("compdata");
-                            for (int i = 0; i < roundAmnt; i++)
+                            for (int i = 0; i < roundAmnt; ++i)
                             {
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
                                 compDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
@@ -180,7 +179,7 @@ namespace MyScout
 
                             int execAmnt = Convert.ToInt16(reader.ReadElementString("execamnt"));
                             reader.ReadStartElement("exec");
-                            for (int i = 0; i < execAmnt; i++)
+                            for (int i = 0; i < execAmnt; ++i)
                             {
                                 reader.ReadElementString("func");
                                 execDataSet.Add(new DataPoint("exec" + i, typeof(string)));
@@ -188,7 +187,7 @@ namespace MyScout
                             reader.ReadEndElement();
                             reader.ReadEndElement();
                         }
-                        else { return; }
+                        else return;
                         reader.ReadEndElement();
                     }
                 }
@@ -199,14 +198,11 @@ namespace MyScout
                 newDataset.Add(compDataSet);
 
                 Program.DataSet = newDataset;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"File{Application.StartupPath + "\\Datasets\\Data_default.xml"} could not be loaded.\nMake sure to supply a default file with the name 'Data_default.xml' in {Application.StartupPath + "\\Datasets"}\n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            return;
         }
 
         /// <summary>
@@ -221,6 +217,7 @@ namespace MyScout
                 List<DataPoint> teamDataSet = new List<DataPoint>();
                 List<DataPoint> roundDataSet = new List<DataPoint>();
                 List<DataPoint> compDataSet = new List<DataPoint>();
+
                 if (File.Exists(filepath))
                 {
                     using (XmlReader reader = XmlReader.Create(filepath))
@@ -236,7 +233,7 @@ namespace MyScout
 
                             int teamAmnt = Convert.ToInt16(reader.ReadElementString("teamamnt"));
                             reader.ReadStartElement("teamdata");
-                            for (int i = 0; i < teamAmnt; i++)
+                            for (int i = 0; i < teamAmnt; ++i)
                             {
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
                                 teamDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
@@ -245,7 +242,7 @@ namespace MyScout
 
                             int roundAmnt = Convert.ToInt16(reader.ReadElementString("roundamnt"));
                             reader.ReadStartElement("rounddata");
-                            for (int i = 0; i < roundAmnt; i++)
+                            for (int i = 0; i < roundAmnt; ++i)
                             {
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
                                 roundDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
@@ -254,7 +251,7 @@ namespace MyScout
 
                             int compAmnt = Convert.ToInt16(reader.ReadElementString("compamnt"));
                             reader.ReadStartElement("compdata");
-                            for (int i = 0; i < compAmnt; i++)
+                            for (int i = 0; i < compAmnt; ++i)
                             {
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
                                 compDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
@@ -263,7 +260,7 @@ namespace MyScout
 
                             int execAmnt = Convert.ToInt16(reader.ReadElementString("execamnt"));
                             reader.ReadStartElement("exec");
-                            for (int i = 0; i < execAmnt; i++)
+                            for (int i = 0; i < execAmnt; ++i)
                             {
                                 compDataSet[i].SetScript(reader.ReadElementString("func"));
                             }
@@ -323,29 +320,33 @@ namespace MyScout
         /// </summary>
         public static void SaveAllEvents()
         {
+            string eventPath = Path.Combine(Program.StartupPath, "Events", Program.DataSetName);
+            string eventBackupPath = Path.Combine(Program.StartupPath, "Events Backup", Program.DataSetName);
 
-            if (Directory.Exists(Program.StartupPath + "\\Events\\" + Program.DataSetName) && Directory.GetFiles(Program.StartupPath + "\\Events\\" + Program.DataSetName).Length > 0)
+            if (Directory.Exists(eventPath) && Directory.GetFiles(eventPath).Length > 0)
             {
-                if (Directory.Exists(Program.StartupPath + "\\Events Backup\\" + Program.DataSetName))
+                if (Directory.Exists(eventBackupPath))
                 {
-                    Directory.Delete(Program.StartupPath + "\\Events Backup\\" + Program.DataSetName, true);
+                    Directory.Delete(eventBackupPath, true);
                 }
-                Directory.Move(Program.StartupPath + "\\Events\\" + Program.DataSetName, Program.StartupPath + "\\Events Backup\\" + Program.DataSetName);
+                Directory.Move(eventPath, eventBackupPath);
             }
-            Directory.CreateDirectory(Program.StartupPath + "\\Events\\" + Program.DataSetName);
 
-            if (Directory.Exists(Program.StartupPath + "\\Events") && Directory.GetFiles(Program.StartupPath + "\\Events").Length > 0)
+            Directory.CreateDirectory(eventPath);
+            eventPath = Path.Combine(Program.StartupPath, "Events");
+            eventBackupPath = Path.Combine(Program.StartupPath, "Events Backup");
+
+            if (Directory.Exists(eventPath) && Directory.GetFiles(eventPath).Length > 0)
             {
-                if (Directory.Exists(Program.StartupPath + "\\Events Backup"))
+                if (Directory.Exists(eventBackupPath))
                 {
-                    Directory.Delete(Program.StartupPath + "\\Events Backup", true);
+                    Directory.Delete(eventBackupPath, true);
                 }
-                Directory.Move(Program.StartupPath + "\\Events", Program.StartupPath + "\\Events Backup");
+                Directory.Move(eventPath, eventBackupPath);
             }
-            Directory.CreateDirectory(Program.StartupPath + "\\Events");
+            Directory.CreateDirectory(eventPath);
 
-
-            for (int i = 0; i < Program.Events.Count; i++)
+            for (int i = 0; i < Program.Events.Count; ++i)
             {
                 SaveEvent(i);
             }
@@ -372,7 +373,6 @@ namespace MyScout
 
                 SaveDataToTeams();
 
-
                 using (XmlTextWriter writer = new XmlTextWriter(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
 
                 {
@@ -398,7 +398,7 @@ namespace MyScout
 
                         tokens.Add(team.id);
                         tokens.Add(team.name);
-                        for (int i = 0; i < team.GetTeamSpecificDataset().Count; i++)
+                        for (int i = 0; i < team.GetTeamSpecificDataset().Count; ++i)
                         {
                             List<DataPoint> datatokens = team.GetTeamSpecificDataset();
                             var token = Convert.ChangeType(datatokens[i].GetValue(), datatokens[i].GetDataType());
@@ -425,7 +425,7 @@ namespace MyScout
 
                         List<object> teams = new List<object>(); //Save teams for each round
 
-                        for (int i = 0; i < 6; i++)
+                        for (int i = 0; i < 6; ++i)
                         {
                             teams.Add(round.teams[i]); //Write teams to xml
                         }
@@ -434,7 +434,7 @@ namespace MyScout
                         writer.WriteEndElement();
 
                         writer.WriteStartElement("DataSets");
-                        for (int i = 0; i < 6; i++) //For each list of datapoints
+                        for (int i = 0; i < 6; ++i) //For each list of datapoints
                         {
                             List<object> tokens = new List<object>();
                             for (int j = 0; j < Program.DataSet[1].Count(); j++) //For each datapoint
@@ -474,7 +474,7 @@ namespace MyScout
 
                 writer.WriteElementString("teamamnt", datasetIn[0].Count.ToString());
                 writer.WriteStartElement("teamdata");
-                for (int i = 0; i < datasetIn[0].Count; i++)
+                for (int i = 0; i < datasetIn[0].Count; ++i)
                 {
                     List<object> tokens = new List<object>();
                     tokens.Add(datasetIn[0][i].GetName());
@@ -486,7 +486,7 @@ namespace MyScout
 
                 writer.WriteElementString("roundamnt", datasetIn[1].Count.ToString());
                 writer.WriteStartElement("roundamnt");
-                for (int i = 0; i < datasetIn[1].Count; i++)
+                for (int i = 0; i < datasetIn[1].Count; ++i)
                 {
                     List<object> tokens = new List<object>();
                     tokens.Add(datasetIn[1][i].GetName());
@@ -497,7 +497,7 @@ namespace MyScout
 
                 writer.WriteElementString("compamnt", datasetIn[2].Count.ToString());
                 writer.WriteStartElement("compamnt");
-                for (int i = 0; i < datasetIn[2].Count; i++)
+                for (int i = 0; i < datasetIn[2].Count; ++i)
                 {
                     List<object> tokens = new List<object>();
                     tokens.Add(datasetIn[2][i].GetName());
@@ -516,7 +516,7 @@ namespace MyScout
         public static void SaveDataToTeams()
         {
             //for each team in the event
-            for (int i = 0; i < Program.Events[Program.CurrentEventIndex].teams.Count; i++)
+            for (int i = 0; i < Program.Events[Program.CurrentEventIndex].teams.Count; ++i)
             {
                 for (int j = 0; j < Program.DataSet[2].Count; j++)
                 {
@@ -537,7 +537,7 @@ namespace MyScout
             List<Team> teamList = ev.teams;
 
             //Clean the report
-            for (int i = 0; i < teamList.Count; i++)
+            for (int i = 0; i < teamList.Count; ++i)
             {
                 if (teamList[i] == null)
                 {
@@ -611,7 +611,7 @@ namespace MyScout
             worksheet.Cells.ColumnWidth[19] = 2400;
 
 
-            for (int i = 1; i < sortedTeamList.Count() + 1; i++)
+            for (int i = 1; i < sortedTeamList.Count() + 1; ++i)
             {
                 Team team = sortedTeamList[i - 1];
                 if (team != null)
@@ -660,14 +660,14 @@ namespace MyScout
             int[] rawTeamList = ev.rounds[roundID].teams;
             Team[] teamList = new Team[6];
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 6; ++i)
             {
                 teamList[i] = (Program.Events[Program.CurrentEventIndex].rounds[roundID].teams[i] == -1) ? null :
                     Program.Events[Program.CurrentEventIndex].teams[Program.Events[Program.CurrentEventIndex].rounds[roundID].teams[i]];
             }
 
             //Clean the report
-            for (int i = 0; i < teamList.Length; i++)
+            for (int i = 0; i < teamList.Length; ++i)
             {
                 if (teamList[i] == null)
                 {
@@ -744,7 +744,7 @@ namespace MyScout
             worksheet.Cells[0, 26] = new Cell("LB");
             worksheet.Cells.ColumnWidth[25, 26] = 900;
 
-            for (int i = 1; i < teamList.Count() + 1; i++)
+            for (int i = 1; i < teamList.Count() + 1; ++i)
             {
                 Team team = teamList[i - 1];
                 if (team != null)
