@@ -18,7 +18,7 @@ namespace MyScout
         /// </summary>
         public static void LoadAllEvents()
         {
-            if(!Directory.Exists(Program.StartupPath + "\\Events\\" + Program.DataSetName))
+            if (!Directory.Exists(Program.StartupPath + "\\Events\\" + Program.DataSetName))
             {
                 Directory.CreateDirectory(Program.StartupPath + "\\Events\\" + Program.DataSetName);
             }
@@ -58,81 +58,63 @@ namespace MyScout
                         Program.Events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate"), filedataset));
                         Program.Events[Program.Events.Count - 1].rounds.Clear();
 
-                        if (fileversionstring == Program.VersionString ||
-                            filedataset == Program.DataSetName ||
-                            (filedataset != Program.DataSetName && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) ||
-                            ((Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.VersionString) && MessageBox.Show($"Event #{eventid.ToString()} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)))
+                        reader.ReadStartElement("Teams");
+                        int count = Convert.ToInt32(reader.ReadElementString("Count"));
+
+                        //Load Team Info
+                        for (int i = 0; i < count; i++)
                         {
-                            Program.Events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate"), filedataset));
-                            Program.Events[Program.Events.Count - 1].rounds.Clear();
+                            reader.ReadStartElement("Team");
+                            List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
 
-
-                            reader.ReadStartElement("Teams");
-                            int count = Convert.ToInt32(reader.ReadElementString("Count"));
-
-                            //Load Team Info
-                            for (int i = 0; i < count; i++)
+                            //The first two tokens are team id and name
+                            Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString());
+                            for (int j = 2; j < tokens.Count; j++)
                             {
-                                reader.ReadStartElement("Team");
-                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
-
-                                //The first two tokens are team id and name
-                                Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString());
-                                for (int j = 2; j < tokens.Count; j++)
-                                {
-                                    team.GetTeamSpecificDataset()[j - 2].SetValue(tokens[j]);
-                                }
-
-                                Program.Events[Program.Events.Count - 1].teams.Add(team);
-                                reader.ReadEndElement();
+                                team.GetTeamSpecificDataset()[j - 2].SetValue(tokens[j]);
                             }
 
-                            reader.ReadEndElement();
-
-                            reader.ReadStartElement("Rounds");
-
-                            Program.Events[Program.Events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
-
-                            Program.Events[Program.Events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
-                            //List<object> AllianceScores = TokenizeStringHandler.ReadTokenizedString(reader.ReadElementString("AllianceScoreTokens"));
-                            //Round.score = new int[2] { Convert.ToInt32(AllianceScores[0]), Convert.ToInt32(AllianceScores[1]) };
-
-
-                            count = Convert.ToInt32(reader.ReadElementString("Count"));
-                            for (int i = 0; i < count; i++)
-                            {
-                                reader.ReadStartElement("Round");
-                                Round round = new Round();
-
-                                reader.ReadStartElement("Teams"); //Load the teams for each round
-                                List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
-                                for (int i2 = 0; i2 < 6; i2++)
-                                {
-                                    round.teams[i2] = Convert.ToInt32(tokens[i2]);
-                                }
-                                reader.ReadEndElement();
-
-                                reader.ReadStartElement("DataSets");
-                                for (int j = 0; j < 6; j++)
-                                {
-                                    List<object> datatokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
-                                    for (int k = 0; k < Program.DataSet[1].Count; k++)
-                                    {
-
-                                        round.dataset[j][k].SetValue(datatokens[k]);
-                                    }
-
-                                    Program.Events[Program.Events.Count - 1].rounds.Add(round); //Add the round we just made to the round list.
-                                    reader.ReadEndElement();
-
-                                }
-                                reader.ReadEndElement();
-
-                                Program.Events[Program.Events.Count - 1].rounds.Add(round); //Add the round we just made to the round list.
-                                reader.ReadEndElement();
-                            }
+                            Program.Events[Program.Events.Count - 1].teams.Add(team);
                             reader.ReadEndElement();
                         }
+
+                        reader.ReadEndElement();
+
+                        reader.ReadStartElement("Rounds");
+
+                        Program.Events[Program.Events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
+
+                        count = Convert.ToInt32(reader.ReadElementString("Count"));
+                        for (int i = 0; i < count; i++)
+                        {
+                            reader.ReadStartElement("Round");
+                            Round round = new Round();
+
+                            reader.ReadStartElement("Teams"); //Load the teams for each round
+                            List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
+                            for (int i2 = 0; i2 < 6; i2++)
+                            {
+                                round.teams[i2] = Convert.ToInt32(tokens[i2]);
+                            }
+                            reader.ReadEndElement();
+
+                            reader.ReadStartElement("DataSets");
+                            for (int j = 0; j < 6; j++)
+                            {
+                                List<object> datatokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
+                                for (int k = 0; k < Program.DataSet[1].Count; k++)
+                                {
+
+                                    round.dataset[j][k].SetValue(datatokens[k]);
+                                }
+
+                            }
+                            reader.ReadEndElement();
+
+                            Program.Events[Program.Events.Count - 1].rounds.Add(round); //Add the round we just made to the round list.
+                            reader.ReadEndElement();
+                        }
+                        reader.ReadEndElement();
                     }
                 }
             }
@@ -281,7 +263,7 @@ namespace MyScout
 
                             int execAmnt = Convert.ToInt16(reader.ReadElementString("execamnt"));
                             reader.ReadStartElement("exec");
-                            for(int i = 0; i < execAmnt; i++)
+                            for (int i = 0; i < execAmnt; i++)
                             {
                                 compDataSet[i].SetScript(reader.ReadElementString("func"));
                             }
@@ -356,7 +338,7 @@ namespace MyScout
             {
                 if (Directory.Exists(Program.StartupPath + "\\Events Backup"))
                 {
-                    Directory.Delete(Program.StartupPath + "\\Events Backup",true);
+                    Directory.Delete(Program.StartupPath + "\\Events Backup", true);
                 }
                 Directory.Move(Program.StartupPath + "\\Events", Program.StartupPath + "\\Events Backup");
             }
@@ -534,9 +516,9 @@ namespace MyScout
         public static void SaveDataToTeams()
         {
             //for each team in the event
-            for(int i = 0; i < Program.Events[Program.CurrentEventIndex].teams.Count; i++)
+            for (int i = 0; i < Program.Events[Program.CurrentEventIndex].teams.Count; i++)
             {
-                for(int j = 0; j < Program.DataSet[2].Count; j++)
+                for (int j = 0; j < Program.DataSet[2].Count; j++)
                 {
                     TotalsUtil.execFunction(i, j);
                 }
@@ -553,7 +535,7 @@ namespace MyScout
             SaveDataToTeams();
 
             List<Team> teamList = ev.teams;
-            
+
             //Clean the report
             for (int i = 0; i < teamList.Count; i++)
             {
@@ -565,8 +547,8 @@ namespace MyScout
 
             //Sort the team list based on the sorting int
             List<Team> sortedTeamList = teamList;
-                //team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.teleHighGoals : team.crossingPowerScore)
-                //).ToList();
+            //team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.teleHighGoals : team.crossingPowerScore)
+            //).ToList();
 
             string filepath = $"{Program.StartupPath}\\Spreadsheets\\Scouting Report {ev.name}.xls";
 
@@ -643,15 +625,15 @@ namespace MyScout
                 }
                 else worksheet.Cells[i, 0] = new Cell("N/A");
 
-                if(team != null)
+                if (team != null)
                     for (int j = 0; j < 9; j++)
                     {
                         //Fill each defense cell with the number of times it has crossed the defense
                         //worksheet.Cells[i, (j + 7)] = new Cell(team.defensesCrossed[j]);
                     }
                 int autoCrossedTotal = 0;
-                if(team != null)
-                    for(int j = 0; j< 9; j++)
+                if (team != null)
+                    for (int j = 0; j < 9; j++)
                     {
                         //autoCrossedTotal += (int)team.autoDefensesCrossed[j];
                     }
@@ -665,7 +647,7 @@ namespace MyScout
             workbook.Worksheets.Add(worksheet);
             workbook.Save(filepath);
         }
-        
+
         /// <summary>
         /// Generates a report based on an individual round
         /// </summary>
@@ -678,22 +660,22 @@ namespace MyScout
             int[] rawTeamList = ev.rounds[roundID].teams;
             Team[] teamList = new Team[6];
 
-            for(int i = 0; i < 6; i++)
+            for (int i = 0; i < 6; i++)
             {
                 teamList[i] = (Program.Events[Program.CurrentEventIndex].rounds[roundID].teams[i] == -1) ? null :
                     Program.Events[Program.CurrentEventIndex].teams[Program.Events[Program.CurrentEventIndex].rounds[roundID].teams[i]];
             }
 
             //Clean the report
-            for(int i = 0; i < teamList.Length; i++)
+            for (int i = 0; i < teamList.Length; i++)
             {
-                if(teamList[i] == null)
+                if (teamList[i] == null)
                 {
                     teamList[i] = new Team(0000, "null");
                 }
             }
 
-            string filepath = $"{Program.StartupPath}\\Spreadsheets\\Scouting Report {ev.name} - Round {roundID+1}.xls";
+            string filepath = $"{Program.StartupPath}\\Spreadsheets\\Scouting Report {ev.name} - Round {roundID + 1}.xls";
 
             if (!Directory.Exists($"{Program.StartupPath}\\Spreadsheets"))
             {
@@ -777,7 +759,7 @@ namespace MyScout
                 }
                 else worksheet.Cells[i, 0] = new Cell("N/A");
 
-                if(team != null)
+                if (team != null)
                     for (int j = 0; j < 9; j++)
                     {
                         //if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 8)] = new Cell(" " + ((char)0x221A).ToString());
@@ -820,7 +802,7 @@ namespace MyScout
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"The spreadsheet could not be generated. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show($"The spreadsheet could not be generated. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
