@@ -195,7 +195,7 @@ namespace MyScout
 
         public void UpdateTitle()
         {
-            Program.MainFrm.Text = ((TeamPnl.Visible) ? Program.Events[Program.CurrentEventIndex].name + " - MyScout 2016" : "MyScout 2016") + ((Program.Saved) ? "" : "*");
+            Program.MainFrm.Text = ((TeamPnl.Visible) ? Program.Events[Program.CurrentEventIndex].name + " - MyScout 2017" : "MyScout 2017") + ((Program.Saved) ? "" : "*");
         }
 
         #endregion
@@ -230,7 +230,7 @@ namespace MyScout
         /// </summary>
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Program.Events.Count > 0 && ((!Program.Saved && MessageBox.Show("You have unsaved changes! Would you like to save them now?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)) || (Program.Saved))
+            if (Program.Events.Count > 0 && ((!Program.Saved && MessageBox.Show("You have unsaved changes! Would you like to save them now?", "MyScout 2017", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)) || (Program.Saved))
             {
                 new Thread(new ThreadStart(IO.SaveAllEvents)).Start();
             }
@@ -433,7 +433,7 @@ namespace MyScout
         /// </summary>
         private void RemoveEventBtn_Click(object sender, EventArgs e)
         {
-            if (EventList.SelectedItems.Count > 0 && MessageBox.Show($"Are you SURE you want to permanently delete event \"{Program.Events[EventList.SelectedIndices[0]].name}\"?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (EventList.SelectedItems.Count > 0 && MessageBox.Show($"Are you SURE you want to permanently delete event \"{Program.Events[EventList.SelectedIndices[0]].name}\"?", "MyScout 2017", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 if (File.Exists(Application.StartupPath + "\\Events\\Event" + EventList.SelectedIndices[0].ToString() + ".xml"))
                 {
@@ -543,7 +543,8 @@ namespace MyScout
                     btn.FlatAppearance.BorderSize = 1;
                     MainPnl.Enabled = true;
                 }
-                else if (MessageBox.Show("This team is already selected! Do you want to remove it from it's slot?", "MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                else if (MessageBox.Show("This team is already selected! Do you want to remove it from it's slot?", "MyScout 2017",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].Teams[Program.SelectedTeamRoundIndex] = -1;
                     Program.CurrentTeamIndex = Program.SelectedTeamRoundIndex = -1;
@@ -744,7 +745,7 @@ namespace MyScout
             }
             else
             {
-                MessageBox.Show("There are no events to pre-scout!", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("There are no events to pre-scout!", "MyScout 2017", MessageBoxButtons.OK, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1);
             }
         }
 

@@ -1431,7 +1431,7 @@
             this.MinimumSize = new System.Drawing.Size(1118, 629);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MyScout 2016";
+            this.Text = "MyScout 2017";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
             this.Load += new System.EventHandler(this.MainFrm_Load);
             this.EventPnl.ResumeLayout(false);

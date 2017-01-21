@@ -66,7 +66,7 @@ namespace MyScout
         /// </summary>
         private void RemoveTeamBtn_Click(object sender, EventArgs e)
         {
-            if (TeamList.SelectedItems.Count > 0 && MessageBox.Show("Are you SURE you want to remove the selected team?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (TeamList.SelectedItems.Count > 0 && MessageBox.Show("Are you SURE you want to remove the selected team?", "MyScout 2017", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 Program.Events[Program.CurrentEventIndex].teams.RemoveAt(TeamList.SelectedIndices[0]);
                 RefreshTeamList();
@@ -96,7 +96,7 @@ namespace MyScout
                         }
                     }
 
-                    if (!IsDuplicate || MessageBox.Show($"Team { Program.Events[Program.CurrentEventIndex].teams[selectedteam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                    if (!IsDuplicate || MessageBox.Show($"Team { Program.Events[Program.CurrentEventIndex].teams[selectedteam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2017", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                     {
                         Program.CurrentTeamIndex = selectedteam;
                         DialogResult = DialogResult.OK;

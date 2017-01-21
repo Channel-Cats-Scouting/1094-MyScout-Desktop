@@ -117,7 +117,7 @@ namespace MyScout
             catch (Exception ex)
             {
                 MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}",
-                    "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "MyScout 2017", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -146,7 +146,7 @@ namespace MyScout
                         string name = reader.ReadElementString("name");
                         string desc = reader.ReadElementString("desc");
 
-                        if (fileversionstring == Program.VersionString || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.VersionString) && MessageBox.Show($"The Dataset file {Application.StartupPath + "\\Datasets\\data_default.xml"} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+                        if (fileversionstring == Program.VersionString || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.VersionString) && MessageBox.Show($"The Dataset file {Application.StartupPath + "\\Datasets\\data_default.xml"} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2017", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
                         {
                             reader.ReadStartElement("dataset");
 
@@ -201,7 +201,7 @@ namespace MyScout
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"File{Application.StartupPath + "\\Datasets\\Data_default.xml"} could not be loaded.\nMake sure to supply a default file with the name 'Data_default.xml' in {Application.StartupPath + "\\Datasets"}\n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"File{Application.StartupPath + "\\Datasets\\Data_default.xml"} could not be loaded.\nMake sure to supply a default file with the name 'Data_default.xml' in {Application.StartupPath + "\\Datasets"}\n\n{ex.Message}", "MyScout 2017", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -227,7 +227,7 @@ namespace MyScout
                         string name = reader.ReadElementString("name");
                         string desc = reader.ReadElementString("desc");
 
-                        if (fileversionstring == Program.VersionString || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.VersionString) && MessageBox.Show($"The Dataset file {filepath} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
+                        if (fileversionstring == Program.VersionString || (Convert.ToSingle(fileversionstring) < Convert.ToSingle(Program.VersionString) && MessageBox.Show($"The Dataset file {filepath} seems to have been made with an older version of the application. Would you like to try and read it anyway? (May not work correctly)", "MyScout 2017", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes))
                         {
                             reader.ReadStartElement("dataset");
 
@@ -282,7 +282,7 @@ namespace MyScout
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"File {filepath} could not be loaded. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"File {filepath} could not be loaded. \n\n{ex.Message}", "MyScout 2017", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             return null;
@@ -802,7 +802,7 @@ namespace MyScout
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"The spreadsheet could not be generated. \n\n{ex.Message}", "MyScout 2016", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"The spreadsheet could not be generated. \n\n{ex.Message}", "MyScout 2017", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
