@@ -95,9 +95,9 @@ namespace MyScout
         {
             EventList.Enabled = AddEventBtn.Enabled = RemoveEventBtn.Enabled = EditEventBtn.Enabled = !TeamPnl.Visible;
 
-            if (Program.SelectedTeamIndex != -1)
+            if (Program.CurrentTeamIndex != -1)
             {
-                TeamNameLbl.Text = $"{((string.IsNullOrEmpty(Program.Events[Program.CurrentEventIndex].teams[Program.SelectedTeamIndex].name))? "" : Program.Events[Program.CurrentEventIndex].teams[Program.SelectedTeamIndex].name + " - ")}{Program.Events[Program.CurrentEventIndex].teams[Program.SelectedTeamIndex].id.ToString()}";
+                TeamNameLbl.Text = $"{((string.IsNullOrEmpty(Program.Events[Program.CurrentEventIndex].teams[Program.CurrentTeamIndex].name))? "" : Program.Events[Program.CurrentEventIndex].teams[Program.CurrentTeamIndex].name + " - ")}{Program.Events[Program.CurrentEventIndex].teams[Program.CurrentTeamIndex].id.ToString()}";
                 TeamNameLbl.ForeColor = label1.ForeColor = (TeamNameLbl.Text != "Channel Cats - 1094")?SystemColors.HotTrack:Color.Orange;
 
                 //foreach (Panel pnl in defensepnls)
@@ -171,7 +171,7 @@ namespace MyScout
                     Button btn = AllianceBtnPnl.Controls[index] as Button;
                     int i = index - 2;
 
-                    if (Program.SelectedTeamIndex != -1 && Program.CurrentTeamIndex == i) { btn.FlatAppearance.BorderSize = 1; MainPnl.Visible = true; }
+                    if (Program.CurrentTeamIndex != -1 && Program.SelectedTeamRoundIndex == i) { btn.FlatAppearance.BorderSize = 1; MainPnl.Visible = true; }
                     else { btn.FlatAppearance.BorderSize = 0; }
 
                     //TODO rounds is sometimes 0 when it should be larger. This is just basically circumvented. Fix this later.
@@ -394,7 +394,7 @@ namespace MyScout
             }
 
             MainPnl.Enabled = false;
-            Program.SelectedTeamIndex = Program.CurrentTeamIndex = -1;
+            Program.CurrentTeamIndex = Program.SelectedTeamRoundIndex = -1;
             Program.Events[Program.CurrentEventIndex].lastviewedround = Program.CurrentRoundIndex;
             RefreshControls();
         }
@@ -408,7 +408,7 @@ namespace MyScout
             }
 
             MainPnl.Enabled = false;
-            Program.SelectedTeamIndex = Program.CurrentTeamIndex = -1;
+            Program.CurrentTeamIndex = Program.SelectedTeamRoundIndex = -1;
             Program.Events[Program.CurrentEventIndex].lastviewedround = Program.CurrentRoundIndex;
             RefreshControls();
         }
@@ -476,7 +476,7 @@ namespace MyScout
             if (EventList.SelectedIndices.Count > 0)
             {
                 Program.CurrentEventIndex = EventList.SelectedIndices[0];
-                Program.SelectedTeamIndex = Program.CurrentTeamIndex = -1;
+                Program.CurrentTeamIndex = Program.SelectedTeamRoundIndex = -1;
                 Program.CurrentRoundIndex = (Program.Events[Program.CurrentEventIndex].lastviewedround == -1)? Program.Events[Program.CurrentEventIndex].rounds.Count - 1 : Program.Events[Program.CurrentEventIndex].lastviewedround;
 
                 MainPnl.Enabled = false;
@@ -502,13 +502,13 @@ namespace MyScout
                 TeamFrm tf = new TeamFrm();
                 if (tf.ShowDialog() == DialogResult.OK)
                 {
-                    Team selectedteam = Program.Events[Program.CurrentEventIndex].teams[Program.SelectedTeamIndex];
-                    Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[GetTeamBtnID(btn)] = Program.SelectedTeamIndex;
+                    Team selectedteam = Program.Events[Program.CurrentEventIndex].teams[Program.CurrentTeamIndex];
+                    Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[GetTeamBtnID(btn)] = Program.CurrentTeamIndex;
 
                     btn.Text = selectedteam.id.ToString();
-                    btn.Tag = Program.SelectedTeamIndex;
+                    btn.Tag = Program.CurrentTeamIndex;
 
-                    Program.CurrentTeamIndex = GetTeamBtnID(btn);
+                    Program.SelectedTeamRoundIndex = GetTeamBtnID(btn);
                     foreach (Control control in AllianceBtnPnl.Controls)
                     {
                         //If the control is a button...
@@ -525,10 +525,10 @@ namespace MyScout
             }
             else
             {
-                if (Program.CurrentTeamIndex != GetTeamBtnID(btn))
+                if (Program.SelectedTeamRoundIndex != GetTeamBtnID(btn))
                 {
-                    Program.SelectedTeamIndex = (int)btn.Tag;
-                    Program.CurrentTeamIndex = GetTeamBtnID(btn);
+                    Program.CurrentTeamIndex = (int)btn.Tag;
+                    Program.SelectedTeamRoundIndex = GetTeamBtnID(btn);
 
                     foreach (Control control in AllianceBtnPnl.Controls)
                     {
@@ -545,8 +545,8 @@ namespace MyScout
                 }
                 else if (MessageBox.Show("This team is already selected! Do you want to remove it from it's slot?", "MyScout 2016",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
-                    Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[Program.CurrentTeamIndex] = -1;
-                    Program.SelectedTeamIndex = Program.CurrentTeamIndex = -1;
+                    Program.Events[Program.CurrentEventIndex].rounds[Program.CurrentRoundIndex].teams[Program.SelectedTeamRoundIndex] = -1;
+                    Program.CurrentTeamIndex = Program.SelectedTeamRoundIndex = -1;
                     btn.Tag = null; btn.Text = "----";
 
                     foreach (Control control in AllianceBtnPnl.Controls)
@@ -574,7 +574,7 @@ namespace MyScout
             //Enable/disable every control inside the "Died" groupbox
             RDDefenseLbl.Enabled = RDDefenseChkbx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = RDDied.Checked;
 
-            if (Program.CurrentTeamIndex != -1)
+            if (Program.SelectedTeamRoundIndex != -1)
             {
                 //Program.events[Program.currentevent].rounds[Program.currentround].died[Program.selectedteamroundindex] = RDDied.Checked;
             }
@@ -617,7 +617,7 @@ namespace MyScout
         /// </summary>
         private void DefenseRB_CheckedChanged(object sender, EventArgs e)
         {
-            if (Program.SelectedTeamIndex != -1 && Program.CurrentTeamIndex != -1)
+            if (Program.CurrentTeamIndex != -1 && Program.SelectedTeamRoundIndex != -1)
             {
                 RadioButton rb = sender as RadioButton;
                 Panel containingpnl = (rb != null && rb.Parent != null) ? rb.Parent as Panel : null;
@@ -646,7 +646,7 @@ namespace MyScout
         /// </summary>
         private void TCommentsTxtbx_TextChanged(object sender, EventArgs e)
         {
-            if (Program.Events[Program.CurrentEventIndex].rounds.Count > Program.CurrentRoundIndex && Program.CurrentTeamIndex != -1)
+            if (Program.Events[Program.CurrentEventIndex].rounds.Count > Program.CurrentRoundIndex && Program.SelectedTeamRoundIndex != -1)
             {
                 //Program.events[Program.currentevent].rounds[Program.currentround].comments[Program.selectedteamroundindex] = TCommentsTxtbx.Text;
             }
@@ -660,7 +660,7 @@ namespace MyScout
 
         private void TLowGoalNUD_ValueChanged(object sender, EventArgs e)
         {
-            if (Program.CurrentTeamIndex != -1)
+            if (Program.SelectedTeamRoundIndex != -1)
             {
                 //if (!TeleOpRB.Checked)
                 //{
@@ -676,7 +676,7 @@ namespace MyScout
 
         private void THighGoalNUD_ValueChanged(object sender, EventArgs e)
         {
-            if (Program.CurrentTeamIndex != -1)
+            if (Program.SelectedTeamRoundIndex != -1)
             {
                 //if (!TeleOpRB.Checked)
                 //{

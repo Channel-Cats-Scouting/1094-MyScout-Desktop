@@ -61,15 +61,69 @@ namespace MyScout
         /// </summary>
         public static int CurrentRoundIndex = -1;
         /// <summary>
-        /// The index of the round's "teams" variable that contains the index of the currently selected team.
+        /// The current team that's been selected.
         /// "-1" means no value has been set.
         /// </summary>
         public static int CurrentTeamIndex = -1;
         /// <summary>
-        /// The current team that's been selected.
+        /// The index of the round's "teams" variable that contains the index of the currently selected team.
         /// "-1" means no value has been set.
         /// </summary>
-        public static int SelectedTeamIndex = -1;
+        public static int SelectedTeamRoundIndex = -1;
+
+        /// <summary>
+        /// Shorthand for getting/setting the current event.
+        /// </summary>
+        public static Event CurrentEvent
+        {
+            get
+            {
+                return (CurrentEventIndex != -1) ? 
+                    Events[CurrentEventIndex] : null;
+            }
+
+            set
+            {
+                if (CurrentEventIndex != -1)
+                    Events[CurrentEventIndex] = value;
+            }
+        }
+
+        /// <summary>
+        /// Shorthand for getting/setting the current event's current round.
+        /// </summary>
+        public static Round CurrentRound
+        {
+            get
+            {
+                return (CurrentEventIndex != -1 && CurrentRoundIndex != -1) ?
+                    CurrentEvent.rounds[CurrentRoundIndex] : null;
+            }
+
+            set
+            {
+                if (CurrentEventIndex != -1 && CurrentRoundIndex != -1)
+                    CurrentEvent.rounds[CurrentRoundIndex] = value;
+            }
+        }
+
+        /// <summary>
+        /// Shorthand for getting/setting the current event's current team.
+        /// </summary>
+        public static Team CurrentTeam
+        {
+            get
+            {
+                return (CurrentEventIndex != -1 && CurrentTeamIndex != -1) ?
+                    CurrentEvent.teams[CurrentTeamIndex] : null;
+            }
+
+            set
+            {
+                if (CurrentEventIndex != -1 && CurrentTeamIndex != -1)
+                    CurrentEvent.teams[CurrentTeamIndex] = value;
+            }
+        }
         #endregion
 
         #endregion

@@ -98,7 +98,7 @@ namespace MyScout
 
                     if (!IsDuplicate || MessageBox.Show($"Team { Program.Events[Program.CurrentEventIndex].teams[selectedteam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2016", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                     {
-                        Program.SelectedTeamIndex = selectedteam;
+                        Program.CurrentTeamIndex = selectedteam;
                         DialogResult = DialogResult.OK;
                         Close();
                     }
