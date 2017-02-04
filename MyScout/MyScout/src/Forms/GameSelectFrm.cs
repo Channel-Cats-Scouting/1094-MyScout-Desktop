@@ -58,7 +58,7 @@ namespace MyScout
 
         private void acceptBtn_Click(object sender, EventArgs e)
         {
-            if (filePaths == null || filePaths.Length <= gameListBox.SelectedIndex) return;
+            if (filePaths == null || filePaths.Length < gameListBox.SelectedIndex || gameListBox.SelectedIndex < 0) return;
             List<List<DataPoint>> newDataset = IO.LoadDatasetFromPath(filePaths[gameListBox.SelectedIndex]);
 
             if (newDataset != null)

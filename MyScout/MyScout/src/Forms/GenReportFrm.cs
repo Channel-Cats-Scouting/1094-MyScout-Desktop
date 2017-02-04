@@ -101,7 +101,7 @@ namespace MyScout
                     IO.CreateEventSpreadsheet(Program.CurrentEvent, outListBox);
                     break;
                 case 1:
-                    IO.CreateRoundSpreadsheet();
+                    IO.CreateRoundSpreadsheet(Program.CurrentEvent, 0, 0); //FIXME
                     break;
                 default:
                     break;
