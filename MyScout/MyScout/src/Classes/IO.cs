@@ -838,41 +838,6 @@ namespace MyScout
             workbook.Worksheets.Add(worksheet);
             workbook.Save(filepath);
         }
-
-        /// <summary>
-        /// A unified method for printing a spreadsheet, compact edition™
-        /// </summary>
-        /// <param name="ev"></param>
-        /// <param name="sorting"></param>
-        public static void GenerateSpreadsheet(Event ev, int sorting)
-        {
-            GenerateSpreadsheet(ev, -1, sorting);
-        }
-
-        /// <summary>
-        /// A unified method for printing a spreadsheet. If roundID is '-1' it prints an event report, otherwise it prints a round report.
-        /// </summary>
-        /// <param name="ev"></param>
-        /// <param name="roundID"></param>
-        /// <param name="sorting"></param>
-        public static void GenerateSpreadsheet(Event ev, int roundID, int sorting)
-        {
-            try
-            {
-                if (roundID != -1)
-                {
-                    CreateRoundSpreadsheet(ev, roundID, sorting);
-                }
-                else
-                {
-                    CreateEventSpreadsheet(ev, sorting);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"The spreadsheet could not be generated. \n\n{ex.Message}", "MyScout 2017", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         #endregion
     }
 }
