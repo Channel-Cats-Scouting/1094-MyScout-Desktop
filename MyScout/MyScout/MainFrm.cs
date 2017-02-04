@@ -10,11 +10,6 @@ namespace MyScout
 {
     public partial class MainFrm : Form
     {
-        /// <summary>
-        /// The panels that show all defense-related information on the GUI.
-        /// </summary>
-        Panel[] defensepnls;
-
         #region Not pointless secrets™
         /// <summary>
         /// ...It's not a secret™
@@ -44,7 +39,6 @@ namespace MyScout
         public MainFrm()
         {
             InitializeComponent();
-            defensepnls = new Panel[9] { panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9 };
             EventList.Enabled = AddEventBtn.Enabled = RemoveEventBtn.Enabled = EditEventBtn.Enabled = false;
             MngGamesBtn.Select();
         }
@@ -99,68 +93,11 @@ namespace MyScout
             {
                 TeamNameLbl.Text = $"{((string.IsNullOrEmpty(Program.Events[Program.CurrentEventIndex].teams[Program.CurrentTeamIndex].name))? "" : Program.Events[Program.CurrentEventIndex].teams[Program.CurrentTeamIndex].name + " - ")}{Program.Events[Program.CurrentEventIndex].teams[Program.CurrentTeamIndex].id.ToString()}";
                 TeamNameLbl.ForeColor = label1.ForeColor = (TeamNameLbl.Text != "Channel Cats - 1094")?SystemColors.HotTrack:Color.Orange;
-
-                //foreach (Panel pnl in defensepnls)
-                //{
-                //    if (!TeleOpRB.Checked)
-                //    {
-                //        //Update the Autonomous GUI
-                //        Defense defense = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, pnl)];
-                //        (pnl.Controls[3] as RadioButton).Checked = defense.AOcrossed;
-                //        (pnl.Controls[2] as RadioButton).Checked = defense.AOreached;
-                //        (pnl.Controls[1] as RadioButton).Checked = (!defense.AOcrossed && !defense.AOreached);
-                //    }
-                //    else
-                //    {
-                //        //Update the Tele-OP GUI
-                //        int timescrossed = Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, pnl)].TOtimescrossed;
-                //        (pnl.Controls[3] as RadioButton).Checked = (timescrossed >= 2);
-                //        (pnl.Controls[2] as RadioButton).Checked = (timescrossed == 1);
-                //        (pnl.Controls[1] as RadioButton).Checked = (timescrossed == 0);
-                //    }
-                //}
-
-                //RDComments.Text = Program.events[Program.currentevent].rounds[Program.currentround].diedcomments[Program.selectedteamroundindex];
-                //RDDefenseChkbx.SelectedIndex = Program.events[Program.currentevent].rounds[Program.currentround].dieddefense[Program.selectedteamroundindex];
-                //TCommentsTxtbx.Text = Program.events[Program.currentevent].rounds[Program.currentround].comments[Program.selectedteamroundindex];
-
-                //if (!TeleOpRB.Checked)
-                //{
-                //    TLowGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].AOlowgoalcount[Program.selectedteamroundindex];
-                //    THighGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].AOhighgoalcount[Program.selectedteamroundindex];
-                //}
-                //else
-                //{
-                //    TLowGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].TOlowgoalcount[Program.selectedteamroundindex];
-                //    THighGoalNUD.Value = Program.events[Program.currentevent].rounds[Program.currentround].TOhighgoalcount[Program.selectedteamroundindex];
-                //}
-
-                //TChallengedTowerChkbx.Checked = Program.events[Program.currentevent].rounds[Program.currentround].challengedtower[Program.selectedteamroundindex];
-                //TScaledTowerChkbx.Checked = Program.events[Program.currentevent].rounds[Program.currentround].scaledtower[Program.selectedteamroundindex];
-                //RDDied.Checked = Program.events[Program.currentevent].rounds[Program.currentround].died[Program.selectedteamroundindex];
-                //HPCommentsTxtbx.Text = Program.events[Program.currentevent].rounds[Program.currentround].humancomments[Program.selectedteamroundindex];
             }
             else
             {
                 TeamNameLbl.Text = "No Team Selected";
                 TeamNameLbl.ForeColor = label1.ForeColor = SystemColors.HotTrack;
-
-                AutonomousRB.Checked = true;
-                TeleOpRB.Checked = false;
-
-                foreach (Panel pnl in defensepnls)
-                {
-                    (pnl.Controls[2] as RadioButton).Checked = (pnl.Controls[3] as RadioButton).Checked = false;
-                    (pnl.Controls[1] as RadioButton).Checked = true;
-                }
-
-                TCommentsTxtbx.Text = "";
-                TLowGoalNUD.Value = 0;
-                THighGoalNUD.Value = 0;
-                TChallengedTowerChkbx.Checked = false;
-                TScaledTowerChkbx.Checked = false;
-                RDDied.Checked = false;
-                HPCommentsTxtbx.Text = "";
             }
 
             //TODO: Documentation
@@ -566,174 +503,11 @@ namespace MyScout
             RefreshControls();
         }
 
-        /// <summary>
-        /// Occurs when "TeleOpRB" is checked or unchecked.
-        /// </summary>
-        private void DiedChkbx_CheckedChanged(object sender, EventArgs e)
-        {
-            //Enable/disable every control inside the "Died" groupbox
-            RDDefenseLbl.Enabled = RDDefenseChkbx.Enabled = RDComments.Enabled = RDCommentsLbl.Enabled = RDDied.Checked;
-
-            if (Program.SelectedTeamRoundIndex != -1)
-            {
-                //Program.events[Program.currentevent].rounds[Program.currentround].died[Program.selectedteamroundindex] = RDDied.Checked;
-            }
-        }
-
-        /// <summary>
-        /// Occurs when "TeleOpRB" is checked or unchecked.
-        /// </summary>
-        private void TeleOpRB_CheckedChanged(object sender, EventArgs e)
-        {
-            //Enable/disable the "Scaled Tower" and "Challenged Tower" checkboxes
-            TScaledTowerChkbx.Enabled = TChallengedTowerChkbx.Enabled = TeleOpRB.Checked;
-
-            //Rename and load data for radio buttons
-            if (TeleOpRB.Checked)
-            {
-                foreach (Panel p in defensepnls)
-                {
-                    p.Controls[1].Text = "0";
-                    p.Controls[2].Text = "1";
-                    p.Controls[3].Text = "2+";
-                    p.Refresh();
-                }
-            }
-            else if (AutonomousRB.Checked)
-            {
-                foreach(Panel p in defensepnls)
-                {
-                    p.Controls[1].Text = "Did Nothing";
-                    p.Controls[2].Text = "Reached";
-                    p.Controls[3].Text = "Crossed";
-                    p.Refresh();
-                }
-            }
-            RefreshControls();
-        }
-
-        /// <summary>
-        /// Occurs when "DefenseRB" is checked or unchecked.
-        /// </summary>
-        private void DefenseRB_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Program.CurrentTeamIndex != -1 && Program.SelectedTeamRoundIndex != -1)
-            {
-                RadioButton rb = sender as RadioButton;
-                Panel containingpnl = (rb != null && rb.Parent != null) ? rb.Parent as Panel : null;
-
-                if (containingpnl != null && defensepnls.Contains(containingpnl))
-                {
-                    //if (!TeleOpRB.Checked)
-                    //{
-                    //    //TODO: Documentation
-                    //    Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, containingpnl)].AOcrossed = (containingpnl.Controls[3] as RadioButton).Checked;
-                    //    Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, containingpnl)].AOreached = (containingpnl.Controls[2] as RadioButton).Checked;
-                    //}
-                    //else
-                    //{
-                    //    //TODO: Documentation
-                    //    Program.events[Program.currentevent].rounds[Program.currentround].defenses[Program.selectedteamroundindex, Array.IndexOf(defensepnls, containingpnl)].TOtimescrossed =
-                    //    ((containingpnl.Controls[3] as RadioButton).Checked)? 2 : ((containingpnl.Controls[2] as RadioButton).Checked)? 1 : 0;
-                    //}
-                }
-                Program.Saved = false;
-            }
-        }
-
-        /// <summary>
-        /// Occurs when the text in "TCommentsTxtbx" is changed.
-        /// </summary>
-        private void TCommentsTxtbx_TextChanged(object sender, EventArgs e)
-        {
-            if (Program.Events[Program.CurrentEventIndex].rounds.Count > Program.CurrentRoundIndex && Program.SelectedTeamRoundIndex != -1)
-            {
-                //Program.events[Program.currentevent].rounds[Program.currentround].comments[Program.selectedteamroundindex] = TCommentsTxtbx.Text;
-            }
-        }
-
         #endregion
 
         #endregion
 
         #endregion
-
-        private void TLowGoalNUD_ValueChanged(object sender, EventArgs e)
-        {
-            if (Program.SelectedTeamRoundIndex != -1)
-            {
-                //if (!TeleOpRB.Checked)
-                //{
-                //    Program.events[Program.currentevent].rounds[Program.currentround].AOlowgoalcount[Program.selectedteamroundindex] = (int)TLowGoalNUD.Value;
-                //}
-                //else
-                //{
-                //    Program.events[Program.currentevent].rounds[Program.currentround].TOlowgoalcount[Program.selectedteamroundindex] = (int)TLowGoalNUD.Value;
-                //}
-                Program.Saved = false;
-            }
-        }
-
-        private void THighGoalNUD_ValueChanged(object sender, EventArgs e)
-        {
-            if (Program.SelectedTeamRoundIndex != -1)
-            {
-                //if (!TeleOpRB.Checked)
-                //{
-                //    Program.events[Program.currentevent].rounds[Program.currentround].AOhighgoalcount[Program.selectedteamroundindex] = (int)THighGoalNUD.Value;
-                //}
-                //else
-                //{
-                //    Program.events[Program.currentevent].rounds[Program.currentround].TOhighgoalcount[Program.selectedteamroundindex] = (int)THighGoalNUD.Value;
-                //}
-                Program.Saved = false;
-            }
-        }
-
-        private void TChallengedTowerChkbx_CheckedChanged(object sender, EventArgs e)
-        {
-            //if (Program.selectedteamroundindex != -1)
-            //{
-            //    Program.events[Program.currentevent].rounds[Program.currentround].challengedtower[Program.selectedteamroundindex] = TChallengedTowerChkbx.Checked;
-            //    Program.saved = false;
-            //}
-        }
-
-        private void TScaledTowerChkbx_CheckedChanged(object sender, EventArgs e)
-        {
-            //if (Program.selectedteamroundindex != -1)
-            //{
-            //    Program.events[Program.currentevent].rounds[Program.currentround].scaledtower[Program.selectedteamroundindex] = TScaledTowerChkbx.Checked;
-            //    Program.saved = false;
-            //}
-        }
-
-        private void HPCommentsTxtbx_TextChanged(object sender, EventArgs e)
-        {
-            //if (Program.events[Program.currentevent].rounds.Count > Program.currentround && Program.selectedteamroundindex != -1)
-            //{
-            //    Program.events[Program.currentevent].rounds[Program.currentround].humancomments[Program.selectedteamroundindex] = HPCommentsTxtbx.Text;
-            //    Program.saved = false;
-            //}
-        }
-
-        private void RDComments_TextChanged(object sender, EventArgs e)
-        {
-            //if (Program.events[Program.currentevent].rounds.Count > Program.currentround && Program.selectedteamroundindex != -1)
-            //{
-            //    Program.events[Program.currentevent].rounds[Program.currentround].diedcomments[Program.selectedteamroundindex] = RDComments.Text;
-            //    Program.saved = false;
-            //}
-        }
-
-        private void RDDefenseChkbx_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if (Program.selectedteamroundindex != -1)
-            //{
-            //    Program.events[Program.currentevent].rounds[Program.currentround].dieddefense[Program.selectedteamroundindex] = RDDefenseChkbx.SelectedIndex;
-            //    Program.saved = false;
-            //}
-        }
 
         private void preScoutButton_Click(object sender, EventArgs e)
         {
