@@ -11,18 +11,15 @@ namespace MyScout
 {
     public static class IO
     {
-        #region paths
-
-        static string REPORTS_FOLDER_ROOT = Program.StartupPath + "\\Spreadsheets\\";
-        static string EVENTS_FOLDER_ROOT = Program.StartupPath + "\\Events\\";
-        static string REPORT_PROFILES_FOLDER_ROOT = REPORTS_FOLDER_ROOT + "\\Profiles\\";
+        #region Paths
+        public static readonly string REPORTS_FOLDER_ROOT = Program.StartupPath + "\\Spreadsheets\\";
+        public static readonly string EVENTS_FOLDER_ROOT = Program.StartupPath + "\\Events\\";
+        public static readonly string REPORT_PROFILES_FOLDER_ROOT = REPORTS_FOLDER_ROOT + "\\Profiles\\";
 
         private static string reportsFolder() { return REPORTS_FOLDER_ROOT + Program.DataSetName; }
         private static string eventsFolder() { return EVENTS_FOLDER_ROOT + Program.DataSetName; }
         private static string reportProfilesFolder() { return REPORT_PROFILES_FOLDER_ROOT; }
         #endregion
-
-
 
         #region Input-related functions
 

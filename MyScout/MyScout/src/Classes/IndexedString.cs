@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyScout
+﻿namespace MyScout
 {
     /// <summary>
     /// A String that contains its index and its "selected" status
