@@ -80,7 +80,8 @@ namespace MyScout
         {
             if (TeamList.SelectedItems.Count > 0 || (!string.IsNullOrEmpty(textBox1.Text) && TeamList.Items.Count > 0))
             {
-                int selectedteam = GetSelectedTeamIndex();
+                int selectedTeam = GetSelectedTeamIndex();
+                if (selectedTeam < 0) return;
 
                 if (applytomemory)
                 {
@@ -92,13 +93,13 @@ namespace MyScout
                         if (control.GetType() == typeof(Button))
                         {
                             Button button = control as Button;
-                            if (button != null && button.Tag != null && (int)button.Tag == selectedteam) { IsDuplicate = true; break; }
+                            if (button != null && button.Tag != null && (int)button.Tag == selectedTeam) { IsDuplicate = true; break; }
                         }
                     }
 
-                    if (!IsDuplicate || MessageBox.Show($"Team { Program.Events[Program.CurrentEventIndex].teams[selectedteam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2017", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                    if (!IsDuplicate || MessageBox.Show($"Team { Program.Events[Program.CurrentEventIndex].teams[selectedTeam].id } is already part of this round! Would you like to add it anyway?", "MyScout 2017", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                     {
-                        Program.CurrentTeamIndex = selectedteam;
+                        Program.CurrentTeamIndex = selectedTeam;
                         DialogResult = DialogResult.OK;
                         Close();
                     }
@@ -158,7 +159,8 @@ namespace MyScout
 
         public int GetSelectedTeamIndex()
         {
-            return (string.IsNullOrEmpty(textBox1.Text)) ? TeamList.SelectedIndices[0] : (TeamList.SelectedItems.Count > 0) ? (int)TeamList.SelectedItems[0].Tag : (int)TeamList.Items[0].Tag; ;
+            return (string.IsNullOrEmpty(textBox1.Text)) ? ((TeamList.SelectedItems.Count > 0) ? TeamList.SelectedIndices[0] : -1) :
+                ((TeamList.SelectedItems.Count > 0) ? (int)TeamList.SelectedItems[0].Tag : (int)TeamList.Items[0].Tag);
         }
 
         private void SelectTeamButton_Click(object sender, EventArgs e)
