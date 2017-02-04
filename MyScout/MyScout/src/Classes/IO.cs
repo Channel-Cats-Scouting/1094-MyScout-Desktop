@@ -11,6 +11,19 @@ namespace MyScout
 {
     public static class IO
     {
+        #region paths
+
+        static string REPORTS_FOLDER_ROOT = Program.StartupPath + "\\Spreadsheets\\";
+        static string EVENTS_FOLDER_ROOT = Program.StartupPath + "\\Events\\";
+        static string REPORT_PROFILES_FOLDER_ROOT = REPORTS_FOLDER_ROOT + "\\Profiles\\";
+
+        private static string reportsFolder() { return REPORTS_FOLDER_ROOT + Program.DataSetName; }
+        private static string eventsFolder() { return EVENTS_FOLDER_ROOT + Program.DataSetName; }
+        private static string reportProfilesFolder() { return REPORT_PROFILES_FOLDER_ROOT; }
+        #endregion
+
+
+
         #region Input-related functions
 
         /// <summary>
@@ -287,6 +300,30 @@ namespace MyScout
 
             return null;
         }
+        
+        /// <summary>
+        /// Loads a round profile .xml for the report generator, returning the string names of the datasets used
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> LoadReportProfile(int eventIndex)
+        {
+            List<string> toReturn = new List<string>();
+
+            if (File.Exists(reportProfilesFolder() + "\\Profile" + eventIndex.ToString() + ".xml"))
+            {
+                using (XmlReader reader = XmlReader.Create(reportProfilesFolder() + "\\Profile" + eventIndex.ToString() + ".xml"))
+                {
+                    reader.ReadStartElement();
+                    int count = Convert.ToInt16(reader.ReadElementString());
+                    for (int i = 0; i < count; i++)
+                    {
+                        toReturn.Add(reader.ReadElementString());
+                    }
+                }
+            }
+
+            return toReturn;
+        }
 
         /// <summary>
         /// Returns a string[] containing the name [0] and description [1] of the data file. Converts \n to line break
@@ -520,6 +557,39 @@ namespace MyScout
                 {
                     TotalsUtil.execFunction(i, j);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Generate an xml file with the strings from the outListBox saved, maintaining the order and value of strings.
+        /// </summary>
+        /// <param name="outListBox"></param>
+        public static void SaveReportProfile(ListBox outListBox, string name)
+        {
+            //try
+            //{
+            string reportPath = reportProfilesFolder() + "\\profile_" + name + ".xml";
+
+            if (File.Exists(reportPath))
+            {
+                File.Delete(reportPath);
+            }
+
+            Directory.CreateDirectory(reportProfilesFolder());
+
+            using (XmlTextWriter writer = new XmlTextWriter(reportPath, Encoding.ASCII))
+            {
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 4;
+
+                writer.WriteStartDocument();
+                writer.WriteStartElement("datapoints");
+                writer.WriteElementString("count", outListBox.Items.Count.ToString());
+                for (int i = 0; i < outListBox.Items.Count; i++)
+                {
+                    writer.WriteElementString("datapoint", (string)outListBox.Items[i]);
+                }
+                writer.WriteEndElement();
             }
         }
 

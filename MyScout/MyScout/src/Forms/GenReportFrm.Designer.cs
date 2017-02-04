@@ -35,6 +35,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.outListBox = new System.Windows.Forms.ListBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.clearDuplicatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataListBox = new System.Windows.Forms.ListBox();
             this.MoveUpBtn = new System.Windows.Forms.Button();
             this.MoveDownBtn = new System.Windows.Forms.Button();
@@ -42,8 +44,6 @@
             this.RemoveBtn = new System.Windows.Forms.Button();
             this.AddAllBtn = new System.Windows.Forms.Button();
             this.RemoveAllBtn = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.clearDuplicatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,6 +96,7 @@
             this.button3.TabIndex = 7;
             this.button3.Text = "Save Profile";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.saveReportBtn_Click);
             // 
             // button2
             // 
@@ -107,6 +108,7 @@
             this.button2.TabIndex = 8;
             this.button2.Text = "Load Profile";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.loadReportBtn_Click);
             // 
             // outListBox
             // 
@@ -116,6 +118,20 @@
             this.outListBox.Name = "outListBox";
             this.outListBox.Size = new System.Drawing.Size(221, 355);
             this.outListBox.TabIndex = 9;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearDuplicatesToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(160, 26);
+            // 
+            // clearDuplicatesToolStripMenuItem
+            // 
+            this.clearDuplicatesToolStripMenuItem.Name = "clearDuplicatesToolStripMenuItem";
+            this.clearDuplicatesToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.clearDuplicatesToolStripMenuItem.Text = "Clear Duplicates";
+            this.clearDuplicatesToolStripMenuItem.Click += new System.EventHandler(this.clearDuplicatesToolStripMenuItem_Click);
             // 
             // dataListBox
             // 
@@ -186,20 +202,6 @@
             this.RemoveAllBtn.Text = "Clear All";
             this.RemoveAllBtn.UseVisualStyleBackColor = true;
             this.RemoveAllBtn.Click += new System.EventHandler(this.RemoveAllBtn_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearDuplicatesToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(160, 48);
-            // 
-            // clearDuplicatesToolStripMenuItem
-            // 
-            this.clearDuplicatesToolStripMenuItem.Name = "clearDuplicatesToolStripMenuItem";
-            this.clearDuplicatesToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.clearDuplicatesToolStripMenuItem.Text = "Clear Duplicates";
-            this.clearDuplicatesToolStripMenuItem.Click += new System.EventHandler(this.clearDuplicatesToolStripMenuItem_Click);
             // 
             // GenReportFrm
             // 

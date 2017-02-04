@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Xml;
+using System.IO;
+using System.Text;
 
 namespace MyScout
 {
@@ -70,9 +73,13 @@ namespace MyScout
         private void GenReport_Load(object sender, EventArgs e)
         {
             dataListBox.Items.Clear();
-            for(int i = 0; i < Program.DataSet[2].Count; i++)
+            for (int i = 0; i < Program.DataSet[2].Count; i++)
             {
                 dataListBox.Items.Add(Program.DataSet[2][i].GetName());
+            }
+            for (int i = 0; i < Program.DataSet[0].Count; i++)
+            {
+                dataListBox.Items.Add(Program.DataSet[0][i].GetName());
             }
         }
 
@@ -118,7 +125,7 @@ namespace MyScout
 
         private void RemoveBtn_Click(object sender, EventArgs e)
         {
-            if(outListBox.SelectedIndex != -1)
+            if (outListBox.SelectedIndex != -1)
             {
                 outListBox.Items.RemoveAt(outListBox.SelectedIndex);
             }
@@ -136,16 +143,36 @@ namespace MyScout
 
         private void clearDuplicatesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < outListBox.Items.Count-1; i++)
+            for (int i = 0; i < outListBox.Items.Count; i++)
             {
-                for(int i2 = 0; i2 < outListBox.Items.Count-1; i2++)
+                for (int i2 = 0; i2 < outListBox.Items.Count; i2++)
                 {
-                    if(i != i2 && (string)outListBox.Items[i] == (string)outListBox.Items[i2])
+                    if (i != i2 && ((string)outListBox.Items[i]).Equals((string)outListBox.Items[i2]))
                     {
                         outListBox.Items.RemoveAt(i2);
                         i2--;
                     }
                 }
+            }
+        }
+
+        private void saveReportBtn_Click(object sender, EventArgs e)
+        {
+            TextPrompt prompt = new TextPrompt("Please enter the name of this profile");
+            if(prompt.ShowDialog() == DialogResult.OK)
+            {
+                string name = prompt.getPromptText();
+                IO.SaveReportProfile(outListBox, name);
+            }
+        }
+
+        private void loadReportBtn_Click(object sender, EventArgs e)
+        {
+            outListBox.Items.Clear();
+            List<string> items = IO.LoadReportProfile(Convert.ToInt16(Program.CurrentEventIndex));
+            for (int i = 0; i < items.Count; i++)
+            {
+                outListBox.Items.Add(items[i]);
             }
         }
     }

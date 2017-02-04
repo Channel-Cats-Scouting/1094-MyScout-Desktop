@@ -10,15 +10,13 @@
 			<datapoint>CanHighGoal:bool</datapoint>
 			<datapoint>MaxCarried:int</datapoint>
 		</teamdata>
-		<roundamnt>9</roundamnt>
+		<roundamnt>7</roundamnt>
 		<rounddata>
 			<datapoint>AutoLowGoals:int</datapoint>
 			<datapoint>AutoHighGoals:int</datapoint>
 			<datapoint>AutoGears:int</datapoint>
 			<datapoint>LowGoals:int</datapoint>
 			<datapoint>HighGoalAccuracy:int</datapoint>
-			<datapoint>HighGoalsCountable:bool</datapoint>
-			<datapoint>HighGoals:int</datapoint>
 			<datapoint>GearsDelivered:int</datapoint>
 			<datapoint>RopeClimbed:bool</datapoint>
 		</rounddata>

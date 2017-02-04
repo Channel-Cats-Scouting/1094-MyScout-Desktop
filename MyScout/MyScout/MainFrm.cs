@@ -300,25 +300,24 @@ namespace MyScout
 
             if(genreport.ShowDialog() == DialogResult.OK)
             {
-                //if (!genreport.GetIsPrescout())
-                //{
-                //    //TODO Get rounds that the team # in GenReport is a part of
-                //    //Generate spreadsheet, but make sure that the RoundID stays -1 if already -1
-                //    IO.GenerateSpreadsheet(Program.events[Program.currentevent], genreport.GetRoundID() >= 0 ? genreport.GetRoundID() - 1 : -1, genreport.GetSorting());
+                if (!genreport.GetIsPrescout())
+                {
+                    ////TODO Get rounds that the team # in GenReport is a part of
+                    ////Generate spreadsheet, but make sure that the RoundID stays -1 if already -1
+                    //IO.GenerateSpreadsheet(Program.CurrentEvent);
+                    ////Figure out file path based on report data
+                    //string filePath = $"{Program.StartupPath}\\Spreadsheets\\Scouting Report {Program.CurrentEvent.name}" + (genreport.GetIsEventReport() ? "" : (" - Round " + genreport.GetRoundID())) + ".xls";
 
-                //    //Figure out file path based on report data
-                //    string filePath = $"{Program.startuppath}\\Spreadsheets\\Scouting Report {Program.events[Program.currentevent].name}" + (genreport.GetIsEventReport() ? "" : (" - Round " + genreport.GetRoundID())) + ".xls";
-
-                //    if (File.Exists(filePath))
-                //    {
-                //        System.Diagnostics.Process.Start("explorer.exe", @"/select, " + filePath);
-                //    }
-                //}
-                //else
-                //{
-                //    Thread generatethread = new Thread(new ParameterizedThreadStart(GenerateTeamRounds));
-                //    generatethread.Start(genreport);
-                //}
+                    //if (File.Exists(filePath))
+                    //{
+                    //    System.Diagnostics.Process.Start("explorer.exe", @"/select, " + filePath);
+                    //}
+                }
+                else
+                {
+                    Thread generatethread = new Thread(new ParameterizedThreadStart(GenerateTeamRounds));
+                    generatethread.Start(genreport);
+                }
             }
         }
 
