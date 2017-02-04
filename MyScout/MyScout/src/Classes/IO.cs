@@ -357,6 +357,9 @@ namespace MyScout
             string eventPath = Path.Combine(Program.StartupPath, "Events", Program.DataSetName);
             string eventBackupPath = Path.Combine(Program.StartupPath, "Events Backup", Program.DataSetName);
 
+            Directory.CreateDirectory(eventPath);
+            Directory.CreateDirectory(eventBackupPath);
+
             if (Directory.Exists(eventPath) && Directory.GetFiles(eventPath).Length > 0)
             {
                 if (Directory.Exists(eventBackupPath))
