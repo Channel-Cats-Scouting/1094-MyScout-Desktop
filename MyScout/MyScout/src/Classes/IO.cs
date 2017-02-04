@@ -564,7 +564,7 @@ namespace MyScout
         /// Generate an xml file with the strings from the outListBox saved, maintaining the order and value of strings.
         /// </summary>
         /// <param name="outListBox"></param>
-        public static void SaveReportProfile(ListBox outListBox, string name)
+        public static void SaveReportProfile(ListBox outListBox, string reporttype, string name)
         {
             //try
             //{
@@ -598,7 +598,7 @@ namespace MyScout
         /// </summary>
         /// <param name="ev">The event to load data from</param>
         /// <param name="sorting">How to sort the generated report; 1:TotalScore, 2:AutoScore, 3:CrossingPower</param>
-        public static void CreateEventSpreadsheet(Event ev, int sorting)
+        public static void CreateEventSpreadsheet(Event ev, ListBox outListBox)
         {
             SaveDataToTeams();
 
@@ -618,11 +618,11 @@ namespace MyScout
             //team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.teleHighGoals : team.crossingPowerScore)
             //).ToList();
 
-            string filepath = $"{Program.StartupPath}\\Spreadsheets\\Scouting Report {ev.name}.xls";
+            string filepath = reportsFolder() + $"\\report_{ev.name}.xls";
 
-            if (!Directory.Exists($"{Program.StartupPath}\\Spreadsheets"))
+            if (!Directory.Exists(reportsFolder()))
             {
-                Directory.CreateDirectory($"{Program.StartupPath}\\Spreadsheets");
+                Directory.CreateDirectory(reportsFolder());
             }
 
             Workbook workbook = new Workbook();

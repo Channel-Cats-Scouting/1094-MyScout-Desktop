@@ -22,16 +22,9 @@ namespace MyScout
         private void confirmBtn_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            Close();
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
-
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }

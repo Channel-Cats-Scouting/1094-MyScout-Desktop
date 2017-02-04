@@ -80,7 +80,6 @@
             this.Controls.Add(this.confirmBtn);
             this.Name = "TextPrompt";
             this.Text = "Save";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

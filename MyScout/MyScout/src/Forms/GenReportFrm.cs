@@ -9,6 +9,11 @@ namespace MyScout
 {
     public partial class GenReportFrm : Form
     {
+        #region constants
+        string EVENT_REPORT = "event";
+        string ROUND_REPORT = "round";
+        string PRESCOUT_REPORT = "team";
+        #endregion
         public GenReportFrm()
         {
             InitializeComponent();
@@ -90,7 +95,17 @@ namespace MyScout
 
         private void GenBtn_Click(object sender, EventArgs e)
         {
-
+            switch(reportTypeCB.SelectedIndex)
+            {
+                case 0:
+                    IO.CreateEventSpreadsheet(Program.CurrentEvent, outListBox);
+                    break;
+                case 1:
+                    IO.CreateRoundSpreadsheet();
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
@@ -162,7 +177,8 @@ namespace MyScout
             if(prompt.ShowDialog() == DialogResult.OK)
             {
                 string name = prompt.getPromptText();
-                IO.SaveReportProfile(outListBox, name);
+                string reportType = reportTypeCB.SelectedIndex == 0 ? EVENT_REPORT : reportTypeCB.SelectedIndex == 1 ? ROUND_REPORT : reportTypeCB.SelectedIndex == 2 ? PRESCOUT_REPORT : "";
+                IO.SaveReportProfile(outListBox, reportType, name);
             }
         }
 
