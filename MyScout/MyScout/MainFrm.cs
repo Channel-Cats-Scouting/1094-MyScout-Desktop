@@ -128,6 +128,18 @@ namespace MyScout
             label1.Text = $"Round {Program.CurrentRoundIndex + 1} of {Program.Events[Program.CurrentEventIndex].rounds.Count}";
             button6.Enabled = Program.CurrentRoundIndex != 0;
             button5.Text = (Program.CurrentRoundIndex < Program.Events[Program.CurrentEventIndex].rounds.Count - 1) ? "->" : "+";
+
+            //Update Controls
+            if (Program.CurrentTeamIndex < 0) return;
+            autoLowGoalsNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][0].GetValue();
+            autoHighGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][1].GetValue();
+            autoGearChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][2].GetValue();
+            autoLineChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][3].GetValue();
+
+            lowGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][4].GetValue();
+            highGoalTracker.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][5].GetValue();
+            gearNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][6].GetValue();
+            ropeChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][7].GetValue();
         }
 
         public void UpdateTitle()
@@ -413,7 +425,10 @@ namespace MyScout
             {
                 Program.CurrentEventIndex = EventList.SelectedIndices[0];
                 Program.CurrentTeamIndex = Program.SelectedTeamRoundIndex = -1;
-                Program.CurrentRoundIndex = (Program.Events[Program.CurrentEventIndex].lastviewedround == -1)? Program.Events[Program.CurrentEventIndex].rounds.Count - 1 : Program.Events[Program.CurrentEventIndex].lastviewedround;
+                Program.CurrentRoundIndex =
+                    (Program.Events[Program.CurrentEventIndex].lastviewedround == -1)?
+                    Program.Events[Program.CurrentEventIndex].rounds.Count - 1 :
+                    Program.Events[Program.CurrentEventIndex].lastviewedround;
 
                 MainPnl.Enabled = false;
                 TeamPnl.Visible = true;
@@ -541,6 +556,33 @@ namespace MyScout
                 Program.Events.Clear();
                 IO.LoadAllEvents();
             }
+        }
+
+        private void highGoalTracker_ValueChanged(object sender, EventArgs e)
+        {
+            var bar = sender as TrackBar;
+            if (bar == null) return;
+
+            if (bar.Value % bar.SmallChange != 0)
+            {
+                bar.Value = bar.SmallChange * ((bar.Value + bar.SmallChange / 2) / bar.SmallChange);
+            }
+
+            Program.CurrentRound.DataSet[Program.CurrentTeamIndex][5].SetValue(bar.Value);
+        }
+
+        private void NUD_ValueChanged(object sender, EventArgs e)
+        {
+            var nud = sender as NumericUpDown;
+            if (nud == null) return;
+            Program.CurrentRound.DataSet[Program.CurrentTeamIndex][(int)nud.Tag].SetValue((int)nud.Value);
+        }
+
+        private void Chkbx_CheckedChanged(object sender, EventArgs e)
+        {
+            var chkBx = sender as CheckBox;
+            if (chkBx == null) return;
+            Program.CurrentRound.DataSet[Program.CurrentTeamIndex][(int)chkBx.Tag].SetValue(chkBx.Checked);
         }
     }
 }

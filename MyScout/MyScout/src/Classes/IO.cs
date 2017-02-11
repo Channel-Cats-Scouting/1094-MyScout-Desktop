@@ -414,8 +414,6 @@ namespace MyScout
                 File.Delete(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml");
             }
 
-                SaveDataToTeams();
-
                 using (XmlTextWriter writer = new XmlTextWriter(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
 
                 {
@@ -606,6 +604,110 @@ namespace MyScout
         }
 
         /// <summary>
+        /// Writes an event to an HTML table (and some irrelevant css animations) for nicer viewing and printing
+        /// </summary>
+        /// <param name="ev"></param>
+        /// <param name="outListBox"></param>
+        public static void CreateEventHTML(Event ev, ListBox outListBox)
+        {
+            SaveDataToTeams();
+
+            List<Team> teamList = ev.teams;
+
+            //Near-useless nullcheck™
+            for (int i = 0; i < teamList.Count; ++i)
+            {
+                if (teamList[i] == null)
+                {
+                    teamList[i] = new Team(0000, "null");
+                }
+            }
+
+            List<Team> sortedTeamList = SortTeamsByAvgScore(teamList);
+
+            string filepath = reportsFolder() + $"\\Report for {ev.name}.html";
+
+            if (!Directory.Exists(reportsFolder()))
+            {
+                Directory.CreateDirectory(reportsFolder());
+            }
+
+            using (XmlTextWriter writer = new XmlTextWriter(filepath, Encoding.ASCII))
+            {
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 2;
+                writer.WriteDocType("html", null, null, null);
+                writer.WriteStartElement("html");
+
+                //Head
+                writer.WriteStartElement("head");
+                writer.WriteElementString("title", ev.name + "Report");
+                writer.WriteStartElement("style");
+                writer.WriteString("#reporttable {border-collapse: collapse; animation: fadein 0.75s}");
+                writer.WriteString("#reporttable td {border: 1px solid black; padding: 2px;}");
+                writer.WriteString(".thead {background-color: gray; color: white;}");
+                writer.WriteString(".evenrow {background-color: lightgray;}");
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+
+                //Body
+                writer.WriteStartElement("body");
+                writer.WriteStartElement("table");
+                writer.WriteAttributeString("id", "reporttable");
+                for (int row = -1; row < sortedTeamList.Count; ++row)
+                {
+                    writer.WriteStartElement("tr");
+                    //Add neat striping
+                    if (row % 2 != 0 && row != -1)
+                    {
+                        writer.WriteAttributeString("class", "evenrow");
+                    }
+
+                    if (row >= 0)
+                    {
+                        writer.WriteElementString("td", sortedTeamList[row].id.ToString());
+                        writer.WriteElementString("td", sortedTeamList[row].name.ToString());
+                        writer.WriteElementString("td", sortedTeamList[row].avgScore.ToString());
+                        foreach (string s in outListBox.Items)
+                        {
+                            if (GetDatapointByName(sortedTeamList[row].GetCompiledScoreDataset(), s) != null)
+                            {
+                                writer.WriteElementString("td", GetDatapointByName(sortedTeamList[row].GetCompiledScoreDataset(), s).GetValue().ToString());
+                            }
+                            else
+                            {
+                                writer.WriteElementString("td", GetDatapointByName(sortedTeamList[row].GetTeamSpecificDataset(), s).GetValue().ToString());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        writer.WriteAttributeString("class", "thead");
+                        writer.WriteElementString("td", "ID");
+                        writer.WriteElementString("td", "Name");
+                        writer.WriteElementString("td", "Avg");
+                        foreach(string s in outListBox.Items)
+                        {
+                            if (GetDatapointByName(Program.DataSet[2], s) != null)
+                            {
+                                writer.WriteElementString("td", GetDatapointByName(Program.DataSet[2], s).GetAbbreviation());
+                            }
+                            else
+                            {
+                                writer.WriteElementString("td", GetDatapointByName(Program.DataSet[0], s).GetAbbreviation());
+                            }
+                        }
+                    }
+                    writer.WriteEndElement();
+                }
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+
+                writer.WriteEndElement();
+            }
+        }
+
+        /// <summary>
         /// Generate a spreadsheet of teams in "{Program.StartupPath}\Spreadsheets\Scouting Report {ev.name}.xls"
         /// </summary>
         /// <param name="ev">The event to load data from</param>
@@ -625,10 +727,7 @@ namespace MyScout
                 }
             }
 
-            //Sort the team list based on the sorting int
-            List<Team> sortedTeamList = teamList;
-            //team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.teleHighGoals : team.crossingPowerScore)
-            //).ToList();
+            List<Team> sortedTeamList = SortTeamsByAvgScore(teamList);
 
             string filepath = reportsFolder() + $"\\Report for {ev.name}.xls";
 
@@ -640,25 +739,25 @@ namespace MyScout
             Workbook workbook = new Workbook();
             Worksheet worksheet = new Worksheet("Scouting Report");
 
-            for(int row = -1; row < teamList.Count; row++)
+            for(int row = -1; row < sortedTeamList.Count; row++)
             {
                 List<string> teamPoints = new List<string>();
 
                 //Initialize data
                 if(row >= 0)
                 {
-                    teamPoints.Add(teamList[row].id.ToString());
-                    teamPoints.Add(teamList[row].name.ToString());
-                    teamPoints.Add(teamList[row].avgScore.ToString());
+                    teamPoints.Add(sortedTeamList[row].id.ToString());
+                    teamPoints.Add(sortedTeamList[row].name.ToString());
+                    teamPoints.Add(sortedTeamList[row].avgScore.ToString());
                     foreach (string s in outListBox.Items)
                     {
-                        if (GetDatapointByName(teamList[row].GetCompiledScoreDataset(), s) != null)
+                        if (GetDatapointByName(sortedTeamList[row].GetCompiledScoreDataset(), s) != null)
                         {
-                            teamPoints.Add(GetDatapointByName(teamList[row].GetCompiledScoreDataset(), s).GetValue().ToString());
+                            teamPoints.Add(GetDatapointByName(sortedTeamList[row].GetCompiledScoreDataset(), s).GetValue().ToString());
                         }
                         else
                         {
-                            teamPoints.Add(GetDatapointByName(teamList[row].GetTeamSpecificDataset(), s).GetValue().ToString());
+                            teamPoints.Add(GetDatapointByName(sortedTeamList[row].GetTeamSpecificDataset(), s).GetValue().ToString());
                         }
                     }
                 }
@@ -856,6 +955,45 @@ namespace MyScout
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Returns a list of teams sorted by average score
+        /// </summary>
+        /// <param name="teamList"></param>
+        /// <returns></returns>
+        public static List<Team> SortTeamsByAvgScore(List<Team> teamList)
+        {
+            List<Team> sortedTeamList = new List<Team>();
+            for (int i = 0; i < teamList.Count; ++i) //For each team in TeamList
+            {
+                if (sortedTeamList.Count > 0) //If there are teams in sortedTeamList
+                {
+                    int insertIndex = 0;
+                    bool notAdded = true;
+                    while (notAdded) //For each team in sortedTeamList
+                    {
+                        if (insertIndex < sortedTeamList.Count) //If the insert index isn't out of bounds
+                        {
+                            if (teamList[i].avgScore > sortedTeamList[insertIndex].avgScore &&
+                                (insertIndex == 0 || teamList[i].avgScore < sortedTeamList[insertIndex - 1].avgScore))
+                            //If it's in the correct space (x > [avgscore] > y)
+                            {
+                                sortedTeamList.Insert(insertIndex, teamList[i]); //Add it to the list
+                                notAdded = false;
+                            }
+                            else insertIndex++; //Otherwise move the index down the list
+                        }
+                        else //If the insert index is at the end of the list, meaning it's less than every other one
+                        {
+                            sortedTeamList.Insert(insertIndex, teamList[i]); //Add it to the list at the end
+                            notAdded = false;
+                        }
+                    }
+                }
+                else sortedTeamList.Add(teamList[i]);
+            }
+            return sortedTeamList;
         }
         #endregion
     }

@@ -39,83 +39,85 @@ namespace MyScout
                         datapointName += scriptchars[dp];
                         i = dp; //Set the current index to the end of the statement.
                     }
-                    
-                    switch(action) //Figure out what to do based on the bracketed action
+
+                    List<Round> rounds = getRoundsFromTeamIndex(teamIndex);
+                    if (rounds.Count > 0)
                     {
-                        case "total": //Totals either boolean or numeric datapoints.
-                            {
-                                List<Round> rounds = getRoundsFromTeamIndex(teamIndex);
-                                float total = 0;
-                                for (int r = 0; r < rounds.Count; r++)
+                        switch (action) //Figure out what to do based on the bracketed action
+                        {
+                            case "total": //Totals either boolean or numeric datapoints.
                                 {
-                                    DataPoint roundDataPoint = getRoundDataPointByName(rounds[r], teamIndex, datapointName);
-                                    if (roundDataPoint.GetDataType() == typeof(bool))
+                                    float total = 0;
+                                    for (int r = 0; r < rounds.Count; r++)
                                     {
-                                        total += ((bool)roundDataPoint.GetValue() ? 1 : 0);
+                                        DataPoint roundDataPoint = getRoundDataPointByName(rounds[r], teamIndex, datapointName);
+                                        if (roundDataPoint.GetDataType() == typeof(bool))
+                                        {
+                                            total += ((bool)roundDataPoint.GetValue() ? 1 : 0);
+                                        }
+                                        else if (IsNumeric(roundDataPoint.GetValue().ToString()))
+                                        {
+                                            float f = float.Parse(roundDataPoint.GetValue().ToString()); //This lets it parse correctly. I don't know why, something to do with a parse exception with (float). Don't ask me. :/
+                                            total += f;
+                                        }
                                     }
-                                    else if (IsNumeric(roundDataPoint.GetValue().ToString()))
-                                    {
-                                        float f = float.Parse(roundDataPoint.GetValue().ToString()); //This lets it parse correctly. I don't know why, something to do with a parse exception with (float). Don't ask me. :/
-                                        total += f;
-                                    }
+                                    actionresult = total;
                                 }
-                                actionresult = total;
-                            }
-                            break;
+                                break;
 
-                        case "avg": //Averages numeric values
-                            {
-                                List<Round> rounds = getRoundsFromTeamIndex(teamIndex);
-                                float addedValues = 0;
-                                for (int r = 0; r < rounds.Count; r++)
+                            case "avg": //Averages numeric values
                                 {
-                                    DataPoint roundDataPoint = getRoundDataPointByName(rounds[r], teamIndex, datapointName);
-                                    if (IsNumeric(roundDataPoint.GetValue().ToString()))
+                                    float addedValues = 0;
+                                    for (int r = 0; r < rounds.Count; r++)
                                     {
-                                        float f = float.Parse(roundDataPoint.GetValue().ToString());
-                                        addedValues += f;
+                                        DataPoint roundDataPoint = getRoundDataPointByName(rounds[r], teamIndex, datapointName);
+                                        if (IsNumeric(roundDataPoint.GetValue().ToString()))
+                                        {
+                                            float f = float.Parse(roundDataPoint.GetValue().ToString());
+                                            addedValues += f;
+                                        }
                                     }
+                                    actionresult = addedValues / rounds.Count;
                                 }
-                                actionresult = addedValues / rounds.Count;
-                            }
-                            break;
-                        case "checkon": //If its round value is true, this is true, forever.
-                            {
-                                List<Round> rounds = getRoundsFromTeamIndex(teamIndex);
-                                bool check = false;
-                                for(int r = 0; r < rounds.Count; r++)
+                                break;
+                            case "checkon": //If its round value is true, this is true, forever.
                                 {
-                                    DataPoint roundDataPoint = getRoundDataPointByName(rounds[r], teamIndex, datapointName);
-                                    if ((IsNumeric(roundDataPoint.GetValue().ToString()) && (float)roundDataPoint.GetValue() > 0) || 
-                                        !IsNumeric(roundDataPoint.GetValue().ToString()) && (bool)roundDataPoint.GetValue())
+                                    bool check = false;
+                                    for (int r = 0; r < rounds.Count; r++)
                                     {
-                                        check = true;
-                                        break;
+                                        DataPoint roundDataPoint = getRoundDataPointByName(rounds[r], teamIndex, datapointName);
+                                        if ((IsNumeric(roundDataPoint.GetValue().ToString()) && (float)roundDataPoint.GetValue() > 0) ||
+                                            !IsNumeric(roundDataPoint.GetValue().ToString()) && (bool)roundDataPoint.GetValue())
+                                        {
+                                            check = true;
+                                            break;
+                                        }
                                     }
+
+                                    actionresult = check;
                                 }
-
-                                actionresult = check;
-                            }
-                            break;
-
-                        //TODO: Add more cases! Total is probably not the only way we can deal with data points.
+                                break;
+                            default:
+                                actionresult = 0;
+                                break;
+                                //TODO: Add more cases! Total is probably not the only way we can deal with data points.
+                        }
                     }
                 }
             }
-            var output = Convert.ChangeType(actionresult, dataType); //Convert the output to the datatype's 'type'
-            Program.CurrentEvent.teams[teamIndex].GetCompiledScoreDataset()[compIndex].SetValue(output);
-            return output;
+                var output = Convert.ChangeType(actionresult, dataType); //Convert the output to the datatype's 'type'
+                Program.CurrentEvent.teams[teamIndex].GetCompiledScoreDataset()[compIndex].SetValue(output);
+                return output;
         }
 
         public static List<Round> getRoundsFromTeamIndex(int index)
         {
             List<Round> rounds = new List<Round>();
-            Team team = Program.Events[Program.CurrentEventIndex].teams[index];
             //for each round in the event
             foreach (Round r in Program.Events[Program.CurrentEventIndex].rounds)
             {
                 //for each team index in the round
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < 6; ++j)
                 {
                     //if the team index is the same as the round's team index
                     if (r.Teams[j] == index)
@@ -156,7 +158,7 @@ namespace MyScout
         /// <returns></returns>
         public static int getTeamLocalIndex(Round round, int teamIndex)
         {
-            for(int i = 0; i < 5; i++)
+            for(int i = 0; i < 6; ++i)
             {
                 if(round.Teams[i] == teamIndex)
                 {
@@ -202,7 +204,10 @@ namespace MyScout
                     }
                 }
             }
-            Program.CurrentEvent.teams[teamindex].avgScore = avgScore / rounds.Count;
+            if(rounds.Count > 0)
+            {
+                Program.CurrentEvent.teams[teamindex].avgScore = avgScore / rounds.Count;
+            }
         }
     }
 }
