@@ -52,60 +52,18 @@ namespace MyScout
 
         public void LoadStats(Team team)
         {
-
-            //portcullisCheckBox.Checked = team.defensesCrossable[0];
-            //tippyRampCheckBox.Checked = team.defensesCrossable[1];
-            //moatCheckBox.Checked = team.defensesCrossable[2];
-            //rampartCheckBox.Checked = team.defensesCrossable[3];
-            //drawbridgeCheckBox.Checked = team.defensesCrossable[4];
-            //sallyPortCheckBox.Checked = team.defensesCrossable[5];
-            //rockWallCheckBox.Checked = team.defensesCrossable[6];
-            //roughTerrainCheckBox.Checked = team.defensesCrossable[7];
-            //lowBarCheckBox.Checked = team.defensesCrossable[8];
-
-            //canHighGoalCB.Checked = team.canScoreHighGoals;
-            //canLowGoalCB.Checked = team.canScoreLowGoals;
-            //loadEmbrasureCB.Checked = team.loadsFromHumanPlayerStations;
-            //loadFloorCB.Checked = team.loadsFromFloor;
-
-            //Console.Write(team.prefers);
-
-            //switch (team.prefers)
-            //{
-            //    case 0:
-            //        radioButton1.Checked = radioButton2.Checked = false;
-            //        radioButton3.Checked = true;
-            //        break;
-            //    case 1:
-            //        radioButton1.Checked = true;
-            //        radioButton2.Checked = radioButton3.Checked = false;
-            //        break;
-            //    case 2:
-            //        radioButton1.Checked = radioButton3.Checked = false;
-            //        radioButton2.Checked = true;
-            //        break;
-            //}
+            canLowGoalCB.Checked = (bool)team.GetTeamSpecificDataset()[0].GetValue();
+            canHighGoalCB.Checked = (bool)team.GetTeamSpecificDataset()[1].GetValue();
+            maxCarriedUpDown.Value = Convert.ToInt16(team.GetTeamSpecificDataset()[2].GetValue());
         }
 
         public void SaveStats(Team team)
         {
             if (team != null)
             {
-                //team.defensesCrossable[0] = portcullisCheckBox.Checked;
-                //team.defensesCrossable[1] = tippyRampCheckBox.Checked;
-                //team.defensesCrossable[2] = moatCheckBox.Checked;
-                //team.defensesCrossable[3] = rampartCheckBox.Checked;
-                //team.defensesCrossable[4] = drawbridgeCheckBox.Checked;
-                //team.defensesCrossable[5] = sallyPortCheckBox.Checked;
-                //team.defensesCrossable[6] = rockWallCheckBox.Checked;
-                //team.defensesCrossable[7] = roughTerrainCheckBox.Checked;
-                //team.defensesCrossable[8] = lowBarCheckBox.Checked;
-
-                //team.canScoreHighGoals = canHighGoalCB.Checked;
-                //team.canScoreLowGoals = canLowGoalCB.Checked;
-                //team.loadsFromHumanPlayerStations = loadEmbrasureCB.Checked;
-                //team.loadsFromFloor = loadFloorCB.Checked;
-                //team.prefers = (radioButton1.Checked)? 1 : (radioButton2.Checked)? 2 : 0;
+                team.GetTeamSpecificDataset()[0].SetValue(canLowGoalCB.Checked);
+                team.GetTeamSpecificDataset()[1].SetValue(canHighGoalCB.Checked);
+                team.GetTeamSpecificDataset()[2].SetValue(maxCarriedUpDown.Value);
             }
         }
 

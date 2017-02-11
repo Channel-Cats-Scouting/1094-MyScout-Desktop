@@ -79,6 +79,8 @@ namespace MyScout
 
                             //The first two tokens are team id and name
                             Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString());
+
+                            //j = 2 because tokens[0] and tokens[1] are hardcoded values
                             for (int j = 2; j < tokens.Count; ++j)
                             {
                                 team.GetTeamSpecificDataset()[j - 2].SetValue(tokens[j]);
@@ -560,6 +562,8 @@ namespace MyScout
                 //for each team in the event
                 for (int i = 0; i < Program.Events[Program.CurrentEventIndex].teams.Count; i++)
                 {
+                    TotalsUtil.updateTeamTotalScore(i);
+
                     for (int j = 0; j < Program.DataSet[2].Count; j++)
                     {
                         TotalsUtil.execFunction(i, j);
@@ -692,102 +696,15 @@ namespace MyScout
                     }
                 }
             }
-
-            #region old crap
-            //PLEASE DON'T CHANGE THE BELOW VALUES I SPENT QUITE A WHILE TWEAKING THEM
-            //  SO THEY ALL FIT ON ONE PAGE HORIZONTALLY WITH DEFAULT PADDING
-            // ~Ethan
-
-            //worksheet.Cells[0, 0] = new Cell("ID");
-            //worksheet.Cells.ColumnWidth[0] = 1250;
-
-            //worksheet.Cells[0, 1] = new Cell("Name");
-            //worksheet.Cells.ColumnWidth[1] = 3700;
-
-            //worksheet.Cells[0, 2] = new Cell("Scaled");
-            //worksheet.Cells.ColumnWidth[2] = 1600;
-
-            //worksheet.Cells[0, 3] = new Cell("Challenged");
-            //worksheet.Cells.ColumnWidth[3] = 2600;
-
-            //worksheet.Cells[0, 4] = new Cell("High Goals");
-            //worksheet.Cells.ColumnWidth[4] = 2500;
-            //worksheet.Cells[0, 5] = new Cell("Low Goals");
-            //worksheet.Cells.ColumnWidth[5] = 2400;
-
-            //worksheet.Cells[0, 6] = new Cell("Tele:"); //TELE STUFFS
-            //worksheet.Cells.ColumnWidth[6] = 1250;
-
-            //worksheet.Cells[0, 7] = new Cell("PC");
-            //worksheet.Cells[0, 8] = new Cell("CF");
-            //worksheet.Cells[0, 9] = new Cell("M");
-            //worksheet.Cells[0, 10] = new Cell("RP");
-            //worksheet.Cells[0, 11] = new Cell("DB");
-            //worksheet.Cells[0, 12] = new Cell("SP");
-            //worksheet.Cells.ColumnWidth[7, 12] = 900;
-
-            //worksheet.Cells[0, 13] = new Cell("RW");
-            //worksheet.Cells.ColumnWidth[13] = 1000;
-
-            //worksheet.Cells[0, 14] = new Cell("RT");
-            //worksheet.Cells[0, 15] = new Cell("LB");
-            //worksheet.Cells.ColumnWidth[14, 15] = 900;
-
-            //worksheet.Cells[0, 16] = new Cell("Auto:"); //AUTO STUFFS
-            //worksheet.Cells.ColumnWidth[16] = 1250;
-
-            //worksheet.Cells[0, 17] = new Cell("Crossed");
-            //worksheet.Cells.ColumnWidth[17] = 2100;
-
-            //worksheet.Cells[0, 18] = new Cell("High Goals");
-            //worksheet.Cells.ColumnWidth[18] = 2500;
-            //worksheet.Cells[0, 19] = new Cell("Low Goals");
-            //worksheet.Cells.ColumnWidth[19] = 2400;
-
-
-            //for (int i = 1; i < sortedTeamList.Count() + 1; ++i)
-            //{
-            //    Team team = sortedTeamList[i - 1];
-            //    if (team != null)
-            //    {
-            //        worksheet.Cells[i, 0] = new Cell(team.id.ToString());
-            //        worksheet.Cells[i, 1] = new Cell(team.name);
-            //        //worksheet.Cells[i, 2] = new Cell(Convert.ToInt16(team.towersScaled));
-            //        //worksheet.Cells[i, 3] = new Cell(Convert.ToInt16(team.towersChallenged));
-            //        //worksheet.Cells[i, 4] = new Cell(Convert.ToInt16(team.teleHighGoals));
-            //        //worksheet.Cells[i, 5] = new Cell(Convert.ToInt16(team.teleLowGoals));
-            //    }
-            //    else worksheet.Cells[i, 0] = new Cell("N/A");
-
-            //    if (team != null)
-            //        for (int j = 0; j < 9; j++)
-            //        {
-            //            //Fill each defense cell with the number of times it has crossed the defense
-            //            //worksheet.Cells[i, (j + 7)] = new Cell(team.defensesCrossed[j]);
-            //        }
-            //    int autoCrossedTotal = 0;
-            //    if (team != null)
-            //        for (int j = 0; j < 9; j++)
-            //        {
-            //            //autoCrossedTotal += (int)team.autoDefensesCrossed[j];
-            //        }
-            //    worksheet.Cells[i, 17] = new Cell(autoCrossedTotal);
-
-            //worksheet.Cells[i, 18] = new Cell(Convert.ToInt16(team.autoHighGoals));
-            //worksheet.Cells[i, 19] = new Cell(Convert.ToInt16(team.autoLowGoals));
-
-            //}
-
-            #endregion
-
+            
             workbook.Worksheets.Add(worksheet);
-            bool cannotSave = false;
+            bool cannotSave = true;
             while (cannotSave)
             {
                 try
                 {
                     workbook.Save(filepath);
-                    cannotSave = true;
+                    cannotSave = false;
                 }
                 catch
                 {
@@ -795,7 +712,6 @@ namespace MyScout
                 }
 
             }
-            workbook.Save(filepath);
         }
 
         /// <summary>

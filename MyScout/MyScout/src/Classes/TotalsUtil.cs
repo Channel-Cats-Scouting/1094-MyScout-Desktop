@@ -49,7 +49,7 @@ namespace MyScout
                                 for (int r = 0; r < rounds.Count; r++)
                                 {
                                     DataPoint roundDataPoint = getRoundDataPointByName(rounds[r], teamIndex, datapointName);
-                                    if (roundDataPoint.GetType() == typeof(bool))
+                                    if (roundDataPoint.GetDataType() == typeof(bool))
                                     {
                                         total += ((bool)roundDataPoint.GetValue() ? 1 : 0);
                                     }
@@ -184,20 +184,25 @@ namespace MyScout
         public static void updateTeamTotalScore(int teamindex)
         {
             List<Round> rounds = getRoundsFromTeamIndex(teamindex);
+            double avgScore = 0;
             for (int i = 0; i < rounds.Count; i++) //for every round this team is in
             {
                 foreach(DataPoint d in rounds[i].DataSet[getTeamLocalIndex(rounds[i], teamindex)])
                 {
-                    if(d.datatype == typeof(bool)) //If it's a boolean, add the point value only if it's true
+                    if (d.GetPointValue() != 0)
                     {
-                        Program.CurrentEvent.teams[teamindex].AddToScore((bool)d.GetValue() ? d.GetPointValue() : 0);
-                    }
-                    else if(d.datatype == typeof(int)) //If it's an int, add the int * pointvalue
-                    {
-                        Program.CurrentEvent.teams[teamindex].AddToScore((int)d.GetValue() * d.GetPointValue());
+                        if (d.datatype == typeof(bool)) //If it's a boolean, add the point value only if it's true
+                        {
+                            avgScore += (bool)d.GetValue() ? d.GetPointValue() : 0;
+                        }
+                        else if (d.datatype == typeof(int)) //If it's an int, add the int * pointvalue
+                        {
+                            avgScore += (int)d.GetValue() * d.GetPointValue();
+                        }
                     }
                 }
             }
+            Program.CurrentEvent.teams[teamindex].avgScore = avgScore / rounds.Count;
         }
     }
 }

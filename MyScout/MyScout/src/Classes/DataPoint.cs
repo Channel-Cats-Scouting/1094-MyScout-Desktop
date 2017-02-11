@@ -140,11 +140,11 @@ namespace MyScout
             for(int i = 0; i < publicName.Length; i++)
             {
                 if (i == 0 || char.IsUpper(chars[i]) || 
-                    chars[i] != 'a' || 
-                    chars[i] != 'e' || 
-                    chars[i] != 'i' || 
-                    chars[i] != 'o' || 
-                    chars[i] != 'u')
+                    (chars[i] != 'a' &&
+                    chars[i] != 'e' &&
+                    chars[i] != 'i' && 
+                    chars[i] != 'o' && 
+                    chars[i] != 'u'))
                 {
                     abbr += chars[i];
                 }
