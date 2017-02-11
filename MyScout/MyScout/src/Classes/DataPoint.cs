@@ -29,7 +29,7 @@ namespace MyScout
         /// <summary>
         /// The amount of points this datapoint is worth
         /// </summary>
-        private float pointValue = 0;
+        private double pointValue = 0;
         /// <summary>
         /// The type of data this datapoint contains.
         /// </summary>
@@ -79,6 +79,22 @@ namespace MyScout
             datatype = type;
         }
 
+        public DataPoint(string name, Type type, double pointValue)
+        {
+            publicName = name;
+            value = defaultvalues[type];
+            datatype = type;
+            this.pointValue = pointValue;
+        }
+
+        public DataPoint(DataPoint dp)
+        {
+            this.publicName = dp.publicName;
+            this.value = dp.value;
+            this.datatype = dp.datatype;
+            this.pointValue = dp.pointValue;
+        }
+
         /// <summary>
         /// Retrieves the type of the given piece of data.
         /// </summary>
@@ -95,6 +111,46 @@ namespace MyScout
         public string GetName()
         {
             return publicName;
+        }
+
+        /// <summary>
+        /// Takes the first and every capital char in the datapoint's name and makes them into an abbreviation
+        /// </summary>
+        /// <returns></returns>
+        public string GetAbbreviationBasic()
+        {
+            string abbr = "";
+            char[] chars = publicName.ToCharArray();
+            for(int i = 0; i < publicName.Length; i++)
+            {
+                if(i == 0 || char.IsUpper(chars[i]))
+                {
+                    abbr += char.ToUpper(chars[i]);
+                }
+            }
+
+            return abbr;
+        }
+
+        public string GetAbbreviation()
+        {
+            string abbr = "";
+
+            char[] chars = publicName.ToCharArray();
+            for(int i = 0; i < publicName.Length; i++)
+            {
+                if (i == 0 || char.IsUpper(chars[i]) || 
+                    chars[i] != 'a' || 
+                    chars[i] != 'e' || 
+                    chars[i] != 'i' || 
+                    chars[i] != 'o' || 
+                    chars[i] != 'u')
+                {
+                    abbr += chars[i];
+                }
+            }
+
+            return abbr;
         }
 
         /// <summary>
@@ -125,43 +181,10 @@ namespace MyScout
         }
 
         /// <summary>
-        /// Increments 'value'. Returns false if 'value' is not an int or a float. Takes an argument for how much to incrememt by.
-        /// </summary>
-        /// <returns></returns>
-        public bool IncrementValue(int increment = 0)
-        {
-            bool success = true;
-            if (increment == 0)
-            {
-                if (value.GetType() == typeof(int) || value.GetType() == typeof(float))
-                    value = (int)value + 1;
-                else success = false;
-            }
-            else value = (int)value + increment;
-            return success;
-        }
-
-        /// <summary>
-        /// Resets the value to null
-        /// </summary>
-        public void ResetValue()
-        {
-            value = null;
-        }
-
-        /// <summary>
-        /// Sets the value to an int, used for counting purposes
-        /// </summary>
-        public void SetValueToInt()
-        {
-            value = defaultvalues[typeof(int)];
-        }
-
-        /// <summary>
         /// Retrieves the point value of the datapoint
         /// </summary>
         /// <returns></returns>
-        public float GetPointValue()
+        public double GetPointValue()
         {
             return pointValue;
         }

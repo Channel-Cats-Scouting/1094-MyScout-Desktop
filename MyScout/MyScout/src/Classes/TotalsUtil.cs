@@ -15,6 +15,7 @@ namespace MyScout
         /// <returns></returns>
         public static dynamic execFunction(int teamIndex, int compIndex)
         {
+            object actionresult = 0;
             List<Round> teamRounds = getRoundsFromTeamIndex(teamIndex);
             Type dataType = Program.DataSet[2][compIndex].GetDataType();
             string funcScript = Program.DataSet[2][compIndex].GetScript();
@@ -38,7 +39,7 @@ namespace MyScout
                         datapointName += scriptchars[dp];
                         i = dp; //Set the current index to the end of the statement.
                     }
-
+                    
                     switch(action) //Figure out what to do based on the bracketed action
                     {
                         case "total": //Totals either boolean or numeric datapoints.
@@ -58,6 +59,7 @@ namespace MyScout
                                         total += f;
                                     }
                                 }
+                                actionresult = total;
                             }
                             break;
 
@@ -74,7 +76,25 @@ namespace MyScout
                                         addedValues += f;
                                     }
                                 }
-                                var total = addedValues / rounds.Count;
+                                actionresult = addedValues / rounds.Count;
+                            }
+                            break;
+                        case "checkon": //If its round value is true, this is true, forever.
+                            {
+                                List<Round> rounds = getRoundsFromTeamIndex(teamIndex);
+                                bool check = false;
+                                for(int r = 0; r < rounds.Count; r++)
+                                {
+                                    DataPoint roundDataPoint = getRoundDataPointByName(rounds[r], teamIndex, datapointName);
+                                    if ((IsNumeric(roundDataPoint.GetValue().ToString()) && (float)roundDataPoint.GetValue() > 0) || 
+                                        !IsNumeric(roundDataPoint.GetValue().ToString()) && (bool)roundDataPoint.GetValue())
+                                    {
+                                        check = true;
+                                        break;
+                                    }
+                                }
+
+                                actionresult = check;
                             }
                             break;
 
@@ -82,8 +102,8 @@ namespace MyScout
                     }
                 }
             }
-            var actionresult = 0;
             var output = Convert.ChangeType(actionresult, dataType); //Convert the output to the datatype's 'type'
+            Program.CurrentEvent.teams[teamIndex].GetCompiledScoreDataset()[compIndex].SetValue(output);
             return output;
         }
 
@@ -117,20 +137,67 @@ namespace MyScout
         /// <returns></returns>
         public static DataPoint getRoundDataPointByName(Round round, int teamIndex, string dataPointName)
         {
-            for(int i = 0; i < round.DataSet[teamIndex].Count; i++)
+            int localIndex = getTeamLocalIndex(round, teamIndex);
+            for (int i = 0; i < round.DataSet[localIndex].Count; i++)
             {
-                if(round.DataSet[teamIndex][i].GetName() == dataPointName)
+                if(round.DataSet[localIndex][i].GetName() == dataPointName)
                 {
-                    return round.DataSet[teamIndex][i];
+                    return round.DataSet[localIndex][i];
                 }
             }
             return null;
         }
 
+        /// <summary>
+        /// Finds the 0-5 local index of a team in a round, or returns -1 if the team isn't in this round.
+        /// </summary>
+        /// <param name="round"></param>
+        /// <param name="teamIndex"></param>
+        /// <returns></returns>
+        public static int getTeamLocalIndex(Round round, int teamIndex)
+        {
+            for(int i = 0; i < 5; i++)
+            {
+                if(round.Teams[i] == teamIndex)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// Returns true if it's a number, false if it's NaN
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public static bool IsNumeric(string text)
         {
             double test;
             return double.TryParse(text, out test);
+        }
+
+        /// <summary>
+        /// Grabs every single round datapoint for a certain team, and adds up all the score values. Currently supports int and boolean datapoints.
+        /// </summary>
+        /// <param name="teamindex"></param>
+        public static void updateTeamTotalScore(int teamindex)
+        {
+            List<Round> rounds = getRoundsFromTeamIndex(teamindex);
+            for (int i = 0; i < rounds.Count; i++) //for every round this team is in
+            {
+                foreach(DataPoint d in rounds[i].DataSet[getTeamLocalIndex(rounds[i], teamindex)])
+                {
+                    if(d.datatype == typeof(bool)) //If it's a boolean, add the point value only if it's true
+                    {
+                        Program.CurrentEvent.teams[teamindex].AddToScore((bool)d.GetValue() ? d.GetPointValue() : 0);
+                    }
+                    else if(d.datatype == typeof(int)) //If it's an int, add the int * pointvalue
+                    {
+                        Program.CurrentEvent.teams[teamindex].AddToScore((int)d.GetValue() * d.GetPointValue());
+                    }
+                }
+            }
         }
     }
 }

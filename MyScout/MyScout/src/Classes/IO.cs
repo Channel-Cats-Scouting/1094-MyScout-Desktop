@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace MyScout
 {
@@ -53,26 +54,28 @@ namespace MyScout
                 string fileName = Path.Combine(Program.StartupPath, "Events", Program.DataSetName, "Event" + eventid + ".xml");
                 if (File.Exists(fileName))
                 {
-                    using (XmlReader reader = XmlReader.Create(fileName))
+                    using (var fileStream = File.OpenRead(fileName))
                     {
-                        reader.ReadStartElement("Event");
-                        string fileversionstring = reader.ReadElementString("Version");
-                        string filedataset = reader.ReadElementString("DataSet");
+                        XDocument xml = XDocument.Load(fileStream);
+                        string fileVersionString = xml.Root.Element("Version").Value;
+                        string fileDataSet = xml.Root.Element("DataSet").Value;
 
-                        if (filedataset != Program.DataSetName)
+                        if (fileDataSet != Program.DataSetName)
                             return;
 
-                        Program.Events.Add(new Event(reader.ReadElementString("Name"), reader.ReadElementString("BeginDate"), reader.ReadElementString("EndDate"), filedataset));
+                        Program.Events.Add(new Event(xml.Root.Element("Name").Value,
+                            xml.Root.Element("BeginDate").Value,
+                            xml.Root.Element("EndDate").Value, fileDataSet));
                         Program.Events[Program.Events.Count - 1].rounds.Clear();
 
-                        reader.ReadStartElement("Teams");
-                        int count = Convert.ToInt32(reader.ReadElementString("Count"));
+                        var teamsElement = xml.Root.Element("Teams");
+                        int count = Convert.ToInt32(teamsElement.Element("Count").Value);
 
                         //Load Team Info
-                        for (int i = 0; i < count; ++i)
+                        foreach (var teamElement in teamsElement.Elements("Team"))
                         {
-                            reader.ReadStartElement("Team");
-                            List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamInfoTokens"));
+                            List<object> tokens =
+                                Tokenizer.ReadTokenizedString(teamElement.Element("TeamInfoTokens").Value);
 
                             //The first two tokens are team id and name
                             Team team = new Team(Convert.ToInt32(tokens[0]), tokens[1].ToString());
@@ -82,51 +85,47 @@ namespace MyScout
                             }
 
                             Program.Events[Program.Events.Count - 1].teams.Add(team);
-                            reader.ReadEndElement();
                         }
 
-                        reader.ReadEndElement();
-                        reader.ReadStartElement("Rounds");
+                        var roundsElement = xml.Root.Element("Rounds");
+                        Program.Events[Program.Events.Count - 1].lastviewedround =
+                            Convert.ToInt32(roundsElement.Element("Current").Value);
 
-                        Program.Events[Program.Events.Count - 1].lastviewedround = Convert.ToInt32(reader.ReadElementString("Current"));
-
-                        count = Convert.ToInt32(reader.ReadElementString("Count"));
-                        for (int i = 0; i < count; ++i)
+                        count = Convert.ToInt32(roundsElement.Element("Count").Value);
+                        foreach (var roundElement in roundsElement.Elements("Round"))
                         {
-                            reader.ReadStartElement("Round");
                             Round round = new Round();
+                            var teamElement = roundElement.Element("Teams"); //Load the teams for each round
+                            var tokens =
+                                Tokenizer.ReadTokenizedString(teamElement.Element("TeamTokens").Value);
 
-                            reader.ReadStartElement("Teams"); //Load the teams for each round
-                            List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("TeamTokens"));
-                            for (int i2 = 0; i2 < 6; i2++)
+                            for (int i2 = 0; i2 < 6; ++i2)
                             {
                                 round.Teams[i2] = Convert.ToInt32(tokens[i2]);
                             }
-                            reader.ReadEndElement();
 
-                            reader.ReadStartElement("DataSets");
-                            for (int j = 0; j < 6; j++)
+                            var dataSetElement = roundElement.Element("DataSets");
+                            for (int j = 0; j < 6; ++j)
                             {
-                                List<object> datatokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("DataPoints" + j.ToString()));
-                                for (int k = 0; k < Program.DataSet[1].Count; k++)
+                                var dataTokens =
+                                    Tokenizer.ReadTokenizedString(dataSetElement.Element("DataPoints" + j).Value);
+
+                                for (int k = 0; k < Program.DataSet[1].Count; ++k)
                                 {
-
-                                    round.DataSet[j][k].SetValue(datatokens[k]);
+                                    round.DataSet[j][k].SetValue(dataTokens[k]);
                                 }
-
                             }
-                            reader.ReadEndElement();
 
                             Program.Events[Program.Events.Count - 1].rounds.Add(round); //Add the round we just made to the round list.
-                            reader.ReadEndElement();
                         }
-                        reader.ReadEndElement();
+
+                        fileStream.Close();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Event #{eventid.ToString()} could not be loaded. \n\n{ex.Message}",
+                MessageBox.Show($"Event #{eventid} could not be loaded. \n\n{ex.Message}",
                     "MyScout 2017", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -245,8 +244,10 @@ namespace MyScout
                             reader.ReadStartElement("teamdata");
                             for (int i = 0; i < teamAmnt; ++i)
                             {
+                                //Read all the tokens in this datapoint
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
-                                teamDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
+                                //Create a new datapoint from the tokens
+                                teamDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1]), tokens.Count == 3 ? Convert.ToDouble(tokens[2]) : 0));
                             }
                             reader.ReadEndElement();
 
@@ -254,8 +255,10 @@ namespace MyScout
                             reader.ReadStartElement("rounddata");
                             for (int i = 0; i < roundAmnt; ++i)
                             {
+                                //Read all the tokens in this datapoint
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
-                                roundDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
+                                //Create a new datapoint from the tokens
+                                roundDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1]), tokens.Count == 3 ? Convert.ToDouble(tokens[2]) : 0));
                             }
                             reader.ReadEndElement();
 
@@ -263,8 +266,10 @@ namespace MyScout
                             reader.ReadStartElement("compdata");
                             for (int i = 0; i < compAmnt; ++i)
                             {
+                                //Read all the tokens in this datapoint
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
-                                compDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1])));
+                                //Create a new datapoint from the tokens
+                                compDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1]), tokens.Count == 3 ? Convert.ToDouble(tokens[2]) : 0));
                             }
                             reader.ReadEndElement();
 
@@ -550,12 +555,15 @@ namespace MyScout
         /// </summary>
         public static void SaveDataToTeams()
         {
-            //for each team in the event
-            for (int i = 0; i < Program.Events[Program.CurrentEventIndex].teams.Count; ++i)
+            if(Program.CurrentEventIndex != -1)
             {
-                for (int j = 0; j < Program.DataSet[2].Count; j++)
+                //for each team in the event
+                for (int i = 0; i < Program.Events[Program.CurrentEventIndex].teams.Count; i++)
                 {
-                    TotalsUtil.execFunction(i, j);
+                    for (int j = 0; j < Program.DataSet[2].Count; j++)
+                    {
+                        TotalsUtil.execFunction(i, j);
+                    }
                 }
             }
         }
@@ -604,7 +612,7 @@ namespace MyScout
 
             List<Team> teamList = ev.teams;
 
-            //Clean the report
+            //Near-useless nullcheck™
             for (int i = 0; i < teamList.Count; ++i)
             {
                 if (teamList[i] == null)
@@ -618,7 +626,7 @@ namespace MyScout
             //team => (sorting == 0 ? team.avgScore : sorting == 1 ? team.teleHighGoals : team.crossingPowerScore)
             //).ToList();
 
-            string filepath = reportsFolder() + $"\\report_{ev.name}.xls";
+            string filepath = reportsFolder() + $"\\Report for {ev.name}.xls";
 
             if (!Directory.Exists(reportsFolder()))
             {
@@ -628,91 +636,165 @@ namespace MyScout
             Workbook workbook = new Workbook();
             Worksheet worksheet = new Worksheet("Scouting Report");
 
+            for(int row = -1; row < teamList.Count; row++)
+            {
+                List<string> teamPoints = new List<string>();
+
+                //Initialize data
+                if(row >= 0)
+                {
+                    teamPoints.Add(teamList[row].id.ToString());
+                    teamPoints.Add(teamList[row].name.ToString());
+                    teamPoints.Add(teamList[row].avgScore.ToString());
+                    foreach (string s in outListBox.Items)
+                    {
+                        if (GetDatapointByName(teamList[row].GetCompiledScoreDataset(), s) != null)
+                        {
+                            teamPoints.Add(GetDatapointByName(teamList[row].GetCompiledScoreDataset(), s).GetValue().ToString());
+                        }
+                        else
+                        {
+                            teamPoints.Add(GetDatapointByName(teamList[row].GetTeamSpecificDataset(), s).GetValue().ToString());
+                        }
+                    }
+                }
+                else
+                {
+                    teamPoints.Add("ID");
+                    teamPoints.Add("Name");
+                    teamPoints.Add("Avg");
+                    foreach(string s in outListBox.Items)
+                    {
+                        if(GetDatapointByName(Program.DataSet[2], s) != null)
+                        {
+                            teamPoints.Add(GetDatapointByName(Program.DataSet[2], s).GetAbbreviation());
+                        }
+                        else
+                        {
+                            teamPoints.Add(GetDatapointByName(Program.DataSet[0], s).GetAbbreviation());
+                        }
+                    }
+                }
+
+                for (ushort col = 0; col < teamPoints.Count; col++)
+                {
+                    worksheet.Cells[row+1, col] = new Cell(teamPoints[col]);
+
+                    //Calculate cell width
+                    ushort CHAR_WIDTH = 400;
+                    if(row == -1)
+                    {
+                        worksheet.Cells.ColumnWidth[col] = (ushort)(teamPoints[col].Length * CHAR_WIDTH);
+                    }
+                    if (worksheet.Cells.ColumnWidth[col] < teamPoints[col].Length * CHAR_WIDTH)
+                    {
+                        worksheet.Cells.ColumnWidth[col] = (ushort)(teamPoints[col].Length * CHAR_WIDTH);
+                    }
+                }
+            }
+
+            #region old crap
             //PLEASE DON'T CHANGE THE BELOW VALUES I SPENT QUITE A WHILE TWEAKING THEM
             //  SO THEY ALL FIT ON ONE PAGE HORIZONTALLY WITH DEFAULT PADDING
             // ~Ethan
 
-            worksheet.Cells[0, 0] = new Cell("ID");
-            worksheet.Cells.ColumnWidth[0] = 1250;
+            //worksheet.Cells[0, 0] = new Cell("ID");
+            //worksheet.Cells.ColumnWidth[0] = 1250;
 
-            worksheet.Cells[0, 1] = new Cell("Name");
-            worksheet.Cells.ColumnWidth[1] = 3700;
+            //worksheet.Cells[0, 1] = new Cell("Name");
+            //worksheet.Cells.ColumnWidth[1] = 3700;
 
-            worksheet.Cells[0, 2] = new Cell("Scaled");
-            worksheet.Cells.ColumnWidth[2] = 1600;
+            //worksheet.Cells[0, 2] = new Cell("Scaled");
+            //worksheet.Cells.ColumnWidth[2] = 1600;
 
-            worksheet.Cells[0, 3] = new Cell("Challenged");
-            worksheet.Cells.ColumnWidth[3] = 2600;
+            //worksheet.Cells[0, 3] = new Cell("Challenged");
+            //worksheet.Cells.ColumnWidth[3] = 2600;
 
-            worksheet.Cells[0, 4] = new Cell("High Goals");
-            worksheet.Cells.ColumnWidth[4] = 2500;
-            worksheet.Cells[0, 5] = new Cell("Low Goals");
-            worksheet.Cells.ColumnWidth[5] = 2400;
+            //worksheet.Cells[0, 4] = new Cell("High Goals");
+            //worksheet.Cells.ColumnWidth[4] = 2500;
+            //worksheet.Cells[0, 5] = new Cell("Low Goals");
+            //worksheet.Cells.ColumnWidth[5] = 2400;
 
-            worksheet.Cells[0, 6] = new Cell("Tele:"); //TELE STUFFS
-            worksheet.Cells.ColumnWidth[6] = 1250;
+            //worksheet.Cells[0, 6] = new Cell("Tele:"); //TELE STUFFS
+            //worksheet.Cells.ColumnWidth[6] = 1250;
 
-            worksheet.Cells[0, 7] = new Cell("PC");
-            worksheet.Cells[0, 8] = new Cell("CF");
-            worksheet.Cells[0, 9] = new Cell("M");
-            worksheet.Cells[0, 10] = new Cell("RP");
-            worksheet.Cells[0, 11] = new Cell("DB");
-            worksheet.Cells[0, 12] = new Cell("SP");
-            worksheet.Cells.ColumnWidth[7, 12] = 900;
+            //worksheet.Cells[0, 7] = new Cell("PC");
+            //worksheet.Cells[0, 8] = new Cell("CF");
+            //worksheet.Cells[0, 9] = new Cell("M");
+            //worksheet.Cells[0, 10] = new Cell("RP");
+            //worksheet.Cells[0, 11] = new Cell("DB");
+            //worksheet.Cells[0, 12] = new Cell("SP");
+            //worksheet.Cells.ColumnWidth[7, 12] = 900;
 
-            worksheet.Cells[0, 13] = new Cell("RW");
-            worksheet.Cells.ColumnWidth[13] = 1000;
+            //worksheet.Cells[0, 13] = new Cell("RW");
+            //worksheet.Cells.ColumnWidth[13] = 1000;
 
-            worksheet.Cells[0, 14] = new Cell("RT");
-            worksheet.Cells[0, 15] = new Cell("LB");
-            worksheet.Cells.ColumnWidth[14, 15] = 900;
+            //worksheet.Cells[0, 14] = new Cell("RT");
+            //worksheet.Cells[0, 15] = new Cell("LB");
+            //worksheet.Cells.ColumnWidth[14, 15] = 900;
 
-            worksheet.Cells[0, 16] = new Cell("Auto:"); //AUTO STUFFS
-            worksheet.Cells.ColumnWidth[16] = 1250;
+            //worksheet.Cells[0, 16] = new Cell("Auto:"); //AUTO STUFFS
+            //worksheet.Cells.ColumnWidth[16] = 1250;
 
-            worksheet.Cells[0, 17] = new Cell("Crossed");
-            worksheet.Cells.ColumnWidth[17] = 2100;
+            //worksheet.Cells[0, 17] = new Cell("Crossed");
+            //worksheet.Cells.ColumnWidth[17] = 2100;
 
-            worksheet.Cells[0, 18] = new Cell("High Goals");
-            worksheet.Cells.ColumnWidth[18] = 2500;
-            worksheet.Cells[0, 19] = new Cell("Low Goals");
-            worksheet.Cells.ColumnWidth[19] = 2400;
+            //worksheet.Cells[0, 18] = new Cell("High Goals");
+            //worksheet.Cells.ColumnWidth[18] = 2500;
+            //worksheet.Cells[0, 19] = new Cell("Low Goals");
+            //worksheet.Cells.ColumnWidth[19] = 2400;
 
 
-            for (int i = 1; i < sortedTeamList.Count() + 1; ++i)
-            {
-                Team team = sortedTeamList[i - 1];
-                if (team != null)
-                {
-                    worksheet.Cells[i, 0] = new Cell(team.id.ToString());
-                    worksheet.Cells[i, 1] = new Cell(team.name);
-                    //worksheet.Cells[i, 2] = new Cell(Convert.ToInt16(team.towersScaled));
-                    //worksheet.Cells[i, 3] = new Cell(Convert.ToInt16(team.towersChallenged));
-                    //worksheet.Cells[i, 4] = new Cell(Convert.ToInt16(team.teleHighGoals));
-                    //worksheet.Cells[i, 5] = new Cell(Convert.ToInt16(team.teleLowGoals));
-                }
-                else worksheet.Cells[i, 0] = new Cell("N/A");
+            //for (int i = 1; i < sortedTeamList.Count() + 1; ++i)
+            //{
+            //    Team team = sortedTeamList[i - 1];
+            //    if (team != null)
+            //    {
+            //        worksheet.Cells[i, 0] = new Cell(team.id.ToString());
+            //        worksheet.Cells[i, 1] = new Cell(team.name);
+            //        //worksheet.Cells[i, 2] = new Cell(Convert.ToInt16(team.towersScaled));
+            //        //worksheet.Cells[i, 3] = new Cell(Convert.ToInt16(team.towersChallenged));
+            //        //worksheet.Cells[i, 4] = new Cell(Convert.ToInt16(team.teleHighGoals));
+            //        //worksheet.Cells[i, 5] = new Cell(Convert.ToInt16(team.teleLowGoals));
+            //    }
+            //    else worksheet.Cells[i, 0] = new Cell("N/A");
 
-                if (team != null)
-                    for (int j = 0; j < 9; j++)
-                    {
-                        //Fill each defense cell with the number of times it has crossed the defense
-                        //worksheet.Cells[i, (j + 7)] = new Cell(team.defensesCrossed[j]);
-                    }
-                int autoCrossedTotal = 0;
-                if (team != null)
-                    for (int j = 0; j < 9; j++)
-                    {
-                        //autoCrossedTotal += (int)team.autoDefensesCrossed[j];
-                    }
-                worksheet.Cells[i, 17] = new Cell(autoCrossedTotal);
+            //    if (team != null)
+            //        for (int j = 0; j < 9; j++)
+            //        {
+            //            //Fill each defense cell with the number of times it has crossed the defense
+            //            //worksheet.Cells[i, (j + 7)] = new Cell(team.defensesCrossed[j]);
+            //        }
+            //    int autoCrossedTotal = 0;
+            //    if (team != null)
+            //        for (int j = 0; j < 9; j++)
+            //        {
+            //            //autoCrossedTotal += (int)team.autoDefensesCrossed[j];
+            //        }
+            //    worksheet.Cells[i, 17] = new Cell(autoCrossedTotal);
 
-                //worksheet.Cells[i, 18] = new Cell(Convert.ToInt16(team.autoHighGoals));
-                //worksheet.Cells[i, 19] = new Cell(Convert.ToInt16(team.autoLowGoals));
+            //worksheet.Cells[i, 18] = new Cell(Convert.ToInt16(team.autoHighGoals));
+            //worksheet.Cells[i, 19] = new Cell(Convert.ToInt16(team.autoLowGoals));
 
-            }
+            //}
+
+            #endregion
 
             workbook.Worksheets.Add(worksheet);
+            bool cannotSave = false;
+            while (cannotSave)
+            {
+                try
+                {
+                    workbook.Save(filepath);
+                    cannotSave = true;
+                }
+                catch
+                {
+                    MessageBox.Show("Something is currently using the file, it can't be edited until you close it!");
+                }
+
+            }
             workbook.Save(filepath);
         }
 
@@ -839,5 +921,27 @@ namespace MyScout
             workbook.Save(filepath);
         }
         #endregion
+
+        #region Misc Utils
+
+        /// <summary>
+        /// Finds a datapoint in a certain datapoint by its name. Returns null if none found.
+        /// </summary>
+        /// <param name="team"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static DataPoint GetDatapointByName(List<DataPoint> dataset, string name)
+        {
+            foreach (DataPoint d in dataset)
+            {
+                if(d.GetName() == name)
+                {
+                    return d;
+                }
+            }
+            return null;
+        }
+        #endregion
     }
+
 }

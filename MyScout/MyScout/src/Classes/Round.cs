@@ -19,17 +19,22 @@ namespace MyScout
         /// <summary>
         /// An array of lists of datapoints, with one list for each team.
         /// </summary>
-        public List<DataPoint>[] DataSet;
+        public List<List<DataPoint>> DataSet;
         #endregion
 
         public Round()
         {
             //Make 6 lists of datapoints within the existing dataset variable - one for each team in the round.
-            DataSet = new List<DataPoint>[6];
+            DataSet = new List<List<DataPoint>>();
 
             for (int i = 0; i < 6; ++i) //For each team in the round
             {
-                DataSet[i] = Program.DataSet[1]; //Assign it a copy of the dataset
+                List<DataPoint> points = new List<DataPoint>();
+                for (int j = 0; j < Program.DataSet[1].Count; j++)
+                {
+                    points.Add(new DataPoint(Program.DataSet[1][j]));
+                }
+                DataSet.Add(points); //Assign it a copy of the dataset
             }
         }
     }

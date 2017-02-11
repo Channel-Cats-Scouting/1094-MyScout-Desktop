@@ -19,13 +19,13 @@ namespace MyScout
         /// </summary>
         public int id = 0000;
         #endregion
-        private List<DataPoint> dataset;
-        private List<DataPoint> scoreDataset;
+        private List<DataPoint> dataset = new List<DataPoint>();
+        private List<DataPoint> scoreDataset = new List<DataPoint>();
 
         /// <summary>
         /// The team's total score.
         /// </summary>
-        public int avgScore = 0;
+        public double avgScore = 0;
         ///<summary>
         /// Returns team data and pre-scout info
         /// </summary>
@@ -60,11 +60,23 @@ namespace MyScout
 
         public void InitData()
         {
-            //CalcCrossingPower();
-            //CalcAvgScore();
-            dataset = Program.DataSet[0];
-            scoreDataset = Program.DataSet[2];
+            //Initialize a new list, not just a reference
+            for(int i = 0; i < Program.DataSet[0].Count; i++)
+            {
+                dataset.Add(new DataPoint(Program.DataSet[0][i]));
+            }
+
+            for (int i = 0; i < Program.DataSet[2].Count; i++)
+            {
+                scoreDataset.Add(new DataPoint(Program.DataSet[2][i]));
+            }
         }
+
+        public void AddToScore(double amnt)
+        {
+            avgScore += amnt;
+        }
+
 
         /// <summary>
         /// Calculate and save the total score based on the point values
