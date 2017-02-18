@@ -11,9 +11,9 @@ namespace MyScout
     {
         #region vars
         /// <summary>
-        /// The internal name id of the datapoint.
+        /// The index of the team this belongs to
         /// </summary>
-        private string internalName;
+        private int teamindex = -1;
         /// <summary>
         /// The public, shown name of the datapoint.
         /// </summary>e
@@ -29,12 +29,11 @@ namespace MyScout
         /// <summary>
         /// The amount of points this datapoint is worth
         /// </summary>
-        private double pointValue = 0;
+        private LinkedDouble pointValue = new LinkedDouble(0);
         /// <summary>
         /// The type of data this datapoint contains.
         /// </summary>
         public Type datatype = null;
-        private readonly Type Type;
         #endregion
 
         #region Default Types
@@ -79,7 +78,7 @@ namespace MyScout
             datatype = type;
         }
 
-        public DataPoint(string name, Type type, double pointValue)
+        public DataPoint(string name, Type type, LinkedDouble pointValue)
         {
             publicName = name;
             value = defaultvalues[type];
@@ -121,9 +120,9 @@ namespace MyScout
         {
             string abbr = "";
             char[] chars = publicName.ToCharArray();
-            for(int i = 0; i < publicName.Length; i++)
+            for (int i = 0; i < publicName.Length; i++)
             {
-                if(i == 0 || char.IsUpper(chars[i]))
+                if (i == 0 || char.IsUpper(chars[i]))
                 {
                     abbr += char.ToUpper(chars[i]);
                 }
@@ -137,13 +136,13 @@ namespace MyScout
             string abbr = "";
 
             char[] chars = publicName.ToCharArray();
-            for(int i = 0; i < publicName.Length; i++)
+            for (int i = 0; i < publicName.Length; i++)
             {
-                if (i == 0 || char.IsUpper(chars[i]) || 
+                if (i == 0 || char.IsUpper(chars[i]) ||
                     (chars[i] != 'a' &&
                     chars[i] != 'e' &&
-                    chars[i] != 'i' && 
-                    chars[i] != 'o' && 
+                    chars[i] != 'i' &&
+                    chars[i] != 'o' &&
                     chars[i] != 'u'))
                 {
                     abbr += chars[i];
@@ -184,9 +183,9 @@ namespace MyScout
         /// Retrieves the point value of the datapoint
         /// </summary>
         /// <returns></returns>
-        public double GetPointValue()
+        public double GetPointValue(int teamindex)
         {
-            return pointValue;
+            return pointValue.getDouble(teamindex);
         }
 
         /// <summary>
@@ -195,7 +194,7 @@ namespace MyScout
         /// <param name="pointvalue"></param>
         public void SetPointValue(float pointvalue)
         {
-            pointValue = pointvalue;
+            pointValue.setValue(pointvalue);
         }
 
         /// <summary>
@@ -214,6 +213,109 @@ namespace MyScout
         public void SetScript(string s)
         {
             script = s;
+        }
+    }
+
+    public class LinkedDouble //TODO: documentation. Basically it's a double with info on how to get and do math on datapoints to gain a value
+    {
+        private double doubleValue = 0;
+        string[] dataPointNames;
+        char[] operators;
+
+        public LinkedDouble(string args)
+        {
+            char[] chars = args.ToCharArray();
+            double number;
+            if (args.StartsWith("$"))
+            {
+                string[] parsedArgs = args.Replace("$", "").Split('+', '-', '*', '/');
+                char[] op = new char[parsedArgs.Length - 1];
+                int lastOp = 0;
+                for (int i = 0; i < chars.Length; i++)
+                {
+                    if(chars[i] == '+' || chars[i] == '-' || chars[i] == '*' || chars[i] == '/')
+                    {
+                        op[lastOp++] = chars[i];
+                    }
+                }
+
+                operators = op;
+                dataPointNames = parsedArgs;
+            }
+            else
+            {
+                if(!double.TryParse(args, out number))
+                {
+                    number = 0;
+                }
+
+                doubleValue = number;
+            }
+        }
+        
+        public LinkedDouble(double d)
+        {
+            doubleValue = d;
+        }
+
+        public void setValue(double d)
+        {
+            doubleValue = d;
+        }
+        public double getDouble(int teamindex)
+        {
+            if(dataPointNames != null)
+            {
+                double result = 0;
+                for(int i = 0; i < dataPointNames.Length; i++)
+                {
+                    double value = 0;
+                    if(double.TryParse(dataPointNames[i], out value))
+                    {
+                        if (i == 0)
+                        {
+                            result = value;
+                        }
+                    }
+                    else
+                    {
+                        DataPoint dp = IO.GetDatapointByName(Program.CurrentEvent.teams[teamindex].GetTeamSpecificDataset(), dataPointNames[i]);
+
+                        double tryparse;
+                        if (double.TryParse(dp.GetValue().ToString(), out tryparse))
+                        {
+                            if (i == 0)
+                            {
+                                result = dp.GetPointValue(teamindex);
+                            }
+                            else
+                            {
+                                switch (operators[i - 1])
+                                {
+                                    case '+':
+                                        result += tryparse;
+                                        break;
+                                    case '-':
+                                        result -= tryparse;
+                                        break;
+                                    case '*':
+                                        result *= tryparse;
+                                        break;
+                                    case '/':
+                                        result /= tryparse;
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return result;
+            }
+            else
+            {
+                return doubleValue;
+            }
         }
     }
 }

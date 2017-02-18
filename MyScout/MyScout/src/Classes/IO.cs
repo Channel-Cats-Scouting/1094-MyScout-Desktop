@@ -249,7 +249,7 @@ namespace MyScout
                                 //Read all the tokens in this datapoint
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
                                 //Create a new datapoint from the tokens
-                                teamDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1]), tokens.Count == 3 ? Convert.ToDouble(tokens[2]) : 0));
+                                teamDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1]), tokens.Count == 3 ? new LinkedDouble(tokens[2].ToString()) : new LinkedDouble(0)));
                             }
                             reader.ReadEndElement();
 
@@ -260,7 +260,7 @@ namespace MyScout
                                 //Read all the tokens in this datapoint
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
                                 //Create a new datapoint from the tokens
-                                roundDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1]), tokens.Count == 3 ? Convert.ToDouble(tokens[2]) : 0));
+                                roundDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1]), tokens.Count == 3 ? new LinkedDouble(tokens[2].ToString()) : new LinkedDouble(0)));
                             }
                             reader.ReadEndElement();
 
@@ -271,7 +271,7 @@ namespace MyScout
                                 //Read all the tokens in this datapoint
                                 List<object> tokens = Tokenizer.ReadTokenizedString(reader.ReadElementString("datapoint"));
                                 //Create a new datapoint from the tokens
-                                compDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1]), tokens.Count == 3 ? Convert.ToDouble(tokens[2]) : 0));
+                                compDataSet.Add(new DataPoint((string)tokens[0], Tokenizer.getTypeFromString((string)tokens[1]), tokens.Count == 3 ? new LinkedDouble(tokens[2].ToString()) : new LinkedDouble(0)));
                             }
                             reader.ReadEndElement();
 
@@ -414,84 +414,86 @@ namespace MyScout
                 File.Delete(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml");
             }
 
-                using (XmlTextWriter writer = new XmlTextWriter(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
+            var dir = Path.Combine(Program.StartupPath, "Events", Program.DataSetName);
+            Directory.CreateDirectory(dir);
 
+            using (XmlTextWriter writer = new XmlTextWriter(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
+            {
+                writer.Formatting = Formatting.Indented;
+                writer.Indentation = 4;
+
+                writer.WriteStartDocument();
+                writer.WriteStartElement("Event");
+                writer.WriteElementString("Version", Program.VersionString);
+                writer.WriteElementString("DataSet", Program.DataSetName);
+                writer.WriteElementString("Name", Program.Events[eventid].name);
+                writer.WriteElementString("BeginDate", Program.Events[eventid].begindate);
+                writer.WriteElementString("EndDate", Program.Events[eventid].enddate);
+
+                writer.WriteStartElement("Teams");
+                writer.WriteElementString("Count", Program.Events[eventid].teams.Count.ToString());
+
+                //Convert team information to a tokenized int string
+                foreach (Team team in Program.Events[eventid].teams)
                 {
-                    writer.Formatting = Formatting.Indented;
-                    writer.Indentation = 4;
+                    writer.WriteStartElement("Team");
+                    List<object> tokens = new List<object>();
 
-                    writer.WriteStartDocument();
-                    writer.WriteStartElement("Event");
-                    writer.WriteElementString("Version", Program.VersionString);
-                    writer.WriteElementString("DataSet", Program.DataSetName);
-                    writer.WriteElementString("Name", Program.Events[eventid].name);
-                    writer.WriteElementString("BeginDate", Program.Events[eventid].begindate);
-                    writer.WriteElementString("EndDate", Program.Events[eventid].enddate);
-
-                    writer.WriteStartElement("Teams");
-                    writer.WriteElementString("Count", Program.Events[eventid].teams.Count.ToString());
-
-                    //Convert team information to a tokenized int string
-                    foreach (Team team in Program.Events[eventid].teams)
+                    tokens.Add(team.id);
+                    tokens.Add(team.name);
+                    for (int i = 0; i < team.GetTeamSpecificDataset().Count; ++i)
                     {
-                        writer.WriteStartElement("Team");
-                        List<object> tokens = new List<object>();
-
-                        tokens.Add(team.id);
-                        tokens.Add(team.name);
-                        for (int i = 0; i < team.GetTeamSpecificDataset().Count; ++i)
-                        {
-                            List<DataPoint> datatokens = team.GetTeamSpecificDataset();
-                            var token = Convert.ChangeType(datatokens[i].GetValue(), datatokens[i].GetDataType());
-                            tokens.Add(token); //Write team specific data to tokens
-                        }
-
-                        //Write team specific data to xml
-                        writer.WriteElementString("TeamInfoTokens", Tokenizer.CreateTokenizedString(tokens));
-                        writer.WriteEndElement();
+                        List<DataPoint> datatokens = team.GetTeamSpecificDataset();
+                        var token = datatokens[i].GetValue();
+                        tokens.Add(token); //Write team specific data to tokens
                     }
 
+                    //Write team specific data to xml
+                    writer.WriteElementString("TeamInfoTokens", Tokenizer.CreateTokenizedString(tokens));
                     writer.WriteEndElement();
-
-                    writer.WriteStartElement("Rounds");
-                    writer.WriteElementString("Current", (Program.Events[eventid].lastviewedround == -1) ? (Program.Events[eventid].rounds.Count - 1).ToString() : Program.Events[eventid].lastviewedround.ToString());
-                    //writer.WriteElementString("AllianceScoreTokens", TokenizeStringHandler.CreateTokenizedString(new List<object> { Round.score[0], Round.score[1] }));
-
-                    writer.WriteElementString("Count", Program.Events[eventid].rounds.Count.ToString());
-
-                    foreach (Round round in Program.Events[eventid].rounds)
-                    {
-                        writer.WriteStartElement("Round");
-                        writer.WriteStartElement("Teams");
-
-                        List<object> teams = new List<object>(); //Save teams for each round
-
-                        for (int i = 0; i < 6; ++i)
-                        {
-                            teams.Add(round.Teams[i]); //Write teams to xml
-                        }
-
-                        writer.WriteElementString("TeamTokens", Tokenizer.CreateTokenizedString(teams));
-                        writer.WriteEndElement();
-
-                        writer.WriteStartElement("DataSets");
-                        for (int i = 0; i < 6; ++i) //For each list of datapoints
-                        {
-                            List<object> tokens = new List<object>();
-                            for (int j = 0; j < Program.DataSet[1].Count(); j++) //For each datapoint
-                            {
-                                tokens.Add(round.DataSet[i][j].GetValue()); //Add the datapoint to the tokens list
-                            }
-                            writer.WriteElementString("DataPoints" + i.ToString(), Tokenizer.CreateTokenizedString(tokens));
-                        }
-                        writer.WriteEndElement();
-                        writer.WriteEndElement();
-                    }
-
-                    writer.WriteEndElement();
-
                 }
+
+
+                writer.WriteEndElement();
+
+                writer.WriteStartElement("Rounds");
+                writer.WriteElementString("Current", (Program.Events[eventid].lastviewedround == -1) ? (Program.Events[eventid].rounds.Count - 1).ToString() : Program.Events[eventid].lastviewedround.ToString());
+                //writer.WriteElementString("AllianceScoreTokens", TokenizeStringHandler.CreateTokenizedString(new List<object> { Round.score[0], Round.score[1] }));
+
+                writer.WriteElementString("Count", Program.Events[eventid].rounds.Count.ToString());
+
+                foreach (Round round in Program.Events[eventid].rounds)
+                {
+                    writer.WriteStartElement("Round");
+                    writer.WriteStartElement("Teams");
+
+                    List<object> teams = new List<object>(); //Save teams for each round
+
+                    for (int i = 0; i < 6; ++i)
+                    {
+                        teams.Add(round.Teams[i]); //Write teams to xml
+                    }
+
+                    writer.WriteElementString("TeamTokens", Tokenizer.CreateTokenizedString(teams));
+                    writer.WriteEndElement();
+
+                    writer.WriteStartElement("DataSets");
+                    for (int i = 0; i < 6; ++i) //For each list of datapoints
+                    {
+                        List<object> tokens = new List<object>();
+                        for (int j = 0; j < Program.DataSet[1].Count(); j++) //For each datapoint
+                        {
+                            tokens.Add(round.DataSet[i][j].GetValue()); //Add the datapoint to the tokens list
+                        }
+                        writer.WriteElementString("DataPoints" + i.ToString(), Tokenizer.CreateTokenizedString(tokens));
+                    }
+                    writer.WriteEndElement();
+                    writer.WriteEndElement();
+                }
+
+                writer.WriteEndElement();
             }
+        }
 
         public static void SaveDatasetTemplate(string fileid, string name, string description, List<List<DataPoint>> datasetIn)
         {

@@ -19,49 +19,20 @@ namespace MyScout
 
             foreach (object obj in input)
             {
-                if (isIntList(obj))
+                string str = obj.ToString();
+                if (str.Contains(':'))
                 {
-                    string str = "";
-                    List<int> objlist = (List<int>)obj;
-                    str += "ls(int){";
-                    foreach (int e in objlist)
-                    {
-                        str += e.ToString();
-                        str += "|";
-                    }
-                    str += "}";
-                    output += (output.Length > 0 ? ":" : "") + str.ToString();
+                    str = str.Replace(":", "\\s");
                 }
-                else if (isBoolList(obj))
+                if (str.Contains('{'))
                 {
-                    string str = "";
-                    List<bool> objlist = (List<bool>)obj;
-                    str += "ls(bool){";
-                    foreach (bool e in objlist)
-                    {
-                        str += e.ToString();
-                        str += "|";
-                    }
-                    str += "}";
-                    output += (output.Length > 0 ? ":" : "") + str.ToString();
+                    str = str.Replace("{", "\\l");
                 }
-                else
+                if (str.Contains('}'))
                 {
-                    string str = obj.ToString();
-                    if (str.Contains(':'))
-                    {
-                        str = str.Replace(":", "\\s");
-                    }
-                    if (str.Contains('{'))
-                    {
-                        str = str.Replace("{", "\\l");
-                    }
-                    if (str.Contains('}'))
-                    {
-                        str = str.Replace("}", "\\r");
-                    }
-                    output += (output.Length > 0 ? ":" : "") + str.ToString();
+                    str = str.Replace("}", "\\r");
                 }
+                output += (output.Length > 0 ? ":" : "") + str.ToString();
             }
 
             return output;

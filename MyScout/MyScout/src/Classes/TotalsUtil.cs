@@ -191,15 +191,16 @@ namespace MyScout
             {
                 foreach(DataPoint d in rounds[i].DataSet[getTeamLocalIndex(rounds[i], teamindex)])
                 {
-                    if (d.GetPointValue() != 0)
+                    double pv = d.GetPointValue(teamindex);
+                    if (pv != 0)
                     {
                         if (d.datatype == typeof(bool)) //If it's a boolean, add the point value only if it's true
                         {
-                            avgScore += (bool)d.GetValue() ? d.GetPointValue() : 0;
+                            avgScore += (bool)d.GetValue() ? pv : 0;
                         }
                         else if (d.datatype == typeof(int)) //If it's an int, add the int * pointvalue
                         {
-                            avgScore += (int)d.GetValue() * d.GetPointValue();
+                            avgScore += (int)d.GetValue() * pv;
                         }
                     }
                 }

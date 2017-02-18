@@ -131,7 +131,7 @@ namespace MyScout
 
             //Update Controls
             if (Program.CurrentTeamIndex < 0) return;
-            autoLowGoalsNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][0].GetValue();
+            autoLowGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][0].GetValue();
             autoHighGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][1].GetValue();
             autoGearChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][2].GetValue();
             autoLineChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][3].GetValue();
@@ -583,6 +583,55 @@ namespace MyScout
             var chkBx = sender as CheckBox;
             if (chkBx == null) return;
             Program.CurrentRound.DataSet[Program.CurrentTeamIndex][(int)chkBx.Tag].SetValue(chkBx.Checked);
+        }
+
+        private void upDownBtn_Click(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            if (btn == null) return;
+
+            if (btn == upLowGoalBtn)
+                modifyNUDValue(autoLowGoalNUD, 1);
+            else if (btn == dnLowGoalBtn)
+                modifyNUDValue(autoLowGoalNUD, -1);
+            else if (btn == upHighGoalBtn)
+                modifyNUDValue(autoHighGoalNUD, 1);
+            else if (btn == dnHighGoalBtn)
+                modifyNUDValue(autoHighGoalNUD, -1);
+            else if (btn == upLowGoalTOBtn)
+                modifyNUDValue(lowGoalNUD, 1);
+            else if (btn == dnLowGoalTOBtn)
+                modifyNUDValue(lowGoalNUD, -1);
+            else if (btn == leftHighGoalTOBtn)
+                modifyTrackerValue(highGoalTracker, -25);
+            else if (btn == rightHighGoalTOBtn)
+                modifyTrackerValue(highGoalTracker, 25);
+            else if (btn == upGearsTOBtn)
+                modifyNUDValue(gearNUD, 1);
+            else if (btn == dnGearsTOBtn)
+                modifyNUDValue(gearNUD, -1);
+        }
+
+        private void modifyNUDValue(NumericUpDown nud, int modifier)
+        {
+            var value = nud.Value + modifier;
+            if (value > nud.Maximum)
+                value = nud.Maximum;
+            else if (value < nud.Minimum)
+                value = nud.Minimum;
+
+            nud.Value = value;
+        }
+
+        private void modifyTrackerValue(TrackBar tracker, int modifier)
+        {
+            var value = tracker.Value + modifier;
+            if (value > tracker.Maximum)
+                value = tracker.Maximum;
+            else if (value < tracker.Minimum)
+                value = tracker.Minimum;
+
+            tracker.Value = value;
         }
     }
 }
