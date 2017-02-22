@@ -97,6 +97,12 @@
     <Compile Include="src\Forms\AddDataFrm.Designer.cs">
       <DependentUpon>AddDataFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Forms\Config.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\Forms\Config.Designer.cs">
+      <DependentUpon>Config.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\Forms\TextPrompt.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </Compile>
     <EmbeddedResource Include="src\Forms\AddDataFrm.resx">
       <DependentUpon>AddDataFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\Forms\Config.resx">
+      <DependentUpon>Config.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Forms\TextPrompt.resx">
       <DependentUpon>TextPrompt.cs</DependentUpon>

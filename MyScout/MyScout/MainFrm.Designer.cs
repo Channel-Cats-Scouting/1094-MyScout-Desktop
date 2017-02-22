@@ -264,7 +264,7 @@
             // 
             this.preScoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.preScoutButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.preScoutButton.Location = new System.Drawing.Point(702, 14);
+            this.preScoutButton.Location = new System.Drawing.Point(704, 14);
             this.preScoutButton.Name = "preScoutButton";
             this.preScoutButton.Size = new System.Drawing.Size(233, 59);
             this.preScoutButton.TabIndex = 1;
@@ -288,7 +288,6 @@
             // 
             this.TeamNamePnl.BackColor = System.Drawing.Color.Transparent;
             this.TeamNamePnl.BackgroundImage = global::MyScout.Properties.Resources.bg;
-            this.TeamNamePnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TeamNamePnl.Controls.Add(this.button2);
             this.TeamNamePnl.Controls.Add(this.button6);
             this.TeamNamePnl.Controls.Add(this.button5);
@@ -317,9 +316,9 @@
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button6.Cursor = System.Windows.Forms.Cursors.Default;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button6.Location = new System.Drawing.Point(301, 44);
+            this.button6.Location = new System.Drawing.Point(302, 61);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(42, 40);
+            this.button6.Size = new System.Drawing.Size(64, 24);
             this.button6.TabIndex = 3;
             this.button6.Text = "<-";
             this.button6.UseVisualStyleBackColor = true;
@@ -329,9 +328,9 @@
             // 
             this.button5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button5.Location = new System.Drawing.Point(597, 43);
+            this.button5.Location = new System.Drawing.Point(576, 61);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(42, 40);
+            this.button5.Size = new System.Drawing.Size(64, 23);
             this.button5.TabIndex = 2;
             this.button5.Text = "+";
             this.button5.UseVisualStyleBackColor = true;
@@ -341,10 +340,10 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(371, 60);
+            this.label1.Location = new System.Drawing.Point(372, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(198, 23);
             this.label1.TabIndex = 1;
@@ -357,7 +356,7 @@
             this.TeamNameLbl.BackColor = System.Drawing.Color.Transparent;
             this.TeamNameLbl.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
             this.TeamNameLbl.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.TeamNameLbl.Location = new System.Drawing.Point(160, 0);
+            this.TeamNameLbl.Location = new System.Drawing.Point(161, 1);
             this.TeamNameLbl.Name = "TeamNameLbl";
             this.TeamNameLbl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
             this.TeamNameLbl.Size = new System.Drawing.Size(624, 88);
@@ -480,10 +479,10 @@
             this.ropeChkbx.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ropeChkbx.Location = new System.Drawing.Point(14, 422);
             this.ropeChkbx.Name = "ropeChkbx";
-            this.ropeChkbx.Size = new System.Drawing.Size(232, 37);
+            this.ropeChkbx.Size = new System.Drawing.Size(225, 37);
             this.ropeChkbx.TabIndex = 6;
             this.ropeChkbx.Tag = 7;
-            this.ropeChkbx.Text = "Climbed the Rope";
+            this.ropeChkbx.Text = "Ready for Takeoff";
             this.ropeChkbx.UseVisualStyleBackColor = true;
             this.ropeChkbx.CheckedChanged += new System.EventHandler(this.Chkbx_CheckedChanged);
             // 
@@ -493,9 +492,9 @@
             this.gearLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gearLbl.Location = new System.Drawing.Point(8, 289);
             this.gearLbl.Name = "gearLbl";
-            this.gearLbl.Size = new System.Drawing.Size(120, 64);
+            this.gearLbl.Size = new System.Drawing.Size(93, 64);
             this.gearLbl.TabIndex = 13;
-            this.gearLbl.Text = "Gears\r\nCollected:";
+            this.gearLbl.Text = "Gears\r\nScored:";
             this.gearLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // gearNUD
@@ -544,11 +543,12 @@
             // 
             this.lowGoalLbl.AutoSize = true;
             this.lowGoalLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lowGoalLbl.Location = new System.Drawing.Point(6, 57);
+            this.lowGoalLbl.Location = new System.Drawing.Point(6, 40);
             this.lowGoalLbl.Name = "lowGoalLbl";
-            this.lowGoalLbl.Size = new System.Drawing.Size(127, 32);
+            this.lowGoalLbl.Size = new System.Drawing.Size(112, 64);
             this.lowGoalLbl.TabIndex = 7;
-            this.lowGoalLbl.Text = "Low Goals:";
+            this.lowGoalLbl.Text = "Low Goal\r\nTrips:\r\n";
+            this.lowGoalLbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lowGoalNUD
             // 
@@ -648,10 +648,10 @@
             this.autoGearChkbx.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.autoGearChkbx.Location = new System.Drawing.Point(6, 375);
             this.autoGearChkbx.Name = "autoGearChkbx";
-            this.autoGearChkbx.Size = new System.Drawing.Size(215, 37);
+            this.autoGearChkbx.Size = new System.Drawing.Size(188, 37);
             this.autoGearChkbx.TabIndex = 4;
             this.autoGearChkbx.Tag = 2;
-            this.autoGearChkbx.Text = "Collected a Gear";
+            this.autoGearChkbx.Text = "Scored a Gear";
             this.autoGearChkbx.UseVisualStyleBackColor = true;
             this.autoGearChkbx.CheckedChanged += new System.EventHandler(this.Chkbx_CheckedChanged);
             // 
@@ -679,11 +679,12 @@
             // 
             this.autoLowGoalLbl.AutoSize = true;
             this.autoLowGoalLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoLowGoalLbl.Location = new System.Drawing.Point(6, 61);
+            this.autoLowGoalLbl.Location = new System.Drawing.Point(6, 40);
             this.autoLowGoalLbl.Name = "autoLowGoalLbl";
-            this.autoLowGoalLbl.Size = new System.Drawing.Size(127, 32);
+            this.autoLowGoalLbl.Size = new System.Drawing.Size(112, 64);
             this.autoLowGoalLbl.TabIndex = 1;
-            this.autoLowGoalLbl.Text = "Low Goals:";
+            this.autoLowGoalLbl.Text = "Low Goal\r\nTrips:\r\n";
+            this.autoLowGoalLbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // autoLowGoalNUD
             // 

@@ -11,10 +11,6 @@ namespace MyScout
     {
         #region vars
         /// <summary>
-        /// The index of the team this belongs to
-        /// </summary>
-        private int teamindex = -1;
-        /// <summary>
         /// The public, shown name of the datapoint.
         /// </summary>e
         private string publicName = "";

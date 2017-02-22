@@ -12,10 +12,12 @@ namespace MyScout
 {
     public static class IO
     {
-        #region Paths
+        #region Constants and Paths
         public static readonly string REPORTS_FOLDER_ROOT = Program.StartupPath + "\\Spreadsheets\\";
         public static readonly string EVENTS_FOLDER_ROOT = Program.StartupPath + "\\Events\\";
         public static readonly string REPORT_PROFILES_FOLDER_ROOT = REPORTS_FOLDER_ROOT + "\\Profiles\\";
+
+        public static readonly string REPORT_PREFIX = "Report for ";
 
         private static string reportsFolder() { return REPORTS_FOLDER_ROOT + Program.DataSetName; }
         private static string eventsFolder() { return EVENTS_FOLDER_ROOT + Program.DataSetName; }
@@ -627,7 +629,7 @@ namespace MyScout
 
             List<Team> sortedTeamList = SortTeamsByAvgScore(teamList);
 
-            string filepath = reportsFolder() + $"\\Report for {ev.name}.html";
+            string filepath = reportsFolder() + $"\\{REPORT_PREFIX + ev.name}.html";
 
             if (!Directory.Exists(reportsFolder()))
             {
@@ -645,7 +647,7 @@ namespace MyScout
                 writer.WriteStartElement("head");
                 writer.WriteElementString("title", ev.name + "Report");
                 writer.WriteStartElement("style");
-                writer.WriteString("#reporttable {border-collapse: collapse; animation: fadein 0.75s}");
+                writer.WriteString("#reporttable {border-collapse: collapse; table-layout: fixed; width: 100%;}");
                 writer.WriteString("#reporttable td {border: 1px solid black; padding: 2px;}");
                 writer.WriteString(".thead {background-color: gray; color: white;}");
                 writer.WriteString(".evenrow {background-color: lightgray;}");
@@ -731,7 +733,7 @@ namespace MyScout
 
             List<Team> sortedTeamList = SortTeamsByAvgScore(teamList);
 
-            string filepath = reportsFolder() + $"\\Report for {ev.name}.xls";
+            string filepath = reportsFolder() + $"\\{REPORT_PREFIX + ev.name}.xls";
 
             if (!Directory.Exists(reportsFolder()))
             {
@@ -813,129 +815,6 @@ namespace MyScout
                 }
 
             }
-        }
-
-        /// <summary>
-        /// Generates a report based on an individual round
-        /// </summary>
-        /// <param name="ev"></param>
-        /// <param name="sorting"></param>
-        public static void CreateRoundSpreadsheet(Event ev, int roundID, int sorting)
-        {
-            SaveDataToTeams();
-
-            int[] rawTeamList = ev.rounds[roundID].Teams;
-            Team[] teamList = new Team[6];
-
-            for (int i = 0; i < 6; ++i)
-            {
-                teamList[i] = (Program.Events[Program.CurrentEventIndex].rounds[roundID].Teams[i] == -1) ? null :
-                    Program.Events[Program.CurrentEventIndex].teams[Program.Events[Program.CurrentEventIndex].rounds[roundID].Teams[i]];
-            }
-
-            //Clean the report
-            for (int i = 0; i < teamList.Length; ++i)
-            {
-                if (teamList[i] == null)
-                {
-                    teamList[i] = new Team(0000, "null");
-                }
-            }
-
-            string filepath = $"{Program.StartupPath}\\Spreadsheets\\Scouting Report {ev.name} - Round {roundID + 1}.xls";
-
-            if (!Directory.Exists($"{Program.StartupPath}\\Spreadsheets"))
-            {
-                Directory.CreateDirectory($"{Program.StartupPath}\\Spreadsheets");
-            }
-
-            Workbook workbook = new Workbook();
-            Worksheet worksheet = new Worksheet("Scouting Report");
-
-            //PLEASE DON'T CHANGE THE BELOW VALUES I SPENT QUITE A WHILE TWEAKING THEM (again)
-            //  SO THEY ALL FIT ON ONE PAGE HORIZONTALLY WITH DEFAULT PADDING
-            // ~Ethan
-
-            worksheet.Cells[0, 0] = new Cell("ID");
-            worksheet.Cells.ColumnWidth[0] = 1250;
-
-            worksheet.Cells[0, 1] = new Cell("Name");
-            worksheet.Cells.ColumnWidth[1] = 3700;
-
-            worksheet.Cells[0, 2] = new Cell("High");
-            worksheet.Cells.ColumnWidth[2] = 1100;
-
-            worksheet.Cells[0, 3] = new Cell("Low");
-            worksheet.Cells.ColumnWidth[3] = 1000;
-            worksheet.Cells[0, 4] = new Cell("Emb?");
-            worksheet.Cells[0, 5] = new Cell("Floor?");
-            worksheet.Cells.ColumnWidth[4] = 1450;
-            worksheet.Cells.ColumnWidth[5] = 1600;
-
-            worksheet.Cells[0, 6] = new Cell("Prefers");
-            worksheet.Cells.ColumnWidth[6] = 1700;
-
-            worksheet.Cells[0, 7] = new Cell("PrSct:"); //Prescout
-            worksheet.Cells.ColumnWidth[7] = 1600;
-
-            worksheet.Cells[0, 8] = new Cell("PC");
-            worksheet.Cells[0, 9] = new Cell("CF");
-            worksheet.Cells[0, 10] = new Cell("M");
-            worksheet.Cells[0, 11] = new Cell("RP");
-            worksheet.Cells[0, 12] = new Cell("DB");
-            worksheet.Cells[0, 13] = new Cell("SP");
-            worksheet.Cells.ColumnWidth[8, 13] = 900;
-
-            worksheet.Cells[0, 14] = new Cell("RW");
-            worksheet.Cells.ColumnWidth[14] = 1000;
-
-            worksheet.Cells[0, 15] = new Cell("RT");
-            worksheet.Cells[0, 16] = new Cell("LB");
-            worksheet.Cells.ColumnWidth[15, 16] = 900;
-
-            worksheet.Cells[0, 17] = new Cell("Smart:"); //Smart
-            worksheet.Cells.ColumnWidth[17] = 1600;
-
-            worksheet.Cells[0, 18] = new Cell("PC");
-            worksheet.Cells[0, 19] = new Cell("CF");
-            worksheet.Cells[0, 20] = new Cell("M");
-            worksheet.Cells[0, 21] = new Cell("RP");
-            worksheet.Cells[0, 22] = new Cell("DB");
-            worksheet.Cells[0, 23] = new Cell("SP");
-            worksheet.Cells.ColumnWidth[18, 23] = 900;
-
-            worksheet.Cells[0, 24] = new Cell("RW");
-            worksheet.Cells.ColumnWidth[24] = 1000;
-
-            worksheet.Cells[0, 25] = new Cell("RT");
-            worksheet.Cells[0, 26] = new Cell("LB");
-            worksheet.Cells.ColumnWidth[25, 26] = 900;
-
-            for (int i = 1; i < teamList.Count() + 1; ++i)
-            {
-                Team team = teamList[i - 1];
-                if (team != null)
-                {
-                    worksheet.Cells[i, 0] = new Cell(team.id.ToString());
-                    worksheet.Cells[i, 1] = new Cell(team.name);
-                    //worksheet.Cells[i, 2] = new Cell(team.canScoreHighGoals ? " " + ((char)0x221A).ToString() : "");
-                    //worksheet.Cells[i, 3] = new Cell(team.canScoreLowGoals ? " " + ((char)0x221A).ToString() : "");
-                    //worksheet.Cells[i, 4] = new Cell(team.loadsFromHumanPlayerStations ? " " + ((char)0x221A).ToString() : "");
-                    //worksheet.Cells[i, 5] = new Cell(team.loadsFromFloor ? " " + ((char)0x221A).ToString() : "");
-                    //worksheet.Cells[i, 6] = new Cell(team.prefers == 0 ? "None" : team.prefers == 1 ? "Floor" : "HPS");
-                }
-                else worksheet.Cells[i, 0] = new Cell("N/A");
-
-                if (team != null)
-                    for (int j = 0; j < 9; j++)
-                    {
-                        //if (team.defensesCrossable[j]) worksheet.Cells[i, (j + 8)] = new Cell(" " + ((char)0x221A).ToString());
-                        //if (team.smartDefensesCrossable[j]) worksheet.Cells[i, (j + 18)] = new Cell(" " + ((char)0x221A).ToString());
-                    }
-            }
-
-            workbook.Worksheets.Add(worksheet);
-            workbook.Save(filepath);
         }
         #endregion
 

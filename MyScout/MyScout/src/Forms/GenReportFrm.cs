@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace MyScout
@@ -14,6 +15,7 @@ namespace MyScout
         public GenReportFrm()
         {
             InitializeComponent();
+            reportTypeCB.SelectedIndex = 1;
         }
 
         #region variables
@@ -92,16 +94,26 @@ namespace MyScout
 
         private void GenBtn_Click(object sender, EventArgs e)
         {
+            string fileExt = "";
             switch(reportTypeCB.SelectedIndex)
             {
                 case 0:
                     IO.CreateEventSpreadsheet(Program.CurrentEvent, outListBox);
+                    fileExt = ".xls";
                     break;
                 case 1:
                     IO.CreateEventHTML(Program.CurrentEvent, outListBox);
+                    fileExt = ".html";
                     break;
                 default:
                     break;
+            }
+
+            //Open the folder containing the reports and select the just-generated one
+            string filePath = IO.REPORTS_FOLDER_ROOT + Program.DataSetName + "\\" + IO.REPORT_PREFIX + Program.CurrentEvent.name + fileExt;
+            if (File.Exists(filePath))
+            {
+                System.Diagnostics.Process.Start("explorer.exe", "/select," + filePath);
             }
         }
 

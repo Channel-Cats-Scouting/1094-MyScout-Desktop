@@ -70,7 +70,6 @@
             this.reportTypeCB.Name = "reportTypeCB";
             this.reportTypeCB.Size = new System.Drawing.Size(126, 28);
             this.reportTypeCB.TabIndex = 1;
-            this.reportTypeCB.Text = "Event Report";
             this.reportTypeCB.SelectedIndexChanged += new System.EventHandler(this.reportTypeCB_SelectedIndexChanged);
             // 
             // GenBtn

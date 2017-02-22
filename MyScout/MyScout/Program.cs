@@ -22,7 +22,7 @@ namespace MyScout
         /// <summary>
         /// The current version of the application in string form.
         /// </summary>
-        public const string VersionString = "3.5";
+        public const string VersionString = "4.0";
 
         /// <summary>
         /// Whether or not the program has saved all its data.

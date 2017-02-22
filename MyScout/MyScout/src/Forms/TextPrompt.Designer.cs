@@ -78,6 +78,8 @@
             this.Controls.Add(this.promptTextBox);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.confirmBtn);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TextPrompt";
             this.Text = "Save";
             this.ResumeLayout(false);

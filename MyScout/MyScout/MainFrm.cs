@@ -80,6 +80,11 @@ namespace MyScout
             {
                 EventList.Items.Add(new ListViewItem(new string[] { e.name, e.datasetname, e.begindate, e.enddate }));
             }
+
+            if (EventList.Items.Count > 0)
+            {
+                EventList.Items[0].Selected = true;
+            }
         }
 
         /// <summary>
@@ -246,28 +251,7 @@ namespace MyScout
             
             //Open report generation dialog
             GenReportFrm genreport = new GenReportFrm();
-
-            if(genreport.ShowDialog() == DialogResult.OK)
-            {
-                if (!genreport.GetIsPrescout())
-                {
-                    ////TODO Get rounds that the team # in GenReport is a part of
-                    ////Generate spreadsheet, but make sure that the RoundID stays -1 if already -1
-                    //IO.GenerateSpreadsheet(Program.CurrentEvent);
-                    ////Figure out file path based on report data
-                    //string filePath = $"{Program.StartupPath}\\Spreadsheets\\Scouting Report {Program.CurrentEvent.name}" + (genreport.GetIsEventReport() ? "" : (" - Round " + genreport.GetRoundID())) + ".xls";
-
-                    //if (File.Exists(filePath))
-                    //{
-                    //    System.Diagnostics.Process.Start("explorer.exe", @"/select, " + filePath);
-                    //}
-                }
-                else
-                {
-                    Thread generatethread = new Thread(new ParameterizedThreadStart(GenerateTeamRounds));
-                    generatethread.Start(genreport);
-                }
-            }
+            genreport.ShowDialog();
         }
 
         /// <summary>
@@ -555,6 +539,7 @@ namespace MyScout
                 //Reload all the events
                 Program.Events.Clear();
                 IO.LoadAllEvents();
+                EventList.Select();
             }
         }
 

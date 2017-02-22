@@ -28,6 +28,7 @@ namespace MyScout
                 Lbl1.Text = "&ID";
                 Lbl2.Text = "&Name";
                 Lbl3.Dispose();
+                textBox1.MaxLength = 6;
                 textBox3.Dispose();
 
                 Height = 177;
