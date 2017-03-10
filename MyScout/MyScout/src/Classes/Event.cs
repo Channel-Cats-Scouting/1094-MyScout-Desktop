@@ -37,7 +37,18 @@ namespace MyScout
         /// TODO: Documentation.
         /// </summary>
         public int lastviewedround = -1;
+        /// <summary>
+        /// The name of the file from which the event was loaded
+        /// </summary>
+        public string filename = "";
 
-        public Event(string name, string begindate, string enddate, string datasetname) { this.name = name; this.begindate = begindate; this.enddate = enddate; this.datasetname = datasetname; }
+        public Event(string name, string begindate, string enddate, string datasetname, string filename)
+        {
+            this.name = name;
+            this.begindate = begindate;
+            this.enddate = enddate;
+            this.datasetname = datasetname;
+            this.filename = filename;
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace MyScout
             if (adddata.ShowDialog() == DialogResult.OK)
             {
                 Program.Events[Program.CurrentEventIndex].teams.Add(new Team(Convert.ToInt32(adddata.textBox1.Text),adddata.textBox2.Text));
+                textBox1.Text = "";
                 RefreshTeamList();
             }
         }

@@ -78,7 +78,7 @@ namespace MyScout
             EventList.Items.Clear();
             foreach (Event e in Program.Events)
             {
-                EventList.Items.Add(new ListViewItem(new string[] { e.name, e.datasetname, e.begindate, e.enddate }));
+                EventList.Items.Add(new ListViewItem(new string[] { e.filename, e.name, e.datasetname, e.begindate, e.enddate }));
             }
 
             if (EventList.Items.Count > 0)
@@ -135,16 +135,16 @@ namespace MyScout
             button5.Text = (Program.CurrentRoundIndex < Program.Events[Program.CurrentEventIndex].rounds.Count - 1) ? "->" : "+";
 
             //Update Controls
-            if (Program.CurrentTeamIndex < 0) return;
-            autoLowGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][0].GetValue();
-            autoHighGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][1].GetValue();
-            autoGearChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][2].GetValue();
-            autoLineChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][3].GetValue();
+            if (Program.SelectedTeamRoundIndex < 0) return;
+            autoLowGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][0].GetValue();
+            autoHighGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][1].GetValue();
+            autoGearChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][2].GetValue();
+            autoLineChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][3].GetValue();
 
-            lowGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][4].GetValue();
-            highGoalTracker.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][5].GetValue();
-            gearNUD.Value = (int)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][6].GetValue();
-            ropeChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.CurrentTeamIndex][7].GetValue();
+            lowGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][4].GetValue();
+            highGoalTracker.Value = (int)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][5].GetValue();
+            gearNUD.Value = (int)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][6].GetValue();
+            ropeChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][7].GetValue();
         }
 
         public void UpdateTitle()
@@ -355,7 +355,7 @@ namespace MyScout
 
             if (adddataFrm.ShowDialog() == DialogResult.OK)
             {
-                Program.Events.Add(new Event(adddataFrm.textBox1.Text, adddataFrm.textBox2.Text, adddataFrm.textBox3.Text, Program.DataSetName));
+                Program.Events.Add(new Event(adddataFrm.textBox1.Text, adddataFrm.textBox2.Text, adddataFrm.textBox3.Text, Program.DataSetName, "Event_" + adddataFrm.textBox1.Text + ".xml"));
                 RefreshEventList();
             }
         }
@@ -560,7 +560,7 @@ namespace MyScout
         {
             var nud = sender as NumericUpDown;
             if (nud == null) return;
-            Program.CurrentRound.DataSet[Program.CurrentTeamIndex][(int)nud.Tag].SetValue((int)nud.Value);
+            Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][(int)nud.Tag].SetValue((int)nud.Value);
         }
 
         private void Chkbx_CheckedChanged(object sender, EventArgs e)
@@ -617,6 +617,16 @@ namespace MyScout
                 value = tracker.Minimum;
 
             tracker.Value = value;
+        }
+
+        private void OpenEventFolderBtn_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", IO.EVENTS_FOLDER_ROOT);
+        }
+
+        private void OpenDatasetFolderBtn_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", IO.DATASETS_FOLDER_ROOT);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace MyScout
         #region Constants and Paths
         public static readonly string REPORTS_FOLDER_ROOT = Program.StartupPath + "\\Spreadsheets\\";
         public static readonly string EVENTS_FOLDER_ROOT = Program.StartupPath + "\\Events\\";
+        public static readonly string DATASETS_FOLDER_ROOT = Program.StartupPath + "\\Datasets\\";
         public static readonly string REPORT_PROFILES_FOLDER_ROOT = REPORTS_FOLDER_ROOT + "\\Profiles\\";
 
         public static readonly string REPORT_PREFIX = "Report for ";
@@ -31,15 +32,15 @@ namespace MyScout
         /// </summary>
         public static void LoadAllEvents()
         {
-            if (!Directory.Exists(Path.Combine(Program.StartupPath, "Events", Program.DataSetName)))
+            if (!Directory.Exists(eventsFolder()))
             {
-                Directory.CreateDirectory(Path.Combine(Program.StartupPath, "Events", Program.DataSetName));
+                Directory.CreateDirectory(eventsFolder());
             }
-            string[] files = Directory.GetFiles(Path.Combine(Program.StartupPath, "Events", Program.DataSetName));
+            string[] files = Directory.GetFiles(eventsFolder());
 
             for (int i = 0; i < files.Length; ++i)
             {
-                LoadEvent(i);
+                LoadEvent(files[i]);
             }
             Program.MainFrm.Invoke(new Action(() => { Program.MainFrm.RefreshEventList(); }));
         }
@@ -48,13 +49,11 @@ namespace MyScout
         /// Loads the given event from an XML file.
         /// </summary>
         /// <param name="eventid">The ID of the XML file to load.</param>
-        public static void LoadEvent(int eventid)
+        public static void LoadEvent(string fileName)
         {
-            //TODO: undo try commenting
             try
             {
-                string fileName = Path.Combine(Program.StartupPath, "Events", Program.DataSetName, "Event" + eventid + ".xml");
-                if (File.Exists(fileName))
+                if (File.Exists(fileName) && fileName.EndsWith(".xml"))
                 {
                     using (var fileStream = File.OpenRead(fileName))
                     {
@@ -67,7 +66,10 @@ namespace MyScout
 
                         Program.Events.Add(new Event(xml.Root.Element("Name").Value,
                             xml.Root.Element("BeginDate").Value,
-                            xml.Root.Element("EndDate").Value, fileDataSet));
+                            xml.Root.Element("EndDate").Value, 
+                            fileDataSet,
+                            fileName.Replace(eventsFolder() + "\\", "")));
+
                         Program.Events[Program.Events.Count - 1].rounds.Clear();
 
                         var teamsElement = xml.Root.Element("Teams");
@@ -129,7 +131,7 @@ namespace MyScout
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Event #{eventid} could not be loaded. \n\n{ex.Message}",
+                MessageBox.Show($"Event #{fileName.Replace(eventsFolder(), "")} could not be loaded. \n\n{ex.Message}",
                     "MyScout 2017", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -363,7 +365,7 @@ namespace MyScout
         /// </summary>
         public static void SaveAllEvents()
         {
-            string eventPath = Path.Combine(Program.StartupPath, "Events", Program.DataSetName);
+            string eventPath = eventsFolder();
             string eventBackupPath = Path.Combine(Program.StartupPath, "Events Backup", Program.DataSetName);
 
             Directory.CreateDirectory(eventPath);
@@ -406,20 +408,16 @@ namespace MyScout
         {
             //try
             //{
-
-            if (File.Exists(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml"))
+            string eventfilename = Program.Events[eventid].filename;
+            if (File.Exists(eventsFolder() + "\\" + eventfilename))
             {
-                File.Delete(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml");
-            }
-            else if (File.Exists(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml"))
-            {
-                File.Delete(Program.StartupPath + "\\Events\\Event" + eventid.ToString() + ".xml");
+                File.Delete(eventsFolder() + "\\" + eventfilename);
             }
 
-            var dir = Path.Combine(Program.StartupPath, "Events", Program.DataSetName);
+            var dir = Path.Combine(eventsFolder());
             Directory.CreateDirectory(dir);
 
-            using (XmlTextWriter writer = new XmlTextWriter(Program.StartupPath + "\\Events\\" + Program.DataSetName + "\\Event" + eventid.ToString() + ".xml", Encoding.ASCII))
+            using (XmlTextWriter writer = new XmlTextWriter(eventsFolder() + "\\" + eventfilename, Encoding.ASCII))
             {
                 writer.Formatting = Formatting.Indented;
                 writer.Indentation = 4;
@@ -647,7 +645,7 @@ namespace MyScout
                 writer.WriteStartElement("head");
                 writer.WriteElementString("title", ev.name + "Report");
                 writer.WriteStartElement("style");
-                writer.WriteString("#reporttable {border-collapse: collapse; table-layout: fixed; width: 100%;}");
+                writer.WriteString("#reporttable {border-collapse: collapse; table-layout: fixed;}");
                 writer.WriteString("#reporttable td {border: 1px solid black; padding: 2px;}");
                 writer.WriteString(".thead {background-color: gray; color: white;}");
                 writer.WriteString(".evenrow {background-color: lightgray;}");
@@ -666,8 +664,8 @@ namespace MyScout
                     {
                         writer.WriteAttributeString("class", "evenrow");
                     }
-
-                    if (row >= 0)
+                    
+                    if (row >= 0)  //This is actual content vvvvv
                     {
                         writer.WriteElementString("td", sortedTeamList[row].id.ToString());
                         writer.WriteElementString("td", sortedTeamList[row].name.ToString());
@@ -684,7 +682,7 @@ namespace MyScout
                             }
                         }
                     }
-                    else
+                    else      //This is header stuff vvvvvvv I'm an idiot
                     {
                         writer.WriteAttributeString("class", "thead");
                         writer.WriteElementString("td", "ID");
@@ -694,11 +692,13 @@ namespace MyScout
                         {
                             if (GetDatapointByName(Program.DataSet[2], s) != null)
                             {
-                                writer.WriteElementString("td", GetDatapointByName(Program.DataSet[2], s).GetAbbreviation());
+                                DataPoint dp = GetDatapointByName(Program.DataSet[2], s);
+                                writer.WriteElementString("td", dp.GetAbbreviation().Length >= 8 ? dp.GetAbbreviationBasic() : dp.GetAbbreviation());
                             }
                             else
                             {
-                                writer.WriteElementString("td", GetDatapointByName(Program.DataSet[0], s).GetAbbreviation());
+                                DataPoint dp = GetDatapointByName(Program.DataSet[0], s);
+                                writer.WriteElementString("td", dp.GetAbbreviation().Length >= 8 ? dp.GetAbbreviationBasic() : dp.GetAbbreviation());
                             }
                         }
                     }
