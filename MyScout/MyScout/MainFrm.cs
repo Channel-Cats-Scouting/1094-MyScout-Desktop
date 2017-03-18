@@ -108,7 +108,7 @@ namespace MyScout
             //TODO: Documentation
             for (int index = 0; index < AllianceBtnPnl.Controls.Count; index++)
             {
-                if (AllianceBtnPnl.Controls[index].Name != "BackBtn" && AllianceBtnPnl.Controls[index].Name != "button1" && AllianceBtnPnl.Controls[index].Name != "genProgressBar" && AllianceBtnPnl.Controls[index].Name != "genOutputLabel")
+                if (AllianceBtnPnl.Controls[index].Name != "BackBtn" && AllianceBtnPnl.Controls[index].Name != "OptionsBtn" && AllianceBtnPnl.Controls[index].Name != "button1" && AllianceBtnPnl.Controls[index].Name != "genProgressBar" && AllianceBtnPnl.Controls[index].Name != "genOutputLabel")
                 {
                     Button btn = AllianceBtnPnl.Controls[index] as Button;
                     int i = index - 2;
@@ -149,7 +149,7 @@ namespace MyScout
 
         public void UpdateTitle()
         {
-            Program.MainFrm.Text = ((TeamPnl.Visible) ? Program.Events[Program.CurrentEventIndex].name + " - MyScout 2017" : "MyScout 2017") + ((Program.Saved) ? "" : "*");
+            Program.MainFrm.Text = ((TeamPnl.Visible) ? Program.Events[Program.CurrentEventIndex].name + " - MyScout 2017 v" + Program.VersionString : "MyScout 2017 v" + Program.VersionString) + ((Program.Saved) ? "" : "*");
         }
 
         #endregion
@@ -325,9 +325,14 @@ namespace MyScout
                 Program.CurrentRoundIndex = Program.Events[Program.CurrentEventIndex].rounds.Count - 1;
             }
 
-            MainPnl.Enabled = false;
             Program.CurrentTeamIndex = Program.SelectedTeamRoundIndex = -1;
             Program.Events[Program.CurrentEventIndex].lastviewedround = Program.CurrentRoundIndex;
+            RefreshAfterRoundEdit();
+        }
+
+        public void RefreshAfterRoundEdit()
+        {
+            MainPnl.Enabled = false;
             RefreshControls();
         }
 
@@ -553,7 +558,7 @@ namespace MyScout
                 bar.Value = bar.SmallChange * ((bar.Value + bar.SmallChange / 2) / bar.SmallChange);
             }
 
-            Program.CurrentRound.DataSet[Program.CurrentTeamIndex][5].SetValue(bar.Value);
+            Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][5].SetValue(bar.Value);
         }
 
         private void NUD_ValueChanged(object sender, EventArgs e)
@@ -567,7 +572,7 @@ namespace MyScout
         {
             var chkBx = sender as CheckBox;
             if (chkBx == null) return;
-            Program.CurrentRound.DataSet[Program.CurrentTeamIndex][(int)chkBx.Tag].SetValue(chkBx.Checked);
+            Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][(int)chkBx.Tag].SetValue(chkBx.Checked);
         }
 
         private void upDownBtn_Click(object sender, EventArgs e)
@@ -627,6 +632,13 @@ namespace MyScout
         private void OpenDatasetFolderBtn_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("explorer.exe", IO.DATASETS_FOLDER_ROOT);
+        }
+
+        private void OptionsBtn_Click(object sender, EventArgs e)
+        {
+            //TODO: Say something like "Hey don't do this you'll delete all your data" for noobs
+            ConfigFrm configfrm = new ConfigFrm();
+            configfrm.ShowDialog();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace MyScout
         /// <returns></returns>
         public static dynamic execFunction(int teamIndex, int compIndex)
         {
-            object actionresult = 0;
+            List<object> actionresult = new List<object>();
             List<Round> teamRounds = getRoundsFromTeamIndex(teamIndex);
             Type dataType = Program.DataSet[2][compIndex].GetDataType();
             string funcScript = Program.DataSet[2][compIndex].GetScript();
@@ -61,7 +61,7 @@ namespace MyScout
                                             total += f;
                                         }
                                     }
-                                    actionresult = total;
+                                    actionresult.Add(total);
                                 }
                                 break;
 
@@ -77,7 +77,7 @@ namespace MyScout
                                             addedValues += f;
                                         }
                                     }
-                                    actionresult = addedValues / rounds.Count;
+                                    actionresult.Add(addedValues / rounds.Count);
                                 }
                                 break;
                             case "checkon": //If its round value is true, this is true, forever.
@@ -86,7 +86,8 @@ namespace MyScout
                                     for (int r = 0; r < rounds.Count; r++)
                                     {
                                         DataPoint roundDataPoint = getRoundDataPointByName(rounds[r], teamIndex, datapointName);
-                                        if ((IsNumeric(roundDataPoint.GetValue().ToString()) && (float)roundDataPoint.GetValue() > 0) ||
+                                        Console.WriteLine(IsNumeric(roundDataPoint.GetValue().ToString()));
+                                        if ((IsNumeric(roundDataPoint.GetValue().ToString()) && Convert.ToInt16(roundDataPoint.GetValue()) > 0) ||
                                             !IsNumeric(roundDataPoint.GetValue().ToString()) && (bool)roundDataPoint.GetValue())
                                         {
                                             check = true;
@@ -94,20 +95,39 @@ namespace MyScout
                                         }
                                     }
 
-                                    actionresult = check;
+                                    actionresult.Add(check);
                                 }
-                                break;
-                            default:
-                                actionresult = 0;
                                 break;
                                 //TODO: Add more cases! Total is probably not the only way we can deal with data points.
                         }
                     }
                 }
             }
-                var output = Convert.ChangeType(actionresult, dataType); //Convert the output to the datatype's 'type'
+            float output = 0;
+            for (int i = 0; i < actionresult.Count; ++i)
+            {
+                if (actionresult[i].GetType() == typeof(int) || actionresult[i].GetType() == typeof(float))
+                {
+                    output += (float)actionresult[i]; //Convert the output to the datatype's 'type'
+                }
+                else if(actionresult[i].GetType() == typeof(bool))
+                {
+                    if((bool)actionresult[i])
+                    {
+                        ++output;
+                    }
+                }
+            }
+
+            if (dataType == typeof(bool))
+            {
+                Program.CurrentEvent.teams[teamIndex].GetCompiledScoreDataset()[compIndex].SetValue(output > 0);
+            }
+            else
+            {
                 Program.CurrentEvent.teams[teamIndex].GetCompiledScoreDataset()[compIndex].SetValue(output);
-                return output;
+            }
+            return output;
         }
 
         public static List<Round> getRoundsFromTeamIndex(int index)
@@ -121,6 +141,26 @@ namespace MyScout
                 {
                     //if the team index is the same as the round's team index
                     if (r.Teams[j] == index)
+                    {
+                        rounds.Add(r);
+                    }
+                }
+            }
+
+            return rounds;
+        }
+
+        public static List<Round> getRoundsFromTeam(Team team)
+        {
+            List<Round> rounds = new List<Round>();
+            //for each round in the event
+            foreach (Round r in Program.Events[Program.CurrentEventIndex].rounds)
+            {
+                //for each team index in the round
+                for (int j = 0; j < 6; ++j)
+                {
+                    //if the team index is the same as the round's team index
+                    if (Program.CurrentEvent.teams[r.Teams[j]] == team)
                     {
                         rounds.Add(r);
                     }
@@ -201,6 +241,10 @@ namespace MyScout
                         else if (d.datatype == typeof(int)) //If it's an int, add the int * pointvalue
                         {
                             avgScore += (int)d.GetValue() * pv;
+                        }
+                        else if (d.datatype == typeof(float)) //If it's a float, do the same as int
+                        {
+                            avgScore += (float)d.GetValue() * pv;
                         }
                     }
                 }

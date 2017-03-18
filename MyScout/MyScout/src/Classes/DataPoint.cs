@@ -41,6 +41,7 @@ namespace MyScout
         {
             { typeof(bool), false },
             { typeof(int), 0 },
+            { typeof(float), 0 },
             { typeof(string), ""},
             { typeof(List<bool>), new List<bool>() },
             { typeof(List<int>), new List<int>() },

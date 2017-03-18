@@ -22,7 +22,7 @@ namespace MyScout
         public List<List<DataPoint>> DataSet;
         #endregion
 
-        public Round()
+        public Round(int[] teams)
         {
             //Make 6 lists of datapoints within the existing dataset variable - one for each team in the round.
             DataSet = new List<List<DataPoint>>();
@@ -36,6 +36,10 @@ namespace MyScout
                 }
                 DataSet.Add(points); //Assign it a copy of the dataset
             }
+
+            Teams = teams;
         }
+
+        public Round() : this(new int[6] { -1,-1,-1,-1,-1,-1 }) { }
     }
 }

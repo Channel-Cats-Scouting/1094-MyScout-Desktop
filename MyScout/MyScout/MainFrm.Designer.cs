@@ -33,10 +33,13 @@
             this.EventPnl = new System.Windows.Forms.Panel();
             this.EventList = new System.Windows.Forms.ListView();
             this.FilenameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.NameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.GameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BeginDateHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.EndDateHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.HeaderPnl = new System.Windows.Forms.Panel();
+            this.OpenDatasetFolderBtn = new System.Windows.Forms.Button();
+            this.OpenEventFolderBtn = new System.Windows.Forms.Button();
             this.GameNameLbl = new System.Windows.Forms.Label();
             this.GameDataWarning = new System.Windows.Forms.Label();
             this.MngGamesBtn = new System.Windows.Forms.Button();
@@ -88,9 +91,7 @@
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn2 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn3 = new System.Windows.Forms.Button();
-            this.NameHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.OpenEventFolderBtn = new System.Windows.Forms.Button();
-            this.OpenDatasetFolderBtn = new System.Windows.Forms.Button();
+            this.OptionsBtn = new System.Windows.Forms.Button();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -154,6 +155,11 @@
             this.FilenameHeader.Text = "File";
             this.FilenameHeader.Width = 150;
             // 
+            // NameHeader
+            // 
+            this.NameHeader.Text = "Name";
+            this.NameHeader.Width = 200;
+            // 
             // GameHeader
             // 
             this.GameHeader.Text = "Game";
@@ -182,6 +188,28 @@
             this.HeaderPnl.Name = "HeaderPnl";
             this.HeaderPnl.Size = new System.Drawing.Size(1102, 69);
             this.HeaderPnl.TabIndex = 3;
+            // 
+            // OpenDatasetFolderBtn
+            // 
+            this.OpenDatasetFolderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpenDatasetFolderBtn.Location = new System.Drawing.Point(865, 4);
+            this.OpenDatasetFolderBtn.Name = "OpenDatasetFolderBtn";
+            this.OpenDatasetFolderBtn.Size = new System.Drawing.Size(107, 57);
+            this.OpenDatasetFolderBtn.TabIndex = 5;
+            this.OpenDatasetFolderBtn.Text = "Open \r\nDataset Folder";
+            this.OpenDatasetFolderBtn.UseVisualStyleBackColor = true;
+            this.OpenDatasetFolderBtn.Click += new System.EventHandler(this.OpenDatasetFolderBtn_Click);
+            // 
+            // OpenEventFolderBtn
+            // 
+            this.OpenEventFolderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OpenEventFolderBtn.Location = new System.Drawing.Point(983, 4);
+            this.OpenEventFolderBtn.Name = "OpenEventFolderBtn";
+            this.OpenEventFolderBtn.Size = new System.Drawing.Size(107, 57);
+            this.OpenEventFolderBtn.TabIndex = 4;
+            this.OpenEventFolderBtn.Text = "Open \r\nEvent Folder";
+            this.OpenEventFolderBtn.UseVisualStyleBackColor = true;
+            this.OpenEventFolderBtn.Click += new System.EventHandler(this.OpenEventFolderBtn_Click);
             // 
             // GameNameLbl
             // 
@@ -706,6 +734,7 @@
             // 
             this.AllianceBtnPnl.BackColor = System.Drawing.Color.Transparent;
             this.AllianceBtnPnl.BackgroundImage = global::MyScout.Properties.Resources.bg;
+            this.AllianceBtnPnl.Controls.Add(this.OptionsBtn);
             this.AllianceBtnPnl.Controls.Add(this.button1);
             this.AllianceBtnPnl.Controls.Add(this.BackBtn);
             this.AllianceBtnPnl.Controls.Add(this.RedAllianceBtn1);
@@ -849,32 +878,17 @@
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
             this.BlueAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
-            // NameHeader
+            // OptionsBtn
             // 
-            this.NameHeader.Text = "Name";
-            this.NameHeader.Width = 200;
-            // 
-            // OpenEventFolderBtn
-            // 
-            this.OpenEventFolderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpenEventFolderBtn.Location = new System.Drawing.Point(983, 4);
-            this.OpenEventFolderBtn.Name = "OpenEventFolderBtn";
-            this.OpenEventFolderBtn.Size = new System.Drawing.Size(107, 57);
-            this.OpenEventFolderBtn.TabIndex = 4;
-            this.OpenEventFolderBtn.Text = "Open \r\nEvent Folder";
-            this.OpenEventFolderBtn.UseVisualStyleBackColor = true;
-            this.OpenEventFolderBtn.Click += new System.EventHandler(this.OpenEventFolderBtn_Click);
-            // 
-            // OpenDatasetFolderBtn
-            // 
-            this.OpenDatasetFolderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OpenDatasetFolderBtn.Location = new System.Drawing.Point(865, 4);
-            this.OpenDatasetFolderBtn.Name = "OpenDatasetFolderBtn";
-            this.OpenDatasetFolderBtn.Size = new System.Drawing.Size(107, 57);
-            this.OpenDatasetFolderBtn.TabIndex = 5;
-            this.OpenDatasetFolderBtn.Text = "Open \r\nDataset Folder";
-            this.OpenDatasetFolderBtn.UseVisualStyleBackColor = true;
-            this.OpenDatasetFolderBtn.Click += new System.EventHandler(this.OpenDatasetFolderBtn_Click);
+            this.OptionsBtn.BackColor = System.Drawing.Color.Transparent;
+            this.OptionsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsBtn.Location = new System.Drawing.Point(67, 4);
+            this.OptionsBtn.Name = "OptionsBtn";
+            this.OptionsBtn.Size = new System.Drawing.Size(73, 39);
+            this.OptionsBtn.TabIndex = 8;
+            this.OptionsBtn.Text = "Options";
+            this.OptionsBtn.UseVisualStyleBackColor = false;
+            this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
             // MainFrm
             // 
@@ -979,6 +993,7 @@
         private System.Windows.Forms.ColumnHeader NameHeader;
         private System.Windows.Forms.Button OpenDatasetFolderBtn;
         private System.Windows.Forms.Button OpenEventFolderBtn;
+        private System.Windows.Forms.Button OptionsBtn;
     }
 }
 

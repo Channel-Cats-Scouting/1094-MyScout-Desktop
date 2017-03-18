@@ -45,6 +45,85 @@ namespace MyScout
             Program.MainFrm.Invoke(new Action(() => { Program.MainFrm.RefreshEventList(); }));
         }
 
+        public static void LoadCSV(string path)
+        {
+            try {
+                string[] splitText = File.ReadAllText(path).Split(',');
+
+                List<int> allTeamNums = new List<int>();
+                List<int[]> allNewRounds = new List<int[]>();
+
+                for (int i = 0; i < splitText.Length; ++i)
+                {
+                    string s = splitText[i];            //Splits the CSV using commas
+                    if (s.StartsWith("Quals"))
+                    {
+                        //Contains the 3 red, then 3 blue teams
+                        int[] teamnums = new int[6];
+
+                        //For each red team, save the team number
+                        for (int j = 0; j < 3; ++j)
+                        {
+                            teamnums[j] = Convert.ToInt16(splitText[i + j + 1]);
+                            if (!allTeamNums.Contains(teamnums[j]))
+                            {
+                                allTeamNums.Add(teamnums[j]);
+                            }
+                        }
+
+                        //For each blue team, save the team number
+                        for (int j = 3; j < 6; ++j)
+                        {
+                            teamnums[j] = Convert.ToInt16(splitText[i + j + 2]);
+                            if (!allTeamNums.Contains(teamnums[j]))
+                            {
+                                allTeamNums.Add(teamnums[j]);
+                            }
+                        }
+
+                        allNewRounds.Add(teamnums);
+                    }
+                }
+                
+                Program.CurrentEvent.teams.Clear();
+                Program.CurrentEvent.rounds.Clear();
+
+                //Add each new team to the Event.teams list
+                foreach (int teamnum in allTeamNums)
+                {
+                    if (!Program.CurrentEvent.teams.Contains(new Team(teamnum, "")))
+                    {
+                        Program.CurrentEvent.teams.Add(new Team(teamnum, ""));
+                    }
+                }
+
+                //Add each new round to the Event.rounds list
+                foreach (int[] roster in allNewRounds)
+                {
+                    //Add a new round, with the team global indices correctly set.
+                    //Using roster on its own would set the indices incorrectly,
+                    //  as roster contains team ID numbers.
+                    //
+                    //  ~Ethan Schrunk, who DEFINITELY did not do the above, definitely. :P
+                    Program.AddRound(new Round(new int[]
+                        {
+                            Program.GetTeamGlobalIndexFromTeamID(roster[0]),
+                            Program.GetTeamGlobalIndexFromTeamID(roster[1]),
+                            Program.GetTeamGlobalIndexFromTeamID(roster[2]),
+                            Program.GetTeamGlobalIndexFromTeamID(roster[3]),
+                            Program.GetTeamGlobalIndexFromTeamID(roster[4]),
+                            Program.GetTeamGlobalIndexFromTeamID(roster[5])
+                        }));
+                }
+
+                Program.MainFrm.RefreshAfterRoundEdit();
+            }
+            catch
+            {
+
+            }
+        }
+
         /// <summary>
         /// Loads the given event from an XML file.
         /// </summary>
@@ -670,6 +749,8 @@ namespace MyScout
                         writer.WriteElementString("td", sortedTeamList[row].id.ToString());
                         writer.WriteElementString("td", sortedTeamList[row].name.ToString());
                         writer.WriteElementString("td", sortedTeamList[row].avgScore.ToString());
+                        writer.WriteElementString("td", TotalsUtil.getRoundsFromTeam(sortedTeamList[row]).Count.ToString());
+
                         foreach (string s in outListBox.Items)
                         {
                             if (GetDatapointByName(sortedTeamList[row].GetCompiledScoreDataset(), s) != null)
@@ -688,6 +769,7 @@ namespace MyScout
                         writer.WriteElementString("td", "ID");
                         writer.WriteElementString("td", "Name");
                         writer.WriteElementString("td", "Avg");
+                        writer.WriteElementString("td", "inRounds");
                         foreach(string s in outListBox.Items)
                         {
                             if (GetDatapointByName(Program.DataSet[2], s) != null)
@@ -753,6 +835,8 @@ namespace MyScout
                     teamPoints.Add(sortedTeamList[row].id.ToString());
                     teamPoints.Add(sortedTeamList[row].name.ToString());
                     teamPoints.Add(sortedTeamList[row].avgScore.ToString());
+                    teamPoints.Add(TotalsUtil.getRoundsFromTeam(sortedTeamList[row]).Count.ToString());
+
                     foreach (string s in outListBox.Items)
                     {
                         if (GetDatapointByName(sortedTeamList[row].GetCompiledScoreDataset(), s) != null)
@@ -770,6 +854,7 @@ namespace MyScout
                     teamPoints.Add("ID");
                     teamPoints.Add("Name");
                     teamPoints.Add("Avg");
+                    teamPoints.Add("inRounds");
                     foreach(string s in outListBox.Items)
                     {
                         if(GetDatapointByName(Program.DataSet[2], s) != null)

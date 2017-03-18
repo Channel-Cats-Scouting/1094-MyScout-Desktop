@@ -10,11 +10,19 @@ using System.Windows.Forms;
 
 namespace MyScout
 {
-    public partial class Config : Form
+    public partial class ConfigFrm : Form
     {
-        public Config()
+        public ConfigFrm()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                IO.LoadCSV(openFileDialog1.FileName);
+            }
         }
     }
 }
