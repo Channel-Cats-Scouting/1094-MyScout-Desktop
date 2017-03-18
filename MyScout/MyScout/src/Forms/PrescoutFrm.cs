@@ -52,9 +52,12 @@ namespace MyScout
 
         public void LoadStats(Team team)
         {
-            canLowGoalCB.Checked = (bool)team.GetTeamSpecificDataset()[0].GetValue();
-            canHighGoalCB.Checked = (bool)team.GetTeamSpecificDataset()[1].GetValue();
-            maxCarriedUpDown.Value = Convert.ToInt16(team.GetTeamSpecificDataset()[2].GetValue());
+            var ds = team.GetTeamSpecificDataset();
+            canLowGoalCB.Checked = (bool)ds[0].GetValue();
+            canHighGoalCB.Checked = (bool)ds[1].GetValue();
+            maxCarriedUpDown.Value = Convert.ToInt16(ds[2].GetValue());
+            checkBox1.Checked = (bool)ds[3].GetValue();
+            checkBox2.Checked = (bool)ds[4].GetValue();
         }
 
         public void SaveStats(Team team)
@@ -64,6 +67,8 @@ namespace MyScout
                 team.GetTeamSpecificDataset()[0].SetValue(canLowGoalCB.Checked);
                 team.GetTeamSpecificDataset()[1].SetValue(canHighGoalCB.Checked);
                 team.GetTeamSpecificDataset()[2].SetValue(maxCarriedUpDown.Value);
+                team.GetTeamSpecificDataset()[3].SetValue(checkBox1.Checked);
+                team.GetTeamSpecificDataset()[4].SetValue(checkBox2.Checked);
             }
         }
 

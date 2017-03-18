@@ -36,6 +36,8 @@
             this.canHighGoalCB = new System.Windows.Forms.CheckBox();
             this.maxCarriedUpDown = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxCarriedUpDown)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +69,7 @@
             // 
             this.button2.Enabled = false;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button2.Location = new System.Drawing.Point(37, 184);
+            this.button2.Location = new System.Drawing.Point(35, 219);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 10;
@@ -79,7 +81,7 @@
             // 
             this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button3.Location = new System.Drawing.Point(118, 184);
+            this.button3.Location = new System.Drawing.Point(116, 219);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 11;
@@ -91,11 +93,11 @@
             // 
             this.canLowGoalCB.AutoSize = true;
             this.canLowGoalCB.BackColor = System.Drawing.Color.Transparent;
-            this.canLowGoalCB.Location = new System.Drawing.Point(32, 95);
+            this.canLowGoalCB.Location = new System.Drawing.Point(32, 118);
             this.canLowGoalCB.Name = "canLowGoalCB";
-            this.canLowGoalCB.Size = new System.Drawing.Size(87, 17);
+            this.canLowGoalCB.Size = new System.Drawing.Size(93, 17);
             this.canLowGoalCB.TabIndex = 12;
-            this.canLowGoalCB.Text = "CanLowGoal";
+            this.canLowGoalCB.Text = "Can Low Goal";
             this.canLowGoalCB.UseVisualStyleBackColor = false;
             this.canLowGoalCB.CheckedChanged += new System.EventHandler(this.chkbx_CheckedChanged);
             // 
@@ -103,11 +105,11 @@
             // 
             this.canHighGoalCB.AutoSize = true;
             this.canHighGoalCB.BackColor = System.Drawing.Color.Transparent;
-            this.canHighGoalCB.Location = new System.Drawing.Point(32, 118);
+            this.canHighGoalCB.Location = new System.Drawing.Point(32, 95);
             this.canHighGoalCB.Name = "canHighGoalCB";
-            this.canHighGoalCB.Size = new System.Drawing.Size(89, 17);
+            this.canHighGoalCB.Size = new System.Drawing.Size(95, 17);
             this.canHighGoalCB.TabIndex = 13;
-            this.canHighGoalCB.Text = "CanHighGoal";
+            this.canHighGoalCB.Text = "Can High Goal";
             this.canHighGoalCB.UseVisualStyleBackColor = false;
             this.canHighGoalCB.CheckedChanged += new System.EventHandler(this.chkbx_CheckedChanged);
             // 
@@ -125,9 +127,33 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(77, 144);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 15;
-            this.label1.Text = "MaxCarried";
+            this.label1.Text = "Max Carried";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox1.Location = new System.Drawing.Point(32, 168);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(102, 17);
+            this.checkBox1.TabIndex = 17;
+            this.checkBox1.Text = "Can Climb Rope";
+            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.chkbx_CheckedChanged);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox2.Location = new System.Drawing.Point(32, 191);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(91, 17);
+            this.checkBox2.TabIndex = 16;
+            this.checkBox2.Text = "Can Get Gear";
+            this.checkBox2.UseVisualStyleBackColor = false;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.chkbx_CheckedChanged);
             // 
             // PrescoutFrm
             // 
@@ -137,7 +163,9 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImage = global::MyScout.Properties.Resources.bg;
             this.CancelButton = this.button3;
-            this.ClientSize = new System.Drawing.Size(203, 219);
+            this.ClientSize = new System.Drawing.Size(203, 254);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.maxCarriedUpDown);
             this.Controls.Add(this.canHighGoalCB);
@@ -170,5 +198,7 @@
         private System.Windows.Forms.CheckBox canHighGoalCB;
         private System.Windows.Forms.NumericUpDown maxCarriedUpDown;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }
