@@ -56,28 +56,25 @@ namespace MyScout
                 for (int i = 0; i < splitText.Length; ++i)
                 {
                     string s = splitText[i];            //Splits the CSV using commas
-                    if (s.StartsWith("Quals"))
+                    if (s.StartsWith("Qual"))
                     {
                         //Contains the 3 red, then 3 blue teams
                         int[] teamnums = new int[6];
-
-                        //For each red team, save the team number
-                        for (int j = 0; j < 3; ++j)
+                        int index = 0;
+                        //Find the next 6 integers and add them to the team nums
+                        for (int j = 0; index < 6 || splitText[i + j].Contains("\n"); ++j)
                         {
-                            teamnums[j] = Convert.ToInt16(splitText[i + j + 1]);
-                            if (!allTeamNums.Contains(teamnums[j]))
+                            int parsedint;
+                            if (int.TryParse(splitText[i + j], out parsedint))
                             {
-                                allTeamNums.Add(teamnums[j]);
-                            }
-                        }
+                                teamnums[index] = Convert.ToInt16(splitText[i + j]);
 
-                        //For each blue team, save the team number
-                        for (int j = 3; j < 6; ++j)
-                        {
-                            teamnums[j] = Convert.ToInt16(splitText[i + j + 2]);
-                            if (!allTeamNums.Contains(teamnums[j]))
-                            {
-                                allTeamNums.Add(teamnums[j]);
+                                if (!allTeamNums.Contains(teamnums[index]))
+                                {
+                                    allTeamNums.Add(teamnums[index]);
+                                }
+
+                                index++;
                             }
                         }
 
