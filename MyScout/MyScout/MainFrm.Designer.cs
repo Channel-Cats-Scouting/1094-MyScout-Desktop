@@ -83,6 +83,7 @@
             this.autoLowGoalLbl = new System.Windows.Forms.Label();
             this.autoLowGoalNUD = new System.Windows.Forms.NumericUpDown();
             this.AllianceBtnPnl = new System.Windows.Forms.Panel();
+            this.OptionsBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.BackBtn = new System.Windows.Forms.Button();
             this.RedAllianceBtn1 = new System.Windows.Forms.Button();
@@ -91,7 +92,6 @@
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn2 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn3 = new System.Windows.Forms.Button();
-            this.OptionsBtn = new System.Windows.Forms.Button();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -298,9 +298,9 @@
             // 
             this.preScoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.preScoutButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.preScoutButton.Location = new System.Drawing.Point(704, 14);
+            this.preScoutButton.Location = new System.Drawing.Point(702, 14);
             this.preScoutButton.Name = "preScoutButton";
-            this.preScoutButton.Size = new System.Drawing.Size(233, 59);
+            this.preScoutButton.Size = new System.Drawing.Size(146, 59);
             this.preScoutButton.TabIndex = 1;
             this.preScoutButton.Text = "Pre-Scout Event";
             this.preScoutButton.UseVisualStyleBackColor = true;
@@ -322,11 +322,12 @@
             // 
             this.TeamNamePnl.BackColor = System.Drawing.Color.Transparent;
             this.TeamNamePnl.BackgroundImage = global::MyScout.Properties.Resources.bg;
+            this.TeamNamePnl.Controls.Add(this.OptionsBtn);
             this.TeamNamePnl.Controls.Add(this.button2);
+            this.TeamNamePnl.Controls.Add(this.preScoutButton);
             this.TeamNamePnl.Controls.Add(this.button6);
             this.TeamNamePnl.Controls.Add(this.button5);
             this.TeamNamePnl.Controls.Add(this.label1);
-            this.TeamNamePnl.Controls.Add(this.preScoutButton);
             this.TeamNamePnl.Controls.Add(this.TeamNameLbl);
             this.TeamNamePnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.TeamNamePnl.Location = new System.Drawing.Point(155, 0);
@@ -734,7 +735,6 @@
             // 
             this.AllianceBtnPnl.BackColor = System.Drawing.Color.Transparent;
             this.AllianceBtnPnl.BackgroundImage = global::MyScout.Properties.Resources.bg;
-            this.AllianceBtnPnl.Controls.Add(this.OptionsBtn);
             this.AllianceBtnPnl.Controls.Add(this.button1);
             this.AllianceBtnPnl.Controls.Add(this.BackBtn);
             this.AllianceBtnPnl.Controls.Add(this.RedAllianceBtn1);
@@ -748,6 +748,18 @@
             this.AllianceBtnPnl.Name = "AllianceBtnPnl";
             this.AllianceBtnPnl.Size = new System.Drawing.Size(155, 590);
             this.AllianceBtnPnl.TabIndex = 2;
+            // 
+            // OptionsBtn
+            // 
+            this.OptionsBtn.BackColor = System.Drawing.Color.Transparent;
+            this.OptionsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsBtn.Location = new System.Drawing.Point(854, 14);
+            this.OptionsBtn.Name = "OptionsBtn";
+            this.OptionsBtn.Size = new System.Drawing.Size(81, 59);
+            this.OptionsBtn.TabIndex = 8;
+            this.OptionsBtn.Text = "Options";
+            this.OptionsBtn.UseVisualStyleBackColor = false;
+            this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
             // button1
             // 
@@ -877,18 +889,6 @@
             this.BlueAllianceBtn3.Text = "----";
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
             this.BlueAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
-            // 
-            // OptionsBtn
-            // 
-            this.OptionsBtn.BackColor = System.Drawing.Color.Transparent;
-            this.OptionsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OptionsBtn.Location = new System.Drawing.Point(67, 4);
-            this.OptionsBtn.Name = "OptionsBtn";
-            this.OptionsBtn.Size = new System.Drawing.Size(73, 39);
-            this.OptionsBtn.TabIndex = 8;
-            this.OptionsBtn.Text = "Options";
-            this.OptionsBtn.UseVisualStyleBackColor = false;
-            this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
             // MainFrm
             // 

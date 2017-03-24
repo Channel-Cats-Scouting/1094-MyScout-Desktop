@@ -504,7 +504,7 @@ namespace MyScout
                 }
             }
 
-            RefreshControls();
+            RefreshAfterRoundEdit();
         }
 
         #endregion

@@ -85,13 +85,12 @@ namespace MyScout
                     }
                 }
                 
-                Program.CurrentEvent.teams.Clear();
                 Program.CurrentEvent.rounds.Clear();
 
                 //Add each new team to the Event.teams list
                 foreach (int teamnum in allTeamNums)
                 {
-                    if (!Program.CurrentEvent.teams.Contains(new Team(teamnum, "")))
+                    if (Program.GetTeamGlobalIndexFromTeamID(teamnum) == -1)
                     {
                         Program.CurrentEvent.teams.Add(new Team(teamnum, ""));
                     }
@@ -118,9 +117,9 @@ namespace MyScout
 
                 Program.MainFrm.RefreshAfterRoundEdit();
             }
-            catch
+            catch(Exception ex)
             {
-
+                MessageBox.Show("Something went wrong while loading the CSV:\n\n" + ex);
             }
         }
 
