@@ -50,6 +50,7 @@
             this.preScoutButton = new System.Windows.Forms.Button();
             this.TeamPnl = new System.Windows.Forms.Panel();
             this.TeamNamePnl = new System.Windows.Forms.Panel();
+            this.OptionsBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -83,7 +84,6 @@
             this.autoLowGoalLbl = new System.Windows.Forms.Label();
             this.autoLowGoalNUD = new System.Windows.Forms.NumericUpDown();
             this.AllianceBtnPnl = new System.Windows.Forms.Panel();
-            this.OptionsBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.BackBtn = new System.Windows.Forms.Button();
             this.RedAllianceBtn1 = new System.Windows.Forms.Button();
@@ -180,8 +180,8 @@
             this.HeaderPnl.Controls.Add(this.OpenDatasetFolderBtn);
             this.HeaderPnl.Controls.Add(this.OpenEventFolderBtn);
             this.HeaderPnl.Controls.Add(this.GameNameLbl);
-            this.HeaderPnl.Controls.Add(this.GameDataWarning);
             this.HeaderPnl.Controls.Add(this.MngGamesBtn);
+            this.HeaderPnl.Controls.Add(this.GameDataWarning);
             this.HeaderPnl.Controls.Add(this.ChooseAnEventLbl);
             this.HeaderPnl.Dock = System.Windows.Forms.DockStyle.Top;
             this.HeaderPnl.Location = new System.Drawing.Point(0, 0);
@@ -191,6 +191,7 @@
             // 
             // OpenDatasetFolderBtn
             // 
+            this.OpenDatasetFolderBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpenDatasetFolderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpenDatasetFolderBtn.Location = new System.Drawing.Point(865, 4);
             this.OpenDatasetFolderBtn.Name = "OpenDatasetFolderBtn";
@@ -202,6 +203,7 @@
             // 
             // OpenEventFolderBtn
             // 
+            this.OpenEventFolderBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.OpenEventFolderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OpenEventFolderBtn.Location = new System.Drawing.Point(983, 4);
             this.OpenEventFolderBtn.Name = "OpenEventFolderBtn";
@@ -222,11 +224,12 @@
             // 
             // GameDataWarning
             // 
+            this.GameDataWarning.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GameDataWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GameDataWarning.ForeColor = System.Drawing.Color.Red;
-            this.GameDataWarning.Location = new System.Drawing.Point(377, 9);
+            this.GameDataWarning.Location = new System.Drawing.Point(0, 0);
             this.GameDataWarning.Name = "GameDataWarning";
-            this.GameDataWarning.Size = new System.Drawing.Size(346, 57);
+            this.GameDataWarning.Size = new System.Drawing.Size(1102, 69);
             this.GameDataWarning.TabIndex = 2;
             this.GameDataWarning.Text = "No Game Data :(";
             this.GameDataWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -334,6 +337,19 @@
             this.TeamNamePnl.Name = "TeamNamePnl";
             this.TeamNamePnl.Size = new System.Drawing.Size(947, 90);
             this.TeamNamePnl.TabIndex = 3;
+            // 
+            // OptionsBtn
+            // 
+            this.OptionsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.OptionsBtn.BackColor = System.Drawing.Color.Transparent;
+            this.OptionsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsBtn.Location = new System.Drawing.Point(854, 14);
+            this.OptionsBtn.Name = "OptionsBtn";
+            this.OptionsBtn.Size = new System.Drawing.Size(81, 59);
+            this.OptionsBtn.TabIndex = 8;
+            this.OptionsBtn.Text = "Options";
+            this.OptionsBtn.UseVisualStyleBackColor = false;
+            this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
             // button2
             // 
@@ -748,18 +764,6 @@
             this.AllianceBtnPnl.Name = "AllianceBtnPnl";
             this.AllianceBtnPnl.Size = new System.Drawing.Size(155, 590);
             this.AllianceBtnPnl.TabIndex = 2;
-            // 
-            // OptionsBtn
-            // 
-            this.OptionsBtn.BackColor = System.Drawing.Color.Transparent;
-            this.OptionsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OptionsBtn.Location = new System.Drawing.Point(854, 14);
-            this.OptionsBtn.Name = "OptionsBtn";
-            this.OptionsBtn.Size = new System.Drawing.Size(81, 59);
-            this.OptionsBtn.TabIndex = 8;
-            this.OptionsBtn.Text = "Options";
-            this.OptionsBtn.UseVisualStyleBackColor = false;
-            this.OptionsBtn.Click += new System.EventHandler(this.OptionsBtn_Click);
             // 
             // button1
             // 
