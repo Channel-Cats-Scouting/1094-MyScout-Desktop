@@ -41,8 +41,8 @@
             this.OpenDatasetFolderBtn = new System.Windows.Forms.Button();
             this.OpenEventFolderBtn = new System.Windows.Forms.Button();
             this.GameNameLbl = new System.Windows.Forms.Label();
-            this.GameDataWarning = new System.Windows.Forms.Label();
             this.MngGamesBtn = new System.Windows.Forms.Button();
+            this.GameDataWarning = new System.Windows.Forms.Label();
             this.EventBtnPnl = new System.Windows.Forms.Panel();
             this.RemoveEventBtn = new System.Windows.Forms.Button();
             this.EditEventBtn = new System.Windows.Forms.Button();
@@ -222,18 +222,6 @@
             this.GameNameLbl.Size = new System.Drawing.Size(0, 13);
             this.GameNameLbl.TabIndex = 3;
             // 
-            // GameDataWarning
-            // 
-            this.GameDataWarning.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GameDataWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GameDataWarning.ForeColor = System.Drawing.Color.Red;
-            this.GameDataWarning.Location = new System.Drawing.Point(0, 0);
-            this.GameDataWarning.Name = "GameDataWarning";
-            this.GameDataWarning.Size = new System.Drawing.Size(1102, 69);
-            this.GameDataWarning.TabIndex = 2;
-            this.GameDataWarning.Text = "No Game Data :(";
-            this.GameDataWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // MngGamesBtn
             // 
             this.MngGamesBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -245,6 +233,18 @@
             this.MngGamesBtn.Text = "Manage Games";
             this.MngGamesBtn.UseVisualStyleBackColor = true;
             this.MngGamesBtn.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // GameDataWarning
+            // 
+            this.GameDataWarning.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GameDataWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GameDataWarning.ForeColor = System.Drawing.Color.Red;
+            this.GameDataWarning.Location = new System.Drawing.Point(0, 0);
+            this.GameDataWarning.Name = "GameDataWarning";
+            this.GameDataWarning.Size = new System.Drawing.Size(1102, 69);
+            this.GameDataWarning.TabIndex = 2;
+            this.GameDataWarning.Text = "No Game Data :(";
+            this.GameDataWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // EventBtnPnl
             // 
@@ -449,6 +449,7 @@
             this.teleOpGB.Size = new System.Drawing.Size(468, 477);
             this.teleOpGB.TabIndex = 1;
             this.teleOpGB.TabStop = false;
+            this.teleOpGB.Tag = "telebox";
             this.teleOpGB.Text = "Tele-OP";
             // 
             // rightHighGoalTOBtn
@@ -628,6 +629,7 @@
             this.autoGB.Size = new System.Drawing.Size(314, 477);
             this.autoGB.TabIndex = 0;
             this.autoGB.TabStop = false;
+            this.autoGB.Tag = "autobox";
             this.autoGB.Text = "Autonomous";
             // 
             // dnHighGoalBtn
@@ -658,7 +660,7 @@
             // 
             this.upLowGoalBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.upLowGoalBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.upLowGoalBtn.Location = new System.Drawing.Point(156, 17);
+            this.upLowGoalBtn.Location = new System.Drawing.Point(156, 20);
             this.upLowGoalBtn.Name = "upLowGoalBtn";
             this.upLowGoalBtn.Size = new System.Drawing.Size(83, 40);
             this.upLowGoalBtn.TabIndex = 7;

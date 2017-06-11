@@ -189,10 +189,12 @@ namespace MyScout
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Initialize the DataSet™
-            DataSet = new List<List<DataPoint>>();
-            DataSet.Add(new List<DataPoint>());
-            DataSet.Add(new List<DataPoint>());
-            DataSet.Add(new List<DataPoint>());
+            DataSet = new List<List<DataPoint>>
+            {
+                new List<DataPoint>(),
+                new List<DataPoint>(),
+                new List<DataPoint>()
+            };
 
             //Begin the GUI side of the application
             MainFrm = new MainFrm();
