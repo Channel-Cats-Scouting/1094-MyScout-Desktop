@@ -83,9 +83,9 @@ namespace MyScout.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap coconut {
+        internal static System.Drawing.Bitmap downarr40 {
             get {
-                object obj = ResourceManager.GetObject("coconut", resourceCulture);
+                object obj = ResourceManager.GetObject("downarr40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,29 +103,9 @@ namespace MyScout.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap IMG_0572 {
+        internal static System.Drawing.Bitmap uparr40 {
             get {
-                object obj = ResourceManager.GetObject("IMG_0572", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Marble {
-            get {
-                object obj = ResourceManager.GetObject("Marble", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap uparrow {
-            get {
-                object obj = ResourceManager.GetObject("uparrow", resourceCulture);
+                object obj = ResourceManager.GetObject("uparr40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

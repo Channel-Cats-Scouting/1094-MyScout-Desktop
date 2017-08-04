@@ -198,6 +198,14 @@ namespace MyScout
 
             //Begin the GUI side of the application
             MainFrm = new MainFrm();
+
+            FormAssembler.InitDictionary();
+            FormBlock[] formblocks = new FormBlock[8];
+            formblocks[0] = FormAssembler.FormBoxDict["numberbox"].CreateSpecific("Low Goal Trips", false, 4);
+            formblocks[1] = FormAssembler.FormBoxDict["checkbox"].CreateSpecific("Rope Climbed", false, 7);
+            formblocks[1] = FormAssembler.FormBoxDict["trackbar"].CreateSpecific("High Goal Accuracy", new int[] { 0, 100, 25 }, false, 5);
+            FormAssembler.Assemble(formblocks, MainFrm.autoGB, MainFrm.teleOpGB);
+
             Application.Run(MainFrm);
         }
     }

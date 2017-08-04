@@ -136,12 +136,46 @@ namespace MyScout
 
             //Update Controls
             if (Program.SelectedTeamRoundIndex < 0) return;
+            
+            //Loop through both groupboxes
+            for(int i = 0; i < teleOpGB.Controls.Count; ++i)
+            {
+                Control container = teleOpGB.Controls[i];
+                if(TagMgr.ContainsTag(container, Tags.FORMBLOCK))
+                {
+                    DataPoint data = null;
+                    for(int j = 0; j < container.Controls.Count; ++j)
+                    {
+                        Control c = container.Controls[j];
+                        if (data == null)
+                        {
+                            string datapoint = TagMgr.GetTagValue(c, Tags.DATAPOINT_);
+                            if (datapoint != "")
+                            {
+                                data = Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][Convert.ToInt16(datapoint)];
+                            --j;
+                            }
+                        }
+                        else
+                        {
+                            if (c.GetType() == typeof(CheckBox) && TagMgr.ContainsTag(c, Tags.BOOL_SOURCE))
+                            {
+                                ((CheckBox)c).Checked = (bool)data.GetValue();
+                            }
+                            else if(c.GetType() == typeof(NumericUpDown) && TagMgr.ContainsTag(c, Tags.INT_SOURCE))
+                            {
+                                ((NumericUpDown)c).Value = (int)data.GetValue();
+                            }
+                        }
+                    }
+                }
+            }
+
             autoLowGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][0].GetValue();
             autoHighGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][1].GetValue();
             autoGearChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][2].GetValue();
             autoLineChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][3].GetValue();
 
-            lowGoalNUD.Value = (int)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][4].GetValue();
             highGoalTracker.Value = (int)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][5].GetValue();
             gearNUD.Value = (int)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][6].GetValue();
             ropeChkbx.Checked = (bool)Program.CurrentRound.DataSet[Program.SelectedTeamRoundIndex][7].GetValue();
@@ -245,7 +279,7 @@ namespace MyScout
         }
 
         //TODO: Re-name "button1" to "OpenReportFolderBtn" or something similar.
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             IO.SaveEvent(Program.CurrentEventIndex);
             
@@ -588,10 +622,6 @@ namespace MyScout
                 modifyNUDValue(autoHighGoalNUD, 1);
             else if (btn == dnHighGoalBtn)
                 modifyNUDValue(autoHighGoalNUD, -1);
-            else if (btn == upLowGoalTOBtn)
-                modifyNUDValue(lowGoalNUD, 1);
-            else if (btn == dnLowGoalTOBtn)
-                modifyNUDValue(lowGoalNUD, -1);
             else if (btn == leftHighGoalTOBtn)
                 modifyTrackerValue(highGoalTracker, -25);
             else if (btn == rightHighGoalTOBtn)

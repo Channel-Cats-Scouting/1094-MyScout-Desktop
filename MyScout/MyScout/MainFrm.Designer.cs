@@ -58,20 +58,6 @@
             this.TeamNameLbl = new System.Windows.Forms.Label();
             this.MainPnl = new System.Windows.Forms.Panel();
             this.teleOpGB = new System.Windows.Forms.GroupBox();
-            this.rightHighGoalTOBtn = new System.Windows.Forms.Button();
-            this.leftHighGoalTOBtn = new System.Windows.Forms.Button();
-            this.upGearsTOBtn = new System.Windows.Forms.Button();
-            this.dnGearsTOBtn = new System.Windows.Forms.Button();
-            this.upLowGoalTOBtn = new System.Windows.Forms.Button();
-            this.dnLowGoalTOBtn = new System.Windows.Forms.Button();
-            this.ropeChkbx = new System.Windows.Forms.CheckBox();
-            this.gearLbl = new System.Windows.Forms.Label();
-            this.gearNUD = new System.Windows.Forms.NumericUpDown();
-            this.highGoalTrackerLbl = new System.Windows.Forms.Label();
-            this.highGoalTracker = new System.Windows.Forms.TrackBar();
-            this.highGoalLbl = new System.Windows.Forms.Label();
-            this.lowGoalLbl = new System.Windows.Forms.Label();
-            this.lowGoalNUD = new System.Windows.Forms.NumericUpDown();
             this.autoGB = new System.Windows.Forms.GroupBox();
             this.dnHighGoalBtn = new System.Windows.Forms.Button();
             this.upHighGoalBtn = new System.Windows.Forms.Button();
@@ -92,6 +78,16 @@
             this.BlueAllianceBtn1 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn2 = new System.Windows.Forms.Button();
             this.BlueAllianceBtn3 = new System.Windows.Forms.Button();
+            this.highGoalLbl = new System.Windows.Forms.Label();
+            this.highGoalTracker = new System.Windows.Forms.TrackBar();
+            this.highGoalTrackerLbl = new System.Windows.Forms.Label();
+            this.gearNUD = new System.Windows.Forms.NumericUpDown();
+            this.gearLbl = new System.Windows.Forms.Label();
+            this.ropeChkbx = new System.Windows.Forms.CheckBox();
+            this.dnGearsTOBtn = new System.Windows.Forms.Button();
+            this.upGearsTOBtn = new System.Windows.Forms.Button();
+            this.leftHighGoalTOBtn = new System.Windows.Forms.Button();
+            this.rightHighGoalTOBtn = new System.Windows.Forms.Button();
             this.EventPnl.SuspendLayout();
             this.HeaderPnl.SuspendLayout();
             this.EventBtnPnl.SuspendLayout();
@@ -99,13 +95,12 @@
             this.TeamNamePnl.SuspendLayout();
             this.MainPnl.SuspendLayout();
             this.teleOpGB.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gearNUD)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.highGoalTracker)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowGoalNUD)).BeginInit();
             this.autoGB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.autoHighGoalNUD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoLowGoalNUD)).BeginInit();
             this.AllianceBtnPnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.highGoalTracker)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gearNUD)).BeginInit();
             this.SuspendLayout();
             // 
             // ChooseAnEventLbl
@@ -324,7 +319,6 @@
             // TeamNamePnl
             // 
             this.TeamNamePnl.BackColor = System.Drawing.Color.Transparent;
-            this.TeamNamePnl.BackgroundImage = global::MyScout.Properties.Resources.bg;
             this.TeamNamePnl.Controls.Add(this.OptionsBtn);
             this.TeamNamePnl.Controls.Add(this.button2);
             this.TeamNamePnl.Controls.Add(this.preScoutButton);
@@ -430,20 +424,17 @@
             // teleOpGB
             // 
             this.teleOpGB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.teleOpGB.BackColor = System.Drawing.Color.White;
             this.teleOpGB.Controls.Add(this.rightHighGoalTOBtn);
             this.teleOpGB.Controls.Add(this.leftHighGoalTOBtn);
             this.teleOpGB.Controls.Add(this.upGearsTOBtn);
             this.teleOpGB.Controls.Add(this.dnGearsTOBtn);
-            this.teleOpGB.Controls.Add(this.upLowGoalTOBtn);
-            this.teleOpGB.Controls.Add(this.dnLowGoalTOBtn);
             this.teleOpGB.Controls.Add(this.ropeChkbx);
             this.teleOpGB.Controls.Add(this.gearLbl);
             this.teleOpGB.Controls.Add(this.gearNUD);
             this.teleOpGB.Controls.Add(this.highGoalTrackerLbl);
             this.teleOpGB.Controls.Add(this.highGoalTracker);
             this.teleOpGB.Controls.Add(this.highGoalLbl);
-            this.teleOpGB.Controls.Add(this.lowGoalLbl);
-            this.teleOpGB.Controls.Add(this.lowGoalNUD);
             this.teleOpGB.Location = new System.Drawing.Point(332, 101);
             this.teleOpGB.Name = "teleOpGB";
             this.teleOpGB.Size = new System.Drawing.Size(468, 477);
@@ -451,166 +442,6 @@
             this.teleOpGB.TabStop = false;
             this.teleOpGB.Tag = "telebox";
             this.teleOpGB.Text = "Tele-OP";
-            // 
-            // rightHighGoalTOBtn
-            // 
-            this.rightHighGoalTOBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.rightHighGoalTOBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rightHighGoalTOBtn.Location = new System.Drawing.Point(312, 151);
-            this.rightHighGoalTOBtn.Name = "rightHighGoalTOBtn";
-            this.rightHighGoalTOBtn.Size = new System.Drawing.Size(40, 83);
-            this.rightHighGoalTOBtn.TabIndex = 17;
-            this.rightHighGoalTOBtn.Text = ">";
-            this.rightHighGoalTOBtn.UseVisualStyleBackColor = true;
-            this.rightHighGoalTOBtn.Click += new System.EventHandler(this.upDownBtn_Click);
-            // 
-            // leftHighGoalTOBtn
-            // 
-            this.leftHighGoalTOBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.leftHighGoalTOBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.leftHighGoalTOBtn.Location = new System.Drawing.Point(156, 153);
-            this.leftHighGoalTOBtn.Name = "leftHighGoalTOBtn";
-            this.leftHighGoalTOBtn.Size = new System.Drawing.Size(40, 83);
-            this.leftHighGoalTOBtn.TabIndex = 16;
-            this.leftHighGoalTOBtn.Text = "<";
-            this.leftHighGoalTOBtn.UseVisualStyleBackColor = true;
-            this.leftHighGoalTOBtn.Click += new System.EventHandler(this.upDownBtn_Click);
-            // 
-            // upGearsTOBtn
-            // 
-            this.upGearsTOBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.upGearsTOBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.upGearsTOBtn.Location = new System.Drawing.Point(156, 263);
-            this.upGearsTOBtn.Name = "upGearsTOBtn";
-            this.upGearsTOBtn.Size = new System.Drawing.Size(83, 40);
-            this.upGearsTOBtn.TabIndex = 15;
-            this.upGearsTOBtn.Text = "^";
-            this.upGearsTOBtn.UseVisualStyleBackColor = true;
-            this.upGearsTOBtn.Click += new System.EventHandler(this.upDownBtn_Click);
-            // 
-            // dnGearsTOBtn
-            // 
-            this.dnGearsTOBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.dnGearsTOBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dnGearsTOBtn.Location = new System.Drawing.Point(156, 346);
-            this.dnGearsTOBtn.Name = "dnGearsTOBtn";
-            this.dnGearsTOBtn.Size = new System.Drawing.Size(83, 40);
-            this.dnGearsTOBtn.TabIndex = 14;
-            this.dnGearsTOBtn.Text = "v";
-            this.dnGearsTOBtn.UseVisualStyleBackColor = true;
-            this.dnGearsTOBtn.Click += new System.EventHandler(this.upDownBtn_Click);
-            // 
-            // upLowGoalTOBtn
-            // 
-            this.upLowGoalTOBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.upLowGoalTOBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.upLowGoalTOBtn.Location = new System.Drawing.Point(156, 12);
-            this.upLowGoalTOBtn.Name = "upLowGoalTOBtn";
-            this.upLowGoalTOBtn.Size = new System.Drawing.Size(83, 40);
-            this.upLowGoalTOBtn.TabIndex = 11;
-            this.upLowGoalTOBtn.Text = "^";
-            this.upLowGoalTOBtn.UseVisualStyleBackColor = true;
-            this.upLowGoalTOBtn.Click += new System.EventHandler(this.upDownBtn_Click);
-            // 
-            // dnLowGoalTOBtn
-            // 
-            this.dnLowGoalTOBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.dnLowGoalTOBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dnLowGoalTOBtn.Location = new System.Drawing.Point(156, 95);
-            this.dnLowGoalTOBtn.Name = "dnLowGoalTOBtn";
-            this.dnLowGoalTOBtn.Size = new System.Drawing.Size(83, 40);
-            this.dnLowGoalTOBtn.TabIndex = 10;
-            this.dnLowGoalTOBtn.Text = "v";
-            this.dnLowGoalTOBtn.UseVisualStyleBackColor = true;
-            this.dnLowGoalTOBtn.Click += new System.EventHandler(this.upDownBtn_Click);
-            // 
-            // ropeChkbx
-            // 
-            this.ropeChkbx.AutoSize = true;
-            this.ropeChkbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ropeChkbx.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ropeChkbx.Location = new System.Drawing.Point(14, 422);
-            this.ropeChkbx.Name = "ropeChkbx";
-            this.ropeChkbx.Size = new System.Drawing.Size(225, 37);
-            this.ropeChkbx.TabIndex = 6;
-            this.ropeChkbx.Tag = 7;
-            this.ropeChkbx.Text = "Ready for Takeoff";
-            this.ropeChkbx.UseVisualStyleBackColor = true;
-            this.ropeChkbx.CheckedChanged += new System.EventHandler(this.Chkbx_CheckedChanged);
-            // 
-            // gearLbl
-            // 
-            this.gearLbl.AutoSize = true;
-            this.gearLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gearLbl.Location = new System.Drawing.Point(8, 289);
-            this.gearLbl.Name = "gearLbl";
-            this.gearLbl.Size = new System.Drawing.Size(93, 64);
-            this.gearLbl.TabIndex = 13;
-            this.gearLbl.Text = "Gears\r\nScored:";
-            this.gearLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // gearNUD
-            // 
-            this.gearNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gearNUD.Location = new System.Drawing.Point(156, 309);
-            this.gearNUD.Name = "gearNUD";
-            this.gearNUD.Size = new System.Drawing.Size(83, 31);
-            this.gearNUD.TabIndex = 12;
-            this.gearNUD.Tag = 6;
-            this.gearNUD.ValueChanged += new System.EventHandler(this.NUD_ValueChanged);
-            // 
-            // highGoalTrackerLbl
-            // 
-            this.highGoalTrackerLbl.AutoSize = true;
-            this.highGoalTrackerLbl.Location = new System.Drawing.Point(210, 221);
-            this.highGoalTrackerLbl.Name = "highGoalTrackerLbl";
-            this.highGoalTrackerLbl.Size = new System.Drawing.Size(91, 13);
-            this.highGoalTrackerLbl.TabIndex = 11;
-            this.highGoalTrackerLbl.Text = "0  25  50  75  100";
-            // 
-            // highGoalTracker
-            // 
-            this.highGoalTracker.LargeChange = 25;
-            this.highGoalTracker.Location = new System.Drawing.Point(202, 171);
-            this.highGoalTracker.Maximum = 100;
-            this.highGoalTracker.Name = "highGoalTracker";
-            this.highGoalTracker.Size = new System.Drawing.Size(104, 45);
-            this.highGoalTracker.SmallChange = 25;
-            this.highGoalTracker.TabIndex = 10;
-            this.highGoalTracker.TickFrequency = 25;
-            this.highGoalTracker.ValueChanged += new System.EventHandler(this.highGoalTracker_ValueChanged);
-            // 
-            // highGoalLbl
-            // 
-            this.highGoalLbl.AutoSize = true;
-            this.highGoalLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.highGoalLbl.Location = new System.Drawing.Point(8, 168);
-            this.highGoalLbl.Name = "highGoalLbl";
-            this.highGoalLbl.Size = new System.Drawing.Size(125, 64);
-            this.highGoalLbl.TabIndex = 9;
-            this.highGoalLbl.Text = "High Goal\r\n(accuracy):";
-            this.highGoalLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lowGoalLbl
-            // 
-            this.lowGoalLbl.AutoSize = true;
-            this.lowGoalLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lowGoalLbl.Location = new System.Drawing.Point(6, 40);
-            this.lowGoalLbl.Name = "lowGoalLbl";
-            this.lowGoalLbl.Size = new System.Drawing.Size(112, 64);
-            this.lowGoalLbl.TabIndex = 7;
-            this.lowGoalLbl.Text = "Low Goal\r\nTrips:\r\n";
-            this.lowGoalLbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lowGoalNUD
-            // 
-            this.lowGoalNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lowGoalNUD.Location = new System.Drawing.Point(156, 58);
-            this.lowGoalNUD.Name = "lowGoalNUD";
-            this.lowGoalNUD.Size = new System.Drawing.Size(83, 31);
-            this.lowGoalNUD.TabIndex = 6;
-            this.lowGoalNUD.Tag = 4;
-            this.lowGoalNUD.ValueChanged += new System.EventHandler(this.NUD_ValueChanged);
             // 
             // autoGB
             // 
@@ -711,6 +542,7 @@
             // autoHighGoalLbl
             // 
             this.autoHighGoalLbl.AutoSize = true;
+            this.autoHighGoalLbl.BackColor = System.Drawing.Color.Transparent;
             this.autoHighGoalLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.autoHighGoalLbl.Location = new System.Drawing.Point(6, 207);
             this.autoHighGoalLbl.Name = "autoHighGoalLbl";
@@ -731,6 +563,7 @@
             // autoLowGoalLbl
             // 
             this.autoLowGoalLbl.AutoSize = true;
+            this.autoLowGoalLbl.BackColor = System.Drawing.Color.Transparent;
             this.autoLowGoalLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.autoLowGoalLbl.Location = new System.Drawing.Point(6, 40);
             this.autoLowGoalLbl.Name = "autoLowGoalLbl";
@@ -752,7 +585,6 @@
             // AllianceBtnPnl
             // 
             this.AllianceBtnPnl.BackColor = System.Drawing.Color.Transparent;
-            this.AllianceBtnPnl.BackgroundImage = global::MyScout.Properties.Resources.bg;
             this.AllianceBtnPnl.Controls.Add(this.button1);
             this.AllianceBtnPnl.Controls.Add(this.BackBtn);
             this.AllianceBtnPnl.Controls.Add(this.RedAllianceBtn1);
@@ -778,15 +610,15 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "Generate Report";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // BackBtn
             // 
-            this.BackBtn.BackgroundImage = global::MyScout.Properties.Resources.backbtn;
             this.BackBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BackBtn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.BackBtn.FlatAppearance.BorderSize = 0;
             this.BackBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackBtn.Image = global::MyScout.Properties.Resources.backbtn;
             this.BackBtn.Location = new System.Drawing.Point(7, 3);
             this.BackBtn.Name = "BackBtn";
             this.BackBtn.Size = new System.Drawing.Size(40, 40);
@@ -896,6 +728,123 @@
             this.BlueAllianceBtn3.UseVisualStyleBackColor = false;
             this.BlueAllianceBtn3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TeamBtn_MouseClick);
             // 
+            // highGoalLbl
+            // 
+            this.highGoalLbl.AutoSize = true;
+            this.highGoalLbl.BackColor = System.Drawing.Color.Transparent;
+            this.highGoalLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highGoalLbl.Location = new System.Drawing.Point(8, 168);
+            this.highGoalLbl.Name = "highGoalLbl";
+            this.highGoalLbl.Size = new System.Drawing.Size(125, 64);
+            this.highGoalLbl.TabIndex = 9;
+            this.highGoalLbl.Text = "High Goal\r\n(accuracy):";
+            this.highGoalLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // highGoalTracker
+            // 
+            this.highGoalTracker.LargeChange = 25;
+            this.highGoalTracker.Location = new System.Drawing.Point(202, 171);
+            this.highGoalTracker.Maximum = 100;
+            this.highGoalTracker.Name = "highGoalTracker";
+            this.highGoalTracker.Size = new System.Drawing.Size(104, 45);
+            this.highGoalTracker.SmallChange = 25;
+            this.highGoalTracker.TabIndex = 10;
+            this.highGoalTracker.TickFrequency = 25;
+            this.highGoalTracker.ValueChanged += new System.EventHandler(this.highGoalTracker_ValueChanged);
+            // 
+            // highGoalTrackerLbl
+            // 
+            this.highGoalTrackerLbl.AutoSize = true;
+            this.highGoalTrackerLbl.Location = new System.Drawing.Point(210, 221);
+            this.highGoalTrackerLbl.Name = "highGoalTrackerLbl";
+            this.highGoalTrackerLbl.Size = new System.Drawing.Size(91, 13);
+            this.highGoalTrackerLbl.TabIndex = 11;
+            this.highGoalTrackerLbl.Text = "0  25  50  75  100";
+            // 
+            // gearNUD
+            // 
+            this.gearNUD.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gearNUD.Location = new System.Drawing.Point(156, 309);
+            this.gearNUD.Name = "gearNUD";
+            this.gearNUD.Size = new System.Drawing.Size(83, 31);
+            this.gearNUD.TabIndex = 12;
+            this.gearNUD.Tag = 6;
+            this.gearNUD.ValueChanged += new System.EventHandler(this.NUD_ValueChanged);
+            // 
+            // gearLbl
+            // 
+            this.gearLbl.AutoSize = true;
+            this.gearLbl.BackColor = System.Drawing.Color.Transparent;
+            this.gearLbl.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gearLbl.Location = new System.Drawing.Point(8, 289);
+            this.gearLbl.Name = "gearLbl";
+            this.gearLbl.Size = new System.Drawing.Size(93, 64);
+            this.gearLbl.TabIndex = 13;
+            this.gearLbl.Text = "Gears\r\nScored:";
+            this.gearLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ropeChkbx
+            // 
+            this.ropeChkbx.AutoSize = true;
+            this.ropeChkbx.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ropeChkbx.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ropeChkbx.Location = new System.Drawing.Point(14, 422);
+            this.ropeChkbx.Name = "ropeChkbx";
+            this.ropeChkbx.Size = new System.Drawing.Size(225, 37);
+            this.ropeChkbx.TabIndex = 6;
+            this.ropeChkbx.Tag = 7;
+            this.ropeChkbx.Text = "Ready for Takeoff";
+            this.ropeChkbx.UseVisualStyleBackColor = true;
+            this.ropeChkbx.CheckedChanged += new System.EventHandler(this.Chkbx_CheckedChanged);
+            // 
+            // dnGearsTOBtn
+            // 
+            this.dnGearsTOBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.dnGearsTOBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dnGearsTOBtn.Location = new System.Drawing.Point(156, 346);
+            this.dnGearsTOBtn.Name = "dnGearsTOBtn";
+            this.dnGearsTOBtn.Size = new System.Drawing.Size(83, 40);
+            this.dnGearsTOBtn.TabIndex = 14;
+            this.dnGearsTOBtn.Text = "v";
+            this.dnGearsTOBtn.UseVisualStyleBackColor = true;
+            this.dnGearsTOBtn.Click += new System.EventHandler(this.upDownBtn_Click);
+            // 
+            // upGearsTOBtn
+            // 
+            this.upGearsTOBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.upGearsTOBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.upGearsTOBtn.Location = new System.Drawing.Point(156, 263);
+            this.upGearsTOBtn.Name = "upGearsTOBtn";
+            this.upGearsTOBtn.Size = new System.Drawing.Size(83, 40);
+            this.upGearsTOBtn.TabIndex = 15;
+            this.upGearsTOBtn.Text = "^";
+            this.upGearsTOBtn.UseVisualStyleBackColor = true;
+            this.upGearsTOBtn.Click += new System.EventHandler(this.upDownBtn_Click);
+            // 
+            // leftHighGoalTOBtn
+            // 
+            this.leftHighGoalTOBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.leftHighGoalTOBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.leftHighGoalTOBtn.Location = new System.Drawing.Point(156, 153);
+            this.leftHighGoalTOBtn.Name = "leftHighGoalTOBtn";
+            this.leftHighGoalTOBtn.Size = new System.Drawing.Size(40, 83);
+            this.leftHighGoalTOBtn.TabIndex = 16;
+            this.leftHighGoalTOBtn.Text = "<";
+            this.leftHighGoalTOBtn.UseVisualStyleBackColor = true;
+            this.leftHighGoalTOBtn.Click += new System.EventHandler(this.upDownBtn_Click);
+            // 
+            // rightHighGoalTOBtn
+            // 
+            this.rightHighGoalTOBtn.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.rightHighGoalTOBtn.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rightHighGoalTOBtn.Location = new System.Drawing.Point(312, 151);
+            this.rightHighGoalTOBtn.Name = "rightHighGoalTOBtn";
+            this.rightHighGoalTOBtn.Size = new System.Drawing.Size(40, 83);
+            this.rightHighGoalTOBtn.TabIndex = 17;
+            this.rightHighGoalTOBtn.Text = ">";
+            this.rightHighGoalTOBtn.UseVisualStyleBackColor = true;
+            this.rightHighGoalTOBtn.Click += new System.EventHandler(this.upDownBtn_Click);
+            // 
             // MainFrm
             // 
             this.AcceptButton = this.AddEventBtn;
@@ -923,14 +872,13 @@
             this.MainPnl.ResumeLayout(false);
             this.teleOpGB.ResumeLayout(false);
             this.teleOpGB.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gearNUD)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.highGoalTracker)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowGoalNUD)).EndInit();
             this.autoGB.ResumeLayout(false);
             this.autoGB.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.autoHighGoalNUD)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.autoLowGoalNUD)).EndInit();
             this.AllianceBtnPnl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.highGoalTracker)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gearNUD)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -970,36 +918,32 @@
         private System.Windows.Forms.Label GameDataWarning;
         private System.Windows.Forms.Label GameNameLbl;
         private System.Windows.Forms.ColumnHeader GameHeader;
-        private System.Windows.Forms.GroupBox autoGB;
-        private System.Windows.Forms.GroupBox teleOpGB;
         private System.Windows.Forms.Label autoLowGoalLbl;
         private System.Windows.Forms.NumericUpDown autoLowGoalNUD;
         private System.Windows.Forms.Label autoHighGoalLbl;
         private System.Windows.Forms.NumericUpDown autoHighGoalNUD;
         private System.Windows.Forms.CheckBox autoGearChkbx;
         private System.Windows.Forms.CheckBox autoLineChkbx;
-        private System.Windows.Forms.TrackBar highGoalTracker;
-        private System.Windows.Forms.Label highGoalLbl;
-        private System.Windows.Forms.Label lowGoalLbl;
-        private System.Windows.Forms.NumericUpDown lowGoalNUD;
-        private System.Windows.Forms.Label highGoalTrackerLbl;
-        private System.Windows.Forms.Label gearLbl;
-        private System.Windows.Forms.NumericUpDown gearNUD;
-        private System.Windows.Forms.CheckBox ropeChkbx;
         private System.Windows.Forms.Button dnHighGoalBtn;
         private System.Windows.Forms.Button upHighGoalBtn;
         private System.Windows.Forms.Button upLowGoalBtn;
         private System.Windows.Forms.Button dnLowGoalBtn;
-        private System.Windows.Forms.Button upGearsTOBtn;
-        private System.Windows.Forms.Button dnGearsTOBtn;
-        private System.Windows.Forms.Button upLowGoalTOBtn;
-        private System.Windows.Forms.Button dnLowGoalTOBtn;
-        private System.Windows.Forms.Button rightHighGoalTOBtn;
-        private System.Windows.Forms.Button leftHighGoalTOBtn;
         private System.Windows.Forms.ColumnHeader NameHeader;
         private System.Windows.Forms.Button OpenDatasetFolderBtn;
         private System.Windows.Forms.Button OpenEventFolderBtn;
         private System.Windows.Forms.Button OptionsBtn;
+        public System.Windows.Forms.GroupBox autoGB;
+        public System.Windows.Forms.GroupBox teleOpGB;
+        private System.Windows.Forms.Button rightHighGoalTOBtn;
+        private System.Windows.Forms.Button leftHighGoalTOBtn;
+        private System.Windows.Forms.Button upGearsTOBtn;
+        private System.Windows.Forms.Label highGoalLbl;
+        private System.Windows.Forms.Button dnGearsTOBtn;
+        private System.Windows.Forms.TrackBar highGoalTracker;
+        private System.Windows.Forms.CheckBox ropeChkbx;
+        private System.Windows.Forms.Label highGoalTrackerLbl;
+        private System.Windows.Forms.Label gearLbl;
+        private System.Windows.Forms.NumericUpDown gearNUD;
     }
 }
 

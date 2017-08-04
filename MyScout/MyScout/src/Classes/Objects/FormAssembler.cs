@@ -13,97 +13,178 @@ namespace MyScout
     /// </summary>
     class FormAssembler
     {
-        public static Dictionary<String, FormBlockTemplate> FormBoxDict;
+        public static Dictionary<String, FormBlockTemplate> FormBoxDict = new Dictionary<string, FormBlockTemplate>();
 
         public static void Assemble(FormBlock[] blocks, GroupBox autobox, GroupBox telebox)
         {
-            InitDictionary();
 
             //TODO: create blocks and add to boxes
-            for(int i = 0; i < blocks.Count(); ++i)
+            int autoXOffset = 0, teleXOffset = 0;
+            int autoYOffset = 0, teleYOffset = 0;
+
+            List<int> teleColXOffsets = new List<int>(new int[] { 0, 0, 0 });
+            List<int> autoColXOffsets = new List<int>(new int[] { 0, 0, 0 });
+            List<int> teleColYHeights = new List<int>(new int[] { 0, 0, 0 });
+            List<int> autoColYHeights = new List<int>(new int[] { 0, 0, 0 });
+
+            int padding = 10;
+
+            //Figure out how wide each column should be
+            foreach (FormBlock fb in blocks)
             {
-                GroupBox formBlockBox = new GroupBox();
-                formBlockBox.Controls.AddRange(blocks[i].getControls());
-                if(blocks[i].IsAuto)
+                if (fb != null)
                 {
-                    autobox.Controls.Add(formBlockBox);
-                }
-                else
-                {
-                    telebox.Controls.Add(formBlockBox);
+                    if (fb.IsAuto)
+                    {
+                        if (autoColXOffsets[fb.Column + 1] < fb.Width)
+                        {
+                            autoColXOffsets[fb.Column + 1] = fb.Width;
+                        }
+                    }
+                    else
+                    {
+                        if (teleColXOffsets[fb.Column + 1] < fb.Width)
+                        {
+                            teleColXOffsets[fb.Column + 1] = fb.Width;
+                        }
+                    }
                 }
             }
-        }
 
-        /// <summary>
-        /// This control's text can be changed
-        /// </summary>
-        public static string TEXT_DISPLAY = "txtdsp";
-        public static string BOOL_SOURCE = "boolsrc";
-        public static string INT_SOURCE = "intsrc";
-        public static string STRING_SOURCE = "strsrc";
-
-        public static string AUTO_BOX = "autobox";
-        public static string TELEOP_BOX = "telebox";
-
-        private static void InitDictionary()
-        {
-            //Checkbox
-            CheckBox checkbox = new CheckBox();
-            checkbox.Location = new Point(0, 0);
-            checkbox.Tag = TEXT_DISPLAY + ";" + BOOL_SOURCE;
-            FormBlockTemplate checkboxBlock = new FormBlockTemplate(new Control[] { checkbox });
-            FormBoxDict.Add("checkbox", checkboxBlock);
-
-            //Numberbox
-            Button upbutton = new Button();
-            upbutton.Text = "^";
-            upbutton.Click += new EventHandler(incrInt);
-            upbutton.Location = new Point(0, 0);
-            upbutton.Size = new Size(90, 40);
-            Button downbutton = new Button();
-            downbutton.Text = "v";
-            downbutton.Click += new EventHandler(decrInt);
-            upbutton.Location = new Point(0, 80);
-            upbutton.Size = new Size(90, 40);
-            NumericUpDown nud = new NumericUpDown();
-            nud.Location = new Point(0, 45);
-            nud.Size = new Size(90, 30);
-            nud.Value = 0;
-            nud.Tag = INT_SOURCE;
-            FormBlockTemplate numberboxBlock = new FormBlockTemplate(new Control[] { upbutton, nud, downbutton });
-        }
-
-        /// <summary>
-        ///Increments a sibling INT_SOURCE nud
-        /// </summary>
-        static void incrInt(object sender, EventArgs e)
-        {
-            foreach(Control c in ((Button)sender).Parent.Controls)
+            for (int i = 0; i < blocks.Count(); ++i)
             {
-                if (c is NumericUpDown)
+                if (blocks[i] != null)
                 {
-                    if (c.Tag.ToString().Contains(INT_SOURCE))
+                    Label formBlockLabel = new Label();
+                    formBlockLabel.Size = new Size(blocks[i].Width, blocks[i].Height);
+                    formBlockLabel.Controls.AddRange(blocks[i].getControls());
+                    formBlockLabel.Tag = Tags.FORMBLOCK;
+                    if (blocks[i].IsAuto)
                     {
-                        //Increment the text value
-                        c.Text = (Convert.ToInt16(((NumericUpDown)c).Value) + 1).ToString();
+                        autobox.Controls.Add(formBlockLabel);
+
+                        //Keep shifting the element over until it fits in a groupbox
+                        while (autoColYHeights[blocks[i].Column] + blocks[i].Height + padding > autobox.Height)
+                        {
+                            blocks[i].Column++;
+                        }
+
+                        formBlockLabel.Location = new Point(autoColXOffsets[blocks[i].Column] + padding, autoColYHeights[blocks[i].Column] + padding * (i + 1));
+                        autoColYHeights[blocks[i].Column] += blocks[i].Height + padding;
+                    }
+                    else
+                    {
+                        telebox.Controls.Add(formBlockLabel);
+
+                        //Keep shifting the element over until it fits in a groupbox
+                        while (teleColYHeights[blocks[i].Column] + blocks[i].Height + padding > autobox.Height)
+                        {
+                            blocks[i].Column++;
+                        }
+
+                        formBlockLabel.Location = new Point(teleColXOffsets[blocks[i].Column] + padding, teleColYHeights[blocks[i].Column] + padding * (i + 1));
+                        teleColYHeights[blocks[i].Column] += blocks[i].Height + padding;
                     }
                 }
             }
         }
-        /// <summary>
-        ///Decrements a sibling INT_SOURCE nud
-        /// </summary>
-        static void decrInt(object sender, EventArgs e)
+
+        public static void InitDictionary()
         {
-            foreach (Control c in ((Button)sender).Parent.Controls)
+            //Empty the dictionary so we don't get multiple keyval pairs
+            FormBoxDict.Clear();
+
+            //Display font
+            Font displayFont = new Font(FontFamily.GenericSansSerif, 18);
+            //Entry font
+            Font entryFont = new Font(FontFamily.GenericSansSerif, 15.75f);
+
+            //Checkbox
             {
-                if (c.Tag.ToString().Contains(INT_SOURCE))
+                CheckBox checkbox = new CheckBox()
                 {
-                    //Increment the text value
-                    c.Text = (Convert.ToInt16(c.Text) - 1).ToString();
-                }
+                    Location = new Point(0, 10),
+                    Size = new Size(200, 40),
+                    Tag = TagMgr.MergeTags(new string[] { Tags.TEXT_DISPLAY, Tags.BOOL_SOURCE, Tags.DATAPOINT_, Tags.DATA_INDEX }),
+                    TextAlign = ContentAlignment.MiddleLeft,
+                    CheckAlign = ContentAlignment.MiddleLeft,
+                    Font = displayFont,
+                    BackColor = Color.Transparent
+                };
+                FormBlockTemplate checkboxBlock = new FormBlockTemplate(new Control[] { checkbox }, 200, 41);
+                FormBoxDict.Add("checkbox", checkboxBlock);
+            }
+
+            //Numberbox
+            {
+                Button upbutton = new Button()
+                {
+                    BackColor = Color.Gainsboro,
+                    Text = "^",
+                    Location = new Point(140, 0),
+                    Size = new Size(90, 40),
+                    Tag = TagMgr.MergeTags(new String[] { Tags.INCREMENT, Tags.ADJUST_TEXT })
+                };
+
+                Button downbutton = new Button()
+                {
+                    BackColor = Color.Gainsboro,
+                    Text = "v",
+                    Location = new Point(140, 80),
+                    Size = new Size(90, 40),
+                    Tag = TagMgr.MergeTags(new String[] { Tags.DECREMENT, Tags.ADJUST_TEXT })
+                };
+
+                NumericUpDown nud = new NumericUpDown()
+                {
+                    Location = new Point(140, 45),
+                    Size = new Size(90, 30),
+                    Value = 0,
+                    Tag = TagMgr.MergeTags(new string[] { Tags.INT_SOURCE, Tags.DATAPOINT_, Tags.DATA_INDEX }),
+                    Font = entryFont
+                };
+
+                Label label = new Label()
+                {
+                    Location = new Point(0, 0),
+                    Size = new Size(120, 120),
+                    Tag = Tags.TEXT_DISPLAY,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    Font = displayFont,
+                    BackColor = Color.Transparent
+                };
+                FormBlockTemplate numberboxBlock = new FormBlockTemplate(new Control[] { label, upbutton, nud, downbutton }, 230, 120);
+                FormBoxDict.Add("numberbox", numberboxBlock);
+            }
+
+            //Trackbar
+            {
+                Button downbutton = new Button()
+                {
+                    Text = "<",
+                    Location = new Point(0, 0),
+                    Size = new Size(40, 90),
+                    Tag = TagMgr.MergeTags(new string[] { Tags.DECREMENT, Tags.ADJUST_TRACK })
+                };
+
+                TrackBar trackbar = new TrackBar()
+                {
+                    Location = new Point(60, 0),
+                    Size = new Size(110, 40),
+                    Tag = TagMgr.MergeTags(new string[] { Tags.INT_SOURCE, Tags.MIN_RANGE_, Tags.INT, Tags.MAX_RANGE_, Tags.INT, Tags.INCR_, Tags.INT })
+                };
+
+                Button upbutton = new Button()
+                {
+                    Text = ">",
+                    Location = new Point(130, 0),
+                    Size = new Size(40, 90),
+                    Tag = TagMgr.MergeTags(new string[] { Tags.INCREMENT, Tags.ADJUST_TRACK })
+                };
+                FormBlockTemplate trackbarBlock = new FormBlockTemplate(new Control[] { downbutton, upbutton, trackbar }, 170, 90);
+                FormBoxDict.Add("trackbar", trackbarBlock);
             }
         }
+
     }
 }
